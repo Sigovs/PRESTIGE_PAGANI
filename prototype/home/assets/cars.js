@@ -1,0 +1,1 @@
+window.CARS = {"utopia": {"w": 1054, "h": 444, "contactY": 0.955}, "utopia-roadster": {"w": 1154, "h": 505, "contactY": 0.962}, "huayra-r-evo-roadster": {"w": 1152, "h": 285, "contactY": 0.954}, "huayra-bc": {"w": 1144, "h": 402, "contactY": 0.965}};

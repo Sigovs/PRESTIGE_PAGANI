@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pagani of Miami</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/lenis.css">
+<link rel="stylesheet" href="home.css">
+<link rel="preload" as="image" href="assets/hero1-poster.jpg">
+</head>
+<body>
+<!-- PROTOTYPE of the home page, not for publication. Copy and figures: see DATA_SOURCES.md.
+     Art direction: Alex's CONCEPT.png (IMAGES ALEX) — black / white / silver, one scene per full screen, text never on a car. -->
+<a class="skip" href="#lineup">Skip to the lineup</a>
+
+<header class="hdr">
+  <a class="hdr__tel" href="tel:+18332906287">(833) 290-6287</a>
+  <a class="hdr__brand" href="#top" aria-label="Pagani of Miami, top of page"><img src="assets/pagani.svg" alt="Pagani" width="150" height="17"></a>
+  <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>Menu</button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Main" hidden data-lenis-prevent>
+  <ul>
+    <li><a href="#lineup" data-goto="#lineup">The lineup</a></li>
+    <li><a href="#grandi" data-goto="#grandi">Grandi Complicazioni</a></li>
+    <li><a href="#about" data-goto="#about">Horacio Pagani</a></li>
+    <li><a href="#service" data-goto="#service">Service</a></li>
+    <li><a href="#miami" data-goto="#miami">In our showroom</a></li>
+    <li><a href="#invite" data-goto="#invite">Enquire</a></li>
+  </ul>
+</nav>
+
+<main id="top">
+
+  <!-- 1 · HERO — Alex's film, full screen, played once; the name and one action sit top-left, the one field that stays free in every shot -->
+  <section class="sc hero" data-act="hero" aria-labelledby="hero-title">
+    <div class="hero__film">
+      <video class="hero__video" data-hero-video muted playsinline preload="auto" poster="assets/hero1-poster.jpg" aria-label="A Pagani Huayra through a Sicilian baroque town, from day into night">
+        <source src="assets/hero1.webm" type="video/webm">
+        <source src="assets/hero1.mp4" type="video/mp4">
+      </video>
+      <img class="hero__still" src="assets/hero1-still.jpg" alt="A Pagani Huayra standing in a stone courtyard at dusk" data-hero-still>
+    </div>
+    <div class="hero__type">
+      <h1 id="hero-title" class="hero__title" data-hero-rise>Pagani <span>of</span> Miami</h1>
+      <p data-hero-rise><a class="link link--rule" href="#lineup" data-goto="#lineup">Discover the lineup</a></p>
+    </div>
+    <button class="hero__pause" type="button" data-hero-toggle aria-label="Pause the film">Pause</button>
+  </section>
+
+  <!-- 2 · THE LINEUP — the Chicago principle: one car on a lit floor, the next waiting at the edge,
+       collection top-left, the model's own logotype top-right, the choice directly under the car -->
+  <section class="sc stage" id="lineup" data-stage aria-labelledby="stage-title">
+    <div class="stage__inner" data-stage-inner>
+      <div class="stage__room" aria-hidden="true"><div class="stage__cone"></div><div class="stage__pool"></div></div>
+      <header class="stage__head">
+        <p class="eyebrow">Model lineup</p>
+        <h2 class="stage__title" id="stage-title">Hypercars</h2>
+      </header>
+      <div class="stage__badge"><img data-record-logo data-rec alt=""></div>
+      <ol class="models" data-models>
+        <li class="model" id="model-utopia" data-model="utopia" data-explore="https://www.pagani.com/pagani-utopia/">
+          <figure class="model__car"><img src="assets/utopia.webp" alt="Pagani Utopia in white, doors raised, rear three-quarter" width="1783" height="748"></figure>
+          <div class="model__info">
+            <img class="model__logo" src="assets/logo-utopia.png" alt="Utopia" width="950" height="291">
+            <p class="model__line">Pagani V12, 5,980 cc, twin-turbo</p>
+            <dl class="model__specs">
+              <div><dt>Power</dt><dd>864 hp</dd></div>
+              <div><dt>Torque</dt><dd>1,100 Nm</dd></div>
+              <div><dt>Dry weight</dt><dd>1,280 kg</dd></div>
+            </dl>
+          </div>
+        </li>
+        <li class="model" id="model-utopia-roadster" data-model="utopia-roadster" data-explore="https://www.pagani.com/utopia-roadster/">
+          <figure class="model__car"><img src="assets/utopia-roadster.webp" alt="Pagani Utopia Roadster in red carbon, doors and clamshells open, in profile" width="1118" height="481"></figure>
+          <div class="model__info">
+            <img class="model__logo" src="assets/logo-utopia-roadster.png" alt="Utopia Roadster" width="1000" height="369">
+            <p class="model__line">Pagani V12, 5,980 cc, twin-turbo · open top</p>
+            <dl class="model__specs">
+              <div><dt>Power</dt><dd>864 hp</dd></div>
+              <div><dt>Torque</dt><dd>1,100 Nm</dd></div>
+              <div><dt>Dry weight</dt><dd>1,280 kg</dd></div>
+            </dl>
+          </div>
+        </li>
+        <li class="model" id="model-huayra-r-evo-roadster" data-model="huayra-r-evo-roadster" data-explore="https://www.pagani.com/huayra-r-evo-roadster/">
+          <figure class="model__car"><img src="assets/huayra-r-evo-roadster.webp" alt="Pagani Huayra R Evo Roadster in white and gold race livery, in profile" width="2400" height="566"></figure>
+          <div class="model__info">
+            <img class="model__logo" src="assets/logo-huayra-r-evo-roadster.svg" alt="Huayra R Evo Roadster" width="420" height="130">
+            <p class="model__line">V12-R Evo, naturally aspirated · Arte in Pista, track only</p>
+            <dl class="model__specs">
+              <div><dt>Power</dt><dd>900 hp</dd></div>
+              <div><dt>Torque</dt><dd>770 Nm</dd></div>
+              <div><dt>Dry weight</dt><dd>1,060 kg</dd></div>
+            </dl>
+          </div>
+        </li>
+      </ol>
+
+      <nav class="rail" aria-label="Models in the lineup"><ol data-rail-list></ol></nav>
+
+      <div class="record" data-record aria-live="polite">
+        <div class="record__text" data-rec>
+          <p class="record__line" data-record-line></p>
+          <dl class="record__specs" data-record-specs></dl>
+        </div>
+        <p class="record__actions" data-rec>
+          <a class="link link--rule" href="https://www.pagani.com/" target="_blank" rel="noopener" data-record-explore>Explore</a>
+          <a class="btn" href="#invite" data-goto="#invite">Enquire</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · GRANDI COMPLICAZIONI — a collection, not a card: two offset columns over the Imola track at dusk,
+       which fades into the page; every car carries its own logotype. Only cars pagani.com lists under the division. -->
+  <section class="gc" id="grandi" aria-labelledby="gc-title">
+    <div class="gc__sky" aria-hidden="true" data-gc-sky><img src="assets/gc-sky.webp" alt="" loading="lazy"></div>
+    <header class="gc__head">
+      <p class="eyebrow" data-rise>Pagani Automobili</p>
+      <h2 id="gc-title" class="title" data-rise>Grandi Complicazioni</h2>
+      <p class="lede" data-rise>Few-off creations from the Grandi Complicazioni division.</p>
+    </header>
+    <div class="gc__cols">
+      <ul class="gc__col" data-gc-col="a">
+        <li class="gc__item" data-gc-item>
+          <figure><img class="gc__photo" src="assets/gc-codalunga-speedster.webp" alt="Pagani Huayra Codalunga Speedster in pale green, front three-quarter, in a dark hangar" loading="lazy" width="1100" height="1375"></figure>
+          <img class="gc__logo" src="assets/logo-codalunga-speedster.png" alt="Huayra Codalunga Speedster" loading="lazy">
+        </li>
+        <li class="gc__item gc__item--light" data-gc-item>
+          <figure><img class="gc__photo" src="assets/gc-imola-roadster.webp" alt="Pagani Imola Roadster in silver with gold accents, front three-quarter, in a white studio" loading="lazy" width="1100" height="1375"></figure>
+          <img class="gc__logo" src="assets/logo-imola-roadster.png" alt="Imola Roadster" loading="lazy">
+        </li>
+      </ul>
+      <ul class="gc__col gc__col--b" data-gc-col="b">
+        <li class="gc__item" data-gc-item>
+          <figure><img class="gc__photo" src="assets/gc-tricolore.webp" alt="Pagani Huayra Tricolore on a runway beneath green, white and red smoke trails" loading="lazy" width="1100" height="1375"></figure>
+          <img class="gc__logo" src="assets/logo-tricolore.png" alt="Huayra Tricolore" loading="lazy">
+        </li>
+        <li class="gc__item" data-gc-item>
+          <figure><img class="gc__photo" src="assets/gc-imola.webp" alt="Pagani Imola from behind, in the pit lane of the Imola circuit" loading="lazy" width="1100" height="1375"></figure>
+          <img class="gc__logo" src="assets/logo-imola.png" alt="Imola" loading="lazy">
+        </li>
+      </ul>
+    </div>
+    <p class="gc__foot" data-rise><a class="link link--rule" href="#invite" data-goto="#invite">Enquire</a></p>
+  </section>
+
+  <!-- 4 · ART AND SCIENCE — the one split, as in the concept: detail right, black left -->
+  <section class="sc split" id="art" aria-labelledby="art-title">
+    <div class="split__media split__media--right" data-split-media><img src="assets/art.webp" alt="The Pagani V12 seen from above, between the carbon intake plenums" loading="lazy"></div>
+    <div class="scene__type">
+      <p class="eyebrow" data-rise>The Atelier</p>
+      <h2 id="art-title" class="title" data-rise>Art and science</h2>
+      <p class="lede" data-rise>“Art and science can walk together, hand in hand.” <span>Leonardo da Vinci</span></p>
+    </div>
+  </section>
+
+  <!-- 5 · ABOUT — Horacio -->
+  <section class="sc scene scene--mono" id="about" data-scene data-side="right" aria-labelledby="about-title">
+    <div class="scene__media" data-scene-media><img src="assets/about.webp" alt="Horacio Pagani at the wheel, in black and white" loading="lazy"></div>
+    <div class="scene__type">
+      <p class="eyebrow" data-rise>Horacio Pagani</p>
+      <h2 id="about-title" class="title" data-rise>The boy who wanted to create the most beautiful car in the world.</h2>
+      <p class="lede" data-rise>Founder &amp; Chief Designer of Pagani Automobili.</p>
+    </div>
+  </section>
+
+  <!-- 6 · SERVICE -->
+  <section class="sc scene" id="service" data-scene data-side="left" aria-labelledby="service-title">
+    <div class="scene__media" data-scene-media><img src="assets/service.webp" alt="The rear chassis and V12 of a Pagani Utopia, carbon and titanium, in a dark studio" loading="lazy"></div>
+    <div class="scene__type">
+      <p class="eyebrow" data-rise>Service</p>
+      <h2 id="service-title" class="title" data-rise>Meticulous craftsmanship and precision service, worldwide.</h2>
+      <p class="actions" data-rise><a class="link link--rule" href="tel:+18332906287">Call (833) 290-6287</a></p>
+    </div>
+  </section>
+
+  <!-- 7 · PAGANI OF MIAMI -->
+  <section class="sc scene" id="miami" data-scene data-side="left" aria-labelledby="miami-title">
+    <div class="scene__media" data-scene-media><img src="assets/miami.webp" alt="A black Pagani Utopia in profile beneath brick arches" loading="lazy"></div>
+    <div class="scene__type">
+      <p class="eyebrow" data-rise>Official dealer · State of Florida</p>
+      <h2 id="miami-title" class="title" data-rise>Pagani of Miami</h2>
+      <p class="lede" data-rise>In our showroom: 2024 Pagani Utopia · 3,832 mi <span>As of 1 Oct 2026</span></p>
+      <p class="actions" data-rise><a class="link link--rule" href="#invite" data-goto="#invite">Book a private viewing</a></p>
+    </div>
+  </section>
+
+  <!-- 8 · THE FINALE — as Chicago ends: a car comes up out of the dark, the contacts and the one action sit in the free field above it -->
+  <section class="sc finale" id="invite" aria-labelledby="invite-title">
+    <div class="finale__car" aria-hidden="true" data-finale-car><img src="assets/finale.webp" alt="" loading="lazy" width="1913" height="1080"></div>
+    <div class="finale__type">
+      <h2 id="invite-title" class="title" data-rise>Pagani of Miami</h2>
+      <address class="finale__addr" data-rise><span class="placeholder">[Showroom address — to be confirmed]</span></address>
+      <p class="finale__tel" data-rise><a href="tel:+18332906287">(833) 290-6287</a></p>
+      <p data-rise><a class="btn" href="#invite">Enquire</a></p>
+    </div>
+    <footer class="foot">
+      <img src="assets/pagani.svg" alt="Pagani" width="120" height="14">
+      <p>Pagani of Miami · A Prestige Imports company</p>
+    </footer>
+  </section>
+</main>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="assets/cars.js"></script>
+<script src="home.js"></script>
+</body>
+</html>

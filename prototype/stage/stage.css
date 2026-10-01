@@ -1,0 +1,236 @@
+/* Pagani lineup stage: prototype. Tokens first; every value below resolves to one of them. */
+:root {
+  --font-brand: "Istok Web", "Helvetica Neue", Arial, sans-serif;
+
+  /* colour (BRIEF §11): corporate black and white; no accent */
+  --bg: #000;
+  --ink: #fff;
+  --ink-64: rgb(255 255 255 / 0.64);   /* #A3A3A3 on black, 8.6:1 */
+  --rule: rgb(255 255 255 / 0.16);
+  --rule-strong: rgb(255 255 255 / 0.4);
+
+  /* spacing, 4px base */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px;
+  --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+  --gutter: clamp(24px, 6vw, 112px);
+
+  /* type */
+  --t-14: 0.875rem;
+  --t-16: 1rem;
+  --t-20: clamp(1.125rem, 0.4vw + 1rem, 1.25rem);
+  --t-value: clamp(1.25rem, 0.8vw + 1rem, 1.625rem);
+  --t-h1: clamp(2.5rem, 3vw + 1.5rem, 4rem);
+  --track-caps: 0.18em;
+
+  /* motion (motion-taste I3) */
+  --dur-1: 0.15s; --dur-2: 0.25s; --dur-3: 0.4s; --dur-4: 1.2s;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+
+  --hdr-h: 80px;
+}
+@media (max-width: 767px) { :root { --hdr-h: 64px; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--bg); color: var(--ink); font-family: var(--font-brand); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+body { margin: 0; font-size: var(--t-16); line-height: 1.6; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3, p, dl, dd, ol, ul { margin: 0; padding: 0; }
+ol, ul { list-style: none; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: var(--s-4); top: var(--s-4); z-index: 100; background: var(--ink); color: var(--bg); padding: var(--s-2) var(--s-4); }
+
+.eyebrow { font-size: var(--t-14); letter-spacing: var(--track-caps); text-transform: uppercase; line-height: 1.4; }
+
+.btn {
+  display: inline-flex; align-items: center; min-height: 48px; padding: 0 var(--s-5);
+  border: 1px solid var(--rule-strong); color: var(--ink); text-decoration: none;
+  font-size: var(--t-14); letter-spacing: var(--track-caps); text-transform: uppercase;
+  transition: background-color var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out), border-color var(--dur-1) var(--ease-out);
+}
+.btn:hover, .btn:focus-visible { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn--primary { border-color: var(--ink); }
+.link {
+  font-size: var(--t-14); letter-spacing: var(--track-caps); text-transform: uppercase; text-decoration: none;
+  color: var(--ink); opacity: 0.64; transition: opacity var(--dur-1) var(--ease-out);
+  display: inline-flex; align-items: center; gap: var(--s-2); min-height: 44px;
+}
+.link:hover, .link:focus-visible { opacity: 1; }
+
+/* ---------- header (same behaviour family as Lamborghini Miami: never hides) ---------- */
+.hdr {
+  position: fixed; inset: 0 0 auto; height: var(--hdr-h); z-index: 50;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 var(--gutter);
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0.55), rgb(0 0 0 / 0));
+}
+.hdr__brand { grid-column: 2; color: var(--ink); }
+.hdr__brand img { width: clamp(120px, 10vw, 150px); }
+.hdr__menu {
+  grid-column: 3; justify-self: end; background: none; border: 0; color: var(--ink); cursor: pointer;
+  font: inherit; font-size: var(--t-14); letter-spacing: var(--track-caps); text-transform: uppercase; min-height: 44px; padding: 0 var(--s-2);
+}
+.menu {
+  position: fixed; top: var(--hdr-h); right: 0; z-index: 49; width: min(420px, 100%); height: calc(100svh - var(--hdr-h));
+  background: rgb(0 0 0 / 0.94); border-left: 1px solid var(--rule); padding: var(--s-7) var(--gutter); overflow: auto;
+}
+.menu[hidden] { display: none; }
+.menu__label { font-size: var(--t-14); letter-spacing: var(--track-caps); text-transform: uppercase; color: var(--ink-64); margin-bottom: var(--s-3); }
+.menu ul + .menu__label { margin-top: var(--s-7); }
+.menu a { display: block; padding: var(--s-2) 0; font-size: var(--t-20); text-decoration: none; }
+
+/* ---------- hero + curtain ---------- */
+.curtain { position: relative; }
+.hero { position: sticky; top: 0; height: 100svh; overflow: hidden; z-index: 0; }
+.hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--hero-pos, 50% 70%); }
+.hero__scrim { position: absolute; inset: 0; background: linear-gradient(to bottom, rgb(0 0 0 / 0.62) 0%, rgb(0 0 0 / 0.42) calc(var(--car-top, 60%) * 0.55), rgb(0 0 0 / 0) var(--car-top, 60%)); }
+.hero__shade { position: absolute; inset: 0; background: #000; opacity: 0; }
+.hero__copy {
+  /* the copy lives ABOVE the car: its bottom edge is set from the measured subject box (stage.js composeHero) */
+  position: absolute; left: var(--gutter); right: var(--gutter); bottom: var(--copy-bottom, 45%);
+  display: grid; gap: var(--s-3); justify-items: start;
+}
+.hero__title { white-space: nowrap; font-size: calc(var(--t-h1) * var(--h1-k, 1)); font-weight: 400; line-height: 1.05; letter-spacing: 0.04em; text-transform: uppercase; }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-5); margin-top: var(--s-3); }
+@media (max-width: 767px) {
+
+}
+
+/* ---------- stage ---------- */
+.stage { position: relative; z-index: 1; background: var(--bg); }
+.stage__inner { position: relative; height: 100svh; overflow: hidden; background: var(--bg); }
+
+/* the floor: polutones and light, so black cars never sink into #000 */
+.stage__floor {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(60% 34% at 50% var(--floor-y, 64%), rgb(255 255 255 / 0.10), rgb(255 255 255 / 0.03) 55%, rgb(255 255 255 / 0) 78%),
+    linear-gradient(to bottom, rgb(255 255 255 / 0) calc(var(--floor-y, 64%) - 0.5%), rgb(255 255 255 / 0.035) var(--floor-y, 64%), rgb(255 255 255 / 0) 100%);
+}
+
+/* static, no-JS list */
+.models { position: relative; display: grid; gap: var(--s-9); padding: calc(var(--hdr-h) + var(--s-8)) var(--gutter) var(--s-9); }
+.model { display: grid; gap: var(--s-5); justify-items: center; }
+.model__car img { width: min(900px, 90vw); }
+.model__info { display: grid; gap: var(--s-3); justify-items: center; text-align: center; }
+.model__logo { height: 64px; width: auto; }
+.model__name { font-size: var(--t-14); font-weight: 400; letter-spacing: var(--track-caps); text-transform: uppercase; }
+.model__specs { display: flex; gap: var(--s-6); }
+.model__specs dt { font-size: var(--t-14); color: var(--ink-64); }
+.model__line { font-size: var(--t-14); color: var(--ink-64); }
+.stage__inner:not(.is-live) .stage__inner { height: auto; }
+.stage:not(.is-live) .stage__inner { height: auto; overflow: visible; }
+.stage:not(.is-live) .record,
+.stage:not(.is-live) .rail,
+.stage:not(.is-live) .stage__veil,
+.stage:not(.is-live) .stage__floor { display: none; }
+.stage:not(.is-live) .stage__head { position: absolute; top: calc(var(--hdr-h) + var(--s-5)); left: var(--gutter); right: var(--gutter); }
+
+/* live stage: the list becomes one floor with cars on it */
+.stage.is-live .models { position: absolute; inset: 0; padding: 0; display: block; }
+.stage.is-live .model { position: absolute; left: 50%; top: 0; width: var(--w); margin-left: calc(var(--w) / -2); display: block; will-change: transform; }
+.stage.is-live .model__info { display: none; }
+.stage.is-live .model__car { margin: 0; position: relative; }
+.stage.is-live .model__car img { width: 100%; }
+/* contact shadow travels with the car (it is inside the moving element) */
+.stage.is-live .model__car::before {
+  content: ""; position: absolute; left: 6%; right: 6%; top: calc(var(--contact) - 1.5%); height: 9%;
+  background: radial-gradient(50% 50% at 50% 50%, rgb(0 0 0 / 0.75), rgb(0 0 0 / 0) 70%);
+  z-index: -1;
+}
+.stage.is-live .model[aria-hidden="true"] { visibility: hidden; }
+
+/* edges: the darkness of the room, not a fade on the car */
+.stage__veil {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(to right, #000 0%, rgb(0 0 0 / 0.86) 6%, rgb(0 0 0 / 0.55) 14%, rgb(0 0 0 / 0) 26%),
+    linear-gradient(to left,  #000 0%, rgb(0 0 0 / 0.86) 6%, rgb(0 0 0 / 0.55) 14%, rgb(0 0 0 / 0) 26%);
+}
+
+.stage__head {
+  position: absolute; top: calc(var(--hdr-h) + var(--s-5)); left: var(--gutter); right: var(--gutter);
+  display: flex; justify-content: space-between; align-items: center; gap: var(--s-5); z-index: 2;
+}
+
+/* record */
+.record { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.record__logo {
+  position: absolute; right: var(--gutter); top: calc(var(--hdr-h) + var(--s-9));
+  height: clamp(56px, 7vw, 108px); width: auto; max-width: 34vw; object-fit: contain; object-position: right center;
+}
+.record__body {
+  position: absolute; left: 50%; top: calc(var(--floor-px) + var(--s-6)); transform: translateX(-50%);
+  display: grid; justify-items: center; gap: var(--s-3); text-align: center; width: min(760px, 90vw);
+}
+.record__name { font-size: var(--t-14); font-weight: 400; letter-spacing: var(--track-caps); text-transform: uppercase; }
+.record__specs { display: flex; justify-content: center; gap: clamp(var(--s-6), 5vw, var(--s-8)); }
+.record__specs > div { display: grid; gap: var(--s-1); justify-items: center; }
+.record__specs dt { order: 2; font-size: var(--t-14); color: var(--ink-64); letter-spacing: 0.04em; }
+.record__specs dd { font-size: var(--t-value); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.record__specs dd span { font-size: var(--t-14); color: var(--ink-64); margin-left: 2px; }
+.record__line { font-size: var(--t-14); color: var(--ink-64); }
+
+/* variant B: the axis under the car, values between the wheel marks */
+.stage[data-spec="axis"] .record__body { width: auto; left: 0; right: 0; transform: none; }
+.stage[data-spec="axis"] .record__specs { position: relative; height: 56px; width: 100%; display: block; }
+.stage[data-spec="axis"] .record__specs > div { position: absolute; top: var(--s-4); transform: translateX(-50%); }
+.axis { position: absolute; left: 0; right: 0; top: calc(var(--floor-px) + var(--s-4)); height: 1px; z-index: 2; pointer-events: none; }
+.axis::before { content: ""; position: absolute; left: var(--ax-l); width: var(--ax-w); top: 0; height: 1px; background: var(--rule-strong); }
+.axis i { position: absolute; top: -6px; width: 1px; height: 13px; background: var(--ink); }
+.stage:not([data-spec="axis"]) .axis { display: none; }
+.stage[data-spec="axis"] .record__body { top: calc(var(--floor-px) + var(--s-5)); }
+.stage[data-spec="axis"] .record__name { order: -1; }
+
+/* rail */
+.rail {
+  position: absolute; left: var(--gutter); right: var(--gutter); bottom: var(--s-6); z-index: 3;
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--s-3) var(--s-6);
+}
+.rail__list { display: flex; gap: clamp(var(--s-5), 3vw, var(--s-7)); flex-wrap: wrap; }
+.rail__list button {
+  background: none; border: 0; padding: var(--s-2) 0; color: var(--ink); opacity: 0.5; cursor: pointer; font: inherit;
+  font-size: var(--t-14); letter-spacing: var(--track-caps); text-transform: uppercase; min-height: 44px;
+  transition: opacity var(--dur-2) var(--ease-out);
+}
+.rail__list button:hover, .rail__list button:focus-visible { opacity: 0.85; }
+.rail__list button[aria-current="true"] { opacity: 1; }
+.rail__list button b { font-weight: 400; color: var(--ink-64); margin-right: var(--s-2); font-variant-numeric: tabular-nums; }
+.rail__progress { grid-column: 1 / -1; grid-row: 2; height: 1px; background: var(--rule); position: relative; }
+.rail__progress span { position: absolute; inset: 0; background: var(--ink); transform-origin: 0 50%; transform: scaleX(0); }
+.rail__cta { display: flex; gap: var(--s-5); align-items: center; }
+
+/* ---------- after ---------- */
+.after { position: relative; z-index: 1; background: var(--bg); min-height: 100svh; align-content: center; padding: var(--s-10) var(--gutter) var(--s-10); display: grid; gap: var(--s-4); }
+.after__title { font-size: var(--t-h1); font-weight: 400; text-transform: uppercase; letter-spacing: 0.04em; }
+.after__note { color: var(--ink-64); max-width: 60ch; }
+.after__plates { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6); margin-top: var(--s-8); }
+.after__plates .plate { margin: 0; overflow: hidden; }
+.after__plates .plate:nth-child(2) { margin-top: var(--s-10); }
+.after__plates .plate img { width: 100%; }
+
+/* ---------- mobile stage ---------- */
+@media (max-width: 767px) {
+  .record__logo { left: 50%; right: auto; transform: translateX(-50%); top: calc(var(--hdr-h) + var(--s-9)); height: 56px; max-width: 70vw; object-position: center; }
+  .record__specs { gap: var(--s-5); }
+  .rail { bottom: var(--s-5); grid-template-columns: 1fr; }
+  .rail__list { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: var(--s-5); }
+  .rail__cta { display: none; }
+  .stage__head .link { display: none; }
+}
+
+/* ---------- reduced motion: a static stage with tabs ---------- */
+.stage.is-static .model { transition: opacity var(--dur-3) var(--ease-out); }
+.stage.is-static .model:not(.is-active) { opacity: 0; }
+
+/* ---------- debug ---------- */
+.hud {
+  position: fixed; left: var(--s-3); top: calc(var(--hdr-h) + var(--s-8)); z-index: 60; background: rgb(0 0 0 / 0.8); border: 1px solid var(--rule);
+  font: 14px/1.4 ui-monospace, Menlo, monospace; padding: var(--s-2) var(--s-3); white-space: pre; pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .hero__title { white-space: normal; }
+}

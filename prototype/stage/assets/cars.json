@@ -1,0 +1,26 @@
+{
+ "utopia": {
+  "w": 1783,
+  "h": 748,
+  "contactY": 0.9572,
+  "refWidth": 0.5401
+ },
+ "utopia-roadster": {
+  "w": 1118,
+  "h": 481,
+  "contactY": 0.9688,
+  "refWidth": 0.5917
+ },
+ "huayra-r-evo-roadster": {
+  "w": 2400,
+  "h": 566,
+  "contactY": 0.9806,
+  "refWidth": 0.6
+ },
+ "huayra-bc": {
+  "w": 2089,
+  "h": 743,
+  "contactY": 0.9583,
+  "refWidth": 0.5906
+ }
+}

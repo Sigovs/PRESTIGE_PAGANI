@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pagani of Miami — Models</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<!-- MODELS — built 1:1 from Alex's concept (IMAGES ALEX/CONCEPT-models-alex.png). Static: a click swaps the model, no motion yet.
+     Backdrop: studio.jpg, rendered by studio-bg.py to imitate the concept's round studio (horizon sweep, polished floor, light pool). -->
+<style>
+:root {
+  --ink: #fff; --ink-80: rgb(255 255 255 / 0.82); --ink-60: rgb(255 255 255 / 0.62);
+  --gx: 4.2vw;                 /* side gutter: 70px at 1672 */
+  --serif: "EB Garamond", "Cormorant Garamond", Georgia, serif;
+  --sans: "Istok Web", "Helvetica Neue", Arial, sans-serif;
+  --contact: 69.3%;            /* where the tyres meet the floor */
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: #000; color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+body { margin: 0; }
+img { display: block; }
+a { color: inherit; text-decoration: none; }
+p, h2, dl, dd, ol { margin: 0; padding: 0; }
+ol { list-style: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.caps { font-size: 0.875rem; letter-spacing: 0.3em; text-transform: uppercase; }
+
+/* header */
+.hdr { position: absolute; z-index: 10; inset: 0 0 auto; height: 72px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 var(--gx); }
+.hdr__name { letter-spacing: 0.32em; }
+.hdr__brand img { width: 155px; height: auto; }
+.hdr__menu { justify-self: end; display: flex; align-items: center; gap: 16px; letter-spacing: 0.22em; min-height: 44px; }
+.hdr__menu i { display: grid; gap: 5px; width: 28px; }
+.hdr__menu i::before, .hdr__menu i::after, .hdr__menu i span { content: ""; display: block; height: 1.5px; background: var(--ink); }
+
+/* the stage */
+.models { position: relative; height: 100svh; min-height: 640px; overflow: hidden; isolation: isolate; }
+.models__bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 50% 41.3%; }
+/* desktop: the photo's horizon (41.3% of its height) is carried down to ~54%, behind the car's body, clear of the type */
+@media (min-width: 768px) { .models__bg { inset: auto; left: 0; top: 0; width: 100%; height: 130%; } }
+
+.head { position: absolute; left: var(--gx); top: 13.2%; display: grid; justify-items: start; }
+.head__eyebrow { font-size: 0.95rem; letter-spacing: 0.42em; color: var(--ink-80); }
+.head__logo { width: 33.8vw; height: auto; max-height: 17svh; object-fit: contain; object-position: left center; margin-top: 2.6svh; }
+.head__lede { font-family: var(--serif); font-size: clamp(1.25rem, 1.45vw, 1.75rem); line-height: 1.36; color: rgb(255 255 255 / 0.9); margin-top: 3.4svh; white-space: nowrap; }
+
+.count { position: absolute; right: var(--gx); top: 13.2%; display: flex; align-items: center; gap: 20px; font-size: 0.95rem; letter-spacing: 0.3em; font-variant-numeric: tabular-nums; }
+.count::before { content: ""; width: 46px; height: 1px; background: var(--ink-80); }
+
+/* the car + its reflection in the polished floor */
+.car { position: absolute; z-index: 0; left: calc(50.8% - var(--w) / 2); width: var(--w); top: calc(var(--contact) - var(--w) * var(--ar) * var(--cy)); }
+.car img { width: 100%; height: auto; }
+
+/* bottom band: models on the left, figures and actions on the right */
+.picker { position: absolute; left: calc(var(--gx) - 1vw); bottom: 7.4%; display: flex; gap: 2vw; }
+.picker button { min-width: 11.4vw; padding-inline: 8px; white-space: nowrap; display: grid; justify-items: center; gap: 1.6svh; padding-bottom: 1.6svh; position: relative; opacity: 0.85; }
+.picker button img { width: 10vw; height: 6svh; object-fit: contain; object-position: center bottom; filter: grayscale(1) brightness(1.05) contrast(0.95); }
+.picker button span { font-size: 0.875rem; letter-spacing: 0.24em; text-transform: uppercase; }
+.picker button::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.5px; background: var(--ink); transform: scaleX(0); }
+.picker button[aria-current="true"] { opacity: 1; }
+.picker button[aria-current="true"]::after { transform: scaleX(1); }
+.picker button:hover { opacity: 1; }
+
+.figures { position: absolute; right: calc(var(--gx) + 227px + 3.6vw); bottom: 9.2%; display: flex; gap: 3.2vw; }
+.figures div { display: grid; justify-items: center; gap: 1.4svh; }
+.figures dd { font-family: var(--serif); font-size: clamp(1.375rem, 1.6vw, 1.875rem); line-height: 1; font-variant-numeric: lining-nums; white-space: nowrap; }
+.figures dd small { font-size: 0.78em; }
+.figures dt { order: 2; font-size: 0.875rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-80); }
+
+.cta { position: absolute; right: var(--gx); bottom: 8.6%; display: grid; justify-items: center; gap: 2.2svh; width: 227px; }
+.cta__btn { width: 100%; min-height: 52px; display: grid; place-items: center; border: 1.5px solid rgb(255 255 255 / 0.9); letter-spacing: 0.26em; transition: background-color 0.25s, color 0.25s; }
+.cta__btn:hover, .cta__btn:focus-visible { background: var(--ink); color: #000; }
+.cta__enq { display: inline-flex; align-items: center; gap: 14px; letter-spacing: 0.26em; min-height: 32px; }
+.cta__enq svg { width: 18px; height: 10px; }
+
+/* the next section begins in the same black */
+.after { height: 40svh; background: linear-gradient(#0c0c0d, #000); }
+
+@media (max-width: 1100px) {
+  .figures { right: var(--gx); bottom: calc(8.6% + 120px); }
+}
+@media (max-width: 767px) {
+  :root { --gx: 24px; --contact: 52%; }
+  .hdr__name { font-size: 0; } .hdr__name::before { content: "Miami"; font-size: 0.875rem; }
+  .hdr__brand img { width: 120px; }
+  .head { top: 11%; right: var(--gx); }
+  .head__logo { height: auto; width: 78vw; max-width: none; }
+  .head__lede { font-size: 1.125rem; white-space: normal; }
+  .count { display: none; }
+  .car { left: calc(50% - var(--w) / 2); }
+  .picker { left: 0; right: 0; bottom: calc(var(--gx) + 196px); justify-content: space-between; padding: 0 var(--gx); gap: 8px; }
+  .picker button { min-width: 0; flex: 1; padding-inline: 0; white-space: normal; }
+  .picker button img { width: 100%; height: 40px; }
+  .picker button span { font-size: 0.75rem; letter-spacing: 0.12em; }
+  .figures { left: var(--gx); right: var(--gx); bottom: calc(var(--gx) + 116px); justify-content: space-between; gap: 8px; }
+  .figures dt { font-size: 0.75rem; letter-spacing: 0.14em; }
+  .cta { left: var(--gx); right: var(--gx); width: auto; bottom: var(--gx); }
+}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <span class="hdr__name caps">Pagani of Miami</span>
+  <a class="hdr__brand" href="#" aria-label="Pagani of Miami, home"><img src="../home/assets/pagani.svg" alt="Pagani" width="155" height="17"></a>
+  <button class="hdr__menu caps" type="button">Menu <i aria-hidden="true"><span></span></i></button>
+</header>
+
+<main>
+  <section class="models" aria-labelledby="models-title">
+    <img class="models__bg" src="../home/assets/models-back.jpg" alt="" aria-hidden="true">
+    <h2 class="sr" id="models-title">The Pagani collection</h2>
+
+    <div class="head">
+      <p class="caps head__eyebrow">The Pagani collection</p>
+      <img class="head__logo" data-logo src="" alt="">
+      <p class="head__lede" data-lede></p>
+    </div>
+    <p class="count caps" data-count></p>
+
+    <figure class="car" data-car>
+      <img data-car-img src="" alt="">
+    </figure>
+
+    <nav class="picker" aria-label="Models">
+      <button type="button" data-pick="0"><img src="../home/assets/utopia.webp" alt=""><span>Utopia</span></button>
+      <button type="button" data-pick="1"><img src="../home/assets/utopia-roadster.webp" alt=""><span>Utopia Roadster</span></button>
+      <button type="button" data-pick="2"><img src="../home/assets/huayra-r-evo-roadster.webp" alt=""><span>Huayra R Evo</span></button>
+    </nav>
+
+    <dl class="figures" data-figures></dl>
+
+    <div class="cta">
+      <a class="cta__btn caps" data-explore href="#" target="_blank" rel="noopener">Explore model</a>
+      <a class="cta__enq caps" href="#enquire">Enquire <svg viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 5h17M12.5 0.8 17 5l-4.5 4.2"/></svg></a>
+    </div>
+  </section>
+  <div class="after" aria-hidden="true"></div>
+</main>
+
+<script>
+/* Content: logos, figures and ledes from pagani.com (see home/DATA_SOURCES.md). Car geometry: width share and contact line from the cutouts. */
+const M = [
+  { name: 'Utopia', logo: '../home/assets/logo-utopia.png', car: '../home/assets/utopia.webp', w: 1054, h: 444, cy: 0.948, vw: 52,
+    alt: 'Pagani Utopia in white, doors raised, rear three-quarter', lede: 'A glance to the future,<br>a tribute to the past.',
+    fig: [['864', 'hp', 'Power'], ['1,100', 'Nm', 'Torque'], ['1,280', 'kg', 'Dry weight']], url: 'https://www.pagani.com/pagani-utopia/' },
+  { name: 'Utopia Roadster', logo: '../home/assets/logo-utopia-roadster-web.png', car: '../home/assets/utopia-roadster.webp', w: 1154, h: 505, cy: 0.958, vw: 50,
+    alt: 'Pagani Utopia Roadster in red carbon, doors and clamshells open, in profile', lede: 'Sophisticated technology<br>with timeless design.',
+    fig: [['864', 'hp', 'Power'], ['1,100', 'Nm', 'Torque'], ['1,280', 'kg', 'Dry weight']], url: 'https://www.pagani.com/utopia-roadster/' },
+  { name: 'Huayra R Evo Roadster', logo: '../home/assets/logo-huayra-r-evo-roadster-neg.png', car: '../home/assets/huayra-r-evo-roadster.webp', w: 1164, h: 296, cy: 0.929, vw: 66.7,
+    alt: 'Pagani Huayra R Evo Roadster in white and gold race livery, in profile', lede: 'The new open-top track Hypercar<br>pushes the boundaries of performance.',
+    fig: [['900', 'hp', 'Power'], ['770', 'Nm', 'Torque'], ['1,060', 'kg', 'Dry weight']], url: 'https://www.pagani.com/huayra-r-evo-roadster/' },
+];
+const $ = (s) => document.querySelector(s);
+function show(i) {
+  const m = M[i], car = $('[data-car]');
+  $('[data-logo]').src = m.logo; $('[data-logo]').alt = m.name;
+  $('[data-lede]').innerHTML = m.lede;
+  $('[data-count]').textContent = `0${i + 1} / 0${M.length}`;
+  $('[data-car-img]').src = m.car; $('[data-car-img]').alt = m.alt;
+  const mobile = innerWidth < 768;
+  car.style.setProperty('--w', mobile ? `${Math.min(m.vw * 1.45, 94)}vw` : `${m.vw}vw`);
+  car.style.setProperty('--ar', m.h / m.w); car.style.setProperty('--cy', m.cy);
+  $('[data-figures]').innerHTML = m.fig.map(([v, u, l]) => `<div><dt>${l}</dt><dd>${v} <small>${u}</small></dd></div>`).join('');
+  $('[data-explore]').href = m.url; $('[data-explore]').setAttribute('aria-label', `Explore the ${m.name} on pagani.com`);
+  document.querySelectorAll('[data-pick]').forEach((b) => b.setAttribute('aria-current', String(+b.dataset.pick === i)));
+  cur = i;
+}
+let cur = 2;
+document.querySelectorAll('[data-pick]').forEach((b) => b.addEventListener('click', () => show(+b.dataset.pick)));
+addEventListener('resize', () => show(cur));
+show(+(new URLSearchParams(location.search).get('m') ?? 3) - 1);
+</script>
+</body>
+</html>

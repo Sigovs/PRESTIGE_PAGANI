@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pagani Lineup Stage</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/lenis.css">
+<link rel="stylesheet" href="stage.css">
+<link rel="preload" as="image" href="assets/hero.webp" media="(min-width: 768px)">
+<link rel="preload" as="image" href="assets/hero-m.webp" media="(max-width: 767px)">
+</head>
+<body>
+<!--
+  PROTOTYPE: the lineup stage only. Not the home page and not for publication.
+  Every figure is sourced: see DATA_SOURCES.md. The hero and the section after the stage are minimal context for testing entry and exit.
+  URL params: ?debug=1 · ?spec=line|axis · ?dir=forward|reverse · ?cars=4 · ?hold=60&trans=80 (vh)
+              ?snapdelay=220&snapdur=0.6 · ?snap=0 · ?zoom=1 (hero push-in)
+-->
+<a class="skip" href="#after">Skip to content</a>
+
+<header class="hdr" data-hdr>
+  <a class="hdr__brand" href="#top" aria-label="Pagani of Miami, top of page"><img src="assets/pagani.svg" alt="Pagani" width="150" height="17"></a>
+  <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>Menu</button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Main" hidden data-lenis-prevent>
+  <p class="menu__label">The lineup</p>
+  <ul>
+    <li><a href="#model-utopia" data-goto-model="utopia">Utopia</a></li>
+    <li><a href="#model-utopia-roadster" data-goto-model="utopia-roadster">Utopia Roadster</a></li>
+    <li><a href="#model-huayra-r-evo-roadster" data-goto-model="huayra-r-evo-roadster">Huayra R Evo Roadster</a></li>
+  </ul>
+  <p class="menu__label">The house</p>
+  <ul>
+    <li><a href="#after" data-goto="#after">Grandi Complicazioni</a></li>
+    <li><a href="#after" data-goto="#after">In our showroom</a></li>
+  </ul>
+</nav>
+
+<main id="top">
+  <div class="curtain">
+    <section class="hero" data-act="hero" aria-labelledby="hero-title">
+      <picture class="hero__media">
+        <source media="(max-width: 767px)" srcset="assets/hero-m.webp">
+        <img src="assets/hero.webp" alt="A black Pagani Utopia in profile beneath brick arches" data-hero-img
+             data-subject="0.135,0.600,0.805,0.830" data-subject-m="0.190,0.612,0.810,0.776" data-size="2400,1600" data-size-m="998,1500">
+      </picture>
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="hero__shade" data-hero-shade></div>
+      <div class="hero__copy" data-hero-copy>
+        <p class="eyebrow">Official Pagani dealer · State of Florida</p>
+        <h1 id="hero-title" class="hero__title">Pagani of Miami</h1>
+        <p class="hero__actions">
+          <a class="btn btn--primary" href="#lineup" data-goto="#lineup">Discover the lineup</a>
+          <a class="link" href="#after" data-goto="#after">In our showroom</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="stage" id="lineup" data-stage aria-labelledby="stage-title">
+      <div class="stage__inner" data-stage-inner>
+        <div class="stage__floor" aria-hidden="true"></div>
+
+        <!-- Static source of truth: with no JS this is a readable list of three models. -->
+        <ol class="models" data-models>
+          <li class="model" id="model-utopia" data-model="utopia" data-wheels="0.085,0.640">
+            <figure class="model__car"><img src="assets/utopia.webp" alt="Pagani Utopia in white, doors raised, seen from the rear three-quarter" width="1783" height="748"></figure>
+            <div class="model__info">
+              <img class="model__logo" src="assets/logo-utopia.png" alt="" width="950" height="291">
+              <h3 class="model__name">Utopia</h3>
+              <dl class="model__specs">
+                <div><dt>Power</dt><dd>864 <span>hp</span></dd></div>
+                <div><dt>Torque</dt><dd>1,100 <span>Nm</span></dd></div>
+                <div><dt>Dry weight</dt><dd>1,280 <span>kg</span></dd></div>
+              </dl>
+              <p class="model__line">Pagani V12, 5,980 cc, twin-turbo · 7-speed AMT or manual</p>
+            </div>
+          </li>
+          <li class="model" id="model-utopia-roadster" data-model="utopia-roadster" data-wheels="0.224,0.822">
+            <figure class="model__car"><img src="assets/utopia-roadster.webp" alt="Pagani Utopia Roadster in red carbon, doors and clamshells open, in profile" width="1118" height="481"></figure>
+            <div class="model__info">
+              <img class="model__logo" src="assets/logo-utopia-roadster.png" alt="" width="1000" height="369">
+              <h3 class="model__name">Utopia Roadster</h3>
+              <dl class="model__specs">
+                <div><dt>Power</dt><dd>864 <span>hp</span></dd></div>
+                <div><dt>Torque</dt><dd>1,100 <span>Nm</span></dd></div>
+                <div><dt>Dry weight</dt><dd>1,280 <span>kg</span></dd></div>
+              </dl>
+              <p class="model__line">Pagani V12, 5,980 cc, twin-turbo · open top</p>
+            </div>
+          </li>
+          <li class="model" id="model-huayra-r-evo-roadster" data-model="huayra-r-evo-roadster" data-wheels="0.217,0.765">
+            <figure class="model__car"><img src="assets/huayra-r-evo-roadster.webp" alt="Pagani Huayra R Evo Roadster in white and gold race livery, in profile" width="2400" height="566"></figure>
+            <div class="model__info">
+              <img class="model__logo" src="assets/logo-huayra-r-evo-roadster.svg" alt="" width="420" height="130">
+              <h3 class="model__name">Huayra R Evo Roadster</h3>
+              <dl class="model__specs">
+                <div><dt>Power</dt><dd>900 <span>hp</span></dd></div>
+                <div><dt>Torque</dt><dd>770 <span>Nm</span></dd></div>
+                <div><dt>Dry weight</dt><dd>1,060 <span>kg</span></dd></div>
+              </dl>
+              <p class="model__line">V12-R Evo, 6.0 L, naturally aspirated · Arte in Pista, track only</p>
+            </div>
+          </li>
+          <li class="model" id="model-huayra-bc" data-model="huayra-bc" data-optional hidden>
+            <figure class="model__car"><img src="assets/huayra-bc.webp" alt="Pagani Huayra Roadster BC in red and carbon, front three-quarter" width="2089" height="743"></figure>
+            <div class="model__info">
+              <img class="model__logo" src="assets/logo-huayra-bc.png" alt="" width="268" height="98">
+              <h3 class="model__name">Huayra Roadster BC</h3>
+              <dl class="model__specs">
+                <div><dt>Power</dt><dd>—</dd></div>
+                <div><dt>Torque</dt><dd>—</dd></div>
+                <div><dt>Dry weight</dt><dd>—</dd></div>
+              </dl>
+              <p class="model__line">Sample only · figures not sourced</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="stage__veil" aria-hidden="true"></div>
+
+        <div class="stage__head">
+          <p class="eyebrow" id="stage-title">Act II · The lineup</p>
+          <a class="link link--quiet" href="#after" data-goto="#after" data-skip>Skip the lineup <span aria-hidden="true">↓</span></a>
+        </div>
+
+        <!-- One live record: name, logo and figures belong to exactly one car at a time. -->
+        <div class="record" data-record aria-live="polite">
+          <img class="record__logo" data-record-logo alt="">
+          <div class="record__body" data-record-body>
+            <h3 class="record__name" data-record-name></h3>
+            <dl class="record__specs" data-record-specs></dl>
+            <p class="record__line" data-record-line></p>
+          </div>
+        </div>
+
+        <div class="rail" data-rail>
+          <ol class="rail__list" data-rail-list></ol>
+          <div class="rail__progress" aria-hidden="true"><span data-rail-progress></span></div>
+          <p class="rail__cta">
+            <a class="link" href="#after" data-cta-explore>Explore</a>
+            <a class="btn" href="#after" data-cta-enquire>Enquire</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="after" id="after" aria-labelledby="after-title">
+    <p class="eyebrow" data-reveal>Act III · Grandi Complicazioni</p>
+    <h2 id="after-title" class="after__title" data-reveal>Next section</h2>
+    <p class="after__note" data-reveal>Placeholder for the prototype: this section tests how the stage releases the visitor, and how the next act arrives.</p>
+    <div class="after__plates">
+      <figure class="plate" data-reveal="plate" data-depth="0"><img src="assets/gc-1.webp" alt="Pagani Huayra 70 Derecho in copper and blue, studio" loading="lazy"></figure>
+      <figure class="plate" data-reveal="plate" data-depth="1"><img src="assets/gc-2.webp" alt="Pagani Huayra Codalunga Speedster in green, in a dark hangar" loading="lazy"></figure>
+    </div>
+  </section>
+</main>
+
+<div class="hud" data-hud hidden></div>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="assets/cars.js"></script>
+<script src="stage.js"></script>
+</body>
+</html>

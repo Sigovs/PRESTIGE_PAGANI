@@ -1,0 +1,4 @@
+gen-about-horacio-cutout.webp — background removed, nothing generated
+source: Pagani press, Utopia world premiere, Teatro Lirico, Sep 2022 — https://www.pagani.com/app/uploads/2022/09/Lirico_03.jpg
+model: fal-ai/birefnet/v2 (model "Portrait", 2048x2048, refine_foreground) — 1 Oct 2026, request 01a0f9c7-3d0e-7a13-ba91-c7c670751ef8
+then composited onto the page ground #131417 and resized to 2400 px. Full-res transparent PNG: research/press-images/brand/gen-horacio-pagani_cutout-birefnet_6048x4024.png
