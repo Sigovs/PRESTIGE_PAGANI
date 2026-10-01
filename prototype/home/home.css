@@ -233,7 +233,7 @@ ol, ul { list-style: none; }
 .foot { position: absolute; left: var(--gutter); right: var(--gutter); bottom: var(--s-6); display: flex; justify-content: space-between; align-items: center; gap: var(--s-5); font-size: var(--t-14); color: var(--ink-70); border-top: 1px solid var(--rule); padding-top: var(--s-5); }
 
 /* 3 · Grandi Complicazioni — the track at dusk is the room; the collection stands in it in two offset columns */
-.gc { position: relative; background: #131417; height: 100svh; min-height: 560px; display: flex; flex-direction: column; padding: calc(var(--hdr-h) + var(--s-6)) var(--gutter) var(--s-7); overflow: clip; isolation: isolate; }   /* one screen at every size (Alex) */
+.gc { position: relative; background: #131417; padding: calc(var(--hdr-h) + var(--s-8)) var(--gutter) var(--s-9); overflow: clip; isolation: isolate; }
 /* the film is the whole section's background: it holds the screen (sticky) while the collection scrolls over it */
 .gc__sky { position: absolute; inset: 0; z-index: -1; }
 .gc__stick { position: sticky; top: 0; height: 100svh; overflow: hidden; }
@@ -242,20 +242,20 @@ ol, ul { list-style: none; }
 /* the hero's fades (Figma 806:6391), #131417 0→100%: where the section starts (650/243/83 of 1080) and where it ends (512/325) */
 .gc__sky::before, .gc__sky::after { content: ""; position: absolute; left: 0; right: 0; z-index: 1; height: 100svh; pointer-events: none; }
 .gc__sky::before { top: 0; background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 42% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 16% no-repeat; }   /* short: the arrival is carried by the lifting veil, not by a long dead band */
-.gc__sky::after { bottom: 0; background: linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 42% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 40% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 16% no-repeat; }
-.gc__head { flex: none; display: grid; justify-items: center; text-align: center; gap: var(--s-3); max-width: 40rem; margin: 0 auto var(--s-6); }
+.gc__sky::after { bottom: 0; background: linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 75% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 40% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 16% no-repeat; }
+.gc__head { display: grid; justify-items: center; text-align: center; gap: var(--s-3); max-width: 40rem; margin: 0 auto var(--s-9); }
 .gc__head .lede { max-width: 34ch; }
-/* the four cards share whatever height is left: a size container; each card takes the smaller of its column share and its row share at 4:5 */
-.gc__cols { --gap: clamp(var(--s-4), 2vw, var(--s-7)); --per: 4; --rows: 1; flex: 1 1 auto; min-height: 0; container-type: size; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: var(--gap); }
-.gc__col { display: contents; }
-.gc__item { --w: min(calc((100cqw - (var(--per) - 1) * var(--gap)) / var(--per)), calc((100cqh - (var(--rows) - 1) * var(--gap)) / var(--rows) * 0.8)); width: var(--w); flex: none; position: relative; overflow: hidden; background: #0a0a0b; box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.9); }
+.gc__cols { display: grid; grid-template-columns: repeat(2, minmax(0, min(36vw, 520px))); justify-content: center; gap: clamp(var(--s-5), 3vw, var(--s-8)); }
+.gc__col { display: grid; gap: clamp(var(--s-5), 3vw, var(--s-8)); align-content: start; will-change: transform; }
+.gc__col--b { padding-top: clamp(96px, 22svh, 240px); }
+.gc__item { position: relative; overflow: hidden; background: #0a0a0b; box-shadow: 0 40px 80px -30px rgb(0 0 0 / 0.9); }
 .gc__item figure { aspect-ratio: 4 / 5; overflow: hidden; }
 .gc__photo { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
 .gc__item::after { content: ""; position: absolute; inset: 0 0 auto; height: 38%; pointer-events: none;
   background: linear-gradient(to bottom, rgb(0 0 0 / 0.62), rgb(0 0 0 / 0)); }
 .gc__item--light::after { background: linear-gradient(to bottom, rgb(0 0 0 / 0.5), rgb(0 0 0 / 0)); }
-.gc__logo { position: absolute; z-index: 1; left: 50%; top: 7%; transform: translateX(-50%); width: auto; height: clamp(36px, 4vw, 72px); max-width: 70%; object-fit: contain; filter: drop-shadow(0 2px 12px rgb(0 0 0 / 0.45)); }
-.gc__foot { flex: none; display: flex; justify-content: center; margin-top: var(--s-5); }
+.gc__logo { position: absolute; z-index: 1; left: 50%; top: 7%; transform: translateX(-50%); width: auto; height: clamp(48px, 5.5vw, 84px); max-width: 70%; object-fit: contain; filter: drop-shadow(0 2px 12px rgb(0 0 0 / 0.45)); }
+.gc__foot { display: flex; justify-content: center; margin-top: var(--s-8); }
 
 /* 8 · finale — a car up out of the dark; the free field above it carries the contacts */
 .finale { display: grid; align-content: start; justify-items: center; text-align: center; padding: calc(var(--hdr-h) + 10svh) var(--gutter) 0; }
@@ -267,8 +267,11 @@ ol, ul { list-style: none; }
   background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, #131417 100%) top / 100% 60.2% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, #131417 100%) top / 100% 22.5% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, #131417 100%) top / 100% 7.7% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, #131417 100%) bottom / 100% 47.4% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, #131417 100%) bottom / 100% 30.1% no-repeat; }
 .finale__type { display: grid; justify-items: center; gap: var(--s-3); }
 .finale__addr { font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); margin-top: var(--s-3); }
-.finale__tel { font-size: var(--t-lede); letter-spacing: 0.08em; font-variant-numeric: tabular-nums; }
-.finale__tel a { text-decoration: none; }
+.finale__addr { font-style: normal; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s-3) var(--s-5); font-variant-numeric: tabular-nums; }
+.finale__addr a { color: inherit; text-decoration: none; transition: color 0.4s var(--e); }
+.finale__addr a:hover, .finale__addr a:focus-visible { color: var(--ink); }
+.finale__sep { width: 1px; height: 1.1em; background: currentColor; opacity: 0.5; }   /* the "|" between address and phone, as a hairline */
+@media (max-width: 767px) { .finale__addr { flex-direction: column; } .finale__addr a span { display: block; } .finale__sep { display: none; } }
 .finale .cta { margin-top: var(--s-5); }
 .finale .foot { border-top-color: rgb(255 255 255 / 0.12); }
 
@@ -291,9 +294,11 @@ ol, ul { list-style: none; }
   .row__grid dd { font-size: 1.125rem; }
   .row__grid dt { font-size: 0.75rem; }
   .row__more { height: 36px; padding: 0 12px; font-size: 0.75rem; }
-  .gc { padding-top: calc(var(--hdr-h) + var(--s-5)); }
-  .gc__head { margin-bottom: var(--s-5); }
-  .gc__cols { --gap: var(--s-3); --per: 2; --rows: 2; }
+  .gc { padding-top: calc(var(--hdr-h) + var(--s-7)); }
+  .gc__head { margin-bottom: var(--s-7); }
+  .gc__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
+  .gc__col { gap: var(--s-3); }
+  .gc__col--b { padding-top: 18svh; }
   .gc__logo { width: 78%; height: auto; max-height: 40px; top: 6%; }
   .finale { padding-top: calc(var(--hdr-h) + 8svh); }
   .finale__car img { object-position: 50% 60%; }

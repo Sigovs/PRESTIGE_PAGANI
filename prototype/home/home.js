@@ -223,7 +223,7 @@
   gsap.fromTo(stage.querySelector('.stage__bg'), { autoAlpha: 0.2, scale: 1.06 }, { autoAlpha: 1, scale: 1, ease: 'none', scrollTrigger: { trigger: stage, start: 'top 80%', end: 'top top', scrub: true } });
   gsap.from(stage.querySelector('.row'), { autoAlpha: 0, y: 20, ease: 'none', scrollTrigger: { trigger: stage, start: 'top 40%', end: 'top top', scrub: true } });
 
-  // ---------- 3 · Grandi Complicazioni: one screen; the film settles behind, the four cards rise in turn ----------
+  // ---------- 3 · Grandi Complicazioni: the film holds the screen behind; the two columns travel against each other ----------
   const gc = document.querySelector('.gc');
   gsap.fromTo(gc.querySelector('[data-gc-sky] video'), { scale: 1.08 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: gc, start: 'top bottom', end: 'bottom top', scrub: true } });   // it holds the screen; only a slow settle
   // the film runs only while the section is on screen
@@ -231,9 +231,11 @@
   gsap.fromTo(gc, { '--veil': 1 }, { '--veil': 0.66, ease: 'none', scrollTrigger: { trigger: gc, start: 'top 85%', end: 'top 5%', scrub: true } });
   const gcFilm = gc.querySelector('[data-gc-film]');
   ScrollTrigger.create({ trigger: gc, start: 'top bottom', end: 'bottom top', onToggle: (self) => (self.isActive ? gcFilm.play().catch(() => {}) : gcFilm.pause()) });
-  // one screen now: the four cards rise in turn, left to right, as the section arrives
-  gc.querySelectorAll('[data-gc-item]').forEach((it, i) => {
-    gsap.timeline({ delay: i * 0.12, scrollTrigger: { trigger: gc.querySelector('.gc__cols'), start: 'top 75%', toggleActions: 'play none none reverse' } })
+  const colMove = mqMobile.matches ? [20, 60] : [50, 140];
+  gsap.fromTo(gc.querySelector('[data-gc-col="a"]'), { y: colMove[0] }, { y: -colMove[0], ease: 'none', scrollTrigger: { trigger: gc, start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.fromTo(gc.querySelector('[data-gc-col="b"]'), { y: colMove[1] }, { y: -colMove[1], ease: 'none', scrollTrigger: { trigger: gc, start: 'top bottom', end: 'bottom top', scrub: true } });
+  gc.querySelectorAll('[data-gc-item]').forEach((it) => {
+    gsap.timeline({ scrollTrigger: { trigger: it, start: 'top 88%', toggleActions: 'play none none reverse' } })
       .fromTo(it, { clipPath: 'inset(18% 0% 0% 0%)', autoAlpha: 0, y: 80 }, { clipPath: 'inset(0% 0% 0% 0%)', autoAlpha: 1, y: 0, duration: 1.4, ease: 'power3.out' }, 0)
       .fromTo(it.querySelector('.gc__photo'), { scale: 1.22 }, { scale: 1, duration: 1.8, ease: 'power3.out' }, 0)
       .fromTo(it.querySelector('.gc__logo'), { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 1, ease: 'power3.out' }, 0.45);
