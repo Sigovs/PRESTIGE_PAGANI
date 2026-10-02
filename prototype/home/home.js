@@ -280,10 +280,28 @@
   const aboutMan = aboutSec.querySelector('[data-scene-media]');
   const k = mqMobile.matches ? 0.5 : 1;
   shots.forEach((s) => gsap.set(s, { yPercent: s.classList.contains('about__shot--wide') ? -50 : 0 }));
-  const hold = gsap.timeline({ scrollTrigger: { trigger: aboutSec, start: 'top top', end: () => `+=${innerHeight * (shots.length - 1) * 0.85}`, pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true } });
+  const hold = gsap.timeline({ scrollTrigger: { trigger: aboutSec, start: 'top top', end: () => `+=${innerHeight * (shots.length - 1) * 0.6}`, pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true } });
   shots.forEach((s, i) => {
     hold.fromTo(s, { scale: 1.12 }, { scale: 1, duration: 1.2, ease: 'none' }, Math.max(0, i - 0.35));
-    if (i) hold.to(shots[i - 1], { autoAlpha: 0, duration: 0.45, ease: 'none' }, i - 0.35).fromTo(s, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.45, ease: 'none' }, i - 0.35);
+    if (i) hold.to(shots[i - 1], { autoAlpha: 0, duration: 0.28, ease: 'none' }, i - 0.3).fromTo(s, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.28, ease: 'none' }, i - 0.3);
+  });
+  // the chapter line changes with its picture: the old one lifts away, the new one rises in; the counter turns over
+  const lines = gsap.utils.toArray(aboutSec.querySelectorAll('[data-ch]'));
+  const chNum = aboutSec.querySelector('[data-ch-n]');
+  lines.forEach((l, i) => {
+    if (!i) return;
+    const at = i - 0.3;
+    hold.to(lines[i - 1], { autoAlpha: 0, y: -22, duration: 0.2, ease: 'power1.in' }, at)
+      .fromTo(l, { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: 0.24, ease: 'power2.out' }, at + 0.12)
+      .to(chNum, { yPercent: -60, autoAlpha: 0, duration: 0.12, ease: 'power1.in' }, at)
+      .fromTo(chNum, { yPercent: 60, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.14, ease: 'power2.out', immediateRender: false }, at + 0.12);
+  });
+  // the digit itself follows the playhead, so it is right in both directions
+  hold.eventCallback('onUpdate', () => {
+    const t = hold.time();
+    const n = 1 + lines.filter((l, i) => i && t >= i - 0.3 + 0.12).length;
+    const txt = String(n).padStart(2, '0');
+    if (chNum.textContent !== txt) chNum.textContent = txt;
   });
   // while it holds, the man drifts left to right and the pictures slide the other way: depth sideways
   const span = shots.length - 1 + 0.85;

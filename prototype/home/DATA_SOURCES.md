@@ -55,3 +55,10 @@ About backgrounds (held section, changing on scroll; Alex, 2 Oct 2026), all Paga
 - `assets/about-epitome.webp` — Huayra Epitome rear 3/4, dark studio, pagani.com/press/huayra-epitome/
 - `assets/about-exhaust.webp` — Utopia Roadster quad exhaust, red carbon, pagani.com/press/utopia-roadster/
 - `assets/about-gearbox.webp` — Utopia Roadster manual gearbox, pagani.com/press/utopia-roadster/
+
+About — variant B, four chapters (Alex, 2 Oct 2026). Texts shortened from pagani.com History, the timeline's own words; full source texts in research/about-sketch/TIMELINE.md (fetched via admin-ajax getAjaxPost, posts 218 / 208 / 214 / 9). The section headline is the timeline's own title for 1955.
+- `assets/about-1955.webp` — Horacio as a boy, pagani.com /app/uploads/2016/12/1955.jpg (1024 px, source max)
+- `assets/about-1972.webp` — the dune buggie, Casilda, /app/uploads/2016/12/1972.jpg
+- `assets/about-1983.webp` — the Lamborghini years, /app/uploads/2016/12/1983-1991.jpg
+- `assets/about-1999.webp` — Zonda C12 (Pagani press, Villa d'Este 2026 photo of a C12; the 1999 chapter is the C12's debut)
+The previous four backgrounds (Derecho, Epitome, exhaust, gearbox) stay in assets/ unused.
