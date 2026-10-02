@@ -254,15 +254,18 @@
   const GN = gPhotos.length;
   const gMark = (n) => { gDots.forEach((d, k) => d.classList.toggle('is-on', k === n)); gNum.textContent = String(n + 1).padStart(2, '0'); };
   gMark(0);
+  // the name above and the words below keep the photograph's width (the frame narrows on short screens)
+  const gFrame = gcx.querySelector('.gcx__frame');
+  const gFit = () => gcx.style.setProperty('--frame-w', `${gFrame.getBoundingClientRect().width}px`);
+  gFit(); new ResizeObserver(gFit).observe(gFrame);
   const gHold = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: gcx, start: 'top top', end: () => `+=${innerHeight * (GN - 1) * 0.85}`, pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true,
     onUpdate: (self) => gMark(Math.min(GN - 1, Math.round(self.progress * (GN - 1 + 0.35) - 0.05))) } });
+  // the turn: the next photograph opens from the foot over a still one; the words change with a short, plain cross-fade (Alex)
   for (let i = 1; i < GN; i++) {
-    const at = i - 1 + 0.2;
-    gHold.fromTo(gPhotos[i], { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.7, ease: 'power2.inOut' }, at)
-      .fromTo(gPhotos[i].querySelector('img'), { yPercent: 8 }, { yPercent: 0, duration: 0.7, ease: 'power2.out' }, at)
-      .to(gPhotos[i - 1].querySelector('img'), { yPercent: -6, filter: 'brightness(0.6)', duration: 0.7, ease: 'power1.in' }, at)
-      .to([gLogos[i - 1], gNotes[i - 1]], { autoAlpha: 0, y: -14, duration: 0.25, ease: 'power1.in' }, at)
-      .fromTo([gLogos[i], gNotes[i]], { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power2.out' }, at + 0.35);
+    const at = i - 1 + 0.25;
+    gHold.fromTo(gPhotos[i], { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.5, ease: 'power1.inOut' }, at)
+      .to([gLogos[i - 1], gNotes[i - 1]], { autoAlpha: 0, duration: 0.12 }, at + 0.16)
+      .fromTo([gLogos[i], gNotes[i]], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.12, immediateRender: false }, at + 0.28);
   }
   gHold.to({}, { duration: 0.35 });   // the last spread rests before the page moves on
 

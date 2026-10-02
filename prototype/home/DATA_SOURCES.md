@@ -89,3 +89,11 @@ Grandi Complicazioni as a car-book spread (Alex, 2 Oct 2026: real photographs wi
 - `book-huayra-tricolore.webp` — DSC01115 (7952 px), cropped wide around the car, hangars at sunset
 Lines under each spread: pagani.com model pages, shortened (Codalunga Speedster: "Inspired by the racing cars of the 1950s and ’60s"; Huayra Codalunga: "tribute to … Italian coachbuilders and racecars of the ‘60s … just five"; Epitome: "a one-off … the first Huayra equipped with a manual transmission"; Tricolore: "tribute to the Italian Air Force Aerobatic Team … only three examples"). Figures from Alex's spec content. Each photo has --pos / --zoom in index.html for Alex to set the air.
 The cutouts (gen-gcx-*-cutout) and gcx-* photographs are no longer used.
+
+GC spreads, revised (2 Oct 2026, Alex's three notes): the most expressive photograph of each model, every one cut to one 2:1 frame with the whole car and margins:
+- `book-codalunga-speedster.webp` — front 3/4 in the dark hangar (9449 px original)
+- `book-huayra-codalunga.webp` — rear 3/4 in the Vicenza piazza (6038 px)
+- `book-huayra-epitome.webp` — rear 3/4, dark studio (8059 px); the original is tighter than 2:1, so its own studio grey is extended at the sides and foot (flat colour + feathered edge, no generated content)
+- `book-huayra-tricolore.webp` — runway under the Frecce Tricolori smoke, DSC00725 (7952 px)
+Logos: Alex's "secondary logos" (IMAGES ALEX/secondary logos, one 196×112 canvas) for Codalunga and Epitome; Speedster and Tricolore placed on the same canvas proportion from the existing logo files. Same four photos placed in Figma, page "PAGANI MIAMI — Homepage", section 839:4055.
+Static spreads and a scroll recording: research/gc-spreads/, research/gc-spreads-scroll.mp4.
