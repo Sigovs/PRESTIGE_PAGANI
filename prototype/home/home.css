@@ -402,10 +402,10 @@ ol, ul { list-style: none; }
 .gcs__bg, .gcs__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .gcs::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
 .gcs__intro, .gcs__model { position: absolute; z-index: 1; display: grid; gap: var(--s-4); justify-items: start; }
-.gcs__title { margin: 0; font-size: var(--t-display); font-weight: 300; line-height: 1; letter-spacing: -0.01em; }
-.gcs__sub { margin-top: var(--s-3); font-size: var(--t-14); letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-70); }
+.gcs__title { margin: 0; font-size: var(--t-title); font-weight: 400; line-height: 1.08; letter-spacing: -0.01em; text-wrap: balance; }   /* the site's H2 */
+.gcs__sub { margin-top: var(--s-3); font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--silver); line-height: 1.4; }   /* the site's eyebrow */
 .gcs__logo { height: clamp(60px, min(5.6vw, 10svh), 104px); aspect-ratio: 196 / 112; width: auto; object-fit: contain; object-position: left center; margin-left: -1.4%; }
-.gcs__line { font-size: var(--t-18); line-height: 1.5; max-width: 24ch; }
+.gcs__line { font-size: var(--t-18); line-height: 1.6; color: var(--ink-70); max-width: 30ch; }   /* the site's lede */
 .gcs__model .cta { margin-top: var(--s-2); }
 /* 1 · hangar — the collection's name top-left; the model in the dark left of the car */
 .gcs--hangar .gcs__bg { object-position: 60% 50%; }
@@ -415,7 +415,7 @@ ol, ul { list-style: none; }
 /* 2 · light — dark ink on the pale studio; the words left, the car right */
 .gcs--light { color: #15171a; }
 .gcs--light .gcs__model { left: var(--gutter); top: 50%; transform: translateY(-42%); gap: var(--s-5); }
-.gcs--light .gcs__line { font-size: var(--t-title); line-height: 1.15; max-width: 15ch; letter-spacing: -0.01em; }
+.gcs--light .gcs__line { color: rgb(21 23 26 / 0.78); }
 .gcs--light .gcs__logo { filter: brightness(0) opacity(0.82); }
 .gcs--light .cta--quiet { color: #15171a; }
 /* 3 · dark — the car's rear fills the left; the words in the free field top-right */
@@ -432,12 +432,11 @@ ol, ul { list-style: none; }
 /* the held stage (desktop, motion allowed; home.js adds .is-stage) */
 .gcx.is-stage { height: 100svh; }
 .gcx.is-stage .gcs { position: absolute; inset: 0; height: auto; min-height: 0; will-change: transform, clip-path; }
-.gcx.is-stage .gcs__t { opacity: 0; transform: translateY(16px); transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-.gcx.is-stage .gcs.is-past .gcs__t { transform: translateY(-24px); transition-duration: 0.3s, 0.35s; }   /* leaving: up 24px and out */
-.gcx.is-stage .gcs.is-on .gcs__t { opacity: 1; transform: none; }
-.gcx.is-stage .gcs.is-on .gcs__model .gcs__t:nth-child(1) { transition-delay: 0s; }
-.gcx.is-stage .gcs.is-on .gcs__model .gcs__t:nth-child(2) { transition-delay: 0.18s; }
-.gcx.is-stage .gcs.is-on .gcs__model .gcs__t:nth-child(3) { transition-delay: 0.32s; }
+.gcx.is-stage .gcs__t { opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.gcx.is-stage .gcs.is-past .gcs__t { transform: translateY(-10px); transition-duration: 0.25s, 0.3s; }   /* leaving: a short fade, 10px up */
+.gcx.is-stage .gcs.is-on .gcs__model .gcs__t, .gcx.is-stage .gcs.is-intro:not(.is-past) .gcs__intro { opacity: 1; transform: none; }
+.gcx.is-stage .gcs.is-on .gcs__model .gcs__t:nth-child(2) { transition-delay: 0.08s; }
+.gcx.is-stage .gcs.is-on .gcs__model .gcs__t:nth-child(3) { transition-delay: 0.14s; }
 .gcx.is-stage .gcs__nav { display: block; position: absolute; z-index: 5; right: clamp(16px, 2vw, 32px); top: 50%; transform: translateY(-50%); }
 .gcs__nav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; justify-items: end; }
 .gcs__nav button { display: flex; align-items: center; gap: 10px; min-height: 32px; padding: 0; background: none; border: 0; cursor: pointer; font: inherit; font-size: var(--t-14); letter-spacing: 0.04em; color: inherit; opacity: 0.45; transition: opacity 0.35s, color 0.35s; }
@@ -453,7 +452,6 @@ ol, ul { list-style: none; }
   .gcs--hangar .gcs__bg { object-position: 62% 50%; }
   .gcs--light .gcs__bg { object-position: 80% 50%; }
   .gcs--light .gcs__model { top: auto; bottom: 7svh; transform: none; }
-  .gcs--light .gcs__line { font-size: 1.5rem; }
   .gcs--dark .gcs__model { top: auto; bottom: 7svh; }
   .gcs--dusk .gcs__bg { object-position: 38% 72%; }
 }

@@ -249,7 +249,7 @@
   const gcx = document.querySelector('[data-gcx]');
   const gScenes = [...gcx.querySelectorAll('[data-gcs]')];
   const gNav = [...gcx.querySelectorAll('[data-gcs-go]')];
-  const GN = gScenes.length, TURN = 0.35;
+  const GN = gScenes.length, TURN = 0.3;
   const gVideo = (sc) => sc.querySelector('[data-gcs-video]');
   let gState = -2;
   const gSet = (active, shown) => {   // active chapter; shown = its words are allowed (the turn is ~85% done)
@@ -268,25 +268,33 @@
     gcx.classList.add('is-stage');
     gScenes.forEach((sc, k) => { sc.style.zIndex = k + 1; });
     const [s1, s2, s3, s4] = gScenes;
-    const tl = gsap.timeline({ defaults: { ease: 'none' } });
-    // 1 · Speedster opens from a vertical window ~25% wide; the photograph keeps its scale
-    tl.fromTo(s1, { clipPath: 'inset(0% 37.5% 0% 37.5%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: TURN, ease: 'power2.inOut' }, 0);
-    // 2 · Codalunga slides in from the right as one panel; the Speedster eases left
-    tl.fromTo(s2, { xPercent: 100 }, { xPercent: 0, duration: TURN, ease: 'power2.inOut' }, 1)
-      .fromTo(s1, { xPercent: 0 }, { xPercent: -12, duration: TURN, ease: 'power2.inOut' }, 1);
-    // 3 · Epitome rises from below over the still Codalunga
-    tl.fromTo(s3, { yPercent: 100 }, { yPercent: 0, duration: TURN, ease: 'power2.inOut' }, 2);
-    // 4 · Tricolore opens from the centre to the edges over the still Epitome
-    tl.fromTo(s4, { clipPath: 'inset(0% 50% 0% 50%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: TURN, ease: 'power2.inOut' }, 3);
-    tl.to({}, { duration: 1 - TURN }, 3 + TURN);   // the Tricolore's calm, then the hold lets go
-    const st = ScrollTrigger.create({ trigger: gcx, start: 'top top', end: () => `+=${innerHeight * GN * 0.95}`, pin: true, scrub: 0.4, anticipatePin: 1, animation: tl, invalidateOnRefresh: true,
-      onUpdate: (self) => { const t = self.progress * GN; const k = Math.min(GN - 1, Math.floor(t)); gSet(k, t - k >= TURN * 0.85); },
-      onLeaveBack: () => gSet(0, false) });
+    const EASE = 'sine.inOut';   // one ease for every turn: no hard start, no hard stop
+    // intro — runs while the section rises into view, so the car is there from the first moment:
+    // a wide window (~70%) set around the car opens to the full frame; the photograph keeps its scale
+    let introP = 0, pinST = null;
+    gsap.fromTo(s1, { clipPath: 'inset(9% 16% 9% 13%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none',
+      scrollTrigger: { trigger: gcx, start: 'top 55%', end: 'top top', scrub: 0.25,
+        onUpdate: (self) => { introP = self.progress; s1.classList.toggle('is-intro', introP > 0.4); if (!pinST || pinST.progress === 0) gSet(0, introP > 0.88); } } });
+    // the held stage: chapter = 1 unit; a short turn (TURN) at its start, the rest is to look and read
+    const tl = gsap.timeline({ defaults: { ease: EASE } });
+    tl.fromTo(s2, { xPercent: 100 }, { xPercent: 0, duration: TURN }, 1 - TURN)
+      .fromTo(s1, { xPercent: 0 }, { xPercent: -5, duration: TURN }, 1 - TURN)
+      .fromTo(s3, { yPercent: 100 }, { yPercent: 0, duration: TURN }, 2 - TURN)
+      .fromTo(s4, { yPercent: 100 }, { yPercent: 0, duration: TURN }, 3 - TURN)
+      .to({}, { duration: 0.55 }, 3);   // the Tricolore's calm, then the hold lets go
+    const LEN = tl.duration();
+    pinST = ScrollTrigger.create({ trigger: gcx, start: 'top top', end: () => `+=${innerHeight * 2.9}`, pin: true, scrub: 0.25, animation: tl, invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        const t = self.progress * LEN;
+        let k = 0; for (let i = 1; i < GN; i++) if (t >= i - TURN) k = i;   // the chapter whose turn has begun
+        const into = k === 0 ? 1 : (t - (k - TURN)) / TURN;                 // how far its turn has gone
+        gSet(k, k === 0 ? introP > 0.88 : into >= 0.8);
+      } });
     gSet(0, false);
-    const go = (k) => lenis.scrollTo(st.start + ((k + TURN + 0.2) / GN) * (st.end - st.start), { duration: 1.2 + Math.abs(k - Math.floor(st.progress * GN)) * 0.3 });
+    const go = (k) => { const t = k === 0 ? 0.3 : k + 0.15; lenis.scrollTo(pinST.start + (t / LEN) * (pinST.end - pinST.start), { duration: 1.1 }); };
     const onNav = (e) => { const b = e.currentTarget; if (e.detail) b.blur(); go(+b.dataset.gcsGo); };
     gNav.forEach((b) => b.addEventListener('click', onNav));
-    return () => { gcx.classList.remove('is-stage', 'is-light'); gScenes.forEach((sc) => { sc.style.zIndex = ''; sc.classList.remove('is-on', 'is-past'); }); gNav.forEach((b) => b.removeEventListener('click', onNav)); gState = -2; };
+    return () => { gcx.classList.remove('is-stage', 'is-light'); gScenes.forEach((sc) => { sc.style.zIndex = ''; sc.classList.remove('is-on', 'is-past', 'is-intro'); }); gNav.forEach((b) => b.removeEventListener('click', onNav)); gState = -2; };
   });
   // phone (and reduced motion): the scenes in the flow; each scene's words appear as it comes into view, its film plays while it is on screen
   gmm.add('(max-width: 767px), (prefers-reduced-motion: reduce)', () => {
