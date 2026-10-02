@@ -471,10 +471,15 @@ ol, ul { list-style: none; }
 .hdr.is-solid { height: var(--hdr-h); }
 .hdr.is-solid::before { opacity: 1; }
 .hdr.is-light { color: #15171a; }
-.hdr.is-light::before { --g: 226 230 237; }
+.hdr::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: calc(var(--hdr-h) * 2.4); z-index: -1; pointer-events: none; opacity: 0; transition: opacity 0.6s ease;
+  background: linear-gradient(to bottom, rgb(226 230 237 / 0.9) 0%, rgb(226 230 237 / 0.76) 22%, rgb(226 230 237 / 0.52) 42%, rgb(226 230 237 / 0.3) 60%, rgb(226 230 237 / 0.13) 78%, rgb(226 230 237 / 0.04) 90%, rgb(226 230 237 / 0) 100%); }   /* the light ground: cross-fades with the dark one, no flash */
+.hdr.is-light::before { opacity: 0; }
+.hdr.is-light::after { opacity: 1; }
+.hdr.is-light .hdr__menu i::before, .hdr.is-light .hdr__menu i::after, .hdr.is-light .hdr__menu i span { background: #15171a; }
 .hdr.is-light .hdr__mark, .hdr.is-light .hdr__dealer { filter: brightness(0) opacity(0.85); }
 .hdr.is-light .hdr__tel { border-color: rgb(21 23 26 / 0.35); color: #15171a; }
 .hdr.is-light .hdr__menu { color: #15171a; }
+.hdr__menu { transition: color 0.5s ease; }
 .hdr__nav a, .hdr__tel, .hdr__mark, .hdr__dealer { transition: color 0.5s ease, filter 0.5s ease, border-color 0.5s ease, opacity 0.3s; }
 .row__more { min-height: 44px; }
 @media (max-width: 767px) { .row__more { height: 44px; } }

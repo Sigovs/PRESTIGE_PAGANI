@@ -252,6 +252,8 @@
   const GN = gScenes.length, TURN = 0.42;
   const gVideo = (sc) => sc.querySelector('[data-gcs-video]');
   let gState = -2, gcxIn = false;
+  const hdrEl = document.querySelector('.hdr');
+  const hdrLight = (on) => hdrEl.classList.toggle('is-light', !!on);
   const gSet = (active, shown) => {   // active chapter; shown = its words are allowed (the turn is ~85% done)
     const key = active * 2 + (shown ? 1 : 0);
     if (key === gState) return; gState = key;
@@ -262,7 +264,7 @@
     });
     gNav.forEach((b, k) => b.setAttribute('aria-current', String(k === active)));
     gcx.classList.toggle('is-light', gScenes[active].classList.contains('gcs--light'));
-    document.querySelector('.hdr').classList.toggle('is-light', gcx.classList.contains('is-stage') && gScenes[active].classList.contains('gcs--light') && gcxIn);
+    hdrLight(gcx.classList.contains('is-stage') && gScenes[active].classList.contains('gcs--light') && gcxIn);
   };
   const gmm = gsap.matchMedia();
   gmm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
@@ -273,9 +275,11 @@
     // intro — runs while the section rises into view, so the car is there from the first moment:
     // a wide window (~70%) set around the car opens to the full frame; the photograph keeps its scale
     let introP = 0, pinST = null;
-    gsap.fromTo(s1, { clipPath: 'inset(9% 16% 9% 13%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none',
-      scrollTrigger: { trigger: gcx, start: 'top 55%', end: 'top top', scrub: 0.25,
-        onUpdate: (self) => { introP = self.progress; s1.classList.toggle('is-intro', introP > 0.4); if (!pinST || pinST.progress === 0) gSet(0, introP > 0.88); } } });
+    let intro = null;
+    intro = gsap.fromTo(s1, { clipPath: 'inset(9% 16% 9% 13%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none',
+      scrollTrigger: { trigger: gcx, start: 'top 55%', end: 'top top', scrub: 0.25 },
+      // the words follow the frame as drawn (the scrub's smoothed progress), never the raw scroll
+      onUpdate: function () { introP = this.progress(); s1.classList.toggle('is-intro', introP > 0.4); if (!pinST || pinST.progress === 0) gSet(0, introP > 0.88); } });
     // the held stage, measured in screens of scroll. Diagnosis (2 Oct 2026): the Codalunga's 1440 px slide ran over ~390 px of scroll with a sine curve —
     // ~3.7 px of panel per px of scroll, ~5.8 at mid-curve. Now: the scroll itself is the easing (ease 'none'), the slide gets a full screen of scroll,
     // the rises three quarters of one, and the scrub smooths start and stop.
@@ -289,14 +293,15 @@
       .fromTo(s4, { yPercent: 100 }, { yPercent: 0, duration: TV }, turns[2][0])
       .to({}, { duration: END }, turns[2][0] + TV);
     pinST = ScrollTrigger.create({ trigger: gcx, start: 'top top', end: () => `+=${innerHeight * LEN}`, pin: true, scrub: 0.35, animation: tl, invalidateOnRefresh: true,
-      onToggle: (self) => { gcxIn = self.isActive; gState = -2; gChapter(self); },
-      onUpdate: (self) => gChapter(self) });
-    function gChapter(self) {
-      const t = self.progress * LEN;
+      onToggle: (self) => { gcxIn = self.isActive; gState = -2; gChapter(); } });
+    // the chapter's words follow the timeline's own time — where the panels actually are after the scrub — not the scroll position
+    tl.eventCallback('onUpdate', () => gChapter());
+    function gChapter() {
+      const t = tl.time();
       let k = 0; turns.forEach(([a], i) => { if (t >= a) k = i + 1; });   // the chapter whose turn has begun
       if (k === 0) return gSet(0, introP > 0.88);
       const [a, d] = turns[k - 1];
-      gSet(k, (t - a) / d >= 0.85);   // the old words leave as the turn begins; the new ones arrive near its end
+      gSet(k, (t - a) / d >= 0.95);   // the old words leave as the turn begins; the new ones arrive near its end
     }
     gSet(0, false);
     const go = (k) => { const t = k === 0 ? V * 0.5 : turns[k - 1][0] + turns[k - 1][1] + 0.15; lenis.scrollTo(pinST.start + (t / LEN) * (pinST.end - pinST.start), { duration: 1.2 }); };
@@ -306,10 +311,13 @@
   });
   // phone (and reduced motion): the scenes in the flow; each scene's words appear as it comes into view, its film plays while it is on screen
   gmm.add('(max-width: 767px), (prefers-reduced-motion: reduce)', () => {
+    // the header turns light while the light Codalunga scene is under it
+    const lightSc = gcx.querySelector('.gcs--light');
+    const hl = ScrollTrigger.create({ trigger: lightSc, start: () => `top ${hdrEl.offsetHeight}px`, end: () => `bottom ${hdrEl.offsetHeight}px`, onToggle: (self) => hdrLight(self.isActive) });
     const trs = gScenes.map((sc) => ScrollTrigger.create({ trigger: sc, start: 'top 70%', end: 'bottom 30%',
       onToggle: (self) => { const v = gVideo(sc); if (v) (self.isActive ? v.play().catch(() => {}) : v.pause()); } }));
     gsap.utils.toArray(gcx.querySelectorAll('.gcs__t')).forEach((el) => gsap.from(el, { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' } }));
-    return () => trs.forEach((t) => t.kill());
+    return () => { trs.forEach((t) => t.kill()); hl.kill(); hdrLight(false); };
   });
 
   // ---------- 8 · finale: the car comes up out of the dark as the page reaches its end ----------
