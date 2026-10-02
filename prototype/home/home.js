@@ -279,7 +279,7 @@
     intro = gsap.fromTo(s1, { clipPath: 'inset(9% 16% 9% 13%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none',
       scrollTrigger: { trigger: gcx, start: 'top 55%', end: 'top top', scrub: 0.25 },
       // the words follow the frame as drawn (the scrub's smoothed progress), never the raw scroll
-      onUpdate: function () { introP = this.progress(); s1.classList.toggle('is-intro', introP > 0.4); if (!pinST || pinST.progress === 0) gSet(0, introP > 0.88); } });
+      onUpdate: function () { introP = this.progress(); gcx.classList.toggle('is-titled', introP > 0.4); if (!pinST || pinST.progress === 0) gSet(0, introP > 0.88); } });
     // the held stage, measured in screens of scroll. Diagnosis (2 Oct 2026): the Codalunga's 1440 px slide ran over ~390 px of scroll with a sine curve —
     // ~3.7 px of panel per px of scroll, ~5.8 at mid-curve. Now: the scroll itself is the easing (ease 'none'), the slide gets a full screen of scroll,
     // the rises three quarters of one, and the scrub smooths start and stop.
@@ -307,7 +307,7 @@
     const go = (k) => { const t = k === 0 ? V * 0.5 : turns[k - 1][0] + turns[k - 1][1] + 0.15; lenis.scrollTo(pinST.start + (t / LEN) * (pinST.end - pinST.start), { duration: 1.2 }); };
     const onNav = (e) => { const b = e.currentTarget; if (e.detail) b.blur(); go(+b.dataset.gcsGo); };
     gNav.forEach((b) => b.addEventListener('click', onNav));
-    return () => { gcx.classList.remove('is-stage', 'is-light'); gScenes.forEach((sc) => { sc.style.zIndex = ''; sc.classList.remove('is-on', 'is-past', 'is-intro'); }); gNav.forEach((b) => b.removeEventListener('click', onNav)); gState = -2; };
+    return () => { gcx.classList.remove('is-stage', 'is-light'); gScenes.forEach((sc) => { sc.style.zIndex = ''; sc.classList.remove('is-on', 'is-past'); }); gcx.classList.remove('is-titled'); gNav.forEach((b) => b.removeEventListener('click', onNav)); gState = -2; };
   });
   // phone (and reduced motion): the scenes in the flow; each scene's words appear as it comes into view, its film plays while it is on screen
   gmm.add('(max-width: 767px), (prefers-reduced-motion: reduce)', () => {

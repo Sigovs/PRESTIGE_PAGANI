@@ -419,14 +419,13 @@ ol, ul { list-style: none; }
 .gcs--light .gcs__logo { filter: brightness(0) opacity(0.82); }
 .gcs--light .cta--quiet { color: #15171a; }
 /* 3 · dark — the car's rear fills the left; the words in the free field top-right */
-.gcs--dark .gcs__bg { object-position: 30% 62%; }
-.gcs--dark::after { background: linear-gradient(to left, rgb(10 10 12 / 0.6) 0%, rgb(10 10 12 / 0) 36%); }
-.gcs--dark .gcs__model { right: calc(var(--gutter) + 220px); top: calc(var(--hdr-h) + 2svh); justify-items: end; text-align: right; }
-.gcs--dark .gcs__logo { object-position: right center; margin: 0 -1.4% 0 0; }
+.gcs--dark .gcs__bg { object-position: 100% 60%; }
+.gcs--dark::after { background: none; }
+.gcs--dark .gcs__model { left: var(--gutter); top: 50%; transform: translateY(-50%); }   /* left, vertically centred (Alex); the car stands right in the re-staged photograph */
 /* 4 · dusk — the name above the hangars, top-left; the car low */
 .gcs--dusk .gcs__bg { object-position: 50% 72%; }
 .gcs--dusk::after { background: linear-gradient(to bottom, rgb(10 10 12 / 0.7) 0%, rgb(10 10 12 / 0.25) 40%, rgb(10 10 12 / 0) 58%), linear-gradient(to right, rgb(10 10 12 / 0.5) 0%, rgb(10 10 12 / 0) 46%); }
-.gcs--dusk .gcs__model { left: var(--gutter); top: calc(var(--hdr-h) + 6svh); }
+.gcs--dusk .gcs__model { left: var(--gutter); top: 50%; transform: translateY(-50%); }   /* vertically centred (Alex) */
 /* the quiet model navigation, right edge (desktop, held stage only) */
 .gcs__nav { display: none; }
 /* the held stage (desktop, motion allowed; home.js adds .is-stage) */
@@ -493,7 +492,6 @@ ol, ul { list-style: none; }
 /* the Atelier's engine and the Service film dissolve at their top and foot too */
 #art .split__media::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 30% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 12% no-repeat, linear-gradient(to right, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) right / 1px 100% no-repeat, linear-gradient(to left, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) left / 22% 100% no-repeat; }
 .svc__film::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 22% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 26% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 10% no-repeat; }
-@media (max-width: 767px) { .gcs--dark .gcs__model { right: var(--gutter); } }
 @media (max-width: 767px) {   /* phone: a landscape photograph cannot fill a portrait screen without losing the car — the photograph sits whole in the upper part, the words below it */
   .gcs { height: auto; min-height: 100svh; display: grid; align-content: center; gap: var(--s-6); padding: calc(var(--hdr-h) + var(--s-5)) 0 var(--s-8); }
   .gcs__media { position: relative; inset: auto; aspect-ratio: 16 / 10; }
@@ -507,6 +505,15 @@ ol, ul { list-style: none; }
   .gcs--light .gcs__bg { object-position: 72% 50%; }
 }
 @media (max-width: 767px) { .gcs__logo { height: 92px; } }   /* all model logos larger (Alex) */
-.gcs--hangar .gcs__logo { height: clamp(124px, min(12.2vw, 22svh), 228px); }
+.gcs--hangar .gcs__logo { height: clamp(64px, min(6.2vw, 11.2svh), 116px); aspect-ratio: auto; margin-left: 0; }   /* trimmed to the script itself, so it lines up with the words (phone first, Alex) */
 .gcs--light .gcs__logo { height: clamp(108px, min(10.4vw, 19svh), 196px); }   /* a touch smaller (Alex)   /* their drawn script sits small on the shared canvas: matched optically to the Epitome and Tricolore */
-@media (max-width: 767px) { .gcs--hangar .gcs__model { max-width: none; top: auto; } .gcs--hangar .gcs__logo { height: 118px; } .gcs--light .gcs__logo { height: 104px; } }
+@media (max-width: 767px) { .gcs--hangar .gcs__model { max-width: none; top: auto; } .gcs--hangar .gcs__logo { height: 64px; } .gcs--light .gcs__logo { height: 104px; } }
+@media (max-width: 767px) { .gcs--dusk .gcs__model { transform: none; } }
+/* the collection's name stays over all four scenes (Alex) */
+.gcx__title { padding: calc(var(--hdr-h) + var(--s-6)) var(--gutter) 0; }
+.gcx.is-stage .gcx__title { position: absolute; z-index: 6; left: var(--gutter); top: calc(var(--hdr-h) + 5svh); padding: 0; pointer-events: none; opacity: 0; transform: translateY(10px); transition: opacity 0.45s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.5s ease; }
+.gcx.is-stage.is-titled .gcx__title { opacity: 1; transform: none; }
+.gcx.is-light .gcx__title { color: #15171a; }
+.gcx.is-light .gcx__title .gcs__sub { color: rgb(21 23 26 / 0.62); }
+@media (max-width: 767px) { .gcx__title { padding-bottom: var(--s-2); } }
+@media (max-width: 767px) { .gcs--dark .gcs__bg { object-position: 88% 62%; } }
