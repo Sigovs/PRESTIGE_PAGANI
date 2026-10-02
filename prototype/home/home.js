@@ -412,17 +412,19 @@
   // the Atelier holds (desktop): time to read the quote; then the scroll lifts the words away, and once they are gone the page moves on (Alex)
   gsap.matchMedia().add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
     const artType = document.querySelector('#art .scene__type');
+    gsap.set(artType, { yPercent: -50, y: 0 });   // its CSS centring as yPercent, so the exit moves it up from where it stands (it ran down before)
     gsap.timeline({ scrollTrigger: { trigger: '#art', start: 'top top', end: () => `+=${innerHeight * 0.9}`, pin: true, scrub: 0.35, anticipatePin: 1, invalidateOnRefresh: true } })
       .to({}, { duration: 0.45 })                                                                   // read
-      .to(artType, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })                            // the words rise away and fade
+      .fromTo(artType, { y: 0, opacity: 1 }, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })                            // the words rise away and fade
       .to({}, { duration: 0.1 });                                                                   // gone, then the page moves on
   });
   // Service: the same pinned text exit (DNA95) — hold to read, the words lift away, then release
   gsap.matchMedia().add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
     const svcType = document.querySelector('#service .svc__type');
+    gsap.set(svcType, { yPercent: -50, y: 0 });   // its CSS centring as yPercent, so the exit moves it up from where it stands (it ran down before)
     gsap.timeline({ scrollTrigger: { trigger: '#service', start: 'top top', end: () => `+=${innerHeight * 0.9}`, pin: true, scrub: 0.35, anticipatePin: 1, invalidateOnRefresh: true } })
       .to({}, { duration: 0.45 })
-      .to(svcType, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })
+      .fromTo(svcType, { y: 0, opacity: 1 }, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })
       .to({}, { duration: 0.1 });
   });
   // Miami: the same pinned text exit (DNA95)
@@ -430,7 +432,7 @@
     const miType = document.querySelector('#miami .scene__type');
     gsap.timeline({ scrollTrigger: { trigger: '#miami', start: 'top top', end: () => `+=${innerHeight * 0.9}`, pin: true, scrub: 0.35, anticipatePin: 1, invalidateOnRefresh: true } })
       .to({}, { duration: 0.45 })
-      .to(miType, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })
+      .fromTo(miType, { y: 0, opacity: 1 }, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })
       .to({}, { duration: 0.1 });
   });
   // the Atelier's engine loop plays only while the section is on screen
