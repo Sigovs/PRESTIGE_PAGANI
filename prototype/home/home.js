@@ -283,7 +283,7 @@
     // the held stage, measured in screens of scroll. Diagnosis (2 Oct 2026): the Codalunga's 1440 px slide ran over ~390 px of scroll with a sine curve —
     // ~3.7 px of panel per px of scroll, ~5.8 at mid-curve. Now: the scroll itself is the easing (ease 'none'), the slide gets a full screen of scroll,
     // the rises three quarters of one, and the scrub smooths start and stop.
-    const V = 0.5, TH = 1.0, TV = 0.75, END = 0.4, SH = 0.55;   // view, horizontal turn, vertical turn, last view, the Codalunga's shrink (in screens)
+    const V = 0.5, TH = 1.0, TV = 0.75, END = 0.4, SH = 0;   // view, horizontal turn, vertical turn, last view, the Codalunga's shrink (in screens)
     const turns = [[V, TH + SH], [V + TH + SH + V, TV], [V + TH + SH + V + TV + V, TV]];   // [start, length] of turns 1..3 (turn 1 = the slide in + the shrink)
     const LEN = turns[2][0] + TV + END;
     // the Codalunga arrives as the whole photograph across the screen, then shrinks to its place on the right, leaving the field for its words (Alex)
@@ -293,7 +293,6 @@
     const tl = gsap.timeline({ defaults: { ease: 'none' } });
     tl.fromTo(s2, { xPercent: 100 }, { xPercent: 0, duration: TH }, turns[0][0])
       .fromTo(s1, { xPercent: 0 }, { xPercent: -5, duration: TH }, turns[0][0])
-      .fromTo(m2, { scale: () => fill() }, { scale: 1, duration: SH, ease: 'power1.inOut', immediateRender: true }, turns[0][0] + TH)
       .fromTo(s3, { yPercent: 100 }, { yPercent: 0, duration: TV }, turns[1][0])
       .fromTo(s4, { yPercent: 100 }, { yPercent: 0, duration: TV }, turns[2][0])
       .to({}, { duration: END }, turns[2][0] + TV);
