@@ -518,3 +518,7 @@ ol, ul { list-style: none; }
 @media (max-width: 767px) { .gcx__title { padding-bottom: var(--s-2); } }
 @media (max-width: 767px) { .gcs--dark .gcs__bg { object-position: 88% 62%; } }
 .gcs--dark .gcs__logo { aspect-ratio: 415 / 227; }   /* Alex's larger Epitome file keeps its own proportion */
+/* lineup cards as glass (Alex): the blur was there but had nothing to show over a flat ground — a soft sheen, a lit top edge and a hairline make the glass read */
+.row__card, .row__panel { background: linear-gradient(150deg, rgb(255 255 255 / 0.085) 0%, rgb(255 255 255 / 0.03) 45%, rgb(255 255 255 / 0.015) 100%); -webkit-backdrop-filter: blur(24px) saturate(1.25); backdrop-filter: blur(24px) saturate(1.25); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1), inset 0 0 0 1px rgb(255 255 255 / 0.05), 0 18px 40px -24px rgb(0 0 0 / 0.8); }
+.row__pick:hover .row__card { background: linear-gradient(150deg, rgb(255 255 255 / 0.11) 0%, rgb(255 255 255 / 0.04) 45%, rgb(255 255 255 / 0.02) 100%); }
+.row__item.is-current .row__card, .row__item.is-current .row__panel { background: linear-gradient(150deg, rgb(255 255 255 / 0.07) 0%, rgb(0 0 0 / 0.12) 60%, rgb(0 0 0 / 0.2) 100%); }
