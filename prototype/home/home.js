@@ -283,12 +283,17 @@
     // the held stage, measured in screens of scroll. Diagnosis (2 Oct 2026): the Codalunga's 1440 px slide ran over ~390 px of scroll with a sine curve —
     // ~3.7 px of panel per px of scroll, ~5.8 at mid-curve. Now: the scroll itself is the easing (ease 'none'), the slide gets a full screen of scroll,
     // the rises three quarters of one, and the scrub smooths start and stop.
-    const V = 0.5, TH = 1.0, TV = 0.75, END = 0.4;   // view, horizontal turn, vertical turn, last view (in screens)
-    const turns = [[V, TH], [V + TH + V, TV], [V + TH + V + TV + V, TV]];   // [start, length] of turns 1..3
+    const V = 0.5, TH = 1.0, TV = 0.75, END = 0.4, SH = 0.55;   // view, horizontal turn, vertical turn, last view, the Codalunga's shrink (in screens)
+    const turns = [[V, TH + SH], [V + TH + SH + V, TV], [V + TH + SH + V + TV + V, TV]];   // [start, length] of turns 1..3 (turn 1 = the slide in + the shrink)
     const LEN = turns[2][0] + TV + END;
+    // the Codalunga arrives as the whole photograph across the screen, then shrinks to its place on the right, leaving the field for its words (Alex)
+    const m2 = s2.querySelector('.gcs__media');
+    const fill = () => { const r = m2.getBoundingClientRect(), sw = s2.clientWidth, sh = s2.clientHeight; return Math.max(sw / (r.width / (gsap.getProperty(m2, 'scale') || 1)), sh / (r.height / (gsap.getProperty(m2, 'scale') || 1))); };
+    gsap.set(m2, { transformOrigin: '100% 100%' });
     const tl = gsap.timeline({ defaults: { ease: 'none' } });
     tl.fromTo(s2, { xPercent: 100 }, { xPercent: 0, duration: TH }, turns[0][0])
       .fromTo(s1, { xPercent: 0 }, { xPercent: -5, duration: TH }, turns[0][0])
+      .fromTo(m2, { scale: () => fill() }, { scale: 1, duration: SH, ease: 'power1.inOut', immediateRender: true }, turns[0][0] + TH)
       .fromTo(s3, { yPercent: 100 }, { yPercent: 0, duration: TV }, turns[1][0])
       .fromTo(s4, { yPercent: 100 }, { yPercent: 0, duration: TV }, turns[2][0])
       .to({}, { duration: END }, turns[2][0] + TV);
@@ -301,23 +306,23 @@
       let k = 0; turns.forEach(([a], i) => { if (t >= a) k = i + 1; });   // the chapter whose turn has begun
       if (k === 0) return gSet(0, introP > 0.88);
       const [a, d] = turns[k - 1];
-      gSet(k, (t - a) / d >= 0.95);   // the old words leave as the turn begins; the new ones arrive near its end
+      gSet(k, (t - a) / d >= (k === 1 ? 0.97 : 0.95));   // the old words leave as the turn begins; the new ones arrive near its end (the Codalunga's after its shrink)
     }
     gSet(0, false);
     const go = (k) => { const t = k === 0 ? V * 0.5 : turns[k - 1][0] + turns[k - 1][1] + 0.15; lenis.scrollTo(pinST.start + (t / LEN) * (pinST.end - pinST.start), { duration: 1.2 }); };
     const onNav = (e) => { const b = e.currentTarget; if (e.detail) b.blur(); go(+b.dataset.gcsGo); };
     gNav.forEach((b) => b.addEventListener('click', onNav));
-    return () => { gcx.classList.remove('is-stage', 'is-light'); gScenes.forEach((sc) => { sc.style.zIndex = ''; sc.classList.remove('is-on', 'is-past'); }); gcx.classList.remove('is-titled'); gNav.forEach((b) => b.removeEventListener('click', onNav)); gState = -2; };
+    return () => { gsap.set(m2, { clearProps: 'transform,transformOrigin' }); gcx.classList.remove('is-stage', 'is-light'); gScenes.forEach((sc) => { sc.style.zIndex = ''; sc.classList.remove('is-on', 'is-past'); }); gcx.classList.remove('is-titled'); gNav.forEach((b) => b.removeEventListener('click', onNav)); gState = -2; };
   });
   // phone (and reduced motion): the scenes in the flow; each scene's words appear as it comes into view, its film plays while it is on screen
   gmm.add('(max-width: 767px), (prefers-reduced-motion: reduce)', () => {
     // the header turns light while the light Codalunga scene is under it
     const lightSc = gcx.querySelector('.gcs--light');
-    const hl = ScrollTrigger.create({ trigger: lightSc, start: () => `top ${hdrEl.offsetHeight}px`, end: () => `bottom ${hdrEl.offsetHeight}px`, onToggle: (self) => hdrLight(self.isActive) });
+    const hl = lightSc && ScrollTrigger.create({ trigger: lightSc, start: () => `top ${hdrEl.offsetHeight}px`, end: () => `bottom ${hdrEl.offsetHeight}px`, onToggle: (self) => hdrLight(self.isActive) });
     const trs = gScenes.map((sc) => ScrollTrigger.create({ trigger: sc, start: 'top 70%', end: 'bottom 30%',
       onToggle: (self) => { const v = gVideo(sc); if (v) (self.isActive ? v.play().catch(() => {}) : v.pause()); } }));
     gsap.utils.toArray(gcx.querySelectorAll('.gcs__t')).forEach((el) => gsap.from(el, { autoAlpha: 0, y: 16, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' } }));
-    return () => { trs.forEach((t) => t.kill()); hl.kill(); hdrLight(false); };
+    return () => { trs.forEach((t) => t.kill()); if (hl) hl.kill(); hdrLight(false); };
   });
 
   // ---------- 8 · finale: the car comes up out of the dark as the page reaches its end ----------

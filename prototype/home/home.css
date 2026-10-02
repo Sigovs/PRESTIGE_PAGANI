@@ -529,3 +529,17 @@ ol, ul { list-style: none; }
 .gcx.is-light .gcs__nav button[aria-current="true"] { opacity: 1; }
 .gcs__nav::before { content: ""; position: absolute; inset: -40px -32px -40px -60px; z-index: -1; pointer-events: none; border-radius: 50%; background: radial-gradient(ellipse 62% 58% at 68% 50%, rgb(10 10 12 / 0.82) 0%, rgb(10 10 12 / 0.55) 45%, rgb(10 10 12 / 0) 80%); transition: background 0.5s ease; }   /* a soft shade under the names, no panel */
 .gcx.is-light .gcs__nav::before { background: radial-gradient(ellipse 62% 58% at 68% 50%, rgb(226 230 237 / 0.95) 0%, rgb(226 230 237 / 0.7) 45%, rgb(226 230 237 / 0) 80%); }
+/* 2 · Huayra Codalunga, the piazza (Alex: option 2) — the photograph keeps its 3:2 and whole car: set right and low, its left and top edges melting into the ground; the words in the field it leaves */
+.gcs--piazza { background: #131417; }
+.gcs--piazza .gcs__media { left: auto; right: 0; top: auto; bottom: 0; height: 88%; aspect-ratio: 3 / 2; width: auto; max-width: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%), linear-gradient(to bottom, transparent 0%, #000 16%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent 0%, #000 7%), linear-gradient(to bottom, transparent 0%, #000 16%); mask-composite: intersect; }
+.gcs--piazza .gcs__bg { object-position: 50% 50%; }
+.gcs--piazza .gcs__model { left: var(--gutter); top: 50%; transform: translateY(-50%); max-width: 26vw; }
+@media (max-width: 767px) {
+  .gcs--piazza .gcs__media { position: relative; right: auto; bottom: auto; height: auto; width: 100%; aspect-ratio: 16 / 10; -webkit-mask-image: none; mask-image: none; }
+  .gcs--piazza .gcs__model { transform: none; max-width: none; }
+}
+/* Epitome: its cabin, the manual gearbox at the centre (Alex) — the words on the left over a soft shade */
+.gcs--dark .gcs__bg { object-position: 60% 50%; }
+.gcs--dark::after { background: linear-gradient(to right, rgb(10 10 12 / 0.88) 0%, rgb(10 10 12 / 0.7) 26%, rgb(10 10 12 / 0.25) 44%, rgb(10 10 12 / 0) 58%); }
+@media (max-width: 767px) { .gcs--dark .gcs__bg { object-position: 55% 55%; } }
