@@ -517,3 +517,4 @@ ol, ul { list-style: none; }
 .gcx.is-light .gcx__title .gcs__sub { color: rgb(21 23 26 / 0.62); }
 @media (max-width: 767px) { .gcx__title { padding-bottom: var(--s-2); } }
 @media (max-width: 767px) { .gcs--dark .gcs__bg { object-position: 88% 62%; } }
+.gcs--dark .gcs__logo { aspect-ratio: 415 / 227; }   /* Alex's larger Epitome file keeps its own proportion */
