@@ -409,6 +409,14 @@
       .fromTo(img, { scale: 1.3, xPercent: right ? 8 : -8 }, { scale: 1, xPercent: 0, ease: 'none' }, 0);
     gsap.to(img, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: m.parentElement, start: 'top top', end: 'bottom top', scrub: true } });
   });
+  // the Atelier holds (desktop): time to read the quote; then the scroll lifts the words away, and once they are gone the page moves on (Alex)
+  gsap.matchMedia().add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+    const artType = document.querySelector('#art .scene__type');
+    gsap.timeline({ scrollTrigger: { trigger: '#art', start: 'top top', end: () => `+=${innerHeight * 0.9}`, pin: true, scrub: 0.35, anticipatePin: 1, invalidateOnRefresh: true } })
+      .to({}, { duration: 0.45 })                                                                   // read
+      .to(artType, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })                            // the words rise away and fade
+      .to({}, { duration: 0.1 });                                                                   // gone, then the page moves on
+  });
   // the Atelier's engine loop plays only while the section is on screen
   const artFilm = document.querySelector('[data-art-film]');
   if (artFilm) ScrollTrigger.create({ trigger: '#art', start: 'top bottom', end: 'bottom top', onToggle: (self) => (self.isActive ? artFilm.play().catch(() => {}) : artFilm.pause()) });
