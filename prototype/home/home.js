@@ -248,23 +248,56 @@
   gsap.fromTo(stage.querySelector('.stage__bg'), { autoAlpha: 0.2, scale: 1.06 }, { autoAlpha: 1, scale: 1, ease: 'none', scrollTrigger: { trigger: stage, start: 'top 80%', end: 'top top', scrub: true } });
   gsap.from(stage.querySelector('.row'), { autoAlpha: 0, y: 20, ease: 'none', scrollTrigger: { trigger: stage, start: 'top 40%', end: 'top top', scrub: true } });
 
-  // ---------- 3 · Grandi Complicazioni: the film holds the screen behind; the two columns travel against each other ----------
-  const gc = document.querySelector('.gc');
-  gsap.fromTo(gc.querySelector('[data-gc-sky] video'), { scale: 1.08 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: gc, start: 'top bottom', end: 'bottom top', scrub: true } });   // it holds the screen; only a slow settle
-  // the film runs only while the section is on screen
-  // the film comes up out of our ground as the section rises: the veil lifts from solid to its resting 0.66 while the frame settles
-  gsap.fromTo(gc, { '--veil': 1 }, { '--veil': 0.66, ease: 'none', scrollTrigger: { trigger: gc, start: 'top 85%', end: 'top 5%', scrub: true } });
-  const gcFilm = gc.querySelector('[data-gc-film]');
-  ScrollTrigger.create({ trigger: gc, start: 'top bottom', end: 'bottom top', onToggle: (self) => (self.isActive ? gcFilm.play().catch(() => {}) : gcFilm.pause()) });
-  const colMove = mqMobile.matches ? [20, 60] : [50, 140];
-  gsap.fromTo(gc.querySelector('[data-gc-col="a"]'), { y: colMove[0] }, { y: -colMove[0], ease: 'none', scrollTrigger: { trigger: gc, start: 'top bottom', end: 'bottom top', scrub: true } });
-  gsap.fromTo(gc.querySelector('[data-gc-col="b"]'), { y: colMove[1] }, { y: -colMove[1], ease: 'none', scrollTrigger: { trigger: gc, start: 'top bottom', end: 'bottom top', scrub: true } });
-  gc.querySelectorAll('[data-gc-item]').forEach((it) => {
-    gsap.timeline({ scrollTrigger: { trigger: it, start: 'top 88%', toggleActions: 'play none none reverse' } })
-      .fromTo(it, { clipPath: 'inset(18% 0% 0% 0%)', autoAlpha: 0, y: 80 }, { clipPath: 'inset(0% 0% 0% 0%)', autoAlpha: 1, y: 0, duration: 1.4, ease: 'power3.out' }, 0)
-      .fromTo(it.querySelector('.gc__photo'), { scale: 1.22 }, { scale: 1, duration: 1.8, ease: 'power3.out' }, 0)
-      .fromTo(it.querySelector('.gc__logo'), { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: 1, ease: 'power3.out' }, 0.45);
+  // ---------- 3 · Grandi Complicazioni: a showcase changed by hand (Alex's frame) — tabs, arrows, keys, swipe ----------
+  const gcx = document.getElementById('grandi');
+  const gTrack = gcx.querySelector('[data-gcx-track]');
+  const gSlides = [...gcx.querySelectorAll('[data-gcx-slide]')];
+  const gRecs = [...gcx.querySelectorAll('[data-gcx-rec]')];
+  const gTabs = [...gcx.querySelectorAll('[data-gcx-tab]')];
+  const gNum = gcx.querySelector('[data-gcx-n]');
+  const GN = gSlides.length;
+  // the one before the first waits at the left edge too: a copy of the last, for the eye only
+  const gClone = gSlides[GN - 1].cloneNode(true);
+  gClone.removeAttribute('data-gcx-slide'); gClone.setAttribute('aria-hidden', 'true'); gClone.querySelector('img').alt = '';
+  gTrack.prepend(gClone);
+  gTrack.style.left = 'calc(var(--lead) - var(--slide) - var(--gap))';
+  let gCur = 0;
+  const gStep = () => gSlides[0].offsetWidth + parseFloat(getComputedStyle(gTrack).columnGap || 0);
+  const gMark = (i) => {
+    gSlides.forEach((sl, k) => sl.classList.toggle('is-on', k === i));
+    gClone.classList.toggle('is-on', false);
+    gTabs.forEach((t, k) => { t.classList.toggle('is-on', k === i); t.setAttribute('aria-current', String(k === i)); });
+    gNum.textContent = String(i + 1).padStart(2, '0');
+  };
+  function gGo(i) {
+    const n = ((i % GN) + GN) % GN;
+    if (n === gCur) return;
+    const prev = gCur; gCur = n; gMark(n);
+    gsap.to(gTrack, { x: -n * gStep(), duration: 1.2, ease: 'power3.inOut', overwrite: true });
+    gsap.fromTo(gSlides[n].querySelector('img'), { scale: 1.08 }, { scale: 1, duration: 1.7, ease: 'power3.out', overwrite: true });
+    // the record: the old one lifts away, the new one's parts rise in order
+    gsap.to(gRecs[prev], { autoAlpha: 0, y: -16, duration: 0.45, ease: 'power1.in', overwrite: true });
+    gsap.set(gRecs[n], { autoAlpha: 1, y: 0 });
+    gsap.fromTo(gRecs[n].children, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08, delay: 0.35, overwrite: true });
+    gsap.fromTo(gNum, { yPercent: 60, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.5, ease: 'power2.out' });
+  }
+  gMark(0);
+  gcx.querySelector('[data-gcx-prev]').addEventListener('click', (e) => { if (e.detail) e.currentTarget.blur(); gGo(gCur - 1); });
+  gcx.querySelector('[data-gcx-next]').addEventListener('click', (e) => { if (e.detail) e.currentTarget.blur(); gGo(gCur + 1); });
+  gTabs.forEach((t, k) => t.addEventListener('click', (e) => { if (e.detail) t.blur(); gGo(k); }));
+  addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    const r = gcx.getBoundingClientRect();
+    if (r.top > innerHeight * 0.5 || r.bottom < innerHeight * 0.5 || e.target.closest('input, textarea, select')) return;
+    e.preventDefault(); gGo(gCur + (e.key === 'ArrowRight' ? 1 : -1));
   });
+  let gx = null;
+  gcx.addEventListener('touchstart', (e) => { gx = e.touches[0].clientX; }, { passive: true });
+  gcx.addEventListener('touchend', (e) => { if (gx === null) return; const dx = e.changedTouches[0].clientX - gx; gx = null; if (Math.abs(dx) > 50) gGo(gCur + (dx < 0 ? 1 : -1)); });
+  addEventListener('resize', () => gsap.set(gTrack, { x: -gCur * gStep() }));
+  // arrival: the cars slide in from the right as the section comes up
+  gsap.fromTo(gcx.querySelector('[data-gcx-view]'), { x: () => innerWidth * 0.12, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1.5, ease: 'power3.out',
+    scrollTrigger: { trigger: gcx, start: 'top 70%', toggleActions: 'play none none reverse' } });
 
   // ---------- 8 · finale: the car comes up out of the dark as the page reaches its end ----------
   const fin = document.querySelector('.finale');
@@ -352,7 +385,7 @@
     gsap.to(img, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: m.parentElement, start: 'top top', end: 'bottom top', scrub: true } });
   });
   // type: rises in order inside its own scene (bound to the role, not to a section)
-  gsap.utils.toArray('.sc:not(.hero), .gc').forEach((sec) => {
+  gsap.utils.toArray('.sc:not(.hero)').forEach((sec) => {
     const items = sec.querySelectorAll('[data-rise]');
     if (!items.length) return;
     gsap.from(items, { autoAlpha: 0, y: 42, duration: 1.3, ease: 'power3.out', stagger: 0.14,

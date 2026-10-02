@@ -69,3 +69,8 @@ About backgrounds, final for now (Alex, 2 Oct 2026: "archive is sweet but weak �
 - `assets/about-ch3-codalunga.webp` — Huayra Codalunga Speedster, dark hangar (9449 px)
 - `assets/about-ch4-zonda-c12.webp` — Zonda C12 S 7.0 at San Cesario (6000 px) — the 1999 chapter is the C12
 The archive pictures (1972/1979/1983/1999) are kept in research/about-sketch/ only.
+
+Grandi Complicazioni showcase (Alex's frame, 2 Oct 2026). Spec texts: Alex's content (pagani.com model pages), verbatim apart from joining lines with " · ".
+- Photos (Pagani press, research/press-images): `gcx-codalunga-speedster.webp` (9449 px hangar original), `gcx-huayra-codalunga.webp` (Milan arcade, 6038), `gcx-huayra-epitome.webp` (dark studio, 8059), `gcx-huayra-tricolore.webp` (Frecce smoke, 1980 — the largest we have).
+- Logos: `logo-huayra-epitome.png` — pagani.com /app/uploads/2024/03/Logo_Huayra-Epitome.png (4729 px, resized); `logo-huayra-codalunga.png` — cropped (not redrawn) from the raster inside Pagani of Chicago's grandi-img-logo-3.svg (only 666 px wide: ask the client for the vector); Codalunga Speedster and Tricolore logos as before.
+- The GC film (assets/gc-film.mp4) is no longer used on the page.
