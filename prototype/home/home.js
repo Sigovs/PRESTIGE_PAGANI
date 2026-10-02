@@ -417,6 +417,22 @@
       .to(artType, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })                            // the words rise away and fade
       .to({}, { duration: 0.1 });                                                                   // gone, then the page moves on
   });
+  // Service: the same pinned text exit (DNA95) — hold to read, the words lift away, then release
+  gsap.matchMedia().add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+    const svcType = document.querySelector('#service .svc__type');
+    gsap.timeline({ scrollTrigger: { trigger: '#service', start: 'top top', end: () => `+=${innerHeight * 0.9}`, pin: true, scrub: 0.35, anticipatePin: 1, invalidateOnRefresh: true } })
+      .to({}, { duration: 0.45 })
+      .to(svcType, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })
+      .to({}, { duration: 0.1 });
+  });
+  // Miami: the same pinned text exit (DNA95)
+  gsap.matchMedia().add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
+    const miType = document.querySelector('#miami .scene__type');
+    gsap.timeline({ scrollTrigger: { trigger: '#miami', start: 'top top', end: () => `+=${innerHeight * 0.9}`, pin: true, scrub: 0.35, anticipatePin: 1, invalidateOnRefresh: true } })
+      .to({}, { duration: 0.45 })
+      .to(miType, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })
+      .to({}, { duration: 0.1 });
+  });
   // the Atelier's engine loop plays only while the section is on screen
   const artFilm = document.querySelector('[data-art-film]');
   if (artFilm) ScrollTrigger.create({ trigger: '#art', start: 'top bottom', end: 'bottom top', onToggle: (self) => (self.isActive ? artFilm.play().catch(() => {}) : artFilm.pause()) });
