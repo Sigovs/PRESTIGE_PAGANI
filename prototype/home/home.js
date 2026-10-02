@@ -222,11 +222,7 @@
     .fromTo(svcFilm, { '--win-x': `${win.x}%`, '--win-y': `${win.y}%`, '--win-r': '6px', '--shade': 0.35 }, { '--win-x': '0%', '--win-y': '0%', '--win-r': '0px', '--shade': 1, ease: 'none' }, 0)
     .fromTo(svcVid, { scale: 1.3 }, { scale: 1, ease: 'none' }, 0);
   ScrollTrigger.create({ trigger: '#service', start: 'top bottom', end: 'bottom top', onToggle: (self) => (self.isActive ? svcVid.play().catch(() => {}) : svcVid.pause()) });
-  // ---------- 6 · Service stays: it pins for one screen and darkens where it stands, while the next section rises over it ----------
-  const svc = document.getElementById('service');
-  const svcNext = svc.nextElementSibling;
-  ScrollTrigger.create({ trigger: svc, start: 'top top', end: () => `+=${innerHeight}`, pin: true, pinSpacing: false, anticipatePin: 1 });
-  gsap.fromTo(svc, { '--dim': 0 }, { '--dim': 0.88, ease: 'none', scrollTrigger: { trigger: svcNext, start: 'top bottom', end: 'top top', scrub: true } });
+  // Service no longer holds or darkens: after About's hold it is the calm stretch before Miami (scroll review, 2 Oct 2026)
 
   window.__home = () => ({ car: curModel + 1, record: want + 1, mode, y: Math.round(lenis.scroll) });
 
@@ -254,15 +250,24 @@
   const gRecs = gsap.utils.toArray(gcx.querySelectorAll('[data-gcx-rec]'));
   const gBar = gcx.querySelector('[data-gcx-progress]');
   const GN = gStages.length;
-  const gHold = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: gcx, start: 'top top', end: () => `+=${innerHeight * (GN - 1) * 0.9}`, pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true } });
+  // every car stands on the floor by its tyres: top = floor − contact × height (contact measured on each cutout)
+  const gPlace = () => gStages.forEach((st) => {
+    const car = st.querySelector('.gcx__car');
+    const floor = st.clientHeight * parseFloat(getComputedStyle(gcx).getPropertyValue('--floor')) / 100;
+    const h = car.clientWidth * (car.naturalHeight || 1) / (car.naturalWidth || 1);
+    car.style.top = `${floor - (+car.dataset.contact || 1) * h}px`;
+  });
+  gStages.forEach((st) => { const c = st.querySelector('.gcx__car'); if (!c.complete) c.addEventListener('load', gPlace, { once: true }); });
+  gPlace();
+  addEventListener('resize', gPlace);
+  const gHold = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: gcx, start: 'top top', end: () => `+=${innerHeight * (GN - 1) * 0.7}`, pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true } });
   gHold.fromTo(gBar, { scaleX: 1 / GN }, { scaleX: 1, duration: GN - 1 + 0.3 }, 0);
-  gHold.fromTo(gStages[0].querySelector('.gcx__car'), { scale: 1 }, { scale: 1.04, duration: 1 }, 0);
   for (let i = 1; i < GN; i++) {
     const at = i - 1 + 0.25;
     const car = gStages[i].querySelector('.gcx__car');
     gHold.fromTo(gStages[i], { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.6, ease: 'power2.inOut' }, at)
-      .fromTo(car, { yPercent: 40, scale: 1.06 }, { yPercent: 0, scale: 1, duration: 0.75, ease: 'power2.out' }, at)
-      .to(gStages[i - 1].querySelector('.gcx__car'), { yPercent: -18, autoAlpha: 0.4, duration: 0.6, ease: 'power1.in' }, at)
+      .fromTo(car, { xPercent: 6, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, duration: 0.75, ease: 'power2.out' }, at)
+      .to(gStages[i - 1].querySelectorAll('.gcx__car, .gcx__shadow'), { autoAlpha: 0, duration: 0.5, ease: 'power1.in' }, at)
       .to(gRecs[i - 1], { autoAlpha: 0, y: -24, duration: 0.25, ease: 'power1.in' }, at)
       .fromTo(gRecs[i], { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power2.out' }, at + 0.3);
   }
@@ -276,7 +281,7 @@
   // Miami: the car drives through the frame — in from the left as the section arrives, on to the right as it leaves
   const miamiImg = document.querySelector('#miami [data-scene-media] img');
   if (miamiImg) {
-    gsap.fromTo(miamiImg, { xPercent: -8 }, { xPercent: 0, ease: 'none', scrollTrigger: { trigger: '#miami', start: 'top bottom', end: 'top top', scrub: true } });
+    gsap.fromTo(miamiImg, { xPercent: -8, filter: 'brightness(0.45)' }, { xPercent: 0, filter: 'brightness(1)', ease: 'none', scrollTrigger: { trigger: '#miami', start: 'top bottom', end: 'top top', scrub: true } });
     gsap.fromTo(miamiImg, { xPercent: 0 }, { xPercent: 7, ease: 'none', immediateRender: false, scrollTrigger: { trigger: '#miami', start: 'top top', end: 'bottom top', scrub: true } });
   }
 
@@ -306,9 +311,8 @@
   const aboutMan = aboutSec.querySelector('[data-scene-media]');
   const k = mqMobile.matches ? 0.5 : 1;
   shots.forEach((s) => gsap.set(s, { yPercent: s.classList.contains('about__shot--wide') ? -50 : 0 }));
-  const hold = gsap.timeline({ scrollTrigger: { trigger: aboutSec, start: 'top top', end: () => `+=${innerHeight * (shots.length - 1) * 0.6}`, pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true } });
+  const hold = gsap.timeline({ scrollTrigger: { trigger: aboutSec, start: 'top top', end: () => `+=${innerHeight * (shots.length - 1) * 0.8}`, pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true } });
   shots.forEach((s, i) => {
-    hold.fromTo(s, { scale: 1.12 }, { scale: 1, duration: 1.2, ease: 'none' }, Math.max(0, i - 0.35));
     if (i) hold.to(shots[i - 1], { autoAlpha: 0, duration: 0.28, ease: 'none' }, i - 0.3).fromTo(s, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.28, ease: 'none' }, i - 0.3);
   });
   // the chapter line changes with its picture: the old one lifts away, the new one rises in; the counter turns over
@@ -330,15 +334,13 @@
     if (chNum.textContent !== txt) chNum.textContent = txt;
   });
   // while it holds, the man drifts left to right and the pictures slide the other way: depth sideways
-  const span = shots.length - 1 + 0.85;
-  hold.fromTo(aboutMan, { xPercent: -4 * k }, { xPercent: 5 * k, duration: span, ease: 'none' }, 0)
-    .fromTo(aboutWrap, { xPercent: 2 * k }, { xPercent: -2 * k, duration: span, ease: 'none' }, 0);
+  hold.to({}, { duration: 0.35 });   // a breath on the last chapter before the page moves on
   const holdST = hold.scrollTrigger;
   gsap.fromTo(aboutWrap, { yPercent: -14 * k }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: aboutSec, start: 'top bottom', end: 'top top', scrub: true } });
   gsap.fromTo(aboutMan, { y: 140 * k }, { y: 0, ease: 'none', scrollTrigger: { trigger: aboutSec, start: 'top bottom', end: 'top top', scrub: true } });
   gsap.fromTo(aboutWrap, { yPercent: 0 }, { yPercent: 14 * k, ease: 'none', immediateRender: false, scrollTrigger: { start: () => holdST.end, end: () => holdST.end + innerHeight, scrub: true, invalidateOnRefresh: true } });
   gsap.fromTo(aboutMan, { y: 0 }, { y: -140 * k, ease: 'none', immediateRender: false, scrollTrigger: { start: () => holdST.end, end: () => holdST.end + innerHeight, scrub: true, invalidateOnRefresh: true } });
-  gsap.utils.toArray('[data-scene]').forEach((sec) => {
+  gsap.utils.toArray('[data-scene]:not(#miami)').forEach((sec) => {
     const img = sec.querySelector('[data-scene-media] img');
     gsap.fromTo(img, { scale: 1.16, yPercent: -4, filter: 'brightness(0.35)' }, { scale: 1, yPercent: 0, filter: 'brightness(1)', ease: 'none',
       scrollTrigger: { trigger: sec, start: 'top bottom', end: 'top top', scrub: true } });

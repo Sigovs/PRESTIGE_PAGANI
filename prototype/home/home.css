@@ -397,30 +397,33 @@ ol, ul { list-style: none; }
 
 /* 3 · GRANDI COMPLICAZIONI — held while you scroll (Forge): the record on the left, one studio stage on the right where each car rises over the last */
 .gcx { --split: 46vw; }
-.gcx__text { position: absolute; left: 0; top: 0; bottom: 0; width: var(--split); padding: var(--hdr-h) clamp(32px, 5vw, 96px) 0 var(--gutter); display: grid; align-content: center; gap: var(--s-6); }   /* just the name: the logotype carries the record (Alex: the specs read as filler) */
+.gcx__text { position: absolute; z-index: 2; left: 0; top: 0; bottom: 0; width: var(--split); padding: var(--hdr-h) clamp(32px, 5vw, 96px) 0 var(--gutter); display: grid; align-content: center; gap: var(--s-6); }   /* just the name: the logotype carries the record (Alex: the specs read as filler) */
 .gcx__recs { display: grid; }
 .gcx__rec { grid-area: 1 / 1; display: grid; gap: var(--s-7); justify-items: start; }
 .gcx__rec + .gcx__rec { visibility: hidden; opacity: 0; }   /* the static state: the first car */
-.gcx__logo { height: clamp(84px, min(9.5vw, 17svh), 168px); width: auto; max-width: 100%; object-fit: contain; object-position: left center; }
+.gcx__logo { height: clamp(52px, min(5.6vw, 10svh), 96px); opacity: 0.86; width: auto; max-width: 100%; object-fit: contain; object-position: left center; }
 .gcx__specs { margin: 0; display: grid; gap: var(--s-4); }
 .gcx__specs dt { font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--silver); }
 .gcx__specs dd { margin: var(--s-1) 0 0; font-size: var(--t-18); line-height: 1.5; color: var(--ink); opacity: 0.86; max-width: 42ch; }
 .gcx__progress { position: absolute; left: var(--gutter); right: clamp(32px, 5vw, 96px); bottom: clamp(28px, 5svh, 48px); height: 1px; background: var(--rule); }
 .gcx__progress span { position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: left; }
-.gcx__stages { position: absolute; top: 0; bottom: 0; right: 0; left: var(--split); overflow: hidden; }
-/* the studio: one light, one floor, the same for every car */
-.gcx__stage { position: absolute; inset: 0; z-index: 0; isolation: isolate; overflow: hidden; display: grid; place-items: center;
-  background: radial-gradient(ellipse 62% 40% at 50% 56%, #2b2d32 0%, #1a1b1f 52%, #101114 100%); }
-.gcx__stage::before { content: ""; position: absolute; left: 0; right: 0; top: 63%; height: 1px; background: linear-gradient(to right, rgb(255 255 255 / 0), rgb(255 255 255 / 0.12) 30%, rgb(255 255 255 / 0.12) 70%, rgb(255 255 255 / 0)); }   /* the floor line */
-.gcx__stage::after { content: ""; position: absolute; left: 14%; right: 14%; top: 60%; height: 7%; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgb(0 0 0 / 0.7), rgb(0 0 0 / 0)); }   /* the contact shadow */
-.gcx__car { position: absolute; z-index: 1; left: 7%; width: 86%; bottom: 37%; height: auto; max-width: none; -webkit-box-reflect: below -2px linear-gradient(to bottom, rgb(0 0 0 / 0) 55%, rgb(0 0 0 / 0.22)); will-change: transform; }
+.gcx__stages { position: absolute; inset: 0; overflow: hidden; }   /* the studio runs the full width: no edge between the record and the stage (Alex: no seams) */
+/* the studio: a real photographed floor (the lineup's), one light; every car stands on its tyres — placed by its contact line (home.js) */
+.gcx { --floor: 64%; }
+.gcx__stage { position: absolute; inset: 0; z-index: 0; isolation: isolate; overflow: hidden; background: #131417 url("assets/models-back2.jpg") 50% 50% / cover no-repeat; }
+.gcx__stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to left, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) left / 62% 100% no-repeat, linear-gradient(to left, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) left / 40% 100% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 34% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 14% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 30% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 12% no-repeat; }   /* no cut edges: the studio dissolves into the ground on the record's side, at the top and at the foot */   /* joins the record's side and the header */
+.gcx__car { position: absolute; z-index: 1; left: calc(var(--split) + 4%); width: calc((100% - var(--split)) * 0.86); height: auto; max-width: none; will-change: transform; }
+.gcx__shadow { position: absolute; z-index: 1; left: calc(var(--split) + 6%); width: calc((100% - var(--split)) * 0.8); top: var(--floor); height: 3.2%; transform: translateY(-50%); border-radius: 50%; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgb(0 0 0 / 0.95) 0%, rgb(0 0 0 / 0.75) 45%, rgb(0 0 0 / 0) 100%); filter: blur(6px); }   /* the contact shadow, on the floor */
+.gcx__shadow::before { content: ""; position: absolute; left: -6%; right: -6%; top: -60%; bottom: -60%; border-radius: 50%; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgb(0 0 0 / 0.55), rgb(0 0 0 / 0)); filter: blur(14px); }   /* and the soft one around it */
 .gcx__stage + .gcx__stage { clip-path: inset(100% 0 0 0); }   /* waiting below, revealed on scroll */
 @media (max-width: 767px) {
   .gcx { --split: 0px; }
   .gcx__stages { left: 0; bottom: auto; height: 32svh; top: var(--hdr-h); }
+  .gcx__car { left: 4%; width: 92%; } .gcx__shadow { left: 6%; width: 88%; }
+  .gcx__stage::after { background-size: 0 0, 0 0, 100% 34%, 100% 14%, 100% 30%, 100% 12%; }
   .gcx__text, .gcx__rec { gap: var(--s-3); }
   .gcx__specs { gap: var(--s-2); }
-  .gcx__logo { height: 64px; }
+  .gcx__logo { height: 48px; }
   .gcx__text { width: auto; right: 0; padding: 0 var(--gutter) 64px; }
   .gcx__specs dd { font-size: var(--t-14); }
   .gcx__progress { right: var(--gutter); bottom: 32px; }
@@ -434,8 +437,17 @@ ol, ul { list-style: none; }
 /* the header gets its ground once the hero is behind it: dark glass, so the nav never sits on a photograph or a headline (audit P1) */
 .hdr { transition: background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1), -webkit-backdrop-filter 0.5s, backdrop-filter 0.5s, height 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
 .hdr::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--rule); opacity: 0; transition: opacity 0.5s; }
-.hdr.is-solid { background-color: rgb(19 20 23 / 0.78); -webkit-backdrop-filter: blur(14px) saturate(1.1); backdrop-filter: blur(14px) saturate(1.1); height: var(--hdr-h); }
+.hdr.is-solid { background-color: rgb(11 12 14 / 0.96); height: var(--hdr-h); }   /* quiet: transparent on the hero, then near-opaque black; no glass (Alex) */
 .hdr.is-solid::after { opacity: 1; }
 .row__more { min-height: 44px; }
 @media (max-width: 767px) { .row__more { height: 44px; } }
 .skip { padding-block: 12px; }
+
+/* seams, page-wide: no cut transitions (Alex) — layered, eased fades into #131417 where a picture meets the ground */
+#miami::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 26% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 10% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 26% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 10% no-repeat; }
+#miami .scene__type { z-index: 2; }
+.stage__inner::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 22%; z-index: -1; pointer-events: none; background: linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 100% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 45% no-repeat; }
+
+/* the Atelier's engine and the Service film dissolve at their top and foot too */
+#art .split__media::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 30% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 12% no-repeat, linear-gradient(to right, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) right / 1px 100% no-repeat, linear-gradient(to left, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) left / 22% 100% no-repeat; }
+.svc__film::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 22% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 26% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 10% no-repeat; }
