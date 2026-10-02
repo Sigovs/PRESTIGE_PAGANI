@@ -397,11 +397,11 @@ ol, ul { list-style: none; }
 
 /* 3 · GRANDI COMPLICAZIONI — held while you scroll (Forge): the record on the left, one studio stage on the right where each car rises over the last */
 .gcx { --split: 46vw; }
-.gcx__text { position: absolute; left: 0; top: 0; bottom: 0; width: var(--split); padding: 0 clamp(32px, 5vw, 96px) 0 var(--gutter); display: grid; align-content: end; gap: var(--s-5); padding-bottom: clamp(72px, 14svh, 150px); }
+.gcx__text { position: absolute; left: 0; top: 0; bottom: 0; width: var(--split); padding: var(--hdr-h) clamp(32px, 5vw, 96px) 0 var(--gutter); display: grid; align-content: center; gap: var(--s-6); }   /* just the name: the logotype carries the record (Alex: the specs read as filler) */
 .gcx__recs { display: grid; }
-.gcx__rec { grid-area: 1 / 1; display: grid; gap: var(--s-5); justify-items: start; }
+.gcx__rec { grid-area: 1 / 1; display: grid; gap: var(--s-7); justify-items: start; }
 .gcx__rec + .gcx__rec { visibility: hidden; opacity: 0; }   /* the static state: the first car */
-.gcx__logo { height: clamp(60px, min(6.8vw, 12svh), 116px); width: auto; max-width: 100%; object-fit: contain; object-position: left center; }
+.gcx__logo { height: clamp(84px, min(9.5vw, 17svh), 168px); width: auto; max-width: 100%; object-fit: contain; object-position: left center; }
 .gcx__specs { margin: 0; display: grid; gap: var(--s-4); }
 .gcx__specs dt { font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--silver); }
 .gcx__specs dd { margin: var(--s-1) 0 0; font-size: var(--t-18); line-height: 1.5; color: var(--ink); opacity: 0.86; max-width: 42ch; }
@@ -413,14 +413,14 @@ ol, ul { list-style: none; }
   background: radial-gradient(ellipse 62% 40% at 50% 56%, #2b2d32 0%, #1a1b1f 52%, #101114 100%); }
 .gcx__stage::before { content: ""; position: absolute; left: 0; right: 0; top: 63%; height: 1px; background: linear-gradient(to right, rgb(255 255 255 / 0), rgb(255 255 255 / 0.12) 30%, rgb(255 255 255 / 0.12) 70%, rgb(255 255 255 / 0)); }   /* the floor line */
 .gcx__stage::after { content: ""; position: absolute; left: 14%; right: 14%; top: 60%; height: 7%; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgb(0 0 0 / 0.7), rgb(0 0 0 / 0)); }   /* the contact shadow */
-.gcx__car { position: absolute; z-index: 1; left: 7%; width: 86%; top: 63%; translate: 0 -96%; height: auto; max-width: none; -webkit-box-reflect: below -2px linear-gradient(to bottom, rgb(0 0 0 / 0) 55%, rgb(0 0 0 / 0.22)); will-change: transform; }
+.gcx__car { position: absolute; z-index: 1; left: 7%; width: 86%; bottom: 37%; height: auto; max-width: none; -webkit-box-reflect: below -2px linear-gradient(to bottom, rgb(0 0 0 / 0) 55%, rgb(0 0 0 / 0.22)); will-change: transform; }
 .gcx__stage + .gcx__stage { clip-path: inset(100% 0 0 0); }   /* waiting below, revealed on scroll */
 @media (max-width: 767px) {
   .gcx { --split: 0px; }
   .gcx__stages { left: 0; bottom: auto; height: 32svh; top: var(--hdr-h); }
   .gcx__text, .gcx__rec { gap: var(--s-3); }
   .gcx__specs { gap: var(--s-2); }
-  .gcx__logo { height: 48px; }
+  .gcx__logo { height: 64px; }
   .gcx__text { width: auto; right: 0; padding: 0 var(--gutter) 64px; }
   .gcx__specs dd { font-size: var(--t-14); }
   .gcx__progress { right: var(--gutter); bottom: 32px; }
