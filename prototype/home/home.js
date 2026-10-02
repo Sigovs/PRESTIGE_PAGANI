@@ -400,12 +400,15 @@
   // splits: the picture is uncovered from its outer edge while the detail moves into place
   gsap.utils.toArray('[data-split-media]').forEach((m) => {
     const right = m.classList.contains('split__media--right');
-    const img = m.querySelector('img');
+    const img = m.querySelector('img, video');
     gsap.timeline({ scrollTrigger: { trigger: m.parentElement, start: 'top 85%', end: 'top 15%', scrub: true } })
       .fromTo(m, { clipPath: right ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none' }, 0)
       .fromTo(img, { scale: 1.3, xPercent: right ? 8 : -8 }, { scale: 1, xPercent: 0, ease: 'none' }, 0);
     gsap.to(img, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: m.parentElement, start: 'top top', end: 'bottom top', scrub: true } });
   });
+  // the Atelier's engine loop plays only while the section is on screen
+  const artFilm = document.querySelector('[data-art-film]');
+  if (artFilm) ScrollTrigger.create({ trigger: '#art', start: 'top bottom', end: 'bottom top', onToggle: (self) => (self.isActive ? artFilm.play().catch(() => {}) : artFilm.pause()) });
   // type: rises in order inside its own scene (bound to the role, not to a section)
   gsap.utils.toArray('.sc:not(.hero)').forEach((sec) => {
     const items = sec.querySelectorAll('[data-rise]');

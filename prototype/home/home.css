@@ -283,7 +283,7 @@ ol, ul { list-style: none; }
 
 /* the one split, as in the concept: detail right, black left */
 .split__media { position: absolute; top: 0; bottom: 0; right: 0; width: 58%; overflow: hidden; }
-.split__media img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
+.split__media img, .split__media video { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
 .split .scene__type { top: 50%; transform: translateY(-50%); }
 #art .split__media img { object-position: 50% 50%; }
 /* the Atelier hangs a gradient from its lower edge: the engine dissolves into the ground, and the same dark falls over the top of About — over Horacio, under the type */
