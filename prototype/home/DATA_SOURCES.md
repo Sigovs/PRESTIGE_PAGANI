@@ -57,7 +57,7 @@ About backgrounds (held section, changing on scroll; Alex, 2 Oct 2026), all Paga
 - `assets/about-gearbox.webp` — Utopia Roadster manual gearbox, pagani.com/press/utopia-roadster/
 
 About — variant B, four chapters (Alex, 2 Oct 2026). Texts shortened from pagani.com History, the timeline's own words; full source texts in research/about-sketch/TIMELINE.md (fetched via admin-ajax getAjaxPost, posts 206 / 208 / 214 / 9; 218 is the 1955 title). The section headline is the timeline's own title for 1955.
-- `assets/about-1967.webp` — the model cars he made, pagani.com /app/uploads/2016/12/1967.jpg (1024 px, source max); chapter 01 is the timeline's 1967 entry (post 206, "Defeating dragons") — replaced the 1955 portrait at Alex's request
+- `assets/about-1979.webp` — the first Pagani F2, /app/uploads/2016/12/1979.jpg (post 212); replaced the 1967 models (Alex: "ne krasivo"). Chapters now 1972 / 1979 / 1983–1991 / 1999.
 - `assets/about-1972.webp` — the dune buggie, Casilda, /app/uploads/2016/12/1972.jpg
 - `assets/about-1983.webp` — the Lamborghini years, /app/uploads/2016/12/1983-1991.jpg
 - `assets/about-1999.webp` — Zonda C12 (Pagani press, Villa d'Este 2026 photo of a C12; the 1999 chapter is the C12's debut)
