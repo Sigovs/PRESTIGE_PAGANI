@@ -507,5 +507,6 @@ ol, ul { list-style: none; }
   .gcs--light .gcs__bg { object-position: 72% 50%; }
 }
 @media (max-width: 767px) { .gcs__logo { height: 92px; } }   /* all model logos larger (Alex) */
-.gcs--hangar .gcs__logo, .gcs--light .gcs__logo { height: clamp(124px, min(12.2vw, 22svh), 228px); }   /* their drawn script sits small on the shared canvas: matched optically to the Epitome and Tricolore */
-@media (max-width: 767px) { .gcs--hangar .gcs__model { max-width: none; top: auto; } .gcs--hangar .gcs__logo, .gcs--light .gcs__logo { height: 118px; } }
+.gcs--hangar .gcs__logo { height: clamp(124px, min(12.2vw, 22svh), 228px); }
+.gcs--light .gcs__logo { height: clamp(108px, min(10.4vw, 19svh), 196px); }   /* a touch smaller (Alex)   /* their drawn script sits small on the shared canvas: matched optically to the Epitome and Tricolore */
+@media (max-width: 767px) { .gcs--hangar .gcs__model { max-width: none; top: auto; } .gcs--hangar .gcs__logo { height: 118px; } .gcs--light .gcs__logo { height: 104px; } }

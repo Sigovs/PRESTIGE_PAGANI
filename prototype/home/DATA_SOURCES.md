@@ -113,3 +113,6 @@ GC as four full-screen scenes (Alex's brief, 2 Oct 2026), photographs cut to 16:
 - `gcs-epitome.webp` — Huayra Epitome rear 3/4, dark studio (8059 px)
 - `gcs-tricolore.webp` — Huayra Tricolore at the Frecce hangars, sunset (DSC01115, 7952 px)
 No GC film exists in the project; each scene has a slot for one (muted, plays only while active). Recordings: research/gc-scenes-desktop.mp4 (forward and back), research/gc-scenes-mobile.mp4.
+
+Huayra Tricolore scene film (Alex, 2 Oct 2026): IMAGES ALEX/models 2 secondary/tricolorevideo.mp4 (2580×1080, 44 s montage, no audio) → `gcs-tricolore-film.mp4` (1920 px, 7.6 MB), poster `gcs-tricolore-film-poster.webp` = its frame at 42 s (the car on the runway under the Frecce smoke). A montage, so it plays muted while the scene is active and pauses when it leaves; it is not scroll-scrubbed. The second file there (tricolore.mp4, 136 s with audio) is the long version, not used.
+Huayra Codalunga logo: rebuilt at 4× from the 666 px source (logo-huayra-codalunga.png) on the secondary-logo canvas — the 196 px secondary PNG blurred when enlarged.
