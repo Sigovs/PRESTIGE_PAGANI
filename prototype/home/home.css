@@ -279,7 +279,7 @@ ol, ul { list-style: none; }
 .gc__foot { display: flex; justify-content: center; margin-top: var(--s-8); }
 
 /* 8 · finale — a car up out of the dark; the free field above it carries the contacts */
-.finale { display: grid; align-content: start; justify-items: center; text-align: center; padding: calc(var(--hdr-h) + 10svh) var(--gutter) 0; }
+.finale { display: grid; align-content: start; justify-items: center; text-align: center; padding: calc(var(--hdr-h) + 5svh) var(--gutter) 0; }
 /* the photograph fills the room; its top and edges sink into the page's black, the car stays small and low, the type sits in the open studio above */
 /* the photograph fills the room, held well down; the hero's fades close it top and bottom; the type stands on the road between the two cars */
 .finale__car { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
@@ -287,13 +287,27 @@ ol, ul { list-style: none; }
 .finale__car::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, #131417 100%) top / 100% 60.2% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, #131417 100%) top / 100% 22.5% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, #131417 100%) top / 100% 7.7% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, #131417 100%) bottom / 100% 47.4% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, #131417 100%) bottom / 100% 30.1% no-repeat; }
 .finale__type { display: grid; justify-items: center; gap: var(--s-3); }
-.finale__addr { font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); margin-top: var(--s-3); }
-.finale__addr { font-style: normal; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s-3) var(--s-5); font-variant-numeric: tabular-nums; }
+.finale__addr { font-style: normal; display: grid; justify-items: center; gap: var(--s-2); margin-top: var(--s-3); font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); font-variant-numeric: tabular-nums; }
 .finale__addr a { color: inherit; text-decoration: none; transition: color 0.4s var(--e); }
 .finale__addr a:hover, .finale__addr a:focus-visible { color: var(--ink); }
-.finale__sep { width: 1px; height: 1.1em; background: currentColor; opacity: 0.5; }   /* the "|" between address and phone, as a hairline */
-@media (max-width: 767px) { .finale__addr { flex-direction: column; } .finale__addr a span { display: block; } .finale__sep { display: none; } }
-.finale .cta { margin-top: var(--s-5); }
+.finale__tel { color: var(--ink) !important; font-size: var(--t-18); letter-spacing: 0.12em; }
+/* the enquiry: hairline fields on the dark road, labels that lift as you type */
+.enq { width: min(640px, 100%); margin-top: var(--s-6); display: grid; justify-items: center; gap: var(--s-5); text-align: left; }
+.enq__grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5) var(--s-6); }
+.enq__f { position: relative; display: block; }
+.enq__f--wide { grid-column: 1 / -1; }
+.enq__f input, .enq__f select, .enq__f textarea { width: 100%; padding: 22px 0 10px; background: none; border: 0; border-bottom: 1px solid var(--rule-strong); border-radius: 0; color: var(--ink); font: inherit; font-size: var(--t-18); line-height: 1.4; resize: none; outline: none; -webkit-appearance: none; appearance: none; transition: border-color 0.4s var(--e); }
+.enq__f select { cursor: pointer; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M.5.5 5 5 9.5.5' fill='none' stroke='%23fff' stroke-opacity='.7'/%3E%3C/svg%3E") right 2px center / 10px 6px no-repeat; }
+.enq__f select option { background: #131417; color: #fff; }
+.enq__f span { position: absolute; left: 0; top: 24px; font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); pointer-events: none; transform-origin: left top; transition: transform 0.5s var(--e), color 0.4s var(--e); }
+.enq__f input:focus ~ span, .enq__f input:not(:placeholder-shown) ~ span, .enq__f textarea:focus ~ span, .enq__f textarea:not(:placeholder-shown) ~ span, .enq__f select ~ span { transform: translateY(-22px) scale(0.86); color: var(--silver); }
+.enq__f input:focus, .enq__f select:focus, .enq__f textarea:focus { border-bottom-color: var(--ink); }
+.enq__f input:focus-visible, .enq__f select:focus-visible, .enq__f textarea:focus-visible { box-shadow: 0 2px 0 0 var(--ink); }
+.enq__f input::placeholder, .enq__f textarea::placeholder { color: transparent; }
+.enq__f .is-bad, .enq__f input[aria-invalid="true"] { border-bottom-color: #d98c8c; }
+.enq__send { margin-top: var(--s-2); background: none; cursor: pointer; }
+.enq__note { min-height: 1.4em; font-size: var(--t-14); color: var(--ink-70); text-align: center; }
+@media (max-width: 767px) { .enq__grid { grid-template-columns: 1fr; gap: var(--s-4); } .enq { margin-top: var(--s-5); } .finale .foot { position: relative; left: auto; right: auto; bottom: auto; width: 100%; margin-top: var(--s-8); margin-bottom: var(--s-6); } }   /* phone: the form needs the height, so the footer follows it instead of standing over it */
 .finale .foot { border-top-color: rgb(255 255 255 / 0.12); }
 .foot__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3) var(--s-6); }
 .foot__powered a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgb(255 255 255 / 0.32); padding-bottom: 2px; transition: border-color 0.4s var(--e); }
@@ -332,7 +346,7 @@ ol, ul { list-style: none; }
   .split { display: block; }
   .split__media { position: relative; width: 100%; height: 56svh; }
   .split .scene__type { position: relative; inset: auto; transform: none; padding: var(--s-7) var(--gutter) var(--s-8); }
-  .foot { flex-direction: column; align-items: flex-start; }
+  .foot { flex-direction: column; align-items: flex-start; text-align: left; }
   #about .scene__type { width: auto; }
 }
 

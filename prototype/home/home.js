@@ -305,6 +305,17 @@
       scrollTrigger: { trigger: sec, start: sec.id === 'service' ? 'top 15%' : 'top 55%', toggleActions: 'play none none reverse' } });   // service: the type waits for the film to open
   });
 
+  // ---------- enquiry: checked in place; the prototype says plainly that it is not connected ----------
+  const enq = document.querySelector('[data-enq]');
+  if (enq) enq.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const note = enq.querySelector('[data-enq-note]');
+    const bad = [...enq.querySelectorAll('[required]')].filter((f) => !f.value.trim() || (f.type === 'email' && !f.checkValidity()));
+    enq.querySelectorAll('[required]').forEach((f) => f.setAttribute('aria-invalid', bad.includes(f) ? 'true' : 'false'));
+    if (bad.length) { note.textContent = 'Please add your name and a valid email.'; bad[0].focus(); return; }
+    note.textContent = 'Thank you. This prototype form is not connected yet — please call (833) 290-6287.';
+  });
+
   // ---------- navigation ----------
   const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
   function glide(y, duration, kind) {
