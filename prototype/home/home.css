@@ -404,14 +404,14 @@ ol, ul { list-style: none; }
 .gcs__intro, .gcs__model { position: absolute; z-index: 1; display: grid; gap: var(--s-4); justify-items: start; }
 .gcs__title { margin: 0; font-size: var(--t-title); font-weight: 400; line-height: 1.08; letter-spacing: -0.01em; text-wrap: balance; }   /* the site's H2 */
 .gcs__sub { margin-top: var(--s-3); font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--silver); line-height: 1.4; }   /* the site's eyebrow */
-.gcs__logo { height: clamp(60px, min(5.6vw, 10svh), 104px); aspect-ratio: 196 / 112; width: auto; object-fit: contain; object-position: left center; margin-left: -1.4%; }
+.gcs__logo { height: clamp(96px, min(9.4vw, 17svh), 176px); aspect-ratio: 196 / 112; width: auto; object-fit: contain; object-position: left center; margin-left: -1.4%; }
 .gcs__line { font-size: var(--t-18); line-height: 1.6; color: var(--ink-70); max-width: 30ch; }   /* the site's lede */
 .gcs__model .cta { margin-top: var(--s-2); }
 /* 1 · hangar — the collection's name top-left; the model in the dark left of the car */
 .gcs--hangar .gcs__bg { object-position: 60% 50%; }
 .gcs--hangar::after { background: linear-gradient(to right, rgb(10 10 12 / 0.7) 0%, rgb(10 10 12 / 0) 38%), linear-gradient(to bottom, rgb(10 10 12 / 0.55) 0%, rgb(10 10 12 / 0) 28%); }
 .gcs--hangar .gcs__intro { left: var(--gutter); top: calc(var(--hdr-h) + 5svh); gap: 0; }
-.gcs--hangar .gcs__model { left: var(--gutter); bottom: 10svh; }
+.gcs--hangar .gcs__model { left: var(--gutter); top: 36%; max-width: 24vw; }   /* in the dark field above the car's nose */
 /* 2 · light — dark ink on the pale studio; the words left, the car right */
 .gcs--light { color: #15171a; }
 .gcs--light .gcs__model { left: var(--gutter); top: 50%; transform: translateY(-42%); gap: var(--s-5); }
@@ -421,7 +421,7 @@ ol, ul { list-style: none; }
 /* 3 · dark — the car's rear fills the left; the words in the free field top-right */
 .gcs--dark .gcs__bg { object-position: 30% 62%; }
 .gcs--dark::after { background: linear-gradient(to left, rgb(10 10 12 / 0.6) 0%, rgb(10 10 12 / 0) 36%); }
-.gcs--dark .gcs__model { right: calc(var(--gutter) + 150px); top: calc(var(--hdr-h) + 8svh); justify-items: end; text-align: right; }
+.gcs--dark .gcs__model { right: calc(var(--gutter) + 220px); top: calc(var(--hdr-h) + 2svh); justify-items: end; text-align: right; }
 .gcs--dark .gcs__logo { object-position: right center; margin: 0 -1.4% 0 0; }
 /* 4 · dusk — the name above the hangars, top-left; the car low */
 .gcs--dusk .gcs__bg { object-position: 50% 72%; }
@@ -501,3 +501,6 @@ ol, ul { list-style: none; }
   .gcs .gcs__bg { object-position: 50% 60%; }
   .gcs--light .gcs__bg { object-position: 72% 50%; }
 }
+@media (max-width: 767px) { .gcs__logo { height: 92px; } }   /* all model logos larger (Alex) */
+.gcs--hangar .gcs__logo, .gcs--light .gcs__logo { height: clamp(124px, min(12.2vw, 22svh), 228px); }   /* their drawn script sits small on the shared canvas: matched optically to the Epitome and Tricolore */
+@media (max-width: 767px) { .gcs--hangar .gcs__model { max-width: none; top: auto; } .gcs--hangar .gcs__logo, .gcs--light .gcs__logo { height: 118px; } }
