@@ -106,3 +106,10 @@ Under each photograph: the model's story (pagani.com model pages, shortened) + E
 GC models fixed by Alex (2 Oct 2026): Codalunga Speedster, Huayra Codalunga, Huayra Epitome, Huayra Tricolore — the Imola is out again. Pagani has no location photography of the Epitome (pagani.com and its press kit are studio only; its Goodwood 2024 debut photos belong to Goodwood), so its spread uses the studio profile, `book-huayra-epitome.webp`, a straight 2:1 crop with the whole car and air. Story: pagani.com /huayra-epitome/ ("a one-off … the first Huayra equipped with a manual transmission … the client came to us with clear ideas").
 
 Epitome spread, option 2 (Alex, 2 Oct 2026): pagani.com /app/uploads/2024/03/Pagani-Huayra-Epitome_2-2_3-4_Anteriore_Portiera-guidatore-aperta.jpg (8048 px, found in the Goodwood 2024 press release), front 3/4 with the driver's door raised, used whole at its own 3:2. The frame narrows from 2:1 to 3:2 for this spread and opens again for the Tricolore.
+
+GC as four full-screen scenes (Alex's brief, 2 Oct 2026), photographs cut to 16:9 at 2560 px:
+- `gcs-speedster.webp` — Codalunga Speedster, dark hangar (9449 px original)
+- `gcs-codalunga.webp` — Huayra Codalunga, light studio, doors up (pagani.com FF28512-Modifica-Stories, 7063 px). The car fills the original, so its own studio backdrop is extended to the left and top from the photograph's edge colours (flat sampled fill, feathered; the car is untouched)
+- `gcs-epitome.webp` — Huayra Epitome rear 3/4, dark studio (8059 px)
+- `gcs-tricolore.webp` — Huayra Tricolore at the Frecce hangars, sunset (DSC01115, 7952 px)
+No GC film exists in the project; each scene has a slot for one (muted, plays only while active). Recordings: research/gc-scenes-desktop.mp4 (forward and back), research/gc-scenes-mobile.mp4.

@@ -395,43 +395,67 @@ ol, ul { list-style: none; }
    DISPLAY — var(--t-display), hero H1 only · CTA — one 50px button family: --fill is each section's primary action (white, reads at once); --quiet is the secondary (text + arrow) */
 @media (max-width: 767px) { .title { font-size: 1.75rem; } }
 
-/* 3 · GRANDI COMPLICAZIONI — a car-book spread: the name above, the photograph with margins, the line and the figures below */
-.gcx { display: grid; grid-template-rows: auto auto auto auto; align-content: center; row-gap: clamp(16px, 2.6svh, 32px); padding: calc(var(--hdr-h) + clamp(12px, 2.5svh, 28px)) var(--gutter) clamp(18px, 3svh, 32px); }
-.gcx__head { width: 100%; max-width: var(--frame-w, none); justify-self: center; display: grid; grid-template-columns: auto 1fr auto 1fr auto; align-items: center; column-gap: clamp(20px, 2.4vw, 40px); }
-.gcx__rule { height: 1px; background: var(--rule); }
-.gcx__count { font-size: var(--t-14); letter-spacing: var(--track-sm); color: var(--ink-70); font-variant-numeric: tabular-nums; }
-.gcx__count span { color: var(--ink); }
-.gcx__logos { display: grid; place-items: center; }
-.gcx__logo { grid-area: 1 / 1; height: clamp(64px, min(6vw, 11svh), 112px); aspect-ratio: 196 / 112; width: auto; object-fit: contain; }   /* Alex's secondary logos: one canvas, one size for every model */
-.gcx__logo + .gcx__logo, .gcx__note + .gcx__note { visibility: hidden; opacity: 0; }   /* the static state: the first spread */
-.gcx__frame { position: relative; overflow: hidden; background: #0d0e10; min-height: 0; height: calc(100svh - var(--hdr-h) - clamp(300px, 36svh, 360px)); max-width: 100%; aspect-ratio: var(--ar, 2); justify-self: center; }   /* 2:1 for every spread but the Epitome's 3:2 (home.js turns it) */   /* one proportion for every spread; the photographs are cut to it with the car whole and margins around it */
-.gcx__photo { position: absolute; inset: 0; margin: 0; overflow: hidden; }
-.gcx__photo img { width: 100%; height: 100%; object-fit: cover; }
-.gcx__photo + .gcx__photo { clip-path: inset(100% 0 0 0); }   /* the next spread waits below */
-.gcx__notes { container-type: inline-size; display: grid; width: 100%; max-width: var(--frame-w, none); justify-self: center; }
-.gcx__note { grid-area: 1 / 1; width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: var(--s-6); }
-.gcx__line { font-size: clamp(1.125rem, 1.3vw, 1.5rem); line-height: 1.4; color: var(--ink); margin: 0; max-width: 46ch; text-wrap: pretty; }   /* the model's story, not its numbers: those are in the lineup */
-.gcx__figs { display: flex; margin: 0; }
-.gcx__figs div { display: grid; justify-items: center; padding: 0 clamp(16px, 1.8vw, 32px); }
-.gcx__figs div + div { border-left: 1px solid var(--rule-strong); }
-.gcx__figs dd { margin: 0; font-size: clamp(1.125rem, 1.35vw, 1.5rem); font-variant-numeric: tabular-nums; }
-.gcx__figs dt { margin-top: var(--s-1); font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); }
-.gcx__note .cta { justify-self: end; }
-.gcx__dots { display: flex; justify-content: center; gap: 10px; }
-.gcx__dots i { width: 34px; height: 1px; background: var(--rule-strong); transition: background-color 0.4s; }
-.gcx__dots i.is-on { background: var(--ink); }
+/* 3 · GRANDI COMPLICAZIONI — four full-screen scenes. The static state (phone, reduced motion, no script): the scenes one under the other, each a screen tall */
+.gcx { padding: 0; min-height: 0; background: #0d0e10; }
+.gcs { position: relative; height: 100svh; min-height: 560px; overflow: hidden; background: #0d0e10; color: var(--ink); }
+.gcs__media { position: absolute; inset: 0; }
+.gcs__bg, .gcs__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.gcs::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.gcs__intro, .gcs__model { position: absolute; z-index: 1; display: grid; gap: var(--s-4); justify-items: start; }
+.gcs__title { margin: 0; font-size: var(--t-display); font-weight: 300; line-height: 1; letter-spacing: -0.01em; }
+.gcs__sub { margin-top: var(--s-3); font-size: var(--t-14); letter-spacing: var(--track); text-transform: uppercase; color: var(--ink-70); }
+.gcs__logo { height: clamp(60px, min(5.6vw, 10svh), 104px); aspect-ratio: 196 / 112; width: auto; object-fit: contain; object-position: left center; margin-left: -1.4%; }
+.gcs__line { font-size: var(--t-18); line-height: 1.5; max-width: 24ch; }
+.gcs__model .cta { margin-top: var(--s-2); }
+/* 1 · hangar — the collection's name top-left; the model in the dark left of the car */
+.gcs--hangar .gcs__bg { object-position: 60% 50%; }
+.gcs--hangar::after { background: linear-gradient(to right, rgb(10 10 12 / 0.7) 0%, rgb(10 10 12 / 0) 38%), linear-gradient(to bottom, rgb(10 10 12 / 0.55) 0%, rgb(10 10 12 / 0) 28%); }
+.gcs--hangar .gcs__intro { left: var(--gutter); top: calc(var(--hdr-h) + 5svh); gap: 0; }
+.gcs--hangar .gcs__model { left: var(--gutter); bottom: 10svh; }
+/* 2 · light — dark ink on the pale studio; the words left, the car right */
+.gcs--light { color: #15171a; }
+.gcs--light .gcs__model { left: var(--gutter); top: 50%; transform: translateY(-42%); gap: var(--s-5); }
+.gcs--light .gcs__line { font-size: var(--t-title); line-height: 1.15; max-width: 15ch; letter-spacing: -0.01em; }
+.gcs--light .gcs__logo { filter: brightness(0) opacity(0.82); }
+.gcs--light .cta--quiet { color: #15171a; }
+/* 3 · dark — the car's rear fills the left; the words in the free field top-right */
+.gcs--dark .gcs__bg { object-position: 30% 62%; }
+.gcs--dark::after { background: linear-gradient(to left, rgb(10 10 12 / 0.6) 0%, rgb(10 10 12 / 0) 36%); }
+.gcs--dark .gcs__model { right: calc(var(--gutter) + 150px); top: calc(var(--hdr-h) + 8svh); justify-items: end; text-align: right; }
+.gcs--dark .gcs__logo { object-position: right center; margin: 0 -1.4% 0 0; }
+/* 4 · dusk — the name above the hangars, top-left; the car low */
+.gcs--dusk .gcs__bg { object-position: 50% 72%; }
+.gcs--dusk::after { background: linear-gradient(to bottom, rgb(10 10 12 / 0.7) 0%, rgb(10 10 12 / 0.25) 40%, rgb(10 10 12 / 0) 58%), linear-gradient(to right, rgb(10 10 12 / 0.5) 0%, rgb(10 10 12 / 0) 46%); }
+.gcs--dusk .gcs__model { left: var(--gutter); top: calc(var(--hdr-h) + 6svh); }
+/* the quiet model navigation, right edge (desktop, held stage only) */
+.gcs__nav { display: none; }
+/* the held stage (desktop, motion allowed; home.js adds .is-stage) */
+.gcx.is-stage { height: 100svh; }
+.gcx.is-stage .gcs { position: absolute; inset: 0; height: auto; min-height: 0; will-change: transform, clip-path; }
+.gcx.is-stage .gcs__t { opacity: 0; transform: translateY(16px); transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.gcx.is-stage .gcs.is-past .gcs__t { transform: translateY(-24px); transition-duration: 0.3s, 0.35s; }   /* leaving: up 24px and out */
+.gcx.is-stage .gcs.is-on .gcs__t { opacity: 1; transform: none; }
+.gcx.is-stage .gcs.is-on .gcs__model .gcs__t:nth-child(1) { transition-delay: 0s; }
+.gcx.is-stage .gcs.is-on .gcs__model .gcs__t:nth-child(2) { transition-delay: 0.18s; }
+.gcx.is-stage .gcs.is-on .gcs__model .gcs__t:nth-child(3) { transition-delay: 0.32s; }
+.gcx.is-stage .gcs__nav { display: block; position: absolute; z-index: 5; right: clamp(16px, 2vw, 32px); top: 50%; transform: translateY(-50%); }
+.gcs__nav ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; justify-items: end; }
+.gcs__nav button { display: flex; align-items: center; gap: 10px; min-height: 32px; padding: 0; background: none; border: 0; cursor: pointer; font: inherit; font-size: var(--t-14); letter-spacing: 0.04em; color: inherit; opacity: 0.45; transition: opacity 0.35s, color 0.35s; }
+.gcs__nav button::after { content: ""; width: 18px; height: 1px; background: currentColor; transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+.gcs__nav button:hover, .gcs__nav button:focus-visible { opacity: 0.85; }
+.gcs__nav button[aria-current="true"] { opacity: 1; }
+.gcs__nav button[aria-current="true"]::after { width: 36px; }
+.gcx.is-light .gcs__nav { color: #15171a; }
+.gcs__nav { color: var(--ink); }
 @media (max-width: 767px) {
-  .gcx { padding-top: calc(var(--hdr-h) + 12px); grid-template-rows: auto auto auto auto; align-content: center; }
-  .gcx__frame { height: auto; width: 100%; }
-  .gcx__head { grid-template-columns: 1fr auto; row-gap: var(--s-3); }
-  .gcx__head .gcx__rule { display: none; }
-  .gcx__head .eyebrow { grid-column: 1; }
-  .gcx__count { grid-column: 2; grid-row: 1; }
-  .gcx__logos { grid-column: 1 / -1; justify-items: start; }
-  .gcx__logo { height: 64px; }
-  .gcx__note { grid-template-columns: 1fr; row-gap: var(--s-4); }
-  .gcx__figs div:first-child { padding-left: 0; }
-  .gcx__note .cta { justify-self: start; }
+  .gcs { min-height: 0; }
+  .gcs--hangar .gcs__intro { top: calc(var(--hdr-h) + 3svh); }
+  .gcs--hangar .gcs__bg { object-position: 62% 50%; }
+  .gcs--light .gcs__bg { object-position: 80% 50%; }
+  .gcs--light .gcs__model { top: auto; bottom: 7svh; transform: none; }
+  .gcs--light .gcs__line { font-size: 1.5rem; }
+  .gcs--dark .gcs__model { top: auto; bottom: 7svh; }
+  .gcs--dusk .gcs__bg { object-position: 38% 72%; }
 }
 
 /* audit (UI/UX Pro Max, 2 Oct 2026): inline links get a 44px hit area without moving the type; the header's links are 44px tall */
@@ -456,13 +480,15 @@ ol, ul { list-style: none; }
 /* the Atelier's engine and the Service film dissolve at their top and foot too */
 #art .split__media::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 30% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 12% no-repeat, linear-gradient(to right, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) right / 1px 100% no-repeat, linear-gradient(to left, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) left / 22% 100% no-repeat; }
 .svc__film::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 22% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 26% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 10% no-repeat; }
-
-@container (max-width: 560px) {   /* a narrower photograph: the line and the action share the first row, the figures take the second */
-  .gcx__note { grid-template-columns: 1fr; grid-template-areas: "line" "cta"; row-gap: var(--s-4); }
-  .gcx__line { grid-area: line; } .gcx__figs { grid-area: figs; } .gcx__note .cta { grid-area: cta; }
-  .gcx__figs div:first-child { padding-left: 0; }
-}
-@media (max-width: 767px) {   /* phone: the line, the action and the figures stack */
-  .gcx__note { grid-template-columns: 1fr; grid-template-areas: "line" "cta"; }
-  .gcx__note .cta { justify-self: start; }
+@media (max-width: 767px) { .gcs--dark .gcs__model { right: var(--gutter); } }
+@media (max-width: 767px) {   /* phone: a landscape photograph cannot fill a portrait screen without losing the car — the photograph sits whole in the upper part, the words below it */
+  .gcs { height: auto; min-height: 100svh; display: grid; align-content: center; gap: var(--s-6); padding: calc(var(--hdr-h) + var(--s-5)) 0 var(--s-8); }
+  .gcs__media { position: relative; inset: auto; aspect-ratio: 16 / 10; }
+  .gcs::after { display: none; }
+  .gcs__intro, .gcs__model, .gcs--light .gcs__model, .gcs--dark .gcs__model, .gcs--dusk .gcs__model, .gcs--hangar .gcs__intro, .gcs--hangar .gcs__model { position: relative; inset: auto; transform: none; padding: 0 var(--gutter); justify-items: start; text-align: left; }
+  .gcs--dark .gcs__logo { object-position: left center; margin: 0 0 0 -1.4%; }
+  .gcs--hangar .gcs__intro { order: -1; }
+  .gcs--light { background: #dde2ea; }
+  .gcs .gcs__bg { object-position: 50% 60%; }
+  .gcs--light .gcs__bg { object-position: 72% 50%; }
 }
