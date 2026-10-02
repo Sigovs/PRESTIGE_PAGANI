@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400&family=Roboto:wght@200;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/lenis.css">
-<link rel="stylesheet" href="home.css?v=62">
+<link rel="stylesheet" href="home.css?v=63">
 <link rel="preload" as="image" href="assets/hero2-poster.jpg">
 </head>
 <body>
@@ -52,7 +52,7 @@
   <section class="sc hero" data-act="hero" aria-labelledby="hero-title">
     <div class="hero__film">
       <video class="hero__video" data-hero-video muted loop playsinline preload="auto" poster="assets/hero2-poster.jpg" aria-label="A Pagani Huayra prepared, loaded and flown from Italy to North America">
-        <source src="assets/hero2.mp4?v=62" type="video/mp4">
+        <source src="assets/hero2.mp4?v=63" type="video/mp4">
       </video>
       <img class="hero__still" src="assets/hero2-still.jpg" alt="The Pagani oval badge in close-up, inside a Huayra" data-hero-still>
     </div>
@@ -109,40 +109,51 @@
     </div>
   </section>
 
-  <!-- 3 · GRANDI COMPLICAZIONI — a collection, not a card: two offset columns over the Imola track at dusk,
-       which fades into the page; every car carries its own logotype. Only cars pagani.com lists under the division. -->
-  <!-- 3 · GRANDI COMPLICAZIONI — Alex's frame (2 Oct 2026): the car large on the left, the one before it at the edge; its record on the right; the bar along the foot. Specs: Alex's content (pagani.com model pages) -->
-  <!-- 3 · GRANDI COMPLICAZIONI — held while you scroll, as forgeautomotive.co.uk (Alex, 2 Oct 2026): each car rises over the last on one studio stage, its record floats in on the left. One style for all four: Pagani press side profiles, background removed (gen-…-cutout, see the .txt beside each) -->
+  <!-- 3 · GRANDI COMPLICAZIONI — a car-book spread (Alex, 2 Oct 2026): the name above, a large photograph with margins, a short line and three figures below.
+       Scroll turns whole spreads; each photograph keeps its car and its surroundings. All four in profile (the one angle every model has). Lines: pagani.com model pages, shortened; the Speedster's line is Alex's. -->
   <section class="sc gcx" id="grandi" aria-labelledby="gc-title">
     <h2 class="sr" id="gc-title">Grandi Complicazioni</h2>
-    <div class="gcx__text">
-      <p class="eyebrow" data-rise>Grandi Complicazioni</p>
-      <div class="gcx__recs" data-rise>
-        <article class="gcx__rec" data-gcx-rec aria-label="Huayra Codalunga Speedster">
-          <img class="gcx__logo" src="assets/logo-codalunga-speedster.png" alt="Huayra Codalunga Speedster" loading="lazy">
-          <a class="cta cta--quiet" href="https://www.pagani.com/huayra-codalunga-speedster/" target="_blank" rel="noopener">Explore model<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
-        </article>
-        <article class="gcx__rec" data-gcx-rec aria-label="Huayra Codalunga">
-          <img class="gcx__logo" src="assets/logo-huayra-codalunga.png" alt="Huayra Codalunga" loading="lazy">
-          <a class="cta cta--quiet" href="https://www.pagani.com/huayra-codalunga/" target="_blank" rel="noopener">Explore model<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
-        </article>
-        <article class="gcx__rec" data-gcx-rec aria-label="Huayra Epitome">
-          <img class="gcx__logo" src="assets/logo-huayra-epitome.png" alt="Huayra Epitome" loading="lazy">
-          <a class="cta cta--quiet" href="https://www.pagani.com/huayra-epitome/" target="_blank" rel="noopener">Explore model<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
-        </article>
-        <article class="gcx__rec" data-gcx-rec aria-label="Huayra Tricolore">
-          <img class="gcx__logo" src="assets/logo-tricolore.png" alt="Huayra Tricolore" loading="lazy">
-          <a class="cta cta--quiet" href="https://www.pagani.com/huayra-tricolore/" target="_blank" rel="noopener">Explore model<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
-        </article>
+    <header class="gcx__head">
+      <p class="eyebrow">Grandi Complicazioni</p>
+      <i class="gcx__rule" aria-hidden="true"></i>
+      <div class="gcx__logos">
+        <img class="gcx__logo" data-gcx-logo src="assets/logo-codalunga-speedster.png" alt="Huayra Codalunga Speedster" loading="lazy">
+        <img class="gcx__logo" data-gcx-logo src="assets/logo-huayra-codalunga.png" alt="Huayra Codalunga" loading="lazy">
+        <img class="gcx__logo" data-gcx-logo src="assets/logo-huayra-epitome.png" alt="Huayra Epitome" loading="lazy">
+        <img class="gcx__logo" data-gcx-logo src="assets/logo-tricolore.png" alt="Huayra Tricolore" loading="lazy">
       </div>
-      <div class="gcx__progress" aria-hidden="true"><span data-gcx-progress></span></div>
+      <i class="gcx__rule" aria-hidden="true"></i>
+      <p class="gcx__count" aria-hidden="true"><span data-gcx-n>01</span>&nbsp;/&nbsp;04</p>
+    </header>
+    <div class="gcx__frame">
+      <figure class="gcx__photo" data-gcx-photo style="--pos: 50% 55%; --zoom: 1;"><img src="assets/book-codalunga-speedster.webp" alt="Pagani Huayra Codalunga Speedster in pale green, in profile, in a grey studio" loading="lazy"></figure>   <!-- Huayra Codalunga Speedster: --pos / --zoom to give it air -->
+      <figure class="gcx__photo" data-gcx-photo style="--pos: 50% 55%; --zoom: 1;"><img src="assets/book-huayra-codalunga.webp" alt="Pagani Huayra Codalunga in pale blue, in profile, in a light studio" loading="lazy"></figure>   <!-- Huayra Codalunga: --pos / --zoom to give it air -->
+      <figure class="gcx__photo" data-gcx-photo style="--pos: 50% 55%; --zoom: 1;"><img src="assets/book-huayra-epitome.webp" alt="Pagani Huayra Epitome in blue carbon, in profile, in a dark studio" loading="lazy"></figure>   <!-- Huayra Epitome: --pos / --zoom to give it air -->
+      <figure class="gcx__photo" data-gcx-photo style="--pos: 50% 55%; --zoom: 1;"><img src="assets/book-huayra-tricolore.webp" alt="Pagani Huayra Tricolore in profile before the hangars of the Frecce Tricolori at sunset" loading="lazy"></figure>   <!-- Huayra Tricolore: --pos / --zoom to give it air -->
     </div>
-    <div class="gcx__stages" aria-hidden="false">
-        <div class="gcx__stage" data-gcx-stage><span class="gcx__shadow" aria-hidden="true"></span><img class="gcx__car" data-contact="0.987" src="assets/gen-gcx-speedster-cutout.webp" alt="Pagani Huayra Codalunga Speedster, in profile" loading="lazy"></div>
-        <div class="gcx__stage" data-gcx-stage><span class="gcx__shadow" aria-hidden="true"></span><img class="gcx__car" data-contact="0.984" src="assets/gen-gcx-codalunga-cutout.webp" alt="Pagani Huayra Codalunga, in profile" loading="lazy"></div>
-        <div class="gcx__stage" data-gcx-stage><span class="gcx__shadow" aria-hidden="true"></span><img class="gcx__car" data-contact="0.989" src="assets/gen-gcx-epitome-cutout.webp" alt="Pagani Huayra Epitome, in profile" loading="lazy"></div>
-        <div class="gcx__stage" data-gcx-stage><span class="gcx__shadow" aria-hidden="true"></span><img class="gcx__car" data-contact="0.952" src="assets/gen-gcx-tricolore-cutout.webp" alt="Pagani Huayra Tricolore, in profile" loading="lazy"></div>
+    <div class="gcx__notes">
+      <div class="gcx__note" data-gcx-note>
+        <p class="gcx__line">Inspired by the racing cars<br>of the ’50s and ’60s.</p>
+        <dl class="gcx__figs"><div><dd>850 CV</dd><dt>Power</dt></div><div><dd>V12</dd><dt>Engine</dt></div><div><dd>350 km/h</dd><dt>Max speed</dt></div></dl>
+        <a class="cta cta--quiet" href="https://www.pagani.com/huayra-codalunga-speedster/" target="_blank" rel="noopener">Explore model<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
+      </div>
+      <div class="gcx__note" data-gcx-note>
+        <p class="gcx__line">A tribute to the Italian coachbuilders<br>and racecars of the ’60s. Five examples.</p>
+        <dl class="gcx__figs"><div><dd>864 HP</dd><dt>Power</dt></div><div><dd>V12</dd><dt>Engine</dt></div><div><dd>350 km/h</dd><dt>Max speed</dt></div></dl>
+        <a class="cta cta--quiet" href="https://www.pagani.com/huayra-codalunga/" target="_blank" rel="noopener">Explore model<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
+      </div>
+      <div class="gcx__note" data-gcx-note>
+        <p class="gcx__line">A one-off: the first Huayra<br>with a manual transmission.</p>
+        <dl class="gcx__figs"><div><dd>864 HP</dd><dt>Power</dt></div><div><dd>V12</dd><dt>Engine</dt></div><div><dd>350 km/h</dd><dt>Max speed</dt></div></dl>
+        <a class="cta cta--quiet" href="https://www.pagani.com/huayra-epitome/" target="_blank" rel="noopener">Explore model<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
+      </div>
+      <div class="gcx__note" data-gcx-note>
+        <p class="gcx__line">A tribute to the Frecce Tricolori.<br>Only three examples.</p>
+        <dl class="gcx__figs"><div><dd>840 HP</dd><dt>Power</dt></div><div><dd>V12</dd><dt>Engine</dt></div><div><dd>350 km/h</dd><dt>Max speed</dt></div></dl>
+        <a class="cta cta--quiet" href="https://www.pagani.com/huayra-tricolore/" target="_blank" rel="noopener">Explore model<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
+      </div>
     </div>
+    <div class="gcx__dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   </section>
 
   <!-- 4 · ART AND SCIENCE — the one split, as in the concept: detail right, black left -->
@@ -163,7 +174,7 @@
       <img class="about__shot about__shot--fill" data-shot src="assets/about-ch3-codalunga.webp" alt="" loading="lazy" width="3200" height="2120">
       <img class="about__shot about__shot--fill" data-shot src="assets/about-ch4-zonda-c12.webp" alt="" loading="lazy" width="3200" height="2133">
     </div>
-    <div class="scene__media" data-scene-media><img src="assets/gen-about-horacio-cutout.webp?v=62" alt="Horacio Pagani, in profile, lit warm against the dark" loading="lazy" width="2400" height="1597">   <!-- Pagani press photo (Utopia premiere, Sep 2022), background removed with fal birefnet — see assets/gen-about-horacio-cutout.txt --></div>
+    <div class="scene__media" data-scene-media><img src="assets/gen-about-horacio-cutout.webp?v=63" alt="Horacio Pagani, in profile, lit warm against the dark" loading="lazy" width="2400" height="1597">   <!-- Pagani press photo (Utopia premiere, Sep 2022), background removed with fal birefnet — see assets/gen-about-horacio-cutout.txt --></div>
     <div class="about__seams" aria-hidden="true"></div>   <!-- fixed to the section and laid over Horacio too (Alex): photo and portrait fade into the ground together -->
     <div class="about__hang" aria-hidden="true"></div>   <!-- the Atelier's gradient, continued over Horacio, under the type -->
     <div class="scene__type">
@@ -201,7 +212,7 @@
 
   <!-- 6 · SERVICE -->
   <section class="sc svc" id="service" aria-labelledby="service-title">
-    <div class="svc__film" data-svc-film><video muted loop playsinline preload="metadata" poster="assets/service-film-poster.jpg" aria-label="Pagani technicians at work: brakes, suspension, the V12, a Huayra on the lift and the hand-signed inspection sheet"><source src="assets/service-film.mp4?v=62" type="video/mp4"></video></div>   <!-- Alex's film, IMAGES ALEX/VIDEOS/service.mp4 -->
+    <div class="svc__film" data-svc-film><video muted loop playsinline preload="metadata" poster="assets/service-film-poster.jpg" aria-label="Pagani technicians at work: brakes, suspension, the V12, a Huayra on the lift and the hand-signed inspection sheet"><source src="assets/service-film.mp4?v=63" type="video/mp4"></video></div>   <!-- Alex's film, IMAGES ALEX/VIDEOS/service.mp4 -->
     <div class="svc__type">
       <p class="eyebrow" data-rise>Service</p>
       <h2 id="service-title" class="title" data-rise>Meticulous craftsmanship and precision service, worldwide.</h2>
@@ -254,6 +265,6 @@
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script src="vendor/lenis.min.js"></script>
 <script src="assets/cars.js"></script>
-<script src="home.js?v=62"></script>
+<script src="home.js?v=63"></script>
 </body>
 </html>

@@ -244,34 +244,27 @@
   gsap.fromTo(stage.querySelector('.stage__bg'), { autoAlpha: 0.2, scale: 1.06 }, { autoAlpha: 1, scale: 1, ease: 'none', scrollTrigger: { trigger: stage, start: 'top 80%', end: 'top top', scrub: true } });
   gsap.from(stage.querySelector('.row'), { autoAlpha: 0, y: 20, ease: 'none', scrollTrigger: { trigger: stage, start: 'top 40%', end: 'top top', scrub: true } });
 
-  // ---------- 3 · Grandi Complicazioni: held while you scroll (Forge). Each car rises over the last on the same stage; its record floats in ----------
+  // ---------- 3 · Grandi Complicazioni: held while you scroll, the spreads turn — the next photograph rises over the last, the name, the line and the figures float in ----------
   const gcx = document.getElementById('grandi');
-  const gStages = gsap.utils.toArray(gcx.querySelectorAll('[data-gcx-stage]'));
-  const gRecs = gsap.utils.toArray(gcx.querySelectorAll('[data-gcx-rec]'));
-  const gBar = gcx.querySelector('[data-gcx-progress]');
-  const GN = gStages.length;
-  // every car stands on the floor by its tyres: top = floor − contact × height (contact measured on each cutout)
-  const gPlace = () => gStages.forEach((st) => {
-    const car = st.querySelector('.gcx__car');
-    const floor = st.clientHeight * parseFloat(getComputedStyle(gcx).getPropertyValue('--floor')) / 100;
-    const h = car.clientWidth * (car.naturalHeight || 1) / (car.naturalWidth || 1);
-    car.style.top = `${floor - (+car.dataset.contact || 1) * h}px`;
-  });
-  gStages.forEach((st) => { const c = st.querySelector('.gcx__car'); if (!c.complete) c.addEventListener('load', gPlace, { once: true }); });
-  gPlace();
-  addEventListener('resize', gPlace);
-  const gHold = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: gcx, start: 'top top', end: () => `+=${innerHeight * (GN - 1) * 0.7}`, pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true } });
-  gHold.fromTo(gBar, { scaleX: 1 / GN }, { scaleX: 1, duration: GN - 1 + 0.3 }, 0);
+  const gPhotos = gsap.utils.toArray(gcx.querySelectorAll('[data-gcx-photo]'));
+  const gLogos = gsap.utils.toArray(gcx.querySelectorAll('[data-gcx-logo]'));
+  const gNotes = gsap.utils.toArray(gcx.querySelectorAll('[data-gcx-note]'));
+  const gDots = [...gcx.querySelectorAll('.gcx__dots i')];
+  const gNum = gcx.querySelector('[data-gcx-n]');
+  const GN = gPhotos.length;
+  const gMark = (n) => { gDots.forEach((d, k) => d.classList.toggle('is-on', k === n)); gNum.textContent = String(n + 1).padStart(2, '0'); };
+  gMark(0);
+  const gHold = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: gcx, start: 'top top', end: () => `+=${innerHeight * (GN - 1) * 0.85}`, pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true,
+    onUpdate: (self) => gMark(Math.min(GN - 1, Math.round(self.progress * (GN - 1 + 0.35) - 0.05))) } });
   for (let i = 1; i < GN; i++) {
-    const at = i - 1 + 0.25;
-    const car = gStages[i].querySelector('.gcx__car');
-    gHold.fromTo(gStages[i], { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.6, ease: 'power2.inOut' }, at)
-      .fromTo(car, { xPercent: 6, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, duration: 0.75, ease: 'power2.out' }, at)
-      .to(gStages[i - 1].querySelectorAll('.gcx__car, .gcx__shadow'), { autoAlpha: 0, duration: 0.5, ease: 'power1.in' }, at)
-      .to(gRecs[i - 1], { autoAlpha: 0, y: -24, duration: 0.25, ease: 'power1.in' }, at)
-      .fromTo(gRecs[i], { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power2.out' }, at + 0.3);
+    const at = i - 1 + 0.2;
+    gHold.fromTo(gPhotos[i], { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.7, ease: 'power2.inOut' }, at)
+      .fromTo(gPhotos[i].querySelector('img'), { yPercent: 8 }, { yPercent: 0, duration: 0.7, ease: 'power2.out' }, at)
+      .to(gPhotos[i - 1].querySelector('img'), { yPercent: -6, filter: 'brightness(0.6)', duration: 0.7, ease: 'power1.in' }, at)
+      .to([gLogos[i - 1], gNotes[i - 1]], { autoAlpha: 0, y: -14, duration: 0.25, ease: 'power1.in' }, at)
+      .fromTo([gLogos[i], gNotes[i]], { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power2.out' }, at + 0.35);
   }
-  gHold.to({}, { duration: 0.3 });   // a breath on the last car before the page moves on
+  gHold.to({}, { duration: 0.35 });   // the last spread rests before the page moves on
 
   // ---------- 8 · finale: the car comes up out of the dark as the page reaches its end ----------
   const fin = document.querySelector('.finale');

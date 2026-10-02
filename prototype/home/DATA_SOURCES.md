@@ -81,3 +81,11 @@ Grandi Complicazioni, held on scroll (Alex, 2 Oct 2026: "photos in different sty
 - `gen-gcx-epitome-cutout.webp` — pagani.com Huayra Epitome, Pagani-Huayra-Epitome_1_Laterale…-B (8102 px), side
 - `gen-gcx-tricolore-cutout.webp` — pagani.com Huayra Tricolore gallery, DSC01115 (7952 px), cropped to the car, near-side
 Background removal only (fal-ai/birefnet/v2), sidecars beside each file. The stage, floor line, shadow and reflection are CSS. The gcx-*.webp photographs of the previous version are no longer used.
+
+Grandi Complicazioni as a car-book spread (Alex, 2 Oct 2026: real photographs with their surroundings, one camera angle). All four in profile — the only angle every model has in Pagani's galleries (no front 3/4 of the Epitome exists):
+- `book-codalunga-speedster.webp` — Codalunga-Speedster13 (6000 px), grey studio
+- `book-huayra-codalunga.webp` — Laterale-copia-3 (6880 px), light studio
+- `book-huayra-epitome.webp` — Pagani-Huayra-Epitome_1_Laterale…-B (8102 px), dark studio
+- `book-huayra-tricolore.webp` — DSC01115 (7952 px), cropped wide around the car, hangars at sunset
+Lines under each spread: pagani.com model pages, shortened (Codalunga Speedster: "Inspired by the racing cars of the 1950s and ’60s"; Huayra Codalunga: "tribute to … Italian coachbuilders and racecars of the ‘60s … just five"; Epitome: "a one-off … the first Huayra equipped with a manual transmission"; Tricolore: "tribute to the Italian Air Force Aerobatic Team … only three examples"). Figures from Alex's spec content. Each photo has --pos / --zoom in index.html for Alex to set the air.
+The cutouts (gen-gcx-*-cutout) and gcx-* photographs are no longer used.
