@@ -158,12 +158,12 @@ ol, ul { list-style: none; }
 @property --orbit { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 @keyframes row-orbit { to { --orbit: 360deg; } }
 .row__card::before { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; padding: 1px; pointer-events: none;
-  background: conic-gradient(from var(--orbit), rgb(255 255 255 / 0.22) 0deg, rgb(255 255 255 / 0.22) 220deg, rgb(255 255 255 / 0.9) 290deg, rgb(255 255 255 / 0.22) 350deg);
+  background: conic-gradient(from var(--orbit), rgb(255 255 255 / 0.12) 0deg, rgb(255 255 255 / 0.12) 200deg, rgb(255 255 255 / 0.42) 285deg, rgb(255 255 255 / 0.12) 360deg);   /* subtler: a soft glint, not a bright arc (Alex) */
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
   opacity: 0; transition: opacity 0.5s ease; }
 /* hover: the card lifts its light, the car comes a touch closer, the name brightens */
 .row__pick:hover .row__card { background: rgb(217 217 217 / 0.08); }
-.row__pick:hover .row__card::before, .row__pick:focus-visible .row__card::before { opacity: 1; animation: row-orbit 3.2s linear infinite; }
+.row__pick:hover .row__card::before, .row__pick:focus-visible .row__card::before { opacity: 1; animation: row-orbit 5s linear infinite; }
 /* the selected model keeps its quiet dark card: no travelling stroke */
 .row__item.is-current .row__pick .row__card::before { opacity: 0; animation: none; }
 /* the car takes its colour on hover, and keeps it while it is the current model */
