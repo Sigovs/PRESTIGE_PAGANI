@@ -527,9 +527,7 @@ ol, ul { list-style: none; }
 .gcs__nav button[aria-current="true"] { opacity: 1; }
 .gcx.is-light .gcs__nav button { text-shadow: none; opacity: 0.7; }
 .gcx.is-light .gcs__nav button[aria-current="true"] { opacity: 1; }
-.gcs__nav::before { content: ""; position: absolute; inset: -40px -32px -40px -60px; z-index: -1; pointer-events: none; border-radius: 50%; background: radial-gradient(ellipse 62% 58% at 68% 50%, rgb(10 10 12 / 0.82) 0%, rgb(10 10 12 / 0.55) 45%, rgb(10 10 12 / 0) 80%); transition: background 0.5s ease; }   /* a soft shade under the names, no panel */
-.gcx.is-light .gcs__nav::before { background: radial-gradient(ellipse 62% 58% at 68% 50%, rgb(226 230 237 / 0.95) 0%, rgb(226 230 237 / 0.7) 45%, rgb(226 230 237 / 0) 80%); }
-/* 2 · Huayra Codalunga, the piazza (Alex: option 2) — the photograph keeps its 3:2 and whole car: set right and low, its left and top edges melting into the ground; the words in the field it leaves */
+.gcx.is-light /* 2 · Huayra Codalunga, the piazza (Alex: option 2) — the photograph keeps its 3:2 and whole car: set right and low, its left and top edges melting into the ground; the words in the field it leaves */
 .gcs--piazza { background: #131417; }
 .gcs--piazza .gcs__media { left: auto; right: 0; top: auto; bottom: 0; height: 88%; aspect-ratio: 3 / 2; width: auto; max-width: none;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%), linear-gradient(to bottom, transparent 0%, #000 16%); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent 0%, #000 7%), linear-gradient(to bottom, transparent 0%, #000 16%); mask-composite: intersect; }
@@ -543,3 +541,30 @@ ol, ul { list-style: none; }
 .gcs--dark .gcs__bg { object-position: 60% 50%; }
 .gcs--dark::after { background: linear-gradient(to right, rgb(10 10 12 / 0.88) 0%, rgb(10 10 12 / 0.7) 26%, rgb(10 10 12 / 0.25) 44%, rgb(10 10 12 / 0) 58%); }
 @media (max-width: 767px) { .gcs--dark .gcs__bg { object-position: 55% 55%; } }
+/* Huayra Codalunga on a studio built in CSS (Alex's cutout): a soft cyclorama — key light behind the car, a cooler fall-off to the edges, a floor with a gentle horizon and a contact shadow */
+.gcs__studio { background:
+  radial-gradient(ellipse 34% 44% at 58% 46%, rgb(255 255 255 / 0.95) 0%, rgb(255 255 255 / 0) 100%),
+  radial-gradient(ellipse 70% 80% at 62% 40%, #eef1f6 0%, #dde2ea 42%, #c7cfdb 72%, #aeb7c5 100%),
+  #c9d0db; }
+.gcs__studio::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; pointer-events: none;
+  background: linear-gradient(to bottom, rgb(150 160 176 / 0) 0%, rgb(150 160 176 / 0.18) 22%, rgb(120 130 148 / 0.32) 100%), radial-gradient(ellipse 45% 60% at 58% 0%, rgb(255 255 255 / 0.55), rgb(255 255 255 / 0) 70%); }   /* the floor */
+.gcs__studio::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 85% 95% at 60% 45%, rgb(0 0 0 / 0) 55%, rgb(40 46 58 / 0.22) 100%); }   /* a quiet vignette */
+.gcs__car { position: absolute; z-index: 1; right: calc(var(--gutter) + 15vw); bottom: 17%; width: min(42vw, 100svh); height: auto; filter: drop-shadow(0 30px 40px rgb(30 36 48 / 0.18)); }
+.gcs__shadow { position: absolute; z-index: 1; right: calc(var(--gutter) + 15vw + min(42vw, 100svh) * 0.13); bottom: calc(17% - 2.2%); width: calc(min(42vw, 100svh) * 0.74); height: 5.5%; border-radius: 50%;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgb(20 24 32 / 0.55) 0%, rgb(20 24 32 / 0.22) 45%, rgb(20 24 32 / 0) 75%); filter: blur(6px); }
+.gcs--light .gcs__media { inset: 0; }
+@media (max-width: 767px) {
+  .gcs--light .gcs__media.gcs__studio { aspect-ratio: 16 / 11; }
+  .gcs__car { right: 50%; transform: translateX(50%); width: 66%; bottom: 14%; }
+  .gcs__shadow { right: 50%; transform: translateX(50%); width: 50%; bottom: 11.5%; }
+  .gcs--light { background: #c9d0db; }
+  .gcs--light .gcs__media { -webkit-mask-image: none; mask-image: none; }
+}
+@media (max-width: 767px) {   /* phone: the studio light spans the whole scene, so the picture has no box edge */
+  .gcs--light { background: radial-gradient(ellipse 80% 40% at 50% 26%, #f3f5f9 0%, #dde2ea 45%, #c3cad6 100%); }
+  .gcs--light .gcs__studio { background: none; }
+  .gcs--light .gcs__studio::after, .gcs--light .gcs__studio::before { display: none; }
+}
+/* Tricolore film: a tall double gradient from the foot (Alex) — also quiets the burned-in captions */
+.gcs--dusk .gcs__media::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 55% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 26% no-repeat; }

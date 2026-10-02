@@ -294,7 +294,7 @@
     tl.fromTo(s2, { xPercent: 100 }, { xPercent: 0, duration: TH }, turns[0][0])
       .fromTo(s1, { xPercent: 0 }, { xPercent: -5, duration: TH }, turns[0][0])
       .fromTo(s3, { yPercent: 100 }, { yPercent: 0, duration: TV }, turns[1][0])
-      .fromTo(s4, { yPercent: 100 }, { yPercent: 0, duration: TV }, turns[2][0])
+      .fromTo(s4, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: TV }, turns[2][0])   // the Tricolore opens over the Epitome from the foot — the frame stays still, only the edge moves (Alex)
       .to({}, { duration: END }, turns[2][0] + TV);
     pinST = ScrollTrigger.create({ trigger: gcx, start: 'top top', end: () => `+=${innerHeight * LEN}`, pin: true, scrub: 0.35, animation: tl, invalidateOnRefresh: true,
       onToggle: (self) => { gcxIn = self.isActive; gState = -2; gChapter(); } });
