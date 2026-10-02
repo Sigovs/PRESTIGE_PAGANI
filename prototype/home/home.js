@@ -249,9 +249,9 @@
   const gcx = document.querySelector('[data-gcx]');
   const gScenes = [...gcx.querySelectorAll('[data-gcs]')];
   const gNav = [...gcx.querySelectorAll('[data-gcs-go]')];
-  const GN = gScenes.length, TURN = 0.3;
+  const GN = gScenes.length, TURN = 0.42;
   const gVideo = (sc) => sc.querySelector('[data-gcs-video]');
-  let gState = -2;
+  let gState = -2, gcxIn = false;
   const gSet = (active, shown) => {   // active chapter; shown = its words are allowed (the turn is ~85% done)
     const key = active * 2 + (shown ? 1 : 0);
     if (key === gState) return; gState = key;
@@ -262,6 +262,7 @@
     });
     gNav.forEach((b, k) => b.setAttribute('aria-current', String(k === active)));
     gcx.classList.toggle('is-light', gScenes[active].classList.contains('gcs--light'));
+    document.querySelector('.hdr').classList.toggle('is-light', gcx.classList.contains('is-stage') && gScenes[active].classList.contains('gcs--light') && gcxIn);
   };
   const gmm = gsap.matchMedia();
   gmm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
@@ -275,23 +276,30 @@
     gsap.fromTo(s1, { clipPath: 'inset(9% 16% 9% 13%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none',
       scrollTrigger: { trigger: gcx, start: 'top 55%', end: 'top top', scrub: 0.25,
         onUpdate: (self) => { introP = self.progress; s1.classList.toggle('is-intro', introP > 0.4); if (!pinST || pinST.progress === 0) gSet(0, introP > 0.88); } } });
-    // the held stage: chapter = 1 unit; a short turn (TURN) at its start, the rest is to look and read
-    const tl = gsap.timeline({ defaults: { ease: EASE } });
-    tl.fromTo(s2, { xPercent: 100 }, { xPercent: 0, duration: TURN }, 1 - TURN)
-      .fromTo(s1, { xPercent: 0 }, { xPercent: -5, duration: TURN }, 1 - TURN)
-      .fromTo(s3, { yPercent: 100 }, { yPercent: 0, duration: TURN }, 2 - TURN)
-      .fromTo(s4, { yPercent: 100 }, { yPercent: 0, duration: TURN }, 3 - TURN)
-      .to({}, { duration: 0.55 }, 3);   // the Tricolore's calm, then the hold lets go
-    const LEN = tl.duration();
-    pinST = ScrollTrigger.create({ trigger: gcx, start: 'top top', end: () => `+=${innerHeight * 2.9}`, pin: true, scrub: 0.25, animation: tl, invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        const t = self.progress * LEN;
-        let k = 0; for (let i = 1; i < GN; i++) if (t >= i - TURN) k = i;   // the chapter whose turn has begun
-        const into = k === 0 ? 1 : (t - (k - TURN)) / TURN;                 // how far its turn has gone
-        gSet(k, k === 0 ? introP > 0.88 : into >= 0.8);
-      } });
+    // the held stage, measured in screens of scroll. Diagnosis (2 Oct 2026): the Codalunga's 1440 px slide ran over ~390 px of scroll with a sine curve —
+    // ~3.7 px of panel per px of scroll, ~5.8 at mid-curve. Now: the scroll itself is the easing (ease 'none'), the slide gets a full screen of scroll,
+    // the rises three quarters of one, and the scrub smooths start and stop.
+    const V = 0.5, TH = 1.0, TV = 0.75, END = 0.4;   // view, horizontal turn, vertical turn, last view (in screens)
+    const turns = [[V, TH], [V + TH + V, TV], [V + TH + V + TV + V, TV]];   // [start, length] of turns 1..3
+    const LEN = turns[2][0] + TV + END;
+    const tl = gsap.timeline({ defaults: { ease: 'none' } });
+    tl.fromTo(s2, { xPercent: 100 }, { xPercent: 0, duration: TH }, turns[0][0])
+      .fromTo(s1, { xPercent: 0 }, { xPercent: -5, duration: TH }, turns[0][0])
+      .fromTo(s3, { yPercent: 100 }, { yPercent: 0, duration: TV }, turns[1][0])
+      .fromTo(s4, { yPercent: 100 }, { yPercent: 0, duration: TV }, turns[2][0])
+      .to({}, { duration: END }, turns[2][0] + TV);
+    pinST = ScrollTrigger.create({ trigger: gcx, start: 'top top', end: () => `+=${innerHeight * LEN}`, pin: true, scrub: 0.35, animation: tl, invalidateOnRefresh: true,
+      onToggle: (self) => { gcxIn = self.isActive; gState = -2; gChapter(self); },
+      onUpdate: (self) => gChapter(self) });
+    function gChapter(self) {
+      const t = self.progress * LEN;
+      let k = 0; turns.forEach(([a], i) => { if (t >= a) k = i + 1; });   // the chapter whose turn has begun
+      if (k === 0) return gSet(0, introP > 0.88);
+      const [a, d] = turns[k - 1];
+      gSet(k, (t - a) / d >= 0.85);   // the old words leave as the turn begins; the new ones arrive near its end
+    }
     gSet(0, false);
-    const go = (k) => { const t = k === 0 ? 0.3 : k + 0.15; lenis.scrollTo(pinST.start + (t / LEN) * (pinST.end - pinST.start), { duration: 1.1 }); };
+    const go = (k) => { const t = k === 0 ? V * 0.5 : turns[k - 1][0] + turns[k - 1][1] + 0.15; lenis.scrollTo(pinST.start + (t / LEN) * (pinST.end - pinST.start), { duration: 1.2 }); };
     const onNav = (e) => { const b = e.currentTarget; if (e.detail) b.blur(); go(+b.dataset.gcsGo); };
     gNav.forEach((b) => b.addEventListener('click', onNav));
     return () => { gcx.classList.remove('is-stage', 'is-light'); gScenes.forEach((sc) => { sc.style.zIndex = ''; sc.classList.remove('is-on', 'is-past', 'is-intro'); }); gNav.forEach((b) => b.removeEventListener('click', onNav)); gState = -2; };

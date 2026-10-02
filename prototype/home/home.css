@@ -61,7 +61,7 @@ ol, ul { list-style: none; }
   position: fixed; inset: 0 0 auto; z-index: 50; height: clamp(var(--hdr-h), 7.8vw, 150px);   /* Figma: the row sits at y 45–105 of 1920 */
   display: flex; align-items: center; gap: 1.56vw; padding: 0 4.27vw;
 }
-.hdr__brand { display: grid; justify-items: center; gap: 6px; margin-right: auto; text-decoration: none; }
+.hdr__brand { display: grid; justify-items: center; gap: 11px; margin-right: auto; text-decoration: none; }
 .hdr__mark { width: clamp(150px, 10.5vw, 202px); height: auto; }
 .hdr__dealer { width: clamp(96px, 6.7vw, 129px); height: auto; }
 .hdr__nav { display: flex; gap: 1.56vw; }
@@ -462,10 +462,20 @@ ol, ul { list-style: none; }
 .hdr__tel { height: 44px; }
 
 /* the header gets its ground once the hero is behind it: dark glass, so the nav never sits on a photograph or a headline (audit P1) */
-.hdr { transition: background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1), -webkit-backdrop-filter 0.5s, backdrop-filter 0.5s, height 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
-.hdr::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--rule); opacity: 0; transition: opacity 0.5s; }
-.hdr.is-solid { background-color: rgb(11 12 14 / 0.96); height: var(--hdr-h); }   /* quiet: transparent on the hero, then near-opaque black; no glass (Alex) */
-.hdr.is-solid::after { opacity: 1; }
+/* the header's ground: no panel — a soft gradient, strongest at the top, fading well below the bar into the page (no edge, border or shadow).
+   Transparent on the hero; dark over dark sections and photographs; light over a light scene (the ink turns dark with it). */
+.hdr { transition: height 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.5s ease; }
+.hdr::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: calc(var(--hdr-h) * 2.4); z-index: -1; pointer-events: none; opacity: 0; transition: opacity 0.6s ease;
+  --g: 11 12 14;
+  background: linear-gradient(to bottom, rgb(var(--g) / 0.86) 0%, rgb(var(--g) / 0.74) 22%, rgb(var(--g) / 0.52) 42%, rgb(var(--g) / 0.3) 60%, rgb(var(--g) / 0.13) 78%, rgb(var(--g) / 0.04) 90%, rgb(var(--g) / 0) 100%); }
+.hdr.is-solid { height: var(--hdr-h); }
+.hdr.is-solid::before { opacity: 1; }
+.hdr.is-light { color: #15171a; }
+.hdr.is-light::before { --g: 226 230 237; }
+.hdr.is-light .hdr__mark, .hdr.is-light .hdr__dealer { filter: brightness(0) opacity(0.85); }
+.hdr.is-light .hdr__tel { border-color: rgb(21 23 26 / 0.35); color: #15171a; }
+.hdr.is-light .hdr__menu { color: #15171a; }
+.hdr__nav a, .hdr__tel, .hdr__mark, .hdr__dealer { transition: color 0.5s ease, filter 0.5s ease, border-color 0.5s ease, opacity 0.3s; }
 .row__more { min-height: 44px; }
 @media (max-width: 767px) { .row__more { height: 44px; } }
 .skip { padding-block: 12px; }
@@ -486,7 +496,8 @@ ol, ul { list-style: none; }
   .gcs__intro, .gcs__model, .gcs--light .gcs__model, .gcs--dark .gcs__model, .gcs--dusk .gcs__model, .gcs--hangar .gcs__intro, .gcs--hangar .gcs__model { position: relative; inset: auto; transform: none; padding: 0 var(--gutter); justify-items: start; text-align: left; }
   .gcs--dark .gcs__logo { object-position: left center; margin: 0 0 0 -1.4%; }
   .gcs--hangar .gcs__intro { order: -1; }
-  .gcs--light { background: #dde2ea; }
+  .gcs--light { background: linear-gradient(to bottom, rgb(197 211 227) 0%, rgb(209 218 230) 45%, rgb(223 227 230) 100%); }
+  .gcs--light .gcs__media { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 86%, transparent 100%); }   /* the photograph melts into the scene's own studio colours: no seam */
   .gcs .gcs__bg { object-position: 50% 60%; }
   .gcs--light .gcs__bg { object-position: 72% 50%; }
 }
