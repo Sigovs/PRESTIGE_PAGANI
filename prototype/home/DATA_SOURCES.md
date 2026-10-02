@@ -49,3 +49,9 @@ Then (same day, Alex): background removed — `assets/gen-about-horacio-cutout.w
 `assets/about-boyhood-models-1967.webp` (1024 px, the source maximum): the model cars Horacio Pagani built as a boy, 1967 — pagani.com History, https://www.pagani.com/app/uploads/2016/12/1967.jpg (fetched 1 Oct 2026). Background plane under the cutout, darkened and desaturated in CSS; Alex chose it (option B) over the San Cesario factory and the Zonda C12.
 
 `assets/about-san-cesario.webp` (2400 px): silver Zonda before the San Cesario factory arches — pagani.com Rinascimento, https://www.pagani.com/app/uploads/2022/02/DSC_7227.jpg. Replaces the 1967 models (Alex: "plohoi background", 2 Oct 2026).
+
+About backgrounds (held section, changing on scroll; Alex, 2 Oct 2026), all Pagani press, see research/press-images/MANIFEST.md:
+- `assets/about-derecho-profile.webp` — Huayra 70 Derecho side profile, /app/uploads/2026/07/1_Pagani-Huayra-70-Derecho-1.jpg
+- `assets/about-epitome.webp` — Huayra Epitome rear 3/4, dark studio, pagani.com/press/huayra-epitome/
+- `assets/about-exhaust.webp` — Utopia Roadster quad exhaust, red carbon, pagani.com/press/utopia-roadster/
+- `assets/about-gearbox.webp` — Utopia Roadster manual gearbox, pagani.com/press/utopia-roadster/

@@ -213,13 +213,17 @@ ol, ul { list-style: none; }
   #about .scene__type { width: min(25vw, 380px); top: calc(var(--hdr-h) + 6svh); }
 }
 /* the boy's models stand behind the man: a dark, slow plane under the cutout; feathered top and bottom into the ground, held back under the type */
-.about__bg { position: absolute; inset: -38% 0; z-index: -2; overflow: hidden;
+.about__bg { position: absolute; inset: -18% 0; z-index: -2; overflow: hidden;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.35) 20%, #000 32%, #000 68%, rgb(0 0 0 / 0.35) 80%, transparent 100%);
           mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.35) 20%, #000 32%, #000 68%, rgb(0 0 0 / 0.35) 80%, transparent 100%); }
-.about__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 55%; filter: brightness(0.42) saturate(0.6); will-change: transform; }
+.about__shot { position: absolute; max-width: none; will-change: transform, opacity; opacity: 0; }
+.about__shot:first-child { opacity: 1; }   /* the static state: the first picture */
+.about__shot--wide { left: 0; top: 50%; width: 100%; height: auto; transform: translateY(-50%); filter: brightness(0.62) saturate(0.85); }   /* at its own proportion, full width: the car keeps its air on both sides */
+.about__shot--fill { inset: 18% 0; width: 100%; height: 64%; object-fit: cover; filter: brightness(0.42) saturate(0.8); }   /* the close-ups fill the screen */
+@media (max-width: 767px) { .about__shot--wide { width: 260%; left: -95%; top: 24%; } .about__shot--fill { object-position: 60% 50%; } }   /* phone: the cars ride above the type, behind his head */
 .about__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, rgb(19 20 23 / 0) 35%, rgb(19 20 23 / 0.7) 62%, rgb(19 20 23 / 0.9) 100%); }   /* the type's side stays quiet */
 @media (max-width: 767px) { .about__bg img { object-position: 70% 40%; } .about__bg::after { background: linear-gradient(to top, rgb(19 20 23 / 0.97) 0%, rgb(19 20 23 / 0.85) 50%, rgb(19 20 23 / 0.3) 75%, rgb(19 20 23 / 0) 90%); } }
-.about__seams { position: absolute; inset: 0; z-index: -1; pointer-events: none;
+.about__seams { position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 40% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 22% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 8% no-repeat,
               linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 46% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 26% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 9% no-repeat; }   /* layered, eased: no line where About meets Art above and Service below */
 #about { background: #131417; --scrim: linear-gradient(to top, #131417 0%, rgb(19 20 23 / 0) 22%); }   /* Horacio alone on our ground (cutout); only the cut foot of the jacket is softened */
@@ -286,7 +290,7 @@ ol, ul { list-style: none; }
 .gc__foot { display: flex; justify-content: center; margin-top: var(--s-8); }
 
 /* 8 · finale — a car up out of the dark; the free field above it carries the contacts */
-.finale { display: grid; align-content: start; justify-items: center; text-align: center; padding: calc(var(--hdr-h) + 5svh) var(--gutter) 0; }
+.finale { display: grid; align-content: center; justify-items: center; text-align: center; padding: 0 var(--gutter); }   /* the contacts and the form stand at the exact centre of the section (Alex) */
 /* the photograph fills the room; its top and edges sink into the page's black, the car stays small and low, the type sits in the open studio above */
 /* the photograph fills the room, held well down; the hero's fades close it top and bottom; the type stands on the road between the two cars */
 .finale__car { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
@@ -363,3 +367,7 @@ ol, ul { list-style: none; }
 
 #about .about__hang { content: ""; position: absolute; left: 0; right: 0; top: 0; z-index: 0; height: 44svh; pointer-events: none;
   background: linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 100% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 50% no-repeat, linear-gradient(to top, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) top / 100% 18% no-repeat; }
+@media (max-width: 767px) {   /* phone: shorter fades, so a window is left for the pictures between the Atelier's gradient and the type */
+  #about .about__hang { height: 18svh; }
+  #about .about__seams { background-size: 100% 16%, 100% 9%, 100% 4%, 100% 30%, 100% 18%, 100% 7%; }
+}

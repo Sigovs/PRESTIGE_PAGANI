@@ -272,21 +272,29 @@
     ScrollTrigger.create({ trigger: sign, start: 'top 85%', once: true, onEnter: () => pen.play() });
   }
 
-  // About: three planes at three speeds. The factory lags far behind the page, Horacio rises against it, the type scrolls as the page does.
-  const aboutBg = document.querySelector('[data-about-bg] img');
-  const aboutMan = document.querySelector('#about [data-scene-media]');
-  if (aboutBg) {
-    const k = mqMobile.matches ? 0.5 : 1;
-    gsap.fromTo(aboutBg, { yPercent: -26 * k, scale: 1.15 }, { yPercent: 26 * k, scale: 1, ease: 'none',
-      scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: true } });
-    gsap.fromTo(aboutMan, { y: () => 140 * k }, { y: () => -140 * k, ease: 'none', immediateRender: true,
-      scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: true, invalidateOnRefresh: true } });
-  }
+  // About holds the screen; under Horacio the pictures change one by one, each settling as it arrives; after the last the page moves on.
+  // Before and after the hold the three planes travel at three speeds.
+  const aboutSec = document.getElementById('about');
+  const aboutWrap = aboutSec.querySelector('[data-about-bg]');
+  const shots = gsap.utils.toArray(aboutWrap.querySelectorAll('[data-shot]'));
+  const aboutMan = aboutSec.querySelector('[data-scene-media]');
+  const k = mqMobile.matches ? 0.5 : 1;
+  shots.forEach((s) => gsap.set(s, { yPercent: s.classList.contains('about__shot--wide') ? -50 : 0 }));
+  const hold = gsap.timeline({ scrollTrigger: { trigger: aboutSec, start: 'top top', end: () => `+=${innerHeight * (shots.length - 1) * 0.85}`, pin: true, scrub: true, anticipatePin: 1, invalidateOnRefresh: true } });
+  shots.forEach((s, i) => {
+    hold.fromTo(s, { scale: 1.12 }, { scale: 1, duration: 1.2, ease: 'none' }, Math.max(0, i - 0.35));
+    if (i) hold.to(shots[i - 1], { autoAlpha: 0, duration: 0.45, ease: 'none' }, i - 0.35).fromTo(s, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.45, ease: 'none' }, i - 0.35);
+  });
+  const holdST = hold.scrollTrigger;
+  gsap.fromTo(aboutWrap, { yPercent: -14 * k }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: aboutSec, start: 'top bottom', end: 'top top', scrub: true } });
+  gsap.fromTo(aboutMan, { y: 140 * k }, { y: 0, ease: 'none', scrollTrigger: { trigger: aboutSec, start: 'top bottom', end: 'top top', scrub: true } });
+  gsap.fromTo(aboutWrap, { yPercent: 0 }, { yPercent: 14 * k, ease: 'none', immediateRender: false, scrollTrigger: { start: () => holdST.end, end: () => holdST.end + innerHeight, scrub: true, invalidateOnRefresh: true } });
+  gsap.fromTo(aboutMan, { y: 0 }, { y: -140 * k, ease: 'none', immediateRender: false, scrollTrigger: { start: () => holdST.end, end: () => holdST.end + innerHeight, scrub: true, invalidateOnRefresh: true } });
   gsap.utils.toArray('[data-scene]').forEach((sec) => {
     const img = sec.querySelector('[data-scene-media] img');
     gsap.fromTo(img, { scale: 1.16, yPercent: -4, filter: 'brightness(0.35)' }, { scale: 1, yPercent: 0, filter: 'brightness(1)', ease: 'none',
       scrollTrigger: { trigger: sec, start: 'top bottom', end: 'top top', scrub: true } });
-    gsap.to(img, { yPercent: 10, ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom top', scrub: true } });
+    if (sec.id !== 'about') gsap.to(img, { yPercent: 10, ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom top', scrub: true } });   // About's hold owns its leaving
   });
   // splits: the picture is uncovered from its outer edge while the detail moves into place
   gsap.utils.toArray('[data-split-media]').forEach((m) => {
@@ -304,6 +312,10 @@
     gsap.from(items, { autoAlpha: 0, y: 42, duration: 1.3, ease: 'power3.out', stagger: 0.14,
       scrollTrigger: { trigger: sec, start: sec.id === 'service' ? 'top 15%' : 'top 55%', toggleActions: 'play none none reverse' } });   // service: the type waits for the film to open
   });
+
+  // pins are calculated top to bottom: About's hold was created after the pins below it, so order them by place on the page once
+  ScrollTrigger.sort();
+  ScrollTrigger.refresh();
 
   // ---------- enquiry: checked in place; the prototype says plainly that it is not connected ----------
   const enq = document.querySelector('[data-enq]');
