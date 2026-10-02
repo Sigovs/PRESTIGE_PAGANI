@@ -248,56 +248,25 @@
   gsap.fromTo(stage.querySelector('.stage__bg'), { autoAlpha: 0.2, scale: 1.06 }, { autoAlpha: 1, scale: 1, ease: 'none', scrollTrigger: { trigger: stage, start: 'top 80%', end: 'top top', scrub: true } });
   gsap.from(stage.querySelector('.row'), { autoAlpha: 0, y: 20, ease: 'none', scrollTrigger: { trigger: stage, start: 'top 40%', end: 'top top', scrub: true } });
 
-  // ---------- 3 · Grandi Complicazioni: a showcase changed by hand (Alex's frame) — tabs, arrows, keys, swipe ----------
+  // ---------- 3 · Grandi Complicazioni: held while you scroll (Forge). Each car rises over the last on the same stage; its record floats in ----------
   const gcx = document.getElementById('grandi');
-  const gTrack = gcx.querySelector('[data-gcx-track]');
-  const gSlides = [...gcx.querySelectorAll('[data-gcx-slide]')];
-  const gRecs = [...gcx.querySelectorAll('[data-gcx-rec]')];
-  const gTabs = [...gcx.querySelectorAll('[data-gcx-tab]')];
-  const gNum = gcx.querySelector('[data-gcx-n]');
-  const GN = gSlides.length;
-  // the one before the first waits at the left edge too: a copy of the last, for the eye only
-  const gClone = gSlides[GN - 1].cloneNode(true);
-  gClone.removeAttribute('data-gcx-slide'); gClone.setAttribute('aria-hidden', 'true'); gClone.querySelector('img').alt = '';
-  gTrack.prepend(gClone);
-  gTrack.style.left = 'calc(var(--lead) - var(--slide) - var(--gap))';
-  let gCur = 0;
-  const gStep = () => gSlides[0].offsetWidth + parseFloat(getComputedStyle(gTrack).columnGap || 0);
-  const gMark = (i) => {
-    gSlides.forEach((sl, k) => sl.classList.toggle('is-on', k === i));
-    gClone.classList.toggle('is-on', false);
-    gTabs.forEach((t, k) => { t.classList.toggle('is-on', k === i); t.setAttribute('aria-current', String(k === i)); });
-    gNum.textContent = String(i + 1).padStart(2, '0');
-  };
-  function gGo(i) {
-    const n = ((i % GN) + GN) % GN;
-    if (n === gCur) return;
-    const prev = gCur; gCur = n; gMark(n);
-    gsap.to(gTrack, { x: -n * gStep(), duration: 1.2, ease: 'power3.inOut', overwrite: true });
-    gsap.fromTo(gSlides[n].querySelector('img'), { scale: 1.08 }, { scale: 1, duration: 1.7, ease: 'power3.out', overwrite: true });
-    // the record: the old one lifts away, the new one's parts rise in order
-    gsap.to(gRecs[prev], { autoAlpha: 0, y: -16, duration: 0.45, ease: 'power1.in', overwrite: true });
-    gsap.set(gRecs[n], { autoAlpha: 1, y: 0 });
-    gsap.fromTo(gRecs[n].children, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08, delay: 0.35, overwrite: true });
-    gsap.fromTo(gNum, { yPercent: 60, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 0.5, ease: 'power2.out' });
+  const gStages = gsap.utils.toArray(gcx.querySelectorAll('[data-gcx-stage]'));
+  const gRecs = gsap.utils.toArray(gcx.querySelectorAll('[data-gcx-rec]'));
+  const gBar = gcx.querySelector('[data-gcx-progress]');
+  const GN = gStages.length;
+  const gHold = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: gcx, start: 'top top', end: () => `+=${innerHeight * (GN - 1) * 0.9}`, pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true } });
+  gHold.fromTo(gBar, { scaleX: 1 / GN }, { scaleX: 1, duration: GN - 1 + 0.3 }, 0);
+  gHold.fromTo(gStages[0].querySelector('.gcx__car'), { scale: 1 }, { scale: 1.04, duration: 1 }, 0);
+  for (let i = 1; i < GN; i++) {
+    const at = i - 1 + 0.25;
+    const car = gStages[i].querySelector('.gcx__car');
+    gHold.fromTo(gStages[i], { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.6, ease: 'power2.inOut' }, at)
+      .fromTo(car, { yPercent: 40, scale: 1.06 }, { yPercent: 0, scale: 1, duration: 0.75, ease: 'power2.out' }, at)
+      .to(gStages[i - 1].querySelector('.gcx__car'), { yPercent: -18, autoAlpha: 0.4, duration: 0.6, ease: 'power1.in' }, at)
+      .to(gRecs[i - 1], { autoAlpha: 0, y: -24, duration: 0.25, ease: 'power1.in' }, at)
+      .fromTo(gRecs[i], { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power2.out' }, at + 0.3);
   }
-  gMark(0);
-  gcx.querySelector('[data-gcx-prev]').addEventListener('click', (e) => { if (e.detail) e.currentTarget.blur(); gGo(gCur - 1); });
-  gcx.querySelector('[data-gcx-next]').addEventListener('click', (e) => { if (e.detail) e.currentTarget.blur(); gGo(gCur + 1); });
-  gTabs.forEach((t, k) => t.addEventListener('click', (e) => { if (e.detail) t.blur(); gGo(k); }));
-  addEventListener('keydown', (e) => {
-    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-    const r = gcx.getBoundingClientRect();
-    if (r.top > innerHeight * 0.5 || r.bottom < innerHeight * 0.5 || e.target.closest('input, textarea, select')) return;
-    e.preventDefault(); gGo(gCur + (e.key === 'ArrowRight' ? 1 : -1));
-  });
-  let gx = null;
-  gcx.addEventListener('touchstart', (e) => { gx = e.touches[0].clientX; }, { passive: true });
-  gcx.addEventListener('touchend', (e) => { if (gx === null) return; const dx = e.changedTouches[0].clientX - gx; gx = null; if (Math.abs(dx) > 50) gGo(gCur + (dx < 0 ? 1 : -1)); });
-  addEventListener('resize', () => gsap.set(gTrack, { x: -gCur * gStep() }));
-  // arrival: the cars slide in from the right as the section comes up
-  gsap.fromTo(gcx.querySelector('[data-gcx-view]'), { x: () => innerWidth * 0.12, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1.5, ease: 'power3.out',
-    scrollTrigger: { trigger: gcx, start: 'top 70%', toggleActions: 'play none none reverse' } });
+  gHold.to({}, { duration: 0.3 });   // a breath on the last car before the page moves on
 
   // ---------- 8 · finale: the car comes up out of the dark as the page reaches its end ----------
   const fin = document.querySelector('.finale');

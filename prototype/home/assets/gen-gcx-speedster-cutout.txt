@@ -1,0 +1,1 @@
+Edit, not generation: background removed from a real Pagani press photograph (pagani.com model gallery, side profile) with fal-ai/birefnet/v2 (General Use Heavy, 2048), 2 Oct 2026. Nothing added or redrawn; cropped to the car. Source: research/press-images or pagani.com /app/uploads (see DATA_SOURCES.md).

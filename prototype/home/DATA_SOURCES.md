@@ -74,3 +74,10 @@ Grandi Complicazioni showcase (Alex's frame, 2 Oct 2026). Spec texts: Alex's con
 - Photos (Pagani press, research/press-images): `gcx-codalunga-speedster.webp` (9449 px hangar original), `gcx-huayra-codalunga.webp` (Milan arcade, 6038), `gcx-huayra-epitome.webp` (dark studio, 8059), `gcx-huayra-tricolore.webp` (Frecce smoke, 1980 — the largest we have).
 - Logos: `logo-huayra-epitome.png` — pagani.com /app/uploads/2024/03/Logo_Huayra-Epitome.png (4729 px, resized); `logo-huayra-codalunga.png` — cropped (not redrawn) from the raster inside Pagani of Chicago's grandi-img-logo-3.svg (only 666 px wide: ask the client for the vector); Codalunga Speedster and Tricolore logos as before.
 - The GC film (assets/gc-film.mp4) is no longer used on the page.
+
+Grandi Complicazioni, held on scroll (Alex, 2 Oct 2026: "photos in different styles, no common composition"; Forge Automotive scroll as the reference). One studio stage for all four, cars in profile:
+- `gen-gcx-speedster-cutout.webp` — pagani.com Huayra Codalunga Speedster gallery, Codalunga-Speedster13 (6000 px), side
+- `gen-gcx-codalunga-cutout.webp` — pagani.com Huayra Codalunga gallery, Laterale-copia-3 (6880 px), side
+- `gen-gcx-epitome-cutout.webp` — pagani.com Huayra Epitome, Pagani-Huayra-Epitome_1_Laterale…-B (8102 px), side
+- `gen-gcx-tricolore-cutout.webp` — pagani.com Huayra Tricolore gallery, DSC01115 (7952 px), cropped to the car, near-side
+Background removal only (fal-ai/birefnet/v2), sidecars beside each file. The stage, floor line, shadow and reflection are CSS. The gcx-*.webp photographs of the previous version are no longer used.
