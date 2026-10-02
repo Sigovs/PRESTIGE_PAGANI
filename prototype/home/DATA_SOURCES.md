@@ -97,3 +97,8 @@ GC spreads, revised (2 Oct 2026, Alex's three notes): the most expressive photog
 - `book-huayra-tricolore.webp` — runway under the Frecce Tricolori smoke, DSC00725 (7952 px)
 Logos: Alex's "secondary logos" (IMAGES ALEX/secondary logos, one 196×112 canvas) for Codalunga and Epitome; Speedster and Tricolore placed on the same canvas proportion from the existing logo files. Same four photos placed in Figma, page "PAGANI MIAMI — Homepage", section 839:4055.
 Static spreads and a scroll recording: research/gc-spreads/, research/gc-spreads-scroll.mp4.
+
+GC, final selection (Alex, 2 Oct 2026: expressive photographs with architecture, track or hangar; different angles; the car stays part of the photograph). Epitome has no location photography in Pagani's material, so the Imola (also Grandi Complicazioni) takes its place:
+- `book-imola.webp` — pagani.com /pagani-imola/ gallery, 00f_DSC_7794-R (3000 px), rear 3/4 through a corner of the Imola circuit, cut to 2:1
+- `logo2-imola.png` — logo-imola.png (pagani.com PAGANI_Logo_IMOLA) placed on the secondary-logo canvas
+Under each photograph: the model's story (pagani.com model pages, shortened) + Explore; the three figures are gone (they live in the lineup).
