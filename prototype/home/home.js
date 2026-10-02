@@ -396,6 +396,10 @@
   ScrollTrigger.sort();
   ScrollTrigger.refresh();
 
+  // ---------- header: transparent over the hero, its own dark ground after ----------
+  const hdr = document.querySelector('.hdr');
+  ScrollTrigger.create({ trigger: '.hero', start: 'bottom 12%', onEnter: () => hdr.classList.add('is-solid'), onLeaveBack: () => hdr.classList.remove('is-solid') });
+
   // ---------- enquiry: checked in place; the prototype says plainly that it is not connected ----------
   const enq = document.querySelector('[data-enq]');
   if (enq) enq.addEventListener('submit', (e) => {

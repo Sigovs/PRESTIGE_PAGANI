@@ -67,7 +67,7 @@ ol, ul { list-style: none; }
 .hdr__nav { display: flex; gap: 1.56vw; }
 .hdr__nav a { font-size: 0.875rem; line-height: 37px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; opacity: 0.92; transition: opacity 0.3s; }
 .hdr__nav a:hover, .hdr__nav a:focus-visible { opacity: 0.6; }
-.hdr__tel { margin-left: 1.4vw; display: grid; place-items: center; min-width: 136px; height: 37px; padding: 0 var(--s-4); border: 1px solid #424243; font-family: "Roboto", var(--font-brand); font-weight: 700; font-size: 0.8125rem; text-decoration: none; transition: border-color 0.3s; }
+.hdr__tel { margin-left: 1.4vw; display: grid; place-items: center; min-width: 136px; height: 37px; padding: 0 var(--s-4); border: 1px solid #424243; font-family: "Roboto", var(--font-brand); font-weight: 700; font-size: var(--t-14); text-decoration: none; transition: border-color 0.3s; }
 .hdr__tel:hover, .hdr__tel:focus-visible { border-color: var(--ink); }
 .hdr__menu { display: none; align-items: center; gap: var(--s-4); background: none; border: 0; color: var(--ink); cursor: pointer; font: inherit; font-size: var(--t-14); letter-spacing: 0.22em; text-transform: uppercase; min-height: 44px; }
 .hdr__menu i { display: grid; gap: 5px; width: 28px; }
@@ -270,7 +270,7 @@ ol, ul { list-style: none; }
 /* Service stays while the next section rises over it: a black veil whose strength the scroll sets */
 #service::after { content: ""; position: absolute; inset: 0; z-index: 5; background: #000; opacity: var(--dim, 0); pointer-events: none; }
 #service + .sc { z-index: 2; }
-#miami .scene__media img { object-position: 45% 70%; width: 120%; margin-left: -10%; }   /* wider than the frame: room for the drive */
+#miami .scene__media img { object-position: 45% 70%; width: 120%; max-width: none; margin-left: -10%; }   /* wider than the frame: room for the drive */
 /* Miami, centred (Alex): the dealership's name stands over the car between the arches; the CTA is filled so it reads at once */
 #miami .scene__type { left: 50%; right: auto; top: calc(var(--hdr-h) + 7svh); transform: translateX(-50%); width: min(760px, calc(100% - 2 * var(--gutter))); justify-items: center; text-align: center; gap: var(--s-4); }
 #miami .lede { max-width: none; color: var(--ink); opacity: 0.85; }
@@ -435,3 +435,17 @@ ol, ul { list-style: none; }
   .gcx__tabs { display: none; }
   .gcx__arrows { justify-self: end; }
 }
+
+/* audit (UI/UX Pro Max, 2 Oct 2026): inline links get a 44px hit area without moving the type; the header's links are 44px tall */
+.svc__desk a, .finale__addr a, .foot__powered a { display: inline-block; padding-block: 10px; margin-block: -10px; }
+.hdr__nav a { line-height: 44px; }
+.hdr__tel { height: 44px; }
+
+/* the header gets its ground once the hero is behind it: dark glass, so the nav never sits on a photograph or a headline (audit P1) */
+.hdr { transition: background-color 0.5s cubic-bezier(0.22, 1, 0.36, 1), -webkit-backdrop-filter 0.5s, backdrop-filter 0.5s, height 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.hdr::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--rule); opacity: 0; transition: opacity 0.5s; }
+.hdr.is-solid { background-color: rgb(19 20 23 / 0.78); -webkit-backdrop-filter: blur(14px) saturate(1.1); backdrop-filter: blur(14px) saturate(1.1); height: var(--hdr-h); }
+.hdr.is-solid::after { opacity: 1; }
+.row__more { min-height: 44px; }
+@media (max-width: 767px) { .row__more { height: 44px; } }
+.skip { padding-block: 12px; }
