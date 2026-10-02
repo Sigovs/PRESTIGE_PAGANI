@@ -607,3 +607,5 @@ ol, ul { list-style: none; }
 .hdr.is-light .hdr__tel { border-color: #424243; color: inherit; }
 .hdr.is-light .hdr__menu { color: var(--ink); }
 .hdr.is-light .hdr__menu i::before, .hdr.is-light .hdr__menu i::after, .hdr.is-light .hdr__menu i span { background: currentColor; }
+/* the header always carries its own soft gradient — on the hero too (Alex) */
+.hdr::before { opacity: 1; }
