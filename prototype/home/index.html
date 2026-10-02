@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400&family=Roboto:wght@200;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/lenis.css">
-<link rel="stylesheet" href="home.css?v=46">
+<link rel="stylesheet" href="home.css?v=50">
 <link rel="preload" as="image" href="assets/hero2-poster.jpg">
 </head>
 <body>
@@ -51,7 +51,7 @@
   <section class="sc hero" data-act="hero" aria-labelledby="hero-title">
     <div class="hero__film">
       <video class="hero__video" data-hero-video muted loop playsinline preload="auto" poster="assets/hero2-poster.jpg" aria-label="A Pagani Huayra prepared, loaded and flown from Italy to North America">
-        <source src="assets/hero2.mp4?v=46" type="video/mp4">
+        <source src="assets/hero2.mp4?v=50" type="video/mp4">
       </video>
       <img class="hero__still" src="assets/hero2-still.jpg" alt="The Pagani oval badge in close-up, inside a Huayra" data-hero-still>
     </div>
@@ -59,7 +59,7 @@
       <p class="hero__eyebrow" data-hero-rise>Official Dealer for the State of Florida</p>   <!-- verbatim from the Pagani of Miami record on pagani.com/dealers (research §dealers) -->
       <h1 id="hero-title" class="hero__title"><span class="hero__line" data-hero-rise>The car’s atelier overtakes time,</span> <span class="hero__line" data-hero-rise>like the blowing wind.</span></h1>
       <p class="hero__actions">
-        <a class="cta cta--solid" href="#invite" data-goto="#invite" data-hero-rise>Book a private viewing</a>
+        <a class="cta cta--solid cta--fill" href="#invite" data-goto="#invite" data-hero-rise>Book a private viewing</a>
         <a class="cta cta--quiet" href="#lineup" data-goto="#lineup" data-hero-rise>Discover the lineup<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
       </p>
     </div>
@@ -161,7 +161,7 @@
       <img class="about__shot about__shot--fill" data-shot src="assets/about-ch3-codalunga.webp" alt="" loading="lazy" width="3200" height="2120">
       <img class="about__shot about__shot--fill" data-shot src="assets/about-ch4-zonda-c12.webp" alt="" loading="lazy" width="3200" height="2133">
     </div>
-    <div class="scene__media" data-scene-media><img src="assets/gen-about-horacio-cutout.webp?v=46" alt="Horacio Pagani, in profile, lit warm against the dark" loading="lazy" width="2400" height="1597">   <!-- Pagani press photo (Utopia premiere, Sep 2022), background removed with fal birefnet — see assets/gen-about-horacio-cutout.txt --></div>
+    <div class="scene__media" data-scene-media><img src="assets/gen-about-horacio-cutout.webp?v=50" alt="Horacio Pagani, in profile, lit warm against the dark" loading="lazy" width="2400" height="1597">   <!-- Pagani press photo (Utopia premiere, Sep 2022), background removed with fal birefnet — see assets/gen-about-horacio-cutout.txt --></div>
     <div class="about__seams" aria-hidden="true"></div>   <!-- fixed to the section and laid over Horacio too (Alex): photo and portrait fade into the ground together -->
     <div class="about__hang" aria-hidden="true"></div>   <!-- the Atelier's gradient, continued over Horacio, under the type -->
     <div class="scene__type">
@@ -199,7 +199,7 @@
 
   <!-- 6 · SERVICE -->
   <section class="sc svc" id="service" aria-labelledby="service-title">
-    <div class="svc__film" data-svc-film><video muted loop playsinline preload="metadata" poster="assets/service-film-poster.jpg" aria-label="Pagani technicians at work: brakes, suspension, the V12, a Huayra on the lift and the hand-signed inspection sheet"><source src="assets/service-film.mp4?v=46" type="video/mp4"></video></div>   <!-- Alex's film, IMAGES ALEX/VIDEOS/service.mp4 -->
+    <div class="svc__film" data-svc-film><video muted loop playsinline preload="metadata" poster="assets/service-film-poster.jpg" aria-label="Pagani technicians at work: brakes, suspension, the V12, a Huayra on the lift and the hand-signed inspection sheet"><source src="assets/service-film.mp4?v=50" type="video/mp4"></video></div>   <!-- Alex's film, IMAGES ALEX/VIDEOS/service.mp4 -->
     <div class="svc__type">
       <p class="eyebrow" data-rise>Service</p>
       <h2 id="service-title" class="title" data-rise>Meticulous craftsmanship and precision service, worldwide.</h2>
@@ -208,7 +208,7 @@
         <div><dt>Service desk</dt><dd><a href="tel:+18332905148">(833)&nbsp;290-5148</a></dd></div>
         <div><dt>Hours</dt><dd>Mon–Fri, 8:00–17:30</dd></div>
       </dl>   <!-- prestigeimports.com contact JSON-LD -->
-      <p class="actions" data-rise><a class="cta cta--solid" href="tel:+18332905148">Schedule service</a></p>
+      <p class="actions" data-rise><a class="cta cta--solid cta--fill" href="tel:+18332905148">Schedule service</a></p>
     </div>
   </section>
 
@@ -219,7 +219,7 @@
       <p class="eyebrow" data-rise>Official dealer · State of Florida</p>
       <h2 id="miami-title" class="title" data-rise>Pagani of Miami</h2>
       <p class="lede" data-rise>In our showroom: 2024 Pagani Utopia · 3,832 mi <span>As of 1 Oct 2026</span></p>
-      <p class="actions" data-rise><a class="cta cta--solid" href="#invite" data-goto="#invite">Book a private viewing</a></p>
+      <p class="actions" data-rise><a class="cta cta--solid cta--fill" href="#invite" data-goto="#invite">Book a private viewing</a></p>
     </div>
   </section>
 
@@ -237,7 +237,7 @@
           <label class="enq__f"><select name="interest"><option value="" selected>General enquiry</option><option>Utopia</option><option>Huayra</option><option>Zonda</option><option>Grandi Complicazioni</option><option>Service</option></select><span>Interest</span></label>
           <label class="enq__f enq__f--wide"><textarea name="message" rows="1" placeholder=" "></textarea><span>Message</span></label>
         </div>
-        <button class="cta cta--solid enq__send" type="submit">Send enquiry</button>
+        <button class="cta cta--solid cta--fill enq__send" type="submit">Send enquiry</button>
         <p class="enq__note" id="enq-note" role="status" data-enq-note></p>
       </form>
     </div>
@@ -252,6 +252,6 @@
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script src="vendor/lenis.min.js"></script>
 <script src="assets/cars.js"></script>
-<script src="home.js?v=46"></script>
+<script src="home.js?v=50"></script>
 </body>
 </html>

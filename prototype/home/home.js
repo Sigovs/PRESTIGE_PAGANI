@@ -271,6 +271,13 @@
   gsap.fromTo(fin.querySelector('[data-finale-car] img'), { filter: 'brightness(0) saturate(0.85)', scale: 1.1, yPercent: 6 }, { filter: 'brightness(0.5) saturate(0.85)', scale: 1, yPercent: 0, ease: 'none',   // a daylight photograph, held well down (Alex)
     scrollTrigger: { trigger: fin, start: 'top bottom', end: 'bottom bottom', scrub: true } });
 
+  // Miami: the car drives through the frame — in from the left as the section arrives, on to the right as it leaves
+  const miamiImg = document.querySelector('#miami [data-scene-media] img');
+  if (miamiImg) {
+    gsap.fromTo(miamiImg, { xPercent: -8 }, { xPercent: 0, ease: 'none', scrollTrigger: { trigger: '#miami', start: 'top bottom', end: 'top top', scrub: true } });
+    gsap.fromTo(miamiImg, { xPercent: 0 }, { xPercent: 7, ease: 'none', immediateRender: false, scrollTrigger: { trigger: '#miami', start: 'top top', end: 'bottom top', scrub: true } });
+  }
+
   // ---------- scenes: the photograph settles as it arrives, drifts as it leaves ----------
   // Horacio's signature is written in: strokes in pen order (left to right), each outline traced by the nib, then the ink settles into it
   const sign = document.querySelector('[data-sign]');
