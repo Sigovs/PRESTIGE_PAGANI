@@ -212,6 +212,13 @@ ol, ul { list-style: none; }
 @media (min-width: 768px) {
   #about .scene__type { width: min(25vw, 380px); top: calc(var(--hdr-h) + 6svh); }
 }
+/* the boy's models stand behind the man: a dark, slow plane under the cutout; feathered top and bottom into the ground, held back under the type */
+.about__bg { position: absolute; inset: -8% 0; z-index: -2; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.35) 10%, #000 26%, #000 70%, rgb(0 0 0 / 0.35) 88%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.35) 10%, #000 26%, #000 70%, rgb(0 0 0 / 0.35) 88%, transparent 100%); }
+.about__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; filter: brightness(0.22) saturate(0.4) contrast(1.05); will-change: transform; }
+.about__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, rgb(19 20 23 / 0) 35%, rgb(19 20 23 / 0.7) 62%, rgb(19 20 23 / 0.9) 100%); }   /* the type's side stays quiet */
+@media (max-width: 767px) { .about__bg img { object-position: 70% 40%; } .about__bg::after { background: linear-gradient(to top, rgb(19 20 23 / 0.97) 0%, rgb(19 20 23 / 0.85) 50%, rgb(19 20 23 / 0.3) 75%, rgb(19 20 23 / 0) 90%); } }
 #about { background: #131417; --scrim: linear-gradient(to top, #131417 0%, rgb(19 20 23 / 0) 22%); }   /* Horacio alone on our ground (cutout); only the cut foot of the jacket is softened */
 @media (min-width: 768px) { #about .scene__media { transform: translateY(10%); } }   /* the portrait sits 10% lower (Alex); the cutout's ground is the section's, so nothing shows at the edge */
 /* SERVICE — Alex's film opens from a window to the whole screen as the section arrives; the type stands on its left third */

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400&family=Roboto:wght@200;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/lenis.css">
-<link rel="stylesheet" href="home.css?v=28">
+<link rel="stylesheet" href="home.css?v=29">
 <link rel="preload" as="image" href="assets/hero2-poster.jpg">
 </head>
 <body>
@@ -51,7 +51,7 @@
   <section class="sc hero" data-act="hero" aria-labelledby="hero-title">
     <div class="hero__film">
       <video class="hero__video" data-hero-video muted loop playsinline preload="auto" poster="assets/hero2-poster.jpg" aria-label="A Pagani Huayra prepared, loaded and flown from Italy to North America">
-        <source src="assets/hero2.mp4?v=28" type="video/mp4">
+        <source src="assets/hero2.mp4?v=29" type="video/mp4">
       </video>
       <img class="hero__still" src="assets/hero2-still.jpg" alt="The Pagani oval badge in close-up, inside a Huayra" data-hero-still>
     </div>
@@ -153,7 +153,8 @@
 
   <!-- 5 · ABOUT — Horacio -->
   <section class="sc scene scene--mono" id="about" data-scene data-side="right" aria-labelledby="about-title">
-    <div class="scene__media" data-scene-media><img src="assets/gen-about-horacio-cutout.webp?v=28" alt="Horacio Pagani, in profile, lit warm against the dark" loading="lazy" width="2400" height="1597">   <!-- Pagani press photo (Utopia premiere, Sep 2022), background removed with fal birefnet — see assets/gen-about-horacio-cutout.txt --></div>
+    <div class="about__bg" aria-hidden="true" data-about-bg><img src="assets/about-boyhood-models-1967.webp" alt="" loading="lazy" width="1024" height="577"></div>   <!-- the model cars Horacio built as a boy, 1967 — pagani.com History, /app/uploads/2016/12/1967.jpg (Alex chose B, 1 Oct 2026) -->
+    <div class="scene__media" data-scene-media><img src="assets/gen-about-horacio-cutout.webp?v=29" alt="Horacio Pagani, in profile, lit warm against the dark" loading="lazy" width="2400" height="1597">   <!-- Pagani press photo (Utopia premiere, Sep 2022), background removed with fal birefnet — see assets/gen-about-horacio-cutout.txt --></div>
     <div class="scene__type">
       <p class="eyebrow" data-rise>Horacio Pagani</p>
       <h2 id="about-title" class="title" data-rise>The boy who wanted to create the most beautiful car in the world.</h2>
@@ -223,6 +224,6 @@
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script src="vendor/lenis.min.js"></script>
 <script src="assets/cars.js"></script>
-<script src="home.js?v=28"></script>
+<script src="home.js?v=29"></script>
 </body>
 </html>

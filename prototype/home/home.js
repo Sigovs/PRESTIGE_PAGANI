@@ -272,6 +272,14 @@
     ScrollTrigger.create({ trigger: sign, start: 'top 85%', once: true, onEnter: () => pen.play() });
   }
 
+  // About: the boyhood models are the slowest plane — they settle as the section arrives and drift less than the man in front of them
+  const aboutBg = document.querySelector('[data-about-bg] img');
+  if (aboutBg) {
+    const travel = mqMobile.matches ? 3 : 6;
+    gsap.fromTo(aboutBg, { scale: 1.14, yPercent: -travel, filter: 'brightness(0.08) saturate(0.4) contrast(1.05)' }, { scale: 1.04, yPercent: 0, filter: 'brightness(0.22) saturate(0.4) contrast(1.05)', ease: 'none',
+      scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'top top', scrub: true } });
+    gsap.to(aboutBg, { yPercent: travel, ease: 'none', scrollTrigger: { trigger: '#about', start: 'top top', end: 'bottom top', scrub: true } });
+  }
   gsap.utils.toArray('[data-scene]').forEach((sec) => {
     const img = sec.querySelector('[data-scene-media] img');
     gsap.fromTo(img, { scale: 1.16, yPercent: -4, filter: 'brightness(0.35)' }, { scale: 1, yPercent: 0, filter: 'brightness(1)', ease: 'none',

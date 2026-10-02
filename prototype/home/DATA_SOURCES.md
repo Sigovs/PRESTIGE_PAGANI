@@ -45,3 +45,5 @@ Finale image (1 Oct 2026, Alex's choice): IMAGES ALEX/FAVORITE IMAGES/slide1-car
 ## About — Horacio portrait (1 Oct 2026)
 `assets/about-horacio-piano.webp` (2400 px) from Pagani press: Horacio Pagani at a Fazioli piano, Utopia world premiere, Teatro Lirico, Sep 2022 — https://www.pagani.com/app/uploads/2022/09/Lirico_03.jpg (research/press-images/MANIFEST.md). Replaces `assets/about.webp` (B/W at the wheel, taken from the Pagani of Chicago site). Sepia filter dropped; the photo is used in its own colour.
 Then (same day, Alex): background removed — `assets/gen-about-horacio-cutout.webp`, Horacio alone on #131417. Edit only (fal birefnet), nothing generated; sidecar `assets/gen-about-horacio-cutout.txt`.
+
+`assets/about-boyhood-models-1967.webp` (1024 px, the source maximum): the model cars Horacio Pagani built as a boy, 1967 — pagani.com History, https://www.pagani.com/app/uploads/2016/12/1967.jpg (fetched 1 Oct 2026). Background plane under the cutout, darkened and desaturated in CSS; Alex chose it (option B) over the San Cesario factory and the Zonda C12.
