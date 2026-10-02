@@ -1,5 +1,5 @@
 /* Pagani of Miami — home prototype motion.
-   One stage (pinned, scroll-driven, soft rest). Every other scene floats in: photographs settle as the
+   One stage: the models change by hand (arrows, cards, keys, swipe), not by scroll (Alex, 2 Oct 2026). Every other scene floats in: photographs settle as the
    section arrives and drift as it leaves; type rises in order. Everything is bound to roles, and the page is
    complete with no script (content is only hidden by the script itself, at the moment it animates). */
 (() => {
@@ -40,12 +40,26 @@
     railList.appendChild(li);
     return b;
   });
-  const setCurrent = (r) => railBtns.forEach((b, k) => {
+  let curModel = 0;
+  const setCurrent = (r) => { curModel = r; railBtns.forEach((b, k) => {
     const on = k === r;
     b.setAttribute('aria-current', String(on));
     b.parentElement.classList.toggle('is-current', on);
     b.parentElement.querySelector('.row__more').tabIndex = on ? 0 : -1;
+  }); };
+  // arrows, keys and swipe all step through the same list, round and round
+  const step = (d) => window.gotoModel((curModel + d + N) % N);
+  stage.querySelector('[data-stage-prev]').addEventListener('click', (e) => { if (e.detail) e.currentTarget.blur(); step(-1); });
+  stage.querySelector('[data-stage-next]').addEventListener('click', (e) => { if (e.detail) e.currentTarget.blur(); step(1); });
+  addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    const r = stage.getBoundingClientRect();
+    if (r.top > innerHeight * 0.5 || r.bottom < innerHeight * 0.5 || e.target.closest('input, textarea, select')) return;
+    e.preventDefault(); step(e.key === 'ArrowRight' ? 1 : -1);
   });
+  let sx = null;
+  inner.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
+  inner.addEventListener('touchend', (e) => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 50 && !e.target.closest('.row')) step(dx < 0 ? 1 : -1); });
 
   // ---------- stage geometry: the car stands on the concept's floor line; the next one waits off-screen right ----------
   const G = { vw: 0, vh: 0, floor: 0, pin: 0, H: 0, T: 0, U: 0, cars: [] };
@@ -191,12 +205,15 @@
   layout();
   gsap.set(rec.parts, { autoAlpha: 0 });
 
-  const st = ScrollTrigger.create({
-    trigger: stage, start: 'top top', end: () => `+=${G.pin}`, pin: inner, pinSpacing: true,
-    invalidateOnRefresh: true,
-    onUpdate: (self) => frame(self.progress),
-    onRefresh: (self) => frame(self.progress),
-  });
+  // no pin, no scroll-driven change: the first model stands; its logotype rises in when the stage arrives
+  function show(i) {
+    const r = ((i % N) + N) % N;
+    if (r !== carCur) swapCar(r);
+    if (r !== railCur) { railCur = r; setCurrent(r); if (mqMobile.matches) railList.parentElement.scrollTo({ left: railBtns[r].parentElement.offsetLeft - 24, behavior: 'smooth' }); }
+    if (seen) setRecord(r);
+  }
+  let seen = false;
+  ScrollTrigger.create({ trigger: stage, start: 'top 60%', once: true, onEnter: () => { seen = true; setRecord(curModel); } });
   // ---------- 6 · Service: the film opens from a window to the whole screen as the section rises; it plays only on screen ----------
   const svcFilm = document.querySelector('[data-svc-film]');
   const svcVid = svcFilm.querySelector('video');
@@ -211,7 +228,7 @@
   ScrollTrigger.create({ trigger: svc, start: 'top top', end: () => `+=${innerHeight}`, pin: true, pinSpacing: false, anticipatePin: 1 });
   gsap.fromTo(svc, { '--dim': 0 }, { '--dim': 0.88, ease: 'none', scrollTrigger: { trigger: svcNext, start: 'top bottom', end: 'top top', scrub: true } });
 
-  window.__home = () => ({ p: +p.toFixed(4), car: +(cFromP(p) + 1).toFixed(3), record: want + 1, mode, y: Math.round(lenis.scroll) });
+  window.__home = () => ({ car: curModel + 1, record: want + 1, mode, y: Math.round(lenis.scroll) });
 
   // ---------- 1 · hero: the film loops (Alex, 1 Oct 2026); the type climbs in on intro ----------
   const hero = document.querySelector('.hero');
@@ -357,15 +374,11 @@
     mode = kind;
     lenis.scrollTo(y, { duration, easing: easeInOut, lock: false, force: true, onComplete: () => { mode = 'user'; } });
   }
-  function gotoModel(i) {
-    const y = st.start + holdCenter(i) * G.pin;
-    glide(y, Math.min(Math.max(0.9 + (Math.abs(y - lenis.scroll) / G.vh) * 0.3, 0.9), 2.2), 'nav');
-  }
-  window.gotoModel = gotoModel;
+  window.gotoModel = show;
   wire({ go: (sel) => {
     const el = document.querySelector(sel);
     if (!el) return;
-    const y = sel === '#lineup' ? st.start : el.getBoundingClientRect().top + lenis.scroll;
+    const y = el.getBoundingClientRect().top + lenis.scroll;
     glide(y, Math.min(Math.max(1 + (Math.abs(y - lenis.scroll) / G.vh) * 0.12, 1), 2.6), 'nav');
   } });
   const cancel = () => { mode = 'user'; clearTimeout(idle); };
@@ -374,26 +387,9 @@
     if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ', 'Home', 'End'].includes(e.key) && mode !== 'user') { lenis.scrollTo(lenis.scroll, { immediate: true, force: true }); cancel(); }
   });
 
-  // ---------- soft rest: inside the stage only, after the user stops, never back into it ----------
-  if (SNAP) lenis.on('scroll', () => { if (mode !== 'user') return; clearTimeout(idle); idle = setTimeout(rest, num('snapdelay', 220)); });
-  function rest() {
-    if (mode !== 'user') return;
-    if (Math.abs(lenis.velocity) > 0.05) { idle = setTimeout(rest, 60); return; }
-    const y = lenis.scroll;
-    const rel = y - st.start;
-    if (rel <= 0 || rel >= G.pin) return;
-    const c = cFromP(rel / G.pin);
-    if (c <= 0 || c >= N - 1 || Math.abs(c - Math.round(c)) < 1e-4) return;
-    const i = Math.floor(c);
-    const a = st.start + holdEnd(i) * G.pin;
-    const b = st.start + holdStart(i + 1) * G.pin;
-    const target = Math.abs(a - y) <= Math.abs(b - y) ? a : b;
-    glide(target, num('snapdur', 0.7) * (0.5 + Math.abs(target - y) / ((G.T / 100) * G.vh)), 'snap');
-  }
-
   let rz = 0;
   addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { layout(); ScrollTrigger.refresh(); }, 120); });
-  frame(0);
+  show(0);
 
   // ---------- menu + links ----------
   function wire(api) {

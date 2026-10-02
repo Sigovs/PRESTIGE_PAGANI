@@ -380,3 +380,14 @@ ol, ul { list-style: none; }
   #about .about__hang { height: 18svh; }
   #about .about__seams { background-size: 100% 16%, 100% 9%, 100% 4%, 100% 30%, 100% 18%, 100% 7%; }
 }
+
+/* the lineup's arrows: tall hairline chevrons, quiet at the sides, at the height of the car */
+.stage__arrow { position: absolute; top: calc(var(--floor-y, 62%) - 9%); z-index: 6; width: 56px; height: 72px; display: grid; place-items: center; padding: 0; background: none; border: 0; color: var(--ink); opacity: 0.55; cursor: pointer; transform: translateY(-50%); transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.stage__arrow svg { width: 14px; height: 28px; overflow: visible; }
+.stage__arrow--prev { left: calc(var(--gutter) - 18px); }
+.stage__arrow--next { right: calc(var(--gutter) - 18px); }
+.stage__arrow:hover, .stage__arrow:focus-visible { opacity: 1; }
+.stage__arrow--prev:hover { transform: translate(-6px, -50%); }
+.stage__arrow--next:hover { transform: translate(6px, -50%); }
+.stage__arrow:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+@media (max-width: 767px) { .stage__arrow { width: 44px; height: 56px; } .stage__arrow svg { width: 11px; height: 22px; } .stage__arrow--prev { left: 6px; } .stage__arrow--next { right: 6px; } }
