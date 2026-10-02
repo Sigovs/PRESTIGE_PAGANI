@@ -197,6 +197,14 @@
     onUpdate: (self) => frame(self.progress),
     onRefresh: (self) => frame(self.progress),
   });
+  // ---------- 6 · Service: the film opens from a window to the whole screen as the section rises; it plays only on screen ----------
+  const svcFilm = document.querySelector('[data-svc-film]');
+  const svcVid = svcFilm.querySelector('video');
+  const win = mqMobile.matches ? { x: 8, y: 16 } : { x: 22, y: 18 };
+  gsap.timeline({ scrollTrigger: { trigger: '#service', start: 'top bottom', end: 'top top', scrub: true } })
+    .fromTo(svcFilm, { '--win-x': `${win.x}%`, '--win-y': `${win.y}%`, '--win-r': '6px', '--shade': 0.35 }, { '--win-x': '0%', '--win-y': '0%', '--win-r': '0px', '--shade': 1, ease: 'none' }, 0)
+    .fromTo(svcVid, { scale: 1.3 }, { scale: 1, ease: 'none' }, 0);
+  ScrollTrigger.create({ trigger: '#service', start: 'top bottom', end: 'bottom top', onToggle: (self) => (self.isActive ? svcVid.play().catch(() => {}) : svcVid.pause()) });
   // ---------- 6 · Service stays: it pins for one screen and darkens where it stands, while the next section rises over it ----------
   const svc = document.getElementById('service');
   const svcNext = svc.nextElementSibling;
@@ -284,7 +292,7 @@
     const items = sec.querySelectorAll('[data-rise]');
     if (!items.length) return;
     gsap.from(items, { autoAlpha: 0, y: 42, duration: 1.3, ease: 'power3.out', stagger: 0.14,
-      scrollTrigger: { trigger: sec, start: 'top 55%', toggleActions: 'play none none reverse' } });
+      scrollTrigger: { trigger: sec, start: sec.id === 'service' ? 'top 15%' : 'top 55%', toggleActions: 'play none none reverse' } });   // service: the type waits for the film to open
   });
 
   // ---------- navigation ----------
