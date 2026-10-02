@@ -293,6 +293,8 @@
     const tl = gsap.timeline({ defaults: { ease: 'none' } });
     tl.fromTo(s2, { xPercent: 100 }, { xPercent: 0, duration: TH }, turns[0][0])
       .fromTo(s1, { xPercent: 0 }, { xPercent: -5, duration: TH }, turns[0][0])
+      // the Codalunga grows from a smaller size as it arrives and while it is looked at (Alex)
+      .fromTo(s2.querySelectorAll('.gcs__car, .gcs__shadow'), { scale: 0.74 }, { scale: 1, duration: TH + V * 0.9 }, turns[0][0] + TH * 0.35)
       .fromTo(s3, { yPercent: 100 }, { yPercent: 0, duration: TV }, turns[1][0])
       .fromTo(s4, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: TV }, turns[2][0])   // the Tricolore opens over the Epitome from the foot — the frame stays still, only the edge moves (Alex)
       .to({}, { duration: END }, turns[2][0] + TV);

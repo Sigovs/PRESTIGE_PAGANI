@@ -549,8 +549,8 @@ ol, ul { list-style: none; }
 .gcs__studio::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; pointer-events: none;
   background: linear-gradient(to bottom, rgb(150 160 176 / 0) 0%, rgb(150 160 176 / 0.18) 22%, rgb(120 130 148 / 0.32) 100%), radial-gradient(ellipse 45% 60% at 58% 0%, rgb(255 255 255 / 0.55), rgb(255 255 255 / 0) 70%); }   /* the floor */
 .gcs__studio::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 85% 95% at 60% 45%, rgb(0 0 0 / 0) 55%, rgb(40 46 58 / 0.22) 100%); }   /* a quiet vignette */
-.gcs__car { position: absolute; z-index: 1; right: calc(var(--gutter) + 15vw); bottom: 17%; width: min(42vw, 100svh); height: auto; filter: drop-shadow(0 30px 40px rgb(30 36 48 / 0.18)); }
-.gcs__shadow { position: absolute; z-index: 1; right: calc(var(--gutter) + 15vw + min(42vw, 100svh) * 0.13); bottom: calc(17% - 2.2%); width: calc(min(42vw, 100svh) * 0.74); height: 5.5%; border-radius: 50%;
+.gcs__car { position: absolute; z-index: 1; right: calc(var(--gutter) + 13vw); bottom: 15%; width: min(47vw, 112svh); transform-origin: 50% 100%; height: auto; filter: drop-shadow(0 30px 40px rgb(30 36 48 / 0.18)); }
+.gcs__shadow { position: absolute; z-index: 1; right: calc(var(--gutter) + 13vw + min(47vw, 112svh) * 0.13); bottom: calc(15% - 2.2%); width: calc(min(47vw, 112svh) * 0.74); transform-origin: 50% 50%; height: 5.5%; border-radius: 50%;
   background: radial-gradient(ellipse 50% 50% at 50% 50%, rgb(20 24 32 / 0.55) 0%, rgb(20 24 32 / 0.22) 45%, rgb(20 24 32 / 0) 75%); filter: blur(6px); }
 .gcs--light .gcs__media { inset: 0; }
 @media (max-width: 767px) {
