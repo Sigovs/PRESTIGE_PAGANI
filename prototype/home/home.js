@@ -429,6 +429,8 @@
 
   // ---------- enquiry: checked in place; the prototype says plainly that it is not connected ----------
   const enq = document.querySelector('[data-enq]');
+  const enqSel = document.querySelector('[data-enq-select]');
+  if (enqSel) enqSel.addEventListener('change', () => enqSel.classList.toggle('is-filled', !!enqSel.value));
   if (enq) enq.addEventListener('submit', (e) => {
     e.preventDefault();
     const note = enq.querySelector('[data-enq-note]');

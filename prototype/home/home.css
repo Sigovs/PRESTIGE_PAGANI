@@ -568,3 +568,26 @@ ol, ul { list-style: none; }
 /* Tricolore film: a tall double gradient from the foot (Alex) — also quiets the burned-in captions */
 .gcs--dusk .gcs__media::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background: linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 55% no-repeat, linear-gradient(to bottom, rgb(19 20 23 / 0) 0%, rgb(19 20 23 / 0.15) 30%, rgb(19 20 23 / 0.45) 60%, rgb(19 20 23 / 0.8) 85%, #131417 100%) bottom / 100% 26% no-repeat; }
+/* enquiry fields (Alex's frame): a light tracked label over a hairline; on hover and focus a quiet panel rises from the foot to fill the field */
+.enq__f { overflow: hidden; }
+.enq__f::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: rgb(255 255 255 / 0.055); transform: scaleY(0); transform-origin: 50% 100%; transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
+.enq__f:hover::before, .enq__f:focus-within::before { transform: scaleY(1); }
+.enq__f input, .enq__f select, .enq__f textarea { position: relative; z-index: 1; padding: 30px 18px 14px; border-bottom: 2px solid rgb(255 255 255 / 0.14); font-weight: 300; }
+.enq__f span { z-index: 1; left: 18px; top: 30px; font-size: var(--t-18); font-weight: 300; letter-spacing: 0.16em; color: var(--ink); opacity: 0.9; transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s, font-size 0.4s; }
+.enq__f input:focus ~ span, .enq__f input:not(:placeholder-shown) ~ span, .enq__f textarea:focus ~ span, .enq__f textarea:not(:placeholder-shown) ~ span, .enq__f select ~ span { transform: translateY(-20px) scale(0.72); opacity: 0.7; }
+.enq__f select { background-position: right 18px center; }
+.enq__f input:focus-visible, .enq__f select:focus-visible, .enq__f textarea:focus-visible { box-shadow: none; border-bottom-color: var(--ink); }
+.enq__grid { gap: var(--s-4) var(--s-5); }
+/* Interest: nothing preselected — the label sits in the field until a choice is made (Alex) */
+.enq__f select ~ span { transform: none; opacity: 0.9; }
+.enq__f select.is-filled ~ span, .enq__f select:focus ~ span { transform: translateY(-20px) scale(0.72); opacity: 0.7; }
+.enq__f select:not(.is-filled) { color: transparent; }
+.enq__f select:not(.is-filled) option { color: #fff; }
+/* fields, tidied (Alex): the panel ends exactly on the hairline (no overhang), and the words sit at the field's vertical centre */
+.enq__f input, .enq__f select, .enq__f textarea { display: block; margin: 0; padding: 20px 18px; line-height: 1.4; min-height: 0; vertical-align: top; }
+.enq__f textarea { height: calc(1.4em + 40px + 2px); overflow: hidden; }
+.enq__f span { top: 50%; transform: translateY(-50%); transform-origin: left center; }
+.enq__f input:focus ~ span, .enq__f input:not(:placeholder-shown) ~ span, .enq__f textarea:focus ~ span, .enq__f textarea:not(:placeholder-shown) ~ span,
+.enq__f select.is-filled ~ span, .enq__f select:focus ~ span { transform: translateY(calc(-50% - 22px)) scale(0.72); opacity: 0.7; }
+.enq__f input:focus, .enq__f input:not(:placeholder-shown), .enq__f textarea:focus, .enq__f textarea:not(:placeholder-shown), .enq__f select.is-filled { padding-top: 27px; padding-bottom: 13px; }   /* with a raised label, the value drops just below it */
+.enq__f select ~ span { opacity: 0.9; }
