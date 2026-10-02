@@ -213,7 +213,7 @@ ol, ul { list-style: none; }
   #about .scene__type { width: min(25vw, 380px); top: calc(var(--hdr-h) + 6svh); }
 }
 /* the boy's models stand behind the man: a dark, slow plane under the cutout; feathered top and bottom into the ground, held back under the type */
-.about__bg { position: absolute; inset: -18% 0; z-index: -2; overflow: hidden;
+.about__bg { position: absolute; inset: -18% -3%; z-index: -2; overflow: hidden;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.35) 20%, #000 32%, #000 68%, rgb(0 0 0 / 0.35) 80%, transparent 100%);
           mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / 0.35) 20%, #000 32%, #000 68%, rgb(0 0 0 / 0.35) 80%, transparent 100%); }
 .about__shot { position: absolute; max-width: none; will-change: transform, opacity; opacity: 0; }

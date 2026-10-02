@@ -285,6 +285,10 @@
     hold.fromTo(s, { scale: 1.12 }, { scale: 1, duration: 1.2, ease: 'none' }, Math.max(0, i - 0.35));
     if (i) hold.to(shots[i - 1], { autoAlpha: 0, duration: 0.45, ease: 'none' }, i - 0.35).fromTo(s, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.45, ease: 'none' }, i - 0.35);
   });
+  // while it holds, the man drifts left to right and the pictures slide the other way: depth sideways
+  const span = shots.length - 1 + 0.85;
+  hold.fromTo(aboutMan, { xPercent: -4 * k }, { xPercent: 5 * k, duration: span, ease: 'none' }, 0)
+    .fromTo(aboutWrap, { xPercent: 2 * k }, { xPercent: -2 * k, duration: span, ease: 'none' }, 0);
   const holdST = hold.scrollTrigger;
   gsap.fromTo(aboutWrap, { yPercent: -14 * k }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: aboutSec, start: 'top bottom', end: 'top top', scrub: true } });
   gsap.fromTo(aboutMan, { y: 140 * k }, { y: 0, ease: 'none', scrollTrigger: { trigger: aboutSec, start: 'top bottom', end: 'top top', scrub: true } });
