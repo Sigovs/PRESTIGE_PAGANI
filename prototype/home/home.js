@@ -253,7 +253,7 @@
   const gVideo = (sc) => sc.querySelector('[data-gcs-video]');
   let gState = -2, gcxIn = false;
   const hdrEl = document.querySelector('.hdr');
-  const hdrLight = (on) => hdrEl.classList.toggle('is-light', !!on);
+  const hdrLight = () => hdrEl.classList.remove('is-light');   // the header stays dark everywhere (Alex)
   const gSet = (active, shown) => {   // active chapter; shown = its words are allowed (the turn is ~85% done)
     const key = active * 2 + (shown ? 1 : 0);
     if (key === gState) return; gState = key;

@@ -596,3 +596,14 @@ ol, ul { list-style: none; }
 .row__item.is-current .row__card { border-radius: 10px 0 0 10px; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1), inset 1px 0 0 rgb(255 255 255 / 0.05), inset 0 -1px 0 rgb(255 255 255 / 0.05); }
 .row__item.is-current .row__panel { margin-left: 0; border-radius: 0 10px 10px 0; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1), inset -1px 0 0 rgb(255 255 255 / 0.05), inset 0 -1px 0 rgb(255 255 255 / 0.05); }
 .row__card, .row__panel { transition: background-color 0.6s ease, border-radius 0.4s ease, width 1.1s var(--ease), visibility 0s; }
+/* seamless lineup → GC (Alex): the lineup's photograph melts into the page ground at its foot; GC sits on the same ground */
+.stage__bg { -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, rgb(0 0 0 / 0.55) 80%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 62%, rgb(0 0 0 / 0.55) 80%, transparent 100%); }
+.gcx, .gcs { background-color: #131417; }
+/* no light header anywhere (Alex) */
+.hdr.is-light { color: inherit; }
+.hdr.is-light::before { opacity: 1; }
+.hdr.is-light::after { opacity: 0; }
+.hdr.is-light .hdr__mark, .hdr.is-light .hdr__dealer { filter: none; }
+.hdr.is-light .hdr__tel { border-color: #424243; color: inherit; }
+.hdr.is-light .hdr__menu { color: var(--ink); }
+.hdr.is-light .hdr__menu i::before, .hdr.is-light .hdr__menu i::after, .hdr.is-light .hdr__menu i span { background: currentColor; }
