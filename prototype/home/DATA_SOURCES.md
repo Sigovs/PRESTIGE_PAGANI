@@ -104,3 +104,5 @@ GC, final selection (Alex, 2 Oct 2026: expressive photographs with architecture,
 Under each photograph: the model's story (pagani.com model pages, shortened) + Explore; the three figures are gone (they live in the lineup).
 
 GC models fixed by Alex (2 Oct 2026): Codalunga Speedster, Huayra Codalunga, Huayra Epitome, Huayra Tricolore — the Imola is out again. Pagani has no location photography of the Epitome (pagani.com and its press kit are studio only; its Goodwood 2024 debut photos belong to Goodwood), so its spread uses the studio profile, `book-huayra-epitome.webp`, a straight 2:1 crop with the whole car and air. Story: pagani.com /huayra-epitome/ ("a one-off … the first Huayra equipped with a manual transmission … the client came to us with clear ideas").
+
+Epitome spread, option 2 (Alex, 2 Oct 2026): pagani.com /app/uploads/2024/03/Pagani-Huayra-Epitome_2-2_3-4_Anteriore_Portiera-guidatore-aperta.jpg (8048 px, found in the Goodwood 2024 press release), front 3/4 with the driver's door raised, used whole at its own 3:2. The frame narrows from 2:1 to 3:2 for this spread and opens again for the Tricolore.

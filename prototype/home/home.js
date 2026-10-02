@@ -261,12 +261,20 @@
   const gHold = gsap.timeline({ defaults: { ease: 'none' }, scrollTrigger: { trigger: gcx, start: 'top top', end: () => `+=${innerHeight * (GN - 1) * 0.85}`, pin: true, scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true,
     onUpdate: (self) => gMark(Math.min(GN - 1, Math.round(self.progress * (GN - 1 + 0.35) - 0.05))) } });
   // the turn: the next photograph opens from the foot over a still one; the words change with a short, plain cross-fade (Alex)
+  const gAR = [2, 2, 1.5, 2];   // the Epitome's photograph is 3:2: the frame narrows for it and opens again after
   for (let i = 1; i < GN; i++) {
     const at = i - 1 + 0.25;
     gHold.fromTo(gPhotos[i], { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.5, ease: 'power1.inOut' }, at)
       .to([gLogos[i - 1], gNotes[i - 1]], { autoAlpha: 0, duration: 0.12 }, at + 0.16)
       .fromTo([gLogos[i], gNotes[i]], { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.12, immediateRender: false }, at + 0.28);
   }
+  // the frame's proportion follows the playhead (computed, not tweened, so it is right in both directions)
+  const gEase = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+  gHold.eventCallback('onUpdate', () => {
+    const t = gHold.time(); let ar = gAR[0];
+    for (let i = 1; i < GN; i++) { const a = i - 1 + 0.25, k = Math.min(Math.max((t - a) / 0.5, 0), 1); if (k > 0) ar = gAR[i - 1] + (gAR[i] - gAR[i - 1]) * gEase(k); }
+    gcx.style.setProperty('--ar', ar.toFixed(4));
+  });
   gHold.to({}, { duration: 0.35 });   // the last spread rests before the page moves on
 
   // ---------- 8 · finale: the car comes up out of the dark as the page reaches its end ----------
