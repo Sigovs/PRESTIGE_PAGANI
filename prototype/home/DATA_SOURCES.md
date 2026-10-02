@@ -47,3 +47,5 @@ Finale image (1 Oct 2026, Alex's choice): IMAGES ALEX/FAVORITE IMAGES/slide1-car
 Then (same day, Alex): background removed — `assets/gen-about-horacio-cutout.webp`, Horacio alone on #131417. Edit only (fal birefnet), nothing generated; sidecar `assets/gen-about-horacio-cutout.txt`.
 
 `assets/about-boyhood-models-1967.webp` (1024 px, the source maximum): the model cars Horacio Pagani built as a boy, 1967 — pagani.com History, https://www.pagani.com/app/uploads/2016/12/1967.jpg (fetched 1 Oct 2026). Background plane under the cutout, darkened and desaturated in CSS; Alex chose it (option B) over the San Cesario factory and the Zonda C12.
+
+`assets/about-san-cesario.webp` (2400 px): silver Zonda before the San Cesario factory arches — pagani.com Rinascimento, https://www.pagani.com/app/uploads/2022/02/DSC_7227.jpg. Replaces the 1967 models (Alex: "plohoi background", 2 Oct 2026).

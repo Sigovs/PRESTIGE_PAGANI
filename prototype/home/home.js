@@ -272,13 +272,15 @@
     ScrollTrigger.create({ trigger: sign, start: 'top 85%', once: true, onEnter: () => pen.play() });
   }
 
-  // About: the boyhood models are the slowest plane — they settle as the section arrives and drift less than the man in front of them
+  // About: three planes at three speeds. The factory lags far behind the page, Horacio rises against it, the type scrolls as the page does.
   const aboutBg = document.querySelector('[data-about-bg] img');
+  const aboutMan = document.querySelector('#about [data-scene-media]');
   if (aboutBg) {
-    const travel = mqMobile.matches ? 3 : 6;
-    gsap.fromTo(aboutBg, { scale: 1.14, yPercent: -travel, filter: 'brightness(0.08) saturate(0.4) contrast(1.05)' }, { scale: 1.04, yPercent: 0, filter: 'brightness(0.22) saturate(0.4) contrast(1.05)', ease: 'none',
-      scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'top top', scrub: true } });
-    gsap.to(aboutBg, { yPercent: travel, ease: 'none', scrollTrigger: { trigger: '#about', start: 'top top', end: 'bottom top', scrub: true } });
+    const k = mqMobile.matches ? 0.5 : 1;
+    gsap.fromTo(aboutBg, { yPercent: -26 * k, scale: 1.15 }, { yPercent: 26 * k, scale: 1, ease: 'none',
+      scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: true } });
+    gsap.fromTo(aboutMan, { y: () => 140 * k }, { y: () => -140 * k, ease: 'none', immediateRender: true,
+      scrollTrigger: { trigger: '#about', start: 'top bottom', end: 'bottom top', scrub: true, invalidateOnRefresh: true } });
   }
   gsap.utils.toArray('[data-scene]').forEach((sec) => {
     const img = sec.querySelector('[data-scene-media] img');
