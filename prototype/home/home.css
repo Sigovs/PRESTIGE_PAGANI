@@ -210,7 +210,7 @@ ol, ul { list-style: none; }
 .about__sign { width: clamp(220px, 21vw, 400px); height: auto; margin-top: var(--s-5); overflow: visible; fill: var(--ink); }
 .about__sign path { stroke: var(--ink); stroke-width: 0.6; }
 @media (min-width: 768px) {
-  #about .scene__type { width: min(25vw, 380px); top: 50%; transform: translateY(-50%); }   /* the text block at the exact vertical centre (Alex) */
+  #about .scene__type { width: min(32vw, 540px); top: calc(50% - clamp(44px, 6.25svh, 62px)); transform: translateY(-50%); }   /* centred in the field above the chapter bar (Alex) */
 }
 /* the boy's models stand behind the man: a dark, slow plane under the cutout; feathered top and bottom into the ground, held back under the type */
 .about__bg { position: absolute; inset: -18% -3%; z-index: -2; overflow: hidden;
@@ -221,14 +221,23 @@ ol, ul { list-style: none; }
 .about__shot--wide { left: 0; top: 50%; width: 100%; height: auto; transform: translateY(-50%); filter: brightness(0.62) saturate(0.85); }   /* at its own proportion, full width: the car keeps its air on both sides */
 .about__shot--fill { inset: 18% 0; width: 100%; height: 64%; object-fit: cover; object-position: 62% 55%; filter: brightness(0.5) saturate(0.9); }   /* each chapter's picture fills the screen */
 .about__shot--old { filter: brightness(0.36) saturate(0.35) sepia(0.25); object-position: 70% 40%; }   /* the archive photographs: held back, a little warm */
-/* the chapters: one line at a time, under a counter */
-.about__ch { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--rule); width: 100%; }
-.about__count { font-size: var(--t-14); letter-spacing: var(--track-sm); color: var(--ink-70); font-variant-numeric: tabular-nums; display: flex; }
-.about__n { display: inline-block; color: var(--ink); min-width: 2ch; }
-.about__lines { list-style: none; margin: var(--s-3) 0 0; padding: 0; display: grid; }
-.about__lines li { grid-area: 1 / 1; font-size: var(--t-18); line-height: 1.55; color: var(--ink-70); max-width: 34ch; }
+/* About in Alex's frame: a large headline in sentence case (the site's own face only — Alex), and the chapter bar along the foot */
+#about .title { font-family: var(--font-brand); font-weight: 400; font-size: clamp(2.125rem, 3.1vw, 3.5rem); line-height: 1.08; letter-spacing: -0.01em; text-transform: none; text-wrap: balance; }
+#about .lede { max-width: none; }
+#about .about__sign { width: clamp(240px, 22.5vw, 420px); margin-top: var(--s-6); }
+.about__bar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; height: clamp(88px, 12.5svh, 124px); display: grid; grid-template-columns: auto 1fr; align-items: center; padding: 0 var(--gutter); border-top: 1px solid var(--rule); background: linear-gradient(to top, rgb(19 20 23 / 0.85), rgb(19 20 23 / 0.55)); }
+.about__count { font-size: var(--t-14); letter-spacing: var(--track-sm); color: var(--ink-70); font-variant-numeric: tabular-nums; padding-right: clamp(32px, 4vw, 64px); margin-right: clamp(32px, 4vw, 64px); border-right: 1px solid var(--rule-strong); line-height: 2.2; }
+.about__n { display: inline-block; color: var(--ink); }
+.about__lines { list-style: none; margin: 0; padding: 0; display: grid; }
+.about__lines li { grid-area: 1 / 1; display: flex; align-items: center; }
 .about__lines li + li { visibility: hidden; opacity: 0; }   /* the static state: the first chapter */
-.about__year { display: block; margin-bottom: var(--s-2); font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--silver); }
+.about__year { font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); white-space: nowrap; padding-right: clamp(32px, 4vw, 64px); margin-right: clamp(32px, 4vw, 64px); border-right: 1px solid var(--rule-strong); line-height: 2.2; }
+.about__line { font-size: var(--t-18); color: var(--ink); opacity: 0.88; }
+@media (max-width: 767px) {
+  .about__bar { height: auto; padding: var(--s-4) var(--gutter) var(--s-5); grid-template-columns: 1fr; gap: var(--s-2); }
+  .about__count, .about__year { border: 0; padding: 0; margin: 0; line-height: 1.6; }
+  .about__lines li { display: grid; gap: var(--s-1); }
+}
 @media (max-width: 767px) { .about__shot--wide { width: 260%; left: -95%; top: 24%; } .about__shot--fill { object-position: 60% 50%; } }   /* phone: the cars ride above the type, behind his head */
 .about__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, rgb(19 20 23 / 0) 35%, rgb(19 20 23 / 0.7) 62%, rgb(19 20 23 / 0.9) 100%); }   /* the type's side stays quiet */
 @media (max-width: 767px) { .about__bg img { object-position: 70% 40%; } .about__bg::after { background: linear-gradient(to top, rgb(19 20 23 / 0.97) 0%, rgb(19 20 23 / 0.85) 50%, rgb(19 20 23 / 0.3) 75%, rgb(19 20 23 / 0) 90%); } }
@@ -367,7 +376,7 @@ ol, ul { list-style: none; }
   .split__media { position: relative; width: 100%; height: 56svh; }
   .split .scene__type { position: relative; inset: auto; transform: none; padding: var(--s-7) var(--gutter) var(--s-8); }
   .foot { flex-direction: column; align-items: flex-start; text-align: left; }
-  #about .scene__type { width: auto; }
+  #about .scene__type { width: auto; bottom: 168px; }   /* clear of the chapter bar */
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -391,3 +400,8 @@ ol, ul { list-style: none; }
 .stage__arrow--next:hover { transform: translate(6px, -50%); }
 .stage__arrow:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 @media (max-width: 767px) { .stage__arrow { width: 44px; height: 56px; } .stage__arrow svg { width: 11px; height: 22px; } .stage__arrow--prev { left: 6px; } .stage__arrow--next { right: 6px; } }
+@media (max-width: 767px) {   /* phone: the headline and signature smaller, so the face stays clear */
+  #about .title { font-size: 1.75rem; }
+  #about .about__sign { width: 190px; margin-top: var(--s-4); }
+  #about .scene__type { gap: var(--s-3); bottom: 156px; }
+}
