@@ -305,9 +305,10 @@
     function gChapter() {
       const t = tl.time();
       let k = 0; turns.forEach(([a], i) => { if (t >= a) k = i + 1; });   // the chapter whose turn has begun
-      if (k === 0) return gSet(0, introP > 0.88);
+      if (k === 0) { hdrLight(false); return gSet(0, introP > 0.88); }
       const [a, d] = turns[k - 1];
-      gSet(k, (t - a) / d >= (k === 1 ? 0.97 : 0.95));   // the old words leave as the turn begins; the new ones arrive near its end (the Codalunga's after its shrink)
+      gSet(k, (t - a) / d >= (k === 1 ? 0.97 : 0.95));
+      hdrLight(gcxIn && k === 1 && gScenes[1].classList.contains('gcs--light'));   // the light header only while the light scene holds the stage   // the old words leave as the turn begins; the new ones arrive near its end (the Codalunga's after its shrink)
     }
     gSet(0, false);
     const go = (k) => { const t = k === 0 ? V * 0.5 : turns[k - 1][0] + turns[k - 1][1] + 0.15; lenis.scrollTo(pinST.start + (t / LEN) * (pinST.end - pinST.start), { duration: 1.2 }); };
