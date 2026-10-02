@@ -62,3 +62,10 @@ About — variant B, four chapters (Alex, 2 Oct 2026). Texts shortened from paga
 - `assets/about-1983.webp` — the Lamborghini years, /app/uploads/2016/12/1983-1991.jpg
 - `assets/about-1999.webp` — Zonda C12 (Pagani press, Villa d'Este 2026 photo of a C12; the 1999 chapter is the C12's debut)
 The previous four backgrounds (Derecho, Epitome, exhaust, gearbox) stay in assets/ unused.
+
+About backgrounds, final for now (Alex, 2 Oct 2026: "archive is sweet but weak — fresh, sharp, the largest there are"). Chapter texts unchanged (pagani.com History). All Pagani press, exported at 3200 px from the originals in research/press-images (see MANIFEST.md):
+- `assets/about-ch1-r-evo.webp` — Huayra R Evo Roadster, dark concrete (8256 px original)
+- `assets/about-ch2-derecho.webp` — Huayra 70 Derecho front 3/4, dark studio (9550 px)
+- `assets/about-ch3-codalunga.webp` — Huayra Codalunga Speedster, dark hangar (9449 px)
+- `assets/about-ch4-zonda-c12.webp` — Zonda C12 S 7.0 at San Cesario (6000 px) — the 1999 chapter is the C12
+The archive pictures (1972/1979/1983/1999) are kept in research/about-sketch/ only.
