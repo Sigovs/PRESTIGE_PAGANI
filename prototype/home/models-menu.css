@@ -1,0 +1,38 @@
+/* Pagani of Miami — "Hypercars" drawer: every model, by family, as on pagani.com (Alex, 20 Oct 2026).
+   Families → models, Back and ✕; models with a page here open it, the rest open on pagani.com. */
+.mm {
+  position: fixed; inset: 0 0 0 auto; margin: 0; padding: 0; border: 0; color: var(--ink);
+  width: min(400px, 100vw); max-width: none; height: 100dvh; max-height: none; background: #050505;
+  transform: translateX(100%); visibility: hidden; transition: transform .7s cubic-bezier(.22, 1, .36, 1), visibility 0s linear .7s;
+}
+.mm.is-open { transform: none; visibility: visible; transition: transform .7s cubic-bezier(.22, 1, .36, 1), visibility 0s; }
+.mm::backdrop { background: rgb(0 0 0 / 0); transition: background .7s; }
+.mm.is-open::backdrop { background: rgb(0 0 0 / .55); }
+.mm__panel { height: 100%; display: grid; grid-template-rows: auto 1fr auto; }
+.mm__top { display: flex; justify-content: space-between; align-items: center; padding: var(--s-4) var(--s-5); min-height: 72px; }
+.mm__back, .mm__close { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; min-width: 44px; padding: 0; border: 0; background: none; color: var(--ink); cursor: pointer;
+  font-family: "Roboto", var(--font-brand); font-size: var(--t-14); letter-spacing: .24em; text-transform: uppercase; }
+.mm__back svg { width: 8px; height: 16px; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
+.mm__back:hover svg, .mm__back:focus-visible svg { transform: translateX(-5px); }
+.mm__close { margin-left: auto; justify-content: center; }
+.mm__close svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1; vector-effect: non-scaling-stroke; transition: transform .5s cubic-bezier(.22, 1, .36, 1); }
+.mm__close:hover svg, .mm__close:focus-visible svg { transform: rotate(90deg); }
+.mm__levels { position: relative; overflow: hidden; }
+.mm__level { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: var(--s-5) var(--s-5); overflow-y: auto;
+  opacity: 0; transform: translateX(28px); transition: opacity .5s cubic-bezier(.22, 1, .36, 1), transform .6s cubic-bezier(.22, 1, .36, 1); }
+.mm__level.is-on { opacity: 1; transform: none; }
+.mm__level.is-left { transform: translateX(-28px); }
+.mm__level[hidden] { display: flex; visibility: hidden; }
+.mm__h { margin-bottom: var(--s-5); font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); }
+.mm__list { display: grid; gap: 2px; text-align: center; list-style: none; margin: 0; padding: 0; }
+.mm__list a, .mm__list button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 40px; padding: 0 var(--s-3); border: 0; background: none; color: rgb(255 255 255 / .82);
+  font: inherit; font-size: 1rem; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: color .3s;
+}
+.mm__list a:hover, .mm__list a:focus-visible, .mm__list button:hover, .mm__list button:focus-visible { color: var(--ink); }
+.mm__list--fam a, .mm__list--fam button { font-size: 1.125rem; min-height: 48px; }
+.mm__n { font-size: 11px; letter-spacing: .1em; color: var(--ink-70); }
+.mm__ext { width: 9px; height: 9px; fill: none; stroke: currentColor; stroke-width: 1.2; opacity: .6; }
+.mm__foot { padding: var(--s-5); text-align: center; font-size: 12px; letter-spacing: .06em; color: var(--ink-70); border-top: 1px solid rgb(255 255 255 / .1); }
+@media (prefers-reduced-motion: reduce) { .mm, .mm.is-open, .mm::backdrop, .mm__level { transition: none; } }
+.mm__back[hidden] { display: none; }

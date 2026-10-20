@@ -2,8 +2,13 @@
 html:has(.mp-page) { overflow: hidden; }
 .mp-page { height: 100svh; overflow: hidden; background: var(--bg); }
 .mp__hdr { background: linear-gradient(180deg, rgb(19 20 23 / .9), rgb(19 20 23 / 0)); }
+.mp__hyper {
+  margin-left: auto; min-height: 44px; padding: 0; border: 0; background: none; cursor: pointer;
+  font-family: "Roboto", var(--font-brand); font-size: var(--t-14); letter-spacing: .24em; text-transform: uppercase; color: rgb(255 255 255 / .9); transition: color .5s;
+}
+.mp__hyper:hover, .mp__hyper:focus-visible { color: var(--ink); }
 .mp__back {
-  margin-left: auto; display: inline-flex; align-items: center; gap: 14px; min-height: 44px;
+  margin-left: 2.4vw; display: inline-flex; align-items: center; gap: 14px; min-height: 44px;
   font-family: "Roboto", var(--font-brand); font-size: var(--t-14); letter-spacing: .24em; text-transform: uppercase;
   color: rgb(255 255 255 / .9); text-decoration: none; transition: color .5s;
 }
@@ -15,38 +20,41 @@ html:has(.mp-page) { overflow: hidden; }
   padding: calc(clamp(var(--hdr-h), 7.8vw, 150px) + var(--s-2)) var(--gutter) var(--s-6);
   background: radial-gradient(60% 42% at 50% 62%, rgb(255 255 255 / .07), transparent 70%), var(--bg);
 }
-.mp__eyebrow { margin-bottom: var(--s-5); }
+.mp__eyebrow { margin-bottom: var(--s-6); }
 .mp__title { margin: 0; line-height: 0; }
-.mp__logo { width: auto; height: clamp(44px, 9svh, 96px); max-width: min(460px, 80vw); object-fit: contain; }
-.mp__car { margin: var(--s-5) 0 0; line-height: 0; }
-.mp__car img { display: block; width: auto; max-width: min(860px, 86vw); height: clamp(110px, calc(100svh - 600px), 340px); object-fit: contain; }
+.mp__logo { width: min(230px, 60vw); height: auto; max-height: 76px; object-fit: contain; }
+.mp__car { margin: var(--s-7) 0 0; line-height: 0; }
+.mp__car img { display: block; width: auto; max-width: min(720px, 80vw); height: clamp(100px, calc(100svh - 660px), 280px); object-fit: contain; }
 .mp__car--cut { position: relative; }
 .mp__car--cut::after { content: ""; position: absolute; left: 10%; right: 10%; bottom: -6px; height: 22px; background: radial-gradient(closest-side, rgb(0 0 0 / .65), transparent); z-index: -1; }
-.mp__car--scene img { object-fit: cover; aspect-ratio: 16 / 9; height: clamp(110px, calc(100svh - 600px), 320px); }
-.mp__specs { display: flex; gap: clamp(var(--s-5), 4vw, var(--s-8)); margin-top: var(--s-5); }
+.mp__car--scene img { object-fit: cover; aspect-ratio: 16 / 9; height: clamp(100px, calc(100svh - 660px), 260px); }
+.mp__specs { display: flex; gap: clamp(var(--s-6), 5vw, var(--s-9)); margin-top: var(--s-7); }
 .mp__specs div { display: grid; gap: 4px; }
 .mp__specs dd { margin: 0; font-family: "Roboto", var(--font-brand); font-weight: 200; font-size: clamp(1.25rem, 1.6vw, 1.75rem); letter-spacing: .02em; }
 .mp__specs dt { font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); }
-.mp__line { margin-top: var(--s-5); max-width: 44ch; font-family: "EB Garamond", serif; font-style: italic; font-size: clamp(1.125rem, 1.3vw, 1.375rem); line-height: 1.45; color: var(--ink); }
-.mp__note { margin-top: var(--s-4); max-width: 48ch; font-size: var(--t-14); line-height: 1.6; color: var(--ink-70); }
-.mp__cta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s-4) var(--s-6); margin-top: var(--s-5); }
-.mp__also { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s-2) var(--s-5); margin-top: var(--s-5); font-size: var(--t-14); }
+.mp__line { margin-top: var(--s-7); max-width: 44ch; font-family: "EB Garamond", serif; font-style: italic; font-size: clamp(1.125rem, 1.3vw, 1.375rem); line-height: 1.45; color: var(--ink); }
+.mp__note { margin-top: var(--s-5); max-width: 48ch; font-size: var(--t-14); line-height: 1.6; color: var(--ink-70); }
+.mp__cta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s-4) var(--s-7); margin-top: var(--s-6); }
+.mp__also { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s-2) var(--s-5); margin-top: var(--s-7); font-size: var(--t-14); }
 .mp__also a { min-height: 44px; display: inline-flex; align-items: center; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgb(255 255 255 / .32); line-height: 1; padding-bottom: 2px; min-height: 0; }
 .mp__also a:hover, .mp__also a:focus-visible { border-color: var(--ink); }
 .mp__also .eyebrow { margin-right: var(--s-2); }
 @media (max-width: 767px) {
+  .mp__hyper { font-size: 12px; letter-spacing: .18em; }
   .mp__back span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .mp__hdr .hdr__tel { min-width: 0; }
   .mp { padding-top: calc(var(--hdr-h) + var(--s-3)); padding-bottom: var(--s-4); }
-  .mp__eyebrow { margin-bottom: var(--s-3); font-size: 12px; }
-  .mp__car img, .mp__car--scene img { height: clamp(90px, calc(100svh - 640px), 260px); max-width: 92vw; }
-  .mp__specs { gap: var(--s-5); margin-top: var(--s-4); }
-  .mp__line { margin-top: var(--s-4); font-size: 1.0625rem; }
+  .mp__eyebrow { margin-bottom: var(--s-4); }
+  .mp__logo { width: min(180px, 52vw); max-height: 60px; }
+  .mp__car { margin-top: var(--s-6); }
+  .mp__car img, .mp__car--scene img { height: clamp(80px, calc(100svh - 650px), 220px); max-width: 86vw; }
+  .mp__specs { gap: var(--s-6); margin-top: var(--s-5); }
+  .mp__line { margin-top: var(--s-5); font-size: 1.0625rem; }
   .mp__note { margin-top: var(--s-3); }
-  .mp__cta { flex-direction: column; align-self: stretch; gap: var(--s-2); margin-top: var(--s-4); }
+  .mp__cta { flex-direction: column; align-self: stretch; gap: var(--s-2); margin-top: var(--s-5); }
   .mp__cta .cta { justify-content: center; }
   .mp__cta .cta--solid { width: 100%; }
-  .mp__also { margin-top: var(--s-3); gap: var(--s-1) var(--s-4); }
+  .mp__also { margin-top: var(--s-4); gap: var(--s-1) var(--s-4); }
 }
 
 /* the enquiry slides up from the foot (same move as Czinger Miami's build sheet) — dark glass in Pagani's ground */
