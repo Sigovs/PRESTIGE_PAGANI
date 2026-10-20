@@ -123,6 +123,8 @@
     const logo = car.querySelector('.model__logo');
     rec.logo.src = logo.getAttribute('src');
     rec.logo.alt = logo.alt;
+    const recLink = stage.querySelector('[data-record-link]');   // v2: the big logo opens the current model's page
+    if (recLink) { recLink.href = car.dataset.explore; recLink.setAttribute('aria-label', `${logo.alt}: model page`); }
     placeLogo(i);
     shown = i;
   }
