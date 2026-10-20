@@ -334,12 +334,16 @@
   gsap.fromTo(fin.querySelector('[data-finale-car] img'), { filter: 'brightness(0) saturate(0.85)', scale: 1.1, yPercent: 6 }, { filter: 'brightness(0.5) saturate(0.85)', scale: 1, yPercent: 0, ease: 'none',   // a daylight photograph, held well down (Alex)
     scrollTrigger: { trigger: fin, start: 'top bottom', end: 'bottom bottom', scrub: true } });
 
+  /* DISABLED (Miami v1, 20 Oct 2026) — the car driving through the old Miami section; kept for restore
   // Miami: the car drives through the frame — in from the left as the section arrives, on to the right as it leaves
   const miamiImg = document.querySelector('#miami [data-scene-media] img');
   if (miamiImg) {
     gsap.fromTo(miamiImg, { xPercent: -8, filter: 'brightness(0.45)' }, { xPercent: 0, filter: 'brightness(1)', ease: 'none', scrollTrigger: { trigger: '#miami', start: 'top bottom', end: 'top top', scrub: true } });
     gsap.fromTo(miamiImg, { xPercent: 0 }, { xPercent: 7, ease: 'none', immediateRender: false, scrollTrigger: { trigger: '#miami', start: 'top top', end: 'bottom top', scrub: true } });
   }
+  */
+  // ---------- 7 · GRAND OPENING (Alex, 20 Oct 2026): background film + lightbox live in grand-opening.js (runs in every motion mode) ----------
+
 
   // ---------- scenes: the photograph settles as it arrives, drifts as it leaves ----------
   // Horacio's signature is written in: strokes in pen order (left to right), each outline traced by the nib, then the ink settles into it
@@ -429,6 +433,7 @@
       .fromTo(svcType, { y: 0, opacity: 1 }, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })
       .to({}, { duration: 0.1 });
   });
+  /* DISABLED (Miami v1, 20 Oct 2026) — the old Miami section's pinned text exit; kept for restore
   // Miami: the same pinned text exit (DNA95)
   gsap.matchMedia().add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
     const miType = document.querySelector('#miami .scene__type');
@@ -437,6 +442,7 @@
       .fromTo(miType, { y: 0, opacity: 1 }, { y: -90, opacity: 0, duration: 0.45, ease: 'none' })
       .to({}, { duration: 0.1 });
   });
+  */
   // the Atelier's engine loop plays only while the section is on screen
   const artFilm = document.querySelector('[data-art-film]');
   if (artFilm) ScrollTrigger.create({ trigger: '#art', start: 'top bottom', end: 'bottom top', onToggle: (self) => (self.isActive ? artFilm.play().catch(() => {}) : artFilm.pause()) });
