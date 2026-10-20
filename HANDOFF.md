@@ -15,6 +15,7 @@ Use a web server, not `file://`. For example: `cd prototype/home && python3 -m h
 - Smooth scroll comes from Lenis.
 - With `prefers-reduced-motion: reduce`, the page falls back to a static version: no pins, the lineup becomes tabs, the background films show their posters.
 - Copy and figures are sourced in `prototype/home/DATA_SOURCES.md`.
+- The repo holds only what the site uses. Working material (research, source images and films, earlier prototypes) is not in it.
 
 ## Home page structure (`index_v2.html`)
 1. **Hero:** a film.
@@ -40,12 +41,12 @@ Use a web server, not `file://`. For example: `cd prototype/home && python3 -m h
 |---|---|---|
 | `grand-opening-loop-d.mp4` | background, 1920×1080, 48.8 s, no audio | 46 MB |
 | `grand-opening-loop-m.mp4` | background, 1280×720 | 13 MB |
-| `grand-opening-film.mp4` | full film, 54 s, with audio | 74 MB |
 
   - The background loop skips the end card (the logo on black).
-  - The source film (137 MB, 1080p) is not in the repo; Alex has it.
-  - The files were encoded for quality on purpose, at Alex's request.
-  - **For production, host these on a video CDN or object storage.** GitHub rejects files over 100 MB, and the files that are under it are heavy for a git repo.
+  - **The full film (WATCH THE FILM) is not in the repo.** It streams from Alex's Dropbox: the original file, 1920×1080, 54 s, with audio, 137 MB.
+    - Link: https://www.dropbox.com/scl/fi/zpokmxp7ro1tq3dc4yj4v/POM-Grand-Opening-Wide-4K-Final.mp4?rlkey=u8556f5iwbolvl2x7tpgnwqrf&st=h3e399dx&dl=0
+    - In `index_v2.html`, the same link with `raw=1` sits in the `data-src` of `.gofilm__v`.
+  - **For production:** download the film, host it on your own CDN or object storage, and replace that `data-src`. Host the two background loops there too.
 - **The old section is commented out, not deleted.** To restore it, remove the `DISABLED … Miami v1` comments in three places:
   - `index_v2.html`: the markup block before the "NEW SECTION STARTS HERE" comment.
   - `home_v2.css`: seven `#miami` rules.
@@ -92,7 +93,7 @@ Use a web server, not `file://`. For example: `cd prototype/home && python3 -m h
 
 ## Open items before going live
 - [ ] **Forms:** the home page `[data-enq]` and the model pages' `.psheet` form validate on the client only and show a "not connected" note. Wire them to the CRM or lead endpoint. The fields are `name`, `email`, `phone`, `interest` and `message`.
-- [ ] **Video hosting:** move the Grand Opening films to a CDN (see above).
+- [ ] **Video hosting:** download the full Grand Opening film from Dropbox and move it to your CDN, along with the two background loops (see above).
 - [ ] **Indexing:** remove `<meta name="robots" content="noindex">` and the "PROTOTYPE … not for publication" comment at launch.
 - [ ] **Phone and address:** confirm with Prestige: sales (833) 290-6287, service (833) 290-5148, and the address 14780 Biscayne Blvd.
 - [ ] **Image rights:** Pagani press imagery and films are used for the prototype. Confirm usage rights with Pagani.
