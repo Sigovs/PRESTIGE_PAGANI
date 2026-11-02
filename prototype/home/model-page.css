@@ -12,6 +12,7 @@ figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: v
 .mh { position: relative; height: 100svh; background: #000; overflow: clip; }
 .mh__m { position: absolute; inset: 0; }
 .mh::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 55%; pointer-events: none; background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--bg) 8%, transparent) 22%, color-mix(in srgb, var(--bg) 28%, transparent) 45%, color-mix(in srgb, var(--bg) 62%, transparent) 68%, color-mix(in srgb, var(--bg) 90%, transparent) 88%, var(--bg) 100%); }   /* the photograph melts into the next chapter's ground: no seam, at any size or scroll */
+.mh--light::before { content: ""; position: absolute; inset: 0 0 auto; z-index: 1; height: 26%; pointer-events: none; background: linear-gradient(to bottom, rgb(0 0 0 / .7), transparent); }   /* a pale studio: the header still reads */
 .mh__m picture { display: contents; }
 .mh__m img { width: 100%; height: 100%; object-fit: cover; }
 /* the words stand in the lower right corner, on the floor under the car; their size follows the height too, so the whole block is above the fold on any screen */
@@ -29,6 +30,10 @@ figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: v
 @media (orientation: portrait) {
   .mh__m img { position: absolute; left: 0; top: min(0px, calc(100svh - 18rem - 97.5vw)); height: auto; object-fit: fill; }
   .mh__n { font-size: clamp(2.5rem, 6.4vw, 6rem); }
+}
+/* a tall screen with no portrait from Pagani: the landscape picture whole, high on the screen, melting away at its edges */
+@media (orientation: portrait) {
+  .mh--wide .mh__m img { top: 15svh; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%); }
 }
 /* a phone on its side: the car rises and the button is lower in height, so the words stay on the floor */
 @media (orientation: landscape) and (max-height: 500px) {
@@ -52,6 +57,7 @@ figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: v
 .ex__m { position: absolute; inset: 0; margin: 0; }
 .ex__m img { position: absolute; left: 0; top: 8%; height: 100%; object-position: 50% 55%; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 76%, transparent 92%); mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 76%, transparent 92%); }
 .nb { white-space: nowrap; }
+.ex__m--dim img { filter: brightness(.55) saturate(.85); }   /* a pale studio, dimmed as the film is, so the words read */
 .ex__c { position: relative; z-index: 1; max-width: 36ch; margin: 0 0 12svh; font-size: var(--t-lede); line-height: 1.45; color: var(--ink); text-align: center; text-wrap: balance; }
 /* a tall screen: the picture whole, standing low, the words on the dark above it */
 @media (orientation: portrait) {
@@ -77,12 +83,13 @@ figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: v
 .mf__s::after { content: ""; position: absolute; inset: 0 0 auto; height: 22%; pointer-events: none; background: linear-gradient(to bottom, var(--bg), transparent); }
 .mf__s { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; padding-inline: var(--gx); }
 .mf__m { position: absolute; inset: 0; overflow: hidden; filter: brightness(.55) saturate(.85); pointer-events: none; }
-.mf__m img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.2s ease; }
+.mf__m img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; transition: opacity .35s ease; }
 /* with a film, its opening frame stands exactly where the film will: same size, same place, so one becomes the other */
-.mf__m[data-yt] img { inset: 0 auto auto 50%; width: max(116vw, 206.3svh); height: max(65.25vw, 116svh); transform: translateX(-50%); }
+.mf__m[data-yt] img, .mf__m[data-vimeo] img, .mf__m iframe { inset: calc(max(56.25vw, 100svh) * var(--z, 1) * var(--y, 0)) auto auto 50%; width: calc(max(100vw, 177.78svh) * var(--z, 1)); max-width: none; height: calc(max(56.25vw, 100svh) * var(--z, 1)); transform: translateX(-50%); }
 .mf__m.is-on img { opacity: 0; }
+.mf__m video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* the film stands from the top and runs past the foot of the frame, so the subtitles burned into it stay out of sight */
-.mf__m iframe { position: absolute; top: 0; left: 50%; width: max(116vw, 206.3svh); height: max(65.25vw, 116svh); transform: translateX(-50%); border: 0; }
+.mf__m iframe { position: absolute; border: 0; }
 .mf__t { position: relative; z-index: 1; display: grid; justify-items: center; max-width: 24ch; font-size: clamp(2.25rem, min(4.4vw, 8svh), 5.5rem); text-align: center; }
 .mf__h { margin: 0; font-family: "Roboto", var(--font-brand); font-weight: 200; font-size: 1em; line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
 .mf__l { margin: var(--s-4) 0 0; font-size: var(--t-lede); line-height: 1.4; color: rgb(255 255 255 / .9); text-wrap: balance; }
@@ -201,7 +208,7 @@ figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: v
 }
 @media (max-width: 767px) {
   .mh__n { font-size: clamp(2.5rem, 11.5vw, 4.5rem); }
-  .mh__l { max-width: 30ch; }
+  .mh__l { max-width: 30ch; margin-left: auto; }
   .en__d > div { grid-template-columns: 1fr; gap: var(--s-1); padding-block: var(--s-4); }
   .mg__w { --h: min(58svh, 74vw); }
   .mg__b { top: calc(var(--h) / 2 - 22px); width: 44px; height: 44px; }

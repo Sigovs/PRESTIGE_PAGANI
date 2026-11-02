@@ -3,28 +3,48 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js'); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('m');</script>
 <title>Pagani Huayra Codalunga · Pagani of Miami</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="The Pagani Huayra Codalunga at Pagani of Miami, the official Pagani dealer for the State of Florida. Model page coming soon.">
+<meta name="description" content="The Pagani Huayra Codalunga at Pagani of Miami, the official Pagani dealer for the State of Florida.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400&family=Roboto:wght@200;400;500;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/lenis.css">
-<link rel="stylesheet" href="home_v2.css?v=211">
-<link rel="stylesheet" href="model.css?v=3">
+<link rel="stylesheet" href="home_v2.css?v=213">
 <link rel="stylesheet" href="models-menu.css?v=10">
+<link rel="stylesheet" href="model-page.css?v=31">
 </head>
-<body class="mp-page">
-<!-- PROTOTYPE · temporary model page ("coming soon"), Alex 20 Oct 2026. Figures and lines as on the home page (DATA_SOURCES.md). -->
-<header class="hdr mp__hdr">
+<body class="mpage">
+<!-- PREVIEW · model page, Alex's brief of 1 Nov 2026. Words and photographs: pagani.com/huayra-codalunga (DATA_SOURCES.md). -->
+<header class="hdr">
   <a class="hdr__brand" href="index_v2.html" aria-label="Pagani of Miami home">
     <img class="hdr__mark" src="assets/fig/logo-pagani-oval.svg" alt="Pagani" width="202" height="37">
     <img class="hdr__dealer" src="assets/fig/pagani-of-miami.svg" alt="of Miami" width="129" height="12">
   </a>
-  <button class="mp__hyper" type="button" data-mm-open="hyper" aria-haspopup="dialog">Hypercars<svg class="mm-cue" viewBox="0 0 10 6" aria-hidden="true"><path d="M.5.5 5 5 9.5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></button>
-  <a class="mp__back" href="index_v2.html#gc-huayra-codalunga"><svg viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M9.5 0.5 0.5 10 9.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg><span>Grandi Complicazioni</span></a>
+  <nav class="hdr__nav" aria-label="Sections">
+    <a href="#" class="is-todo" title="Inventory page — to come">Inventory</a>
+    <a href="index_v2.html#lineup" data-mm-open="hyper" aria-haspopup="dialog">Hypercars<svg class="mm-cue" viewBox="0 0 10 6" aria-hidden="true"><path d="M.5.5 5 5 9.5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></a>
+    <a href="index_v2.html#service">Service</a>
+    <a href="#" class="is-todo" title="Finance page — to come">Finance</a>
+    <a href="#invite" data-go>Contact</a>
+  </nav>
   <a class="hdr__tel" href="tel:+18332906287">(833) 290-6287</a>
+  <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle><span data-menu-label>Menu</span> <i aria-hidden="true"><span></span></i></button>
 </header>
+
+<nav class="menu" id="menu" aria-label="Main" hidden data-lenis-prevent>
+  <ul>
+    <li><a href="index_v2.html#lineup" data-mm-open="hyper" aria-haspopup="dialog">Hypercars<svg class="mm-cue" viewBox="0 0 10 6" aria-hidden="true"><path d="M.5.5 5 5 9.5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></a></li>
+    <li><a href="index_v2.html#lineup">The lineup</a></li>
+    <li><a href="index_v2.html#grandi">Grandi Complicazioni</a></li>
+    <li><a href="index_v2.html#about">Horacio Pagani</a></li>
+    <li><a href="index_v2.html#service">Service</a></li>
+    <li><a href="index_v2.html#grand-opening">Grand Opening</a></li>
+    <li><a href="#invite" data-go>Enquire</a></li>
+  </ul>
+</nav>
+
 <dialog class="mm" aria-label="Hypercars" data-mm data-lenis-prevent>
   <div class="mm__panel">
     <div class="mm__top">
@@ -32,47 +52,86 @@
       <button class="mm__close" type="button" data-mm-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg><span class="sr">Close</span></button>
     </div>
     <div class="mm__levels">
-      <div class="mm__level is-on" data-mm-level="root"><ul class="mm__list mm__list--main"><li><a href="index_v2.html#lineup">The lineup</a></li><li><button type="button" data-mm-go="hyper"><span>Hypercars</span><svg class="mm__go" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></button></li><li><a href="index_v2.html#grandi">Grandi Complicazioni</a></li><li><a href="index_v2.html#about">Horacio Pagani</a></li><li><a href="index_v2.html#service">Service</a></li><li><a href="index_v2.html#grand-opening">Grand Opening</a></li><li><a href="index_v2.html#invite">Enquire</a></li></ul></div>
-      <div class="mm__level mm__level--all" data-mm-level="hyper" data-mm-parent="root" hidden><div class="mm__g"><p class="mm__h">The lineup</p><ul class="mm__list"><li><a href="utopia.html">Utopia</a></li><li><a href="utopia-roadster.html">Utopia Roadster</a></li><li><a href="huayra-r-evo-roadster.html">Huayra R Evo Roadster</a></li><li><a href="huayra-bc.html">Huayra BC</a></li></ul></div><div class="mm__g"><p class="mm__h">Grandi Complicazioni</p><ul class="mm__list"><li><a href="https://www.pagani.com/zonda-hp-barchetta/" target="_blank" rel="noopener">Zonda HP Barchetta<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/pagani-imola/" target="_blank" rel="noopener">Imola<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/imola-roadster/" target="_blank" rel="noopener">Imola Roadster<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="huayra-tricolore.html">Huayra Tricolore</a></li><li><a href="huayra-codalunga.html">Huayra Codalunga</a></li><li><a href="huayra-codalunga-speedster.html">Huayra Codalunga Speedster</a></li><li><a href="huayra-epitome.html">Huayra Epitome</a></li></ul></div><div class="mm__g"><p class="mm__h">Hypercars</p><ul class="mm__list mm__list--fam"><li><button type="button" data-mm-go="zonda"><span>Zonda</span><span class="mm__n">10</span></button></li><li><button type="button" data-mm-go="huayra"><span>Huayra</span><span class="mm__n">06</span></button></li><li><button type="button" data-mm-go="utopia"><span>Utopia</span><span class="mm__n">02</span></button></li></ul></div></div>
+      <div class="mm__level is-on" data-mm-level="root"><ul class="mm__list mm__list--main"><li><a href="index_v2.html#lineup">The lineup</a></li><li><button type="button" data-mm-go="hyper"><span>Hypercars</span><svg class="mm__go" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></button></li><li><a href="index_v2.html#grandi">Grandi Complicazioni</a></li><li><a href="index_v2.html#about">Horacio Pagani</a></li><li><a href="index_v2.html#service">Service</a></li><li><a href="index_v2.html#grand-opening">Grand Opening</a></li><li><a href="#invite" data-mm-close-go>Enquire</a></li></ul></div>
+      <div class="mm__level mm__level--all" data-mm-level="hyper" data-mm-parent="root" hidden><div class="mm__g"><p class="mm__h">The lineup</p><ul class="mm__list"><li><a href="utopia.html">Utopia</a></li><li><a href="utopia-roadster.html">Utopia Roadster</a></li><li><a href="huayra-r-evo-roadster.html">Huayra R Evo Roadster</a></li><li><a href="huayra-bc.html">Huayra BC</a></li></ul></div><div class="mm__g"><p class="mm__h">Grandi Complicazioni</p><ul class="mm__list"><li><a href="zonda-hp-barchetta.html">Zonda HP Barchetta</a></li><li><a href="imola.html">Imola</a></li><li><a href="huayra-tricolore.html">Huayra Tricolore</a></li><li><a href="huayra-codalunga.html">Huayra Codalunga</a></li><li><a href="imola-roadster.html">Imola Roadster</a></li><li><a href="huayra-codalunga-speedster.html">Huayra Codalunga Speedster</a></li><li><a href="huayra-epitome.html">Huayra Epitome</a></li></ul></div><div class="mm__g"><p class="mm__h">Hypercars</p><ul class="mm__list mm__list--fam"><li><button type="button" data-mm-go="zonda"><span>Zonda</span><span class="mm__n">10</span></button></li><li><button type="button" data-mm-go="huayra"><span>Huayra</span><span class="mm__n">06</span></button></li><li><button type="button" data-mm-go="utopia"><span>Utopia</span><span class="mm__n">02</span></button></li></ul></div></div>
       <div class="mm__level" data-mm-level="zonda" data-mm-parent="hyper" hidden><p class="mm__h">Zonda</p><ul class="mm__list"><li><a href="https://www.pagani.com/zonda-c12/" target="_blank" rel="noopener">Zonda C12<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-s/" target="_blank" rel="noopener">Zonda S<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-roadster/" target="_blank" rel="noopener">Zonda Roadster<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-f/" target="_blank" rel="noopener">Zonda F<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-roadster-f/" target="_blank" rel="noopener">Zonda Roadster F<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-cinque/" target="_blank" rel="noopener">Zonda Cinque<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-cinque-roadster/" target="_blank" rel="noopener">Zonda Cinque Roadster<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-tricolore/" target="_blank" rel="noopener">Zonda Tricolore<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-r/" target="_blank" rel="noopener">Zonda R<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-revolucion/" target="_blank" rel="noopener">Zonda Revolución<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li></ul></div>
       <div class="mm__level" data-mm-level="huayra" data-mm-parent="hyper" hidden><p class="mm__h">Huayra</p><ul class="mm__list"><li><a href="https://www.pagani.com/huayra/" target="_blank" rel="noopener">Huayra<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="huayra-bc.html">Huayra BC</a></li><li><a href="https://www.pagani.com/huayra-roadster/" target="_blank" rel="noopener">Huayra Roadster<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/huayra-roadster-bc/" target="_blank" rel="noopener">Huayra Roadster BC<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/huayra-r/" target="_blank" rel="noopener">Huayra R<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="huayra-r-evo-roadster.html">Huayra R Evo Roadster</a></li></ul></div>
       <div class="mm__level" data-mm-level="utopia" data-mm-parent="hyper" hidden><p class="mm__h">Utopia</p><ul class="mm__list"><li><a href="utopia.html">Utopia</a></li><li><a href="utopia-roadster.html">Utopia Roadster</a></li></ul></div>
     </div>
   </div>
 </dialog>
-<main class="mp" id="top">
-  <p class="eyebrow mp__eyebrow">Grandi Complicazioni</p>
-  <h1 class="mp__title"><img class="mp__logo" src="assets/mp-logo-huayra-codalunga.png?v=202" alt="Pagani Huayra Codalunga" width="690" height="194"></h1>
-  <figure class="mp__car mp__car--cut"><img src="assets/huayra-codalunga-cutout.webp?v=201" alt="Pagani Huayra Codalunga in pale blue, from the front with both doors raised" width="1926" height="1136"></figure>
-  <p class="mp__line">A long tail for the coachbuilders of the ’60s. Five were built.</p>
-  <p class="mp__note">Full page coming soon. See it with us in Miami.</p>
-  <p class="mp__cta">
-    <a class="cta cta--solid cta--fill" href="index_v2.html#invite" data-sheet-open>Enquire about the Huayra Codalunga</a>
-    <a class="cta cta--quiet" href="index_v2.html#gc-huayra-codalunga">See it in the collection<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
-  </p>
-  <nav class="mp__also" aria-label="Also in Grandi Complicazioni"><span class="eyebrow">Also</span><a href="huayra-codalunga-speedster.html">Codalunga Speedster</a><a href="huayra-epitome.html">Huayra Epitome</a><a href="huayra-tricolore.html">Huayra Tricolore</a></nav>
-</main>
-<dialog class="psheet" aria-labelledby="psheet-title" data-sheet data-lenis-prevent>
-  <div class="psheet__in">
-    <div class="psheet__head">
-      <div><p class="eyebrow">Private enquiry</p><h2 class="psheet__title" id="psheet-title">Pagani Huayra Codalunga</h2></div>
-      <button class="psheet__close" type="button" data-sheet-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg><span class="sr">Close</span></button>
+
+<nav class="mn" aria-label="On this page"><a href="#exterior" data-go>Exterior</a><a href="#interior" data-go>Interior</a><a href="#film" data-go>Video</a><a href="#engine" data-go>Engine</a><a href="#gallery" data-go>Gallery</a></nav>
+<a class="mc is-off" href="#invite" data-go><img src="assets/models/huayra-codalunga/front.webp" alt="" loading="lazy"><div><b>Huayra Codalunga</b><span>Register your interest<svg viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></span></div></a>
+
+<main id="top">
+  <section class="mh mh--wide mh--light" aria-labelledby="mh-n">
+    <div class="mh__m"><picture><img src="assets/models/huayra-codalunga/front.webp" style="object-position:50% 60%" alt="The Pagani Huayra Codalunga from the front, in the studio" fetchpriority="high"></picture></div>
+    <div class="mh__t"><h1 class="mh__n" id="mh-n"><span>Huayra Codalunga</span></h1><p class="mh__l">Grandi Complicazioni on Wheels.</p><p class="mact mh__a"><a class="cta cta--solid cta--fill" href="#invite" data-go>Register your interest</a></p></div>
+  </section>
+
+  <section class="ex" id="exterior" aria-labelledby="ex-h">
+    <div class="ex__t"><h2 class="title" id="ex-h" data-rise>Exterior</h2><p class="mtext" data-rise>“We decided to use the simple linear style of the Huayra Coupé as the starting point. We made the Huayra Codalunga longer and smoother, as if it had been caressed and molded by the wind, to design lines that were even more elegant than the coupe. We drew inspiration from the long tails of the 1960s that raced at Le Mans, which had very clean lines. The Huayra Codalunga comprises very few essential elements; we have taken away rather than added. Simplifying is not at all straightforward, and this vehicle is, above all, the result of a complex pursuit of simple ideas.” – Horacio Pagani.</p></div>
+    <figure class="ex__b" data-open><img src="assets/models/huayra-codalunga/three.webp" alt="The Huayra Codalunga from the front three-quarter" loading="lazy"></figure>
+    <figure class="mx mx--0" data-drift="12"><div class="mx__m" data-open><img src="assets/models/huayra-codalunga/lights.webp" alt="The rear lights and the rear wheel" loading="lazy"></div><figcaption data-rise>The lack of rear grilles makes space for an unobstructed view of the Codalunga’s exhaust system, which is made from titanium and weighs only 4.4 kg (9.7 lb). The special ceramic coating completes the homage to the racing cars of Le Mans and the symphony that emanates from the signature four tailpipes is a tribute to automotive passion.</figcaption></figure><figure class="mx mx--1" data-drift="36"><div class="mx__m" data-open><img src="assets/models/huayra-codalunga/hood.webp" alt="The long engine cover" loading="lazy"></div><figcaption data-rise>The work “to take away rather than add” resulted in a record weight of just 1,280 kg (2,822 lb) and extremely high aerodynamic efficiency, helped by the car’s shape and extra length. The four flaps with variable profiles represent the very latest in active aerodynamics, a feature which had its world preview in 2011 and which has been subsequently refined with each model.</figcaption></figure><figure class="mx mx--2" data-drift="20"><div class="mx__m" data-open><img src="assets/models/huayra-codalunga/wheel.webp" alt="The wheel of the Huayra Codalunga" loading="lazy"></div></figure>
+    <div class="ex__w"><div class="ex__s"><figure class="ex__m ex__m--dim"><img src="assets/models/huayra-codalunga/side.webp" alt="The Huayra Codalunga in profile" loading="lazy"></figure><p class="ex__c">The coachbuilders of the ‘60s were inspired by aircraft designs and, in a relentless quest for speed and low drag, created some of the most iconic shapes in the automotive history.</p></div></div>
+  </section>
+
+  <section class="in" id="interior" aria-labelledby="in-h">
+    <div class="in__t"><h2 class="title" id="in-h" data-rise>Interior</h2><p class="mtext" data-rise>“The colors and materials also recall the cars of the 1960s. The paint on the outside blends into elements of the cockpit while structural parts retain their exposed carbon fiber finish. The artisan touch can also be seen on the internal finishes with woven aged suede leathers.” – Alberto Piccolo, Concept and Interior Designer, Pagani Automobili.</p><p class="mact" data-rise><a class="cta cta--quiet" href="#invite" data-go>Register your interest<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a></p></div>
+    <figure class="in__b" data-open><img src="assets/models/huayra-codalunga/i-cabin.webp" alt="The cabin of the Huayra Codalunga, in brown leather and metal" loading="lazy"></figure>
+    <figure class="mx mx--0" data-drift="12"><div class="mx__m" data-open><img src="assets/models/huayra-codalunga/i-wheel.webp" alt="The steering wheel and the instruments" loading="lazy"></div></figure><figure class="mx mx--1" data-drift="36"><div class="mx__m" data-open><img src="assets/models/huayra-codalunga/i-seats.webp" alt="The seats in woven leather and nubuck" loading="lazy"></div><figcaption data-rise>This concept also plays a fundamental role on the inside, where the seats are finished with a woven leather/nubuck upholstery and aluminum components are machined from a single block.</figcaption></figure><figure class="mx mx--2" data-drift="20"><div class="mx__m" data-open><img src="assets/models/huayra-codalunga/i-gear.webp" alt="The gear lever" loading="lazy"></div></figure>
+  </section>
+
+  <section class="mf" id="film" aria-labelledby="mf-h">
+    <div class="mf__s">
+      <div class="mf__m" data-mp4="assets/models/huayra-codalunga/loop" role="img" aria-label="The Pagani Huayra Codalunga, Grandi Complicazioni on Wheels: the illustrated film from Pagani Automobili."><img src="assets/models/huayra-codalunga/film-start.webp" alt="" loading="lazy"></div>
+      <div class="mf__t"><h2 class="mf__h" id="mf-h">A collaborative project, bringing together many hearts and minds…</h2><p class="mact mf__a"><a class="cta cta--solid cta--fill" href="https://www.youtube.com/watch?v=TtbQxdghrvw" target="_blank" rel="noopener" data-film="TtbQxdghrvw">Play video</a></p></div>
     </div>
-    <form class="enq psheet__form" data-enq novalidate aria-describedby="psheet-note">
-      <div class="enq__grid">
-        <label class="enq__f"><input name="name" autocomplete="name" required placeholder=" "><span>Name</span></label>
-        <label class="enq__f"><input name="email" type="email" autocomplete="email" required placeholder=" "><span>Email</span></label>
-        <label class="enq__f"><input name="phone" type="tel" autocomplete="tel" placeholder=" "><span>Phone</span></label>
-        <label class="enq__f"><select name="interest" class="is-filled" data-enq-select><option>General enquiry</option><option selected>Huayra Codalunga</option><option>Grandi Complicazioni</option><option>Service</option></select><span>Interest</span></label>
-        <label class="enq__f enq__f--wide"><textarea name="message" rows="1" placeholder=" "></textarea><span>Message</span></label>
-      </div>
-      <button class="cta cta--solid cta--fill enq__send" type="submit">Send enquiry</button>
-      <p class="enq__note" id="psheet-note" role="status" data-enq-note></p>
-    </form>
-  </div>
-</dialog>
-<script src="vendor/lenis.min.js" defer></script>
-<script src="model.js?v=1" defer></script>
-<script src="models-menu.js?v=5" defer></script>
+  </section>
+
+  <section class="en" id="engine" aria-labelledby="en-h">
+    <div class="en__t"><h2 class="title" id="en-h" data-rise>Engine</h2><p class="mtext" data-rise>The rear engine cover, which has a footprint of more than 3.7 m2, and is 360 mm longer than the one of the Huayra Coupé, conceals a mechanical prodigy: the Pagani V12, which, on this series, is capable of developing 840 HP with 1,100 Nm of torque.</p></div>
+    <dl class="en__f"><div><dd>840<span>CV</span></dd><dt>Power</dt></div><div><dd>1,100<span>Nm</span></dd><dt>Torque</dt></div><div><dd>1,280<span>kg</span></dd><dt>Dry weight</dt></div></dl>
+    <figure class="en__p" data-open data-drift="150"><img src="assets/models/huayra-codalunga/engine.webp" alt="The V12 of the Huayra Codalunga under its open cover" loading="lazy"></figure>
+    <div class="en__s"><h3 class="eyebrow" data-rise>Specifications</h3><dl class="en__d"><div><dt>Engine</dt><dd>Pagani V12 60° 36 valves 5,980 CC, twin turbo</dd></div><div><dt>Power</dt><dd>840 CV (618 kW) at 5,900 rpm</dd></div><div><dt>Torque</dt><dd>1,100 Nm from 2,000 rpm to 5,600 rpm</dd></div><div><dt>Transmission</dt><dd>Pagani by Xtrac, transverse mounted 7-speed sequential</dd></div><div><dt>Brakes</dt><dd>Pagani by Brembo carbon-ceramic self-ventilated disc brakes: diameter 410 x 38 mm with 6-piston one-piece calliper at the front; diameter 390 x 34 mm with 4-piston one-piece calliper at the rear</dd></div><div><dt>Wheels</dt><dd>One-piece APP Tech in forged Avional, 20” at the front and 21” at the rear</dd></div><div><dt>Tyres</dt><dd>Pirelli PZero Corsa 265/30 R20 at the front and 355/25 R21 at the rear; Pirelli SottoZero for driving in low temperatures</dd></div><div><dt>Suspension</dt><dd>Active forged aluminium alloy, independent double wishbone with variable-pitch helical springs and coaxial dampers</dd></div><div><dt>Chassis</dt><dd>Carbon-Titanium HP62 G2 and Carbon-Triax HP62 monocoque</dd></div><div><dt>Dry weight</dt><dd>1,280 kg (2,822 lb)</dd></div></dl></div>
+    <p class="mact en__c" data-rise><a class="cta cta--solid cta--fill" href="#invite" data-go>Register your interest</a><a class="cta cta--quiet" href="tel:+18332906287">(833)&nbsp;290-6287</a></p>
+  </section>
+
+  <section class="mg" id="gallery" aria-labelledby="mg-h" data-carousel>
+    <div class="mg__h"><h2 class="title" id="mg-h" data-rise>Gallery</h2><p class="mg__n" aria-live="polite"><span data-now>1</span> / 9</p></div>
+    <div class="mg__w"><ul class="mg__r" data-track tabindex="0" aria-label="Photographs of the Huayra Codalunga"><li class="mg__s" style="--a:1.5000"><img src="assets/models/huayra-codalunga/front.webp" alt="Huayra Codalunga: From the front" loading="lazy"><p>From the front</p></li><li class="mg__s" style="--a:1.5000"><img src="assets/models/huayra-codalunga/rear34.webp" alt="Huayra Codalunga: From the rear three-quarter" loading="lazy"><p>From the rear three-quarter</p></li><li class="mg__s" style="--a:1.5000"><img src="assets/models/huayra-codalunga/side.webp" alt="Huayra Codalunga: In profile" loading="lazy"><p>In profile</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/huayra-codalunga/doors.webp" alt="Huayra Codalunga: With the doors raised" loading="lazy"><p>With the doors raised</p></li><li class="mg__s" style="--a:1.5000"><img src="assets/models/huayra-codalunga/top.webp" alt="Huayra Codalunga: From above, at the rear" loading="lazy"><p>From above, at the rear</p></li><li class="mg__s" style="--a:1.5000"><img src="assets/models/huayra-codalunga/above.webp" alt="Huayra Codalunga: The bonnet from above" loading="lazy"><p>The bonnet from above</p></li><li class="mg__s" style="--a:0.6354"><img src="assets/models/huayra-codalunga/tail.webp" alt="Huayra Codalunga: The tail" loading="lazy"><p>The tail</p></li><li class="mg__s" style="--a:1.5000"><img src="assets/models/huayra-codalunga/i-cabin.webp" alt="Huayra Codalunga: The cabin" loading="lazy"><p>The cabin</p></li><li class="mg__s" style="--a:1.5000"><img src="assets/models/huayra-codalunga/engine.webp" alt="Huayra Codalunga: The engine" loading="lazy"><p>The engine</p></li></ul><button type="button" class="mg__b mg__b--p" data-prev aria-label="Previous photograph"><svg viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></button><button type="button" class="mg__b mg__b--n" data-next aria-label="Next photograph"><svg viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></button></div>
+  </section>
+
+  <section class="sc finale" id="invite" aria-labelledby="invite-title">
+    <div class="finale__car" aria-hidden="true" data-finale-car><img src="assets/finale-huayras-road.webp" alt="" loading="lazy" width="1440" height="810"></div>
+    <div class="finale__type">
+      <h2 id="invite-title" class="title" data-rise>Visit the showroom</h2>
+      <address class="finale__addr" data-rise><a href="https://maps.google.com/?q=14780+Biscayne+Blvd,+North+Miami+Beach,+FL+33181" target="_blank" rel="noopener">14780 Biscayne Blvd, North&nbsp;Miami&nbsp;Beach, FL&nbsp;33181</a><a class="finale__tel" href="tel:+18332906287">(833)&nbsp;290-6287</a></address>
+      <form class="enq" data-enq data-rise novalidate aria-describedby="enq-note">
+        <div class="enq__grid">
+          <label class="enq__f"><input name="name" autocomplete="name" required placeholder=" "><span>Name</span></label>
+          <label class="enq__f"><input name="email" type="email" autocomplete="email" required placeholder=" "><span>Email</span></label>
+          <label class="enq__f"><input name="phone" type="tel" autocomplete="tel" placeholder=" "><span>Phone</span></label>
+          <label class="enq__f"><select name="interest" class="is-filled" data-enq-select><option>General enquiry</option><option>Utopia</option><option>Huayra</option><option>Zonda</option><option selected>Grandi Complicazioni</option><option>Service</option></select><span>Interest</span></label>
+          <label class="enq__f enq__f--wide"><textarea name="message" rows="1" placeholder=" "></textarea><span>Message</span></label>
+        </div>
+        <button class="cta cta--solid cta--fill enq__send" type="submit">Send enquiry</button>
+        <p class="enq__note" id="enq-note" role="status" data-enq-note></p>
+      </form>
+    </div>
+    <footer class="foot">
+      <img src="assets/pagani.svg" alt="Pagani" width="120" height="14">
+      <p class="foot__meta"><span>2026 Copyright © Prestige Imports</span><span class="foot__legal"><a href="https://www.prestigeimports.com/privacy" target="_blank" rel="noopener">Privacy<span class="sr"> (opens in a new tab)</span></a><span aria-hidden="true">|</span><a href="https://www.prestigeimports.com/sitemap" target="_blank" rel="noopener">Sitemap<span class="sr"> (opens in a new tab)</span></a></span><span class="foot__powered">Powered by <a href="https://www.allautonetwork.com/" target="_blank" rel="noopener">All Auto Network<span class="sr"> (opens in a new tab)</span></a></span></p>
+    </footer>
+  </section>
+</main>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="model-page.js?v=15"></script>
+<script src="models-menu.js?v=5"></script>
+<script src="model-film.js?v=13"></script>
 </body>
 </html>

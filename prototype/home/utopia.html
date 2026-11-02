@@ -3,28 +3,48 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js'); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('m');</script>
 <title>Pagani Utopia · Pagani of Miami</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="The Pagani Utopia at Pagani of Miami, the official Pagani dealer for the State of Florida. Model page coming soon.">
+<meta name="description" content="The Pagani Utopia at Pagani of Miami, the official Pagani dealer for the State of Florida.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400&family=Roboto:wght@200;400;500;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/lenis.css">
-<link rel="stylesheet" href="home_v2.css?v=211">
-<link rel="stylesheet" href="model.css?v=3">
+<link rel="stylesheet" href="home_v2.css?v=213">
 <link rel="stylesheet" href="models-menu.css?v=10">
+<link rel="stylesheet" href="model-page.css?v=31">
 </head>
-<body class="mp-page">
-<!-- PROTOTYPE · temporary model page ("coming soon"), Alex 20 Oct 2026. Figures and lines as on the home page (DATA_SOURCES.md). -->
-<header class="hdr mp__hdr">
+<body class="mpage">
+<!-- PREVIEW · model page, Alex's brief of 1 Nov 2026. Words and photographs: pagani.com/utopia (DATA_SOURCES.md). -->
+<header class="hdr">
   <a class="hdr__brand" href="index_v2.html" aria-label="Pagani of Miami home">
     <img class="hdr__mark" src="assets/fig/logo-pagani-oval.svg" alt="Pagani" width="202" height="37">
     <img class="hdr__dealer" src="assets/fig/pagani-of-miami.svg" alt="of Miami" width="129" height="12">
   </a>
-  <button class="mp__hyper" type="button" data-mm-open="hyper" aria-haspopup="dialog">Hypercars<svg class="mm-cue" viewBox="0 0 10 6" aria-hidden="true"><path d="M.5.5 5 5 9.5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></button>
-  <a class="mp__back" href="index_v2.html#model-utopia"><svg viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M9.5 0.5 0.5 10 9.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg><span>The lineup</span></a>
+  <nav class="hdr__nav" aria-label="Sections">
+    <a href="#" class="is-todo" title="Inventory page — to come">Inventory</a>
+    <a href="index_v2.html#lineup" data-mm-open="hyper" aria-haspopup="dialog">Hypercars<svg class="mm-cue" viewBox="0 0 10 6" aria-hidden="true"><path d="M.5.5 5 5 9.5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></a>
+    <a href="index_v2.html#service">Service</a>
+    <a href="#" class="is-todo" title="Finance page — to come">Finance</a>
+    <a href="#invite" data-go>Contact</a>
+  </nav>
   <a class="hdr__tel" href="tel:+18332906287">(833) 290-6287</a>
+  <button class="hdr__menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle><span data-menu-label>Menu</span> <i aria-hidden="true"><span></span></i></button>
 </header>
+
+<nav class="menu" id="menu" aria-label="Main" hidden data-lenis-prevent>
+  <ul>
+    <li><a href="index_v2.html#lineup" data-mm-open="hyper" aria-haspopup="dialog">Hypercars<svg class="mm-cue" viewBox="0 0 10 6" aria-hidden="true"><path d="M.5.5 5 5 9.5.5" fill="none" stroke="currentColor" stroke-width="1"/></svg></a></li>
+    <li><a href="index_v2.html#lineup">The lineup</a></li>
+    <li><a href="index_v2.html#grandi">Grandi Complicazioni</a></li>
+    <li><a href="index_v2.html#about">Horacio Pagani</a></li>
+    <li><a href="index_v2.html#service">Service</a></li>
+    <li><a href="index_v2.html#grand-opening">Grand Opening</a></li>
+    <li><a href="#invite" data-go>Enquire</a></li>
+  </ul>
+</nav>
+
 <dialog class="mm" aria-label="Hypercars" data-mm data-lenis-prevent>
   <div class="mm__panel">
     <div class="mm__top">
@@ -32,47 +52,86 @@
       <button class="mm__close" type="button" data-mm-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg><span class="sr">Close</span></button>
     </div>
     <div class="mm__levels">
-      <div class="mm__level is-on" data-mm-level="root"><ul class="mm__list mm__list--main"><li><a href="index_v2.html#lineup">The lineup</a></li><li><button type="button" data-mm-go="hyper"><span>Hypercars</span><svg class="mm__go" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></button></li><li><a href="index_v2.html#grandi">Grandi Complicazioni</a></li><li><a href="index_v2.html#about">Horacio Pagani</a></li><li><a href="index_v2.html#service">Service</a></li><li><a href="index_v2.html#grand-opening">Grand Opening</a></li><li><a href="index_v2.html#invite">Enquire</a></li></ul></div>
-      <div class="mm__level mm__level--all" data-mm-level="hyper" data-mm-parent="root" hidden><div class="mm__g"><p class="mm__h">The lineup</p><ul class="mm__list"><li><a href="utopia.html">Utopia</a></li><li><a href="utopia-roadster.html">Utopia Roadster</a></li><li><a href="huayra-r-evo-roadster.html">Huayra R Evo Roadster</a></li><li><a href="huayra-bc.html">Huayra BC</a></li></ul></div><div class="mm__g"><p class="mm__h">Grandi Complicazioni</p><ul class="mm__list"><li><a href="https://www.pagani.com/zonda-hp-barchetta/" target="_blank" rel="noopener">Zonda HP Barchetta<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/pagani-imola/" target="_blank" rel="noopener">Imola<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/imola-roadster/" target="_blank" rel="noopener">Imola Roadster<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="huayra-tricolore.html">Huayra Tricolore</a></li><li><a href="huayra-codalunga.html">Huayra Codalunga</a></li><li><a href="huayra-codalunga-speedster.html">Huayra Codalunga Speedster</a></li><li><a href="huayra-epitome.html">Huayra Epitome</a></li></ul></div><div class="mm__g"><p class="mm__h">Hypercars</p><ul class="mm__list mm__list--fam"><li><button type="button" data-mm-go="zonda"><span>Zonda</span><span class="mm__n">10</span></button></li><li><button type="button" data-mm-go="huayra"><span>Huayra</span><span class="mm__n">06</span></button></li><li><button type="button" data-mm-go="utopia"><span>Utopia</span><span class="mm__n">02</span></button></li></ul></div></div>
+      <div class="mm__level is-on" data-mm-level="root"><ul class="mm__list mm__list--main"><li><a href="index_v2.html#lineup">The lineup</a></li><li><button type="button" data-mm-go="hyper"><span>Hypercars</span><svg class="mm__go" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></button></li><li><a href="index_v2.html#grandi">Grandi Complicazioni</a></li><li><a href="index_v2.html#about">Horacio Pagani</a></li><li><a href="index_v2.html#service">Service</a></li><li><a href="index_v2.html#grand-opening">Grand Opening</a></li><li><a href="#invite" data-mm-close-go>Enquire</a></li></ul></div>
+      <div class="mm__level mm__level--all" data-mm-level="hyper" data-mm-parent="root" hidden><div class="mm__g"><p class="mm__h">The lineup</p><ul class="mm__list"><li><a href="utopia.html">Utopia</a></li><li><a href="utopia-roadster.html">Utopia Roadster</a></li><li><a href="huayra-r-evo-roadster.html">Huayra R Evo Roadster</a></li><li><a href="huayra-bc.html">Huayra BC</a></li></ul></div><div class="mm__g"><p class="mm__h">Grandi Complicazioni</p><ul class="mm__list"><li><a href="zonda-hp-barchetta.html">Zonda HP Barchetta</a></li><li><a href="imola.html">Imola</a></li><li><a href="huayra-tricolore.html">Huayra Tricolore</a></li><li><a href="huayra-codalunga.html">Huayra Codalunga</a></li><li><a href="imola-roadster.html">Imola Roadster</a></li><li><a href="huayra-codalunga-speedster.html">Huayra Codalunga Speedster</a></li><li><a href="huayra-epitome.html">Huayra Epitome</a></li></ul></div><div class="mm__g"><p class="mm__h">Hypercars</p><ul class="mm__list mm__list--fam"><li><button type="button" data-mm-go="zonda"><span>Zonda</span><span class="mm__n">10</span></button></li><li><button type="button" data-mm-go="huayra"><span>Huayra</span><span class="mm__n">06</span></button></li><li><button type="button" data-mm-go="utopia"><span>Utopia</span><span class="mm__n">02</span></button></li></ul></div></div>
       <div class="mm__level" data-mm-level="zonda" data-mm-parent="hyper" hidden><p class="mm__h">Zonda</p><ul class="mm__list"><li><a href="https://www.pagani.com/zonda-c12/" target="_blank" rel="noopener">Zonda C12<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-s/" target="_blank" rel="noopener">Zonda S<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-roadster/" target="_blank" rel="noopener">Zonda Roadster<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-f/" target="_blank" rel="noopener">Zonda F<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-roadster-f/" target="_blank" rel="noopener">Zonda Roadster F<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-cinque/" target="_blank" rel="noopener">Zonda Cinque<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-cinque-roadster/" target="_blank" rel="noopener">Zonda Cinque Roadster<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-tricolore/" target="_blank" rel="noopener">Zonda Tricolore<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-r/" target="_blank" rel="noopener">Zonda R<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/zonda-revolucion/" target="_blank" rel="noopener">Zonda Revolución<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li></ul></div>
       <div class="mm__level" data-mm-level="huayra" data-mm-parent="hyper" hidden><p class="mm__h">Huayra</p><ul class="mm__list"><li><a href="https://www.pagani.com/huayra/" target="_blank" rel="noopener">Huayra<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="huayra-bc.html">Huayra BC</a></li><li><a href="https://www.pagani.com/huayra-roadster/" target="_blank" rel="noopener">Huayra Roadster<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/huayra-roadster-bc/" target="_blank" rel="noopener">Huayra Roadster BC<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="https://www.pagani.com/huayra-r/" target="_blank" rel="noopener">Huayra R<svg class="mm__ext" viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 1.5h7v7M10.5 1.5 1.5 10.5"/></svg><span class="sr"> (pagani.com, opens in a new tab)</span></a></li><li><a href="huayra-r-evo-roadster.html">Huayra R Evo Roadster</a></li></ul></div>
       <div class="mm__level" data-mm-level="utopia" data-mm-parent="hyper" hidden><p class="mm__h">Utopia</p><ul class="mm__list"><li><a href="utopia.html">Utopia</a></li><li><a href="utopia-roadster.html">Utopia Roadster</a></li></ul></div>
     </div>
   </div>
 </dialog>
-<main class="mp" id="top">
-  <p class="eyebrow mp__eyebrow">The lineup</p>
-  <h1 class="mp__title"><img class="mp__logo" src="assets/mp-logo-utopia.png?v=202" alt="Pagani Utopia" width="950" height="291"></h1>
-  <figure class="mp__car mp__car--cut"><img src="assets/utopia.webp?v=201" alt="Pagani Utopia in white, doors raised, rear three-quarter" width="1054" height="444"></figure>
-  <dl class="mp__specs"><div><dd>864 hp</dd><dt>Power</dt></div><div><dd>1,280 kg</dd><dt>Dry weight</dt></div><div><dd>1,100 Nm</dd><dt>Torque</dt></div></dl>
-  <p class="mp__note">Full page coming soon. See it with us in Miami.</p>
-  <p class="mp__cta">
-    <a class="cta cta--solid cta--fill" href="index_v2.html#invite" data-sheet-open>Enquire about the Utopia</a>
-    <a class="cta cta--quiet" href="index_v2.html#model-utopia">See it in the collection<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a>
-  </p>
-  <nav class="mp__also" aria-label="Also in The lineup"><span class="eyebrow">Also</span><a href="utopia-roadster.html">Utopia Roadster</a><a href="huayra-r-evo-roadster.html">Huayra R Evo Roadster</a><a href="huayra-bc.html">Huayra BC</a></nav>
-</main>
-<dialog class="psheet" aria-labelledby="psheet-title" data-sheet data-lenis-prevent>
-  <div class="psheet__in">
-    <div class="psheet__head">
-      <div><p class="eyebrow">Private enquiry</p><h2 class="psheet__title" id="psheet-title">Pagani Utopia</h2></div>
-      <button class="psheet__close" type="button" data-sheet-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg><span class="sr">Close</span></button>
+
+<nav class="mn" aria-label="On this page"><a href="#exterior" data-go>Exterior</a><a href="#interior" data-go>Interior</a><a href="#film" data-go>Video</a><a href="#engine" data-go>Engine</a><a href="#gallery" data-go>Gallery</a></nav>
+<a class="mc is-off" href="#invite" data-go><img src="assets/models/utopia/front.webp" alt="" loading="lazy"><div><b>Utopia</b><span>Register your interest<svg viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></span></div></a>
+
+<main id="top">
+  <section class="mh mh--wide" aria-labelledby="mh-n">
+    <div class="mh__m"><picture><img src="assets/models/utopia/front.webp" style="object-position:50% 60%" alt="The Pagani Utopia from the front three-quarter, in the studio" fetchpriority="high"></picture></div>
+    <div class="mh__t"><h1 class="mh__n" id="mh-n"><span>Utopia</span></h1><p class="mh__l">Every Pagani begins with an aesthetic shock.</p><p class="mact mh__a"><a class="cta cta--solid cta--fill" href="#invite" data-go>Register your interest</a></p></div>
+  </section>
+
+  <section class="ex" id="exterior" aria-labelledby="ex-h">
+    <div class="ex__t"><h2 class="title" id="ex-h" data-rise>Exterior</h2><p class="mtext" data-rise>Utopia radiates simplicity. It asserts itself straightaway, affirms and imposes its lines, which are so typical of Pagani but at the same time it is so different from anything they have offered us before. A shape that is more flowing and curvaceous. From the windscreen, with its rounded upper edges, to the details of its wings and bonnet, its softer contours give it a new expression, a new outline. A shape smoothed and refined over a long time, but which sticks in your memory from the first time you see it. The most difficult part of the process for Pagani has been to follow as closely as possible the original intention of creating a timeless design object, instead of one that follows the fashion of the period.</p></div>
+    <figure class="ex__b" data-open><img src="assets/models/utopia/rear.webp" alt="The Utopia from behind, with its four exhausts" loading="lazy"></figure>
+    <figure class="mx mx--0" data-drift="12"><div class="mx__m" data-open><img src="assets/models/utopia/light.webp" alt="The rear light floating in its air extractor" loading="lazy"></div><figcaption data-rise>The rear lights float at the sides of the rear wings, set into the air extractors. Each part of them, so beautifully crafted, could be displayed in the window of a jeweler’s shop.</figcaption></figure><figure class="mx mx--1" data-drift="36"><div class="mx__m" data-open><img src="assets/models/utopia/wheel.webp" alt="The forged wheel and its Pirelli tire" loading="lazy"></div><figcaption data-rise>The role of Pirelli tires is to transfer the exuberant torque to the ground efficiently and bring the finishing touches to the car’s exceptional road feel, thanks to the unusually large 21” wheels in the front and 22” wheels in the rear, which triggered new creativity and distinguishing design freedom on the surrounding bodywork. The silhouette of Utopia can be seen on their sidewalls, demonstrating just how much they have been specially developed for this car.</figcaption></figure><figure class="mx mx--2" data-drift="20"><div class="mx__m" data-open><img src="assets/models/utopia/mirror.webp" alt="The side mirror on its airfoil support" loading="lazy"></div><figcaption data-rise>The side mirrors, as if suspended in mid-air, thanks to the airfoil-shaped support are set apart from the body for better aerodynamic penetration, showing the meticulous optimization that was carried out on them in the wind tunnel.</figcaption></figure>
+    <div class="ex__w"><div class="ex__s"><figure class="ex__m"><img src="assets/models/utopia/script.webp" alt="The Utopia script and the rear light, in the dark" loading="lazy"></figure><p class="ex__c">The new car has very few aerodynamic add-ons yet is more efficient than ever. Where some hypercars have a multitude of spoilers, Utopia incorporates the function of these appendices into its overall shape, achieving greater downforce and reduced drag solely by means of its design.</p></div></div>
+  </section>
+
+  <section class="in" id="interior" aria-labelledby="in-h">
+    <div class="in__t"><h2 class="title" id="in-h" data-rise>Interior</h2><p class="mtext" data-rise>A car may be compared to a sculpture, but opening the door changes everything; a sculpture, yes, but one you can sit in. The interior of Utopia is even more original, if that is possible, than its exterior shape.</p><p class="mtext" data-rise>Neither modern nor retro, it is timeless. There are no screens apart from the minimal display in front of the driver; big screens would have been easier to fit and would have saved a lot of effort in the design, but it would have taken away much of the beauty. All the instruments are purely analog and each of the easy-to-read dials subtly reveals part of its mechanism as if it were revealing the skeleton movement.</p><p class="mact" data-rise><a class="cta cta--quiet" href="#invite" data-go>Register your interest<svg class="cta__arrow" viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></a></p></div>
+    <figure class="in__b" data-open><img src="assets/models/utopia/dash.webp" alt="The dashboard and the steering wheel of the Utopia, in red leather and metal" loading="lazy"></figure>
+    <figure class="mx mx--0" data-drift="12"><div class="mx__m" data-open><img src="assets/models/utopia/gate.webp" alt="The exposed gear lever mechanism" loading="lazy"></div><figcaption data-rise>The pedals are also made from a single block of metal, while the gear lever mechanism is still exposed but more sophisticated than ever. All this with proper obsession paid to ergonomics, efficiency and ease of access.</figcaption></figure><figure class="mx mx--1" data-drift="36"><div class="mx__m" data-open><img src="assets/models/utopia/cabin.webp" alt="The cabin of the Utopia through its open door, at night" loading="lazy"></div><figcaption data-rise>For Pagani, every component needed for the car to function is an opportunity to be creative. Even the steering wheel has been reinvented: it is fashioned from a solid aluminum block, from the spokes and hollow rim to the steering column boss, which contains the airbag.</figcaption></figure><figure class="mx mx--2" data-drift="20"><div class="mx__m" data-open><img src="assets/models/utopia/seats.webp" alt="The two seats of the Utopia in red leather" loading="lazy"></div><figcaption data-rise>A high-performance car must not only please its buyer, but support them and provide all the safety they require, without their need to ask or worry about it. Many exemptions are granted to very low-volume manufacturers, but Pagani made it a point of honor – once again – to build its cars and meet the most stringent regulations in the world, in every respect, starting with safety. Utopia passed more than 50 severe crash tests, from development to pre-tests and homologation approval, to reach its global certification.</figcaption></figure>
+  </section>
+
+  <section class="mf" id="film" aria-labelledby="mf-h">
+    <div class="mf__s">
+      <div class="mf__m" data-mp4="assets/models/utopia/loop" role="img" aria-label="Pagani Utopia, the film from Pagani Automobili, showing the car in the studio."><img src="assets/models/utopia/film-start.webp" alt="" loading="lazy"></div>
+      <div class="mf__t"><h2 class="mf__h" id="mf-h">The alchemy of pleasure, the equation of beauty</h2><p class="mact mf__a"><a class="cta cta--solid cta--fill" href="https://www.youtube.com/watch?v=bfcT8PbF0F8" target="_blank" rel="noopener" data-film="bfcT8PbF0F8">Play video</a></p></div>
     </div>
-    <form class="enq psheet__form" data-enq novalidate aria-describedby="psheet-note">
-      <div class="enq__grid">
-        <label class="enq__f"><input name="name" autocomplete="name" required placeholder=" "><span>Name</span></label>
-        <label class="enq__f"><input name="email" type="email" autocomplete="email" required placeholder=" "><span>Email</span></label>
-        <label class="enq__f"><input name="phone" type="tel" autocomplete="tel" placeholder=" "><span>Phone</span></label>
-        <label class="enq__f"><select name="interest" class="is-filled" data-enq-select><option>General enquiry</option><option selected>Utopia</option><option>Grandi Complicazioni</option><option>Service</option></select><span>Interest</span></label>
-        <label class="enq__f enq__f--wide"><textarea name="message" rows="1" placeholder=" "></textarea><span>Message</span></label>
-      </div>
-      <button class="cta cta--solid cta--fill enq__send" type="submit">Send enquiry</button>
-      <p class="enq__note" id="psheet-note" role="status" data-enq-note></p>
-    </form>
-  </div>
-</dialog>
-<script src="vendor/lenis.min.js" defer></script>
-<script src="model.js?v=1" defer></script>
-<script src="models-menu.js?v=5" defer></script>
+  </section>
+
+  <section class="en" id="engine" aria-labelledby="en-h">
+    <div class="en__t"><h2 class="title" id="en-h" data-rise>Engine</h2><p class="mtext" data-rise>The Pagani V12 engine, a 6-liter biturbo specially built by Mercedes-AMG for Pagani, is the result of an enormous development work: it delivers 864 bhp and, above all, a prodigious 1100 Nm of torque. It revs higher and is both more flexible and more powerful while meeting the most stringent emissions regulations, including those in force in California.</p><p class="mtext" data-rise>For the transmission the choice was a philosophical one. It would not be a dual-clutch transmission which is efficient, but heavy and robs the driver of the ability to set the pace of the car’s acceleration. Instead, Pagani turned to the most prestigious motorsport and high performance automotive transmission manufacturer, Xtrac, to develop the quickest shifting gearbox with helical gears possible. It is compact, light and transversely mounted for an optimized center of gravity.</p></div>
+    <dl class="en__f"><div><dd>864<span>HP</span></dd><dt>Power</dt></div><div><dd>1,100<span>Nm</span></dd><dt>Torque</dt></div><div><dd>1,280<span>kg</span></dd><dt>Dry weight</dt></div></dl>
+    <figure class="en__p" data-open data-drift="150"><img src="assets/models/utopia/engine.webp" alt="The engine bay of the Utopia seen from above" loading="lazy"></figure>
+    <div class="en__s"><h3 class="eyebrow" data-rise>Specifications</h3><dl class="en__d"><div><dt>Dry weight</dt><dd>1.280 Kg (2822 lb)</dd></div><div><dt>Power</dt><dd>864 HP (635 kW) at 6000 RPM at 18 °C</dd></div><div><dt>Torque</dt><dd>1100 Nm from 2800 RPM to 5900 RPM</dd></div><div><dt>Engine</dt><dd>Pagani V12 60° 5980 cc twin turbochargers, developed on a bespoke basis by Mercedes-AMG</dd></div><div><dt>Gearbox</dt><dd>Pagani by Xtrac 7-speed transversal AMT (Automated Manual Transmission) or pure manual, with electro-mechanical differential</dd></div><div><dt>Chassis</dt><dd>Monocoque in Pagani Carbo-Titanium HP62 G2 and Carbo-Triax HP62 with front and rear tubular subframes in Cr-Mo alloy steel</dd></div><div><dt>Suspensions</dt><dd>Forged aluminum alloy independent double wishbone with helical springs and electronically controlled shock absorbers</dd></div><div><dt>Brakes</dt><dd>Pagani by Brembo 4 ventilated carbon-ceramic discs brake unit, 410x38 mm with 6 pistons monolithic calipers at the front and 390x34 mm with 4 pistons monolithic calipers at the rear</dd></div><div><dt>Wheels</dt><dd>APP forged monolithic aluminum alloy, 21” at the front and 22” at the rear</dd></div><div><dt>Tyres</dt><dd>Pirelli PZero Corsa 265/35 R21 at the front and 325/30 R22 at the rear; Pirelli SottoZero for driving in low temperatures</dd></div></dl></div>
+    <p class="mact en__c" data-rise><a class="cta cta--solid cta--fill" href="#invite" data-go>Register your interest</a><a class="cta cta--quiet" href="tel:+18332906287">(833)&nbsp;290-6287</a></p>
+  </section>
+
+  <section class="mg" id="gallery" aria-labelledby="mg-h" data-carousel>
+    <div class="mg__h"><h2 class="title" id="mg-h" data-rise>Gallery</h2><p class="mg__n" aria-live="polite"><span data-now>1</span> / 11</p></div>
+    <div class="mg__w"><ul class="mg__r" data-track tabindex="0" aria-label="Photographs of the Utopia"><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/front.webp" alt="Utopia: From the front" loading="lazy"><p>From the front</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/flank.webp" alt="Utopia: The flank" loading="lazy"><p>The flank</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/rear.webp" alt="Utopia: From behind" loading="lazy"><p>From behind</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/doors.webp" alt="Utopia: With the doors raised" loading="lazy"><p>With the doors raised</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/above.webp" alt="Utopia: From above" loading="lazy"><p>From above</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/top.webp" alt="Utopia: From directly above" loading="lazy"><p>From directly above</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/dash.webp" alt="Utopia: The dashboard" loading="lazy"><p>The dashboard</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/seats.webp" alt="Utopia: The seats" loading="lazy"><p>The seats</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/gear.webp" alt="Utopia: The gear lever" loading="lazy"><p>The gear lever</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/light.webp" alt="Utopia: The rear light" loading="lazy"><p>The rear light</p></li><li class="mg__s" style="--a:1.7778"><img src="assets/models/utopia/mirror.webp" alt="Utopia: The side mirror" loading="lazy"><p>The side mirror</p></li></ul><button type="button" class="mg__b mg__b--p" data-prev aria-label="Previous photograph"><svg viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></button><button type="button" class="mg__b mg__b--n" data-next aria-label="Next photograph"><svg viewBox="0 0 10 20" fill="none" aria-hidden="true"><path d="M0.5 0.5 9.5 10 0.5 19.5" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/></svg></button></div>
+  </section>
+
+  <section class="sc finale" id="invite" aria-labelledby="invite-title">
+    <div class="finale__car" aria-hidden="true" data-finale-car><img src="assets/finale-huayras-road.webp" alt="" loading="lazy" width="1440" height="810"></div>
+    <div class="finale__type">
+      <h2 id="invite-title" class="title" data-rise>Visit the showroom</h2>
+      <address class="finale__addr" data-rise><a href="https://maps.google.com/?q=14780+Biscayne+Blvd,+North+Miami+Beach,+FL+33181" target="_blank" rel="noopener">14780 Biscayne Blvd, North&nbsp;Miami&nbsp;Beach, FL&nbsp;33181</a><a class="finale__tel" href="tel:+18332906287">(833)&nbsp;290-6287</a></address>
+      <form class="enq" data-enq data-rise novalidate aria-describedby="enq-note">
+        <div class="enq__grid">
+          <label class="enq__f"><input name="name" autocomplete="name" required placeholder=" "><span>Name</span></label>
+          <label class="enq__f"><input name="email" type="email" autocomplete="email" required placeholder=" "><span>Email</span></label>
+          <label class="enq__f"><input name="phone" type="tel" autocomplete="tel" placeholder=" "><span>Phone</span></label>
+          <label class="enq__f"><select name="interest" class="is-filled" data-enq-select><option>General enquiry</option><option selected>Utopia</option><option>Huayra</option><option>Zonda</option><option>Grandi Complicazioni</option><option>Service</option></select><span>Interest</span></label>
+          <label class="enq__f enq__f--wide"><textarea name="message" rows="1" placeholder=" "></textarea><span>Message</span></label>
+        </div>
+        <button class="cta cta--solid cta--fill enq__send" type="submit">Send enquiry</button>
+        <p class="enq__note" id="enq-note" role="status" data-enq-note></p>
+      </form>
+    </div>
+    <footer class="foot">
+      <img src="assets/pagani.svg" alt="Pagani" width="120" height="14">
+      <p class="foot__meta"><span>2026 Copyright © Prestige Imports</span><span class="foot__legal"><a href="https://www.prestigeimports.com/privacy" target="_blank" rel="noopener">Privacy<span class="sr"> (opens in a new tab)</span></a><span aria-hidden="true">|</span><a href="https://www.prestigeimports.com/sitemap" target="_blank" rel="noopener">Sitemap<span class="sr"> (opens in a new tab)</span></a></span><span class="foot__powered">Powered by <a href="https://www.allautonetwork.com/" target="_blank" rel="noopener">All Auto Network<span class="sr"> (opens in a new tab)</span></a></span></p>
+    </footer>
+  </section>
+</main>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="model-page.js?v=15"></script>
+<script src="models-menu.js?v=5"></script>
+<script src="model-film.js?v=13"></script>
 </body>
 </html>
