@@ -1,0 +1,213 @@
+/* Pagani of Miami — model page (Alex's brief, 1 Nov 2026): hero, Exterior, Interior, Engine with specifications, gallery carousel, the main site's header and footer. Tokens from home_v2.css. Each chapter has its own composition; the air goes between the groups. */
+:root { --gx: max(24px, 4.27vw); --g: var(--s-5); }
+html, body { background: var(--bg); }
+.mpage main { overflow-x: clip; }
+.mtext { margin: 0; font-size: 1.0625rem; line-height: 1.65; color: rgb(255 255 255 / .84); text-wrap: pretty; }
+.mx__m, [data-open] { overflow: hidden; }
+figure { margin: 0; }
+figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
+figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: var(--ink-70); text-wrap: pretty; }
+
+/* ---------- hero: the whole screen, as photographed ---------- */
+.mh { position: relative; height: 100svh; background: #000; overflow: clip; }
+.mh__m { position: absolute; inset: 0; }
+.mh::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 55%; pointer-events: none; background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--bg) 8%, transparent) 22%, color-mix(in srgb, var(--bg) 28%, transparent) 45%, color-mix(in srgb, var(--bg) 62%, transparent) 68%, color-mix(in srgb, var(--bg) 90%, transparent) 88%, var(--bg) 100%); }   /* the photograph melts into the next chapter's ground: no seam, at any size or scroll */
+.mh__m picture { display: contents; }
+.mh__m img { width: 100%; height: 100%; object-fit: cover; }
+/* the words stand in the lower right corner, on the floor under the car; their size follows the height too, so the whole block is above the fold on any screen */
+.mh__t { z-index: 1; position: absolute; left: var(--gx); right: var(--gx); bottom: max(clamp(20px, 5svh, 72px), env(safe-area-inset-bottom, 0px)); text-align: right; }
+.mh__n { margin: 0; overflow: hidden; font-family: "Roboto", var(--font-brand); font-weight: 200; font-size: clamp(2rem, min(4.4vw, 9svh), 6rem); line-height: 1.06; letter-spacing: -0.01em; }
+.mh__n span { display: block; }
+.mh__l { margin: clamp(4px, 1.2svh, var(--s-3)) 0 0; font-size: clamp(1rem, 2.6svh, var(--t-lede)); line-height: 1.4; color: rgb(255 255 255 / .9); text-wrap: balance; }
+
+/* the calls to the showroom: the home's own buttons */
+.mact { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3) var(--s-7); margin: 0; }
+.mh__a { justify-content: flex-end; margin-top: clamp(10px, 2.6svh, var(--s-6)); }
+.en__c { grid-column: 1 / -1; margin-top: var(--s-9); }
+
+/* tall screens: Pagani's own portrait, whole, from the top of the screen; the car ends at 62% of its height (97.5vw), and when the screen is too short for the words below that, the picture rises */
+@media (orientation: portrait) {
+  .mh__m img { position: absolute; left: 0; top: min(0px, calc(100svh - 18rem - 97.5vw)); height: auto; object-fit: fill; }
+  .mh__n { font-size: clamp(2.5rem, 6.4vw, 6rem); }
+}
+/* a phone on its side: the car rises and the button is lower in height, so the words stay on the floor */
+@media (orientation: landscape) and (max-height: 500px) {
+  .mh__m img { object-position: 50% 85% !important; }
+  .mh__a .cta { height: 42px; }
+}
+
+/* ---------- exterior: words against a picture off the page's edge, three details stepping down, the profile across the page ---------- */
+.ex { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--g); padding: var(--s-9) var(--gx); background: var(--bg); }
+.ex__t { grid-column: 1 / span 4; display: grid; align-content: start; gap: var(--s-5); }
+.ex__b { grid-column: 6 / -1; margin-right: calc(var(--gx) * -1); aspect-ratio: 3 / 2; }
+.mx { grid-row: 2; margin-top: var(--s-8); }
+.mx__m { aspect-ratio: 4 / 5; }
+.mx--0 { grid-column: 1 / span 3; }
+.mx--1 { grid-column: 4 / span 5; margin-top: var(--s-6); }
+.mx--2 { grid-column: 9 / -1; margin-top: var(--s-7); }
+.ex { padding-bottom: 0; }
+/* the profile: one picture held on the whole screen while the words float up through its middle and leave; the picture melts into the ground above and into Interior's black below */
+.ex__w { position: relative; grid-column: 1 / -1; height: 280svh; margin: var(--s-8) calc(var(--gx) * -1) 0; }
+.ex__s { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; padding-inline: var(--gx); background: var(--bg); }
+.ex__m { position: absolute; inset: 0; margin: 0; }
+.ex__m img { position: absolute; left: 0; top: 8%; height: 100%; object-position: 50% 55%; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 76%, transparent 92%); mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 76%, transparent 92%); }
+.nb { white-space: nowrap; }
+.ex__c { position: relative; z-index: 1; max-width: 36ch; margin: 0 0 12svh; font-size: var(--t-lede); line-height: 1.45; color: var(--ink); text-align: center; text-wrap: balance; }
+/* a tall screen: the picture whole, standing low, the words on the dark above it */
+@media (orientation: portrait) {
+  .ex__m img { top: auto; bottom: 12%; height: auto; aspect-ratio: 3 / 2; object-position: 50% 50%; }
+  .ex__c { margin-bottom: 26svh; }
+}
+
+/* ---------- interior: Exterior in the mirror: the picture off the left edge with the words to its right, the three details stepping the other way. Black ---------- */
+.in { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--g); padding: var(--s-9) var(--gx); background: var(--bg); }
+.in__t { grid-column: 9 / -1; grid-row: 1; display: grid; align-content: start; gap: var(--s-5); }
+.in__b { grid-column: 1 / span 7; grid-row: 1; margin-left: calc(var(--gx) * -1); aspect-ratio: 3 / 2; }
+.in .mx--0 { grid-column: 10 / -1; }
+.in .mx--1 { grid-column: 5 / span 5; }
+.in .mx--2 { grid-column: 1 / span 4; }
+/* the door stands as tall as the words beside it */
+@media (min-width: 1024px) {
+  .in__b { position: relative; aspect-ratio: auto; min-height: calc((100vw / 12) * 5); }
+  .in__b img { position: absolute; inset: 0; }
+}
+
+/* ---------- the screen in the middle: the model's film, or its picture alone, held full screen with the words at its centre; Engine then rides up over it. Dimmed as the home's finale is, so the words read over a silver car ---------- */
+.mf { position: relative; height: 250svh; background: var(--bg); }
+.mf__s::after { content: ""; position: absolute; inset: 0 0 auto; height: 22%; pointer-events: none; background: linear-gradient(to bottom, var(--bg), transparent); }
+.mf__s { position: sticky; top: 0; height: 100svh; overflow: hidden; display: grid; place-items: center; padding-inline: var(--gx); }
+.mf__m { position: absolute; inset: 0; overflow: hidden; filter: brightness(.55) saturate(.85); pointer-events: none; }
+.mf__m img { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; transition: opacity 1.2s ease; }
+/* with a film, its opening frame stands exactly where the film will: same size, same place, so one becomes the other */
+.mf__m[data-yt] img { inset: 0 auto auto 50%; width: max(116vw, 206.3svh); height: max(65.25vw, 116svh); transform: translateX(-50%); }
+.mf__m.is-on img { opacity: 0; }
+/* the film stands from the top and runs past the foot of the frame, so the subtitles burned into it stay out of sight */
+.mf__m iframe { position: absolute; top: 0; left: 50%; width: max(116vw, 206.3svh); height: max(65.25vw, 116svh); transform: translateX(-50%); border: 0; }
+.mf__t { position: relative; z-index: 1; display: grid; justify-items: center; max-width: 24ch; font-size: clamp(2.25rem, min(4.4vw, 8svh), 5.5rem); text-align: center; }
+.mf__h { margin: 0; font-family: "Roboto", var(--font-brand); font-weight: 200; font-size: 1em; line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
+.mf__l { margin: var(--s-4) 0 0; font-size: var(--t-lede); line-height: 1.4; color: rgb(255 255 255 / .9); text-wrap: balance; }
+.mf__a { margin-top: var(--s-6); justify-content: center; }
+.mfd { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #000; color: var(--ink); }
+.mfd::backdrop { background: #000; }
+.mfd__x { position: absolute; top: var(--s-3); right: var(--gx); z-index: 1; background: none; border: 0; }
+.mfd__f { position: absolute; inset: 66px 0 0; display: grid; place-items: center; padding: 0 var(--gx) var(--s-5); }
+.mfd__f iframe { width: min(100%, calc((100dvh - 90px) * 16 / 9)); aspect-ratio: 16 / 9; border: 0; }
+
+/* ---------- engine: one row of large figures, the picture standing beside the words, the full list ---------- */
+/* Engine rides up over the film with a soft edge, not a cut */
+.en::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 30svh; pointer-events: none; background: linear-gradient(to top, var(--bg), transparent); }
+.en { position: relative; z-index: 1; margin-top: -100svh; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--g); padding: var(--s-10) var(--gx); background: var(--bg); }
+.en__t { grid-column: 1 / span 5; grid-row: 1; display: grid; align-content: start; gap: var(--s-5); }
+.en__f { grid-column: 1 / span 8; grid-row: 2; display: flex; flex-wrap: wrap; gap: var(--s-7) clamp(var(--s-7), 5vw, var(--s-10)); align-self: end; margin: var(--s-9) 0 0; }
+.en__f dd { margin: 0; font-family: "Roboto", var(--font-brand); font-weight: 200; font-size: clamp(3rem, 6.4vw, 8rem); line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.en__v { display: inline-block; font-weight: inherit; text-align: right; }
+.en__f dd span { margin-left: .14em; font-size: .28em; letter-spacing: 0; color: var(--ink-70); }
+.en__f dt { margin-top: var(--s-3); font-size: var(--t-14); line-height: 1.4; letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); }
+.en__p { grid-column: 9 / -1; grid-row: 1 / span 2; margin-right: calc(var(--gx) * -1); aspect-ratio: 2 / 3; }
+.en__s { grid-column: 1 / -1; margin-top: var(--s-10); }
+.en__s .eyebrow { margin: 0 0 var(--s-6); font-weight: 400; }
+.en__d { columns: 2; column-gap: clamp(var(--s-7), 6vw, var(--s-10)); margin: 0; }
+.en__d > div { display: grid; grid-template-columns: minmax(110px, 1fr) minmax(0, 3fr); gap: var(--s-4); padding: var(--s-5) 0; border-top: 1px solid var(--rule); break-inside: avoid; }
+.en__d dt { font-size: var(--t-14); line-height: 1.7; letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); }
+.en__d dd { margin: 0; font-size: 1rem; line-height: 1.55; text-wrap: pretty; }
+
+/* ---------- gallery: a carousel, the frame in view centred, its neighbours showing ---------- */
+.mg { position: relative; padding: var(--s-10) 0 var(--s-9); background: var(--bg); }
+.mg__h { display: flex; align-items: center; justify-content: space-between; gap: var(--s-5); padding-inline: var(--gx); margin-bottom: var(--s-7); }
+.mg__n { margin: 0; font-size: var(--t-14); letter-spacing: var(--track-sm); color: var(--ink-70); font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* the arrows stand on the strip, at the pictures' mid-height, against the page's edges */
+.mg__w { --h: min(72svh, 56vw); position: relative; }
+.mg__b { position: absolute; top: calc(var(--h) / 2 - 26px); z-index: 2; display: grid; place-items: center; width: 52px; height: 52px; padding: 0; background: rgb(0 0 0 / .55); border: 1px solid var(--rule-strong); color: var(--ink); cursor: pointer; transition: background-color .4s, color .4s, border-color .4s; }
+.mg__b--p { left: var(--gx); }
+.mg__b--n { right: var(--gx); }
+.mg__b svg { width: 9px; height: 18px; }
+.mg__b--p svg { transform: scaleX(-1); }
+.mg__b:hover, .mg__b:focus-visible { background: var(--ink); border-color: var(--ink); color: #000; }
+.mg__r { display: flex; align-items: flex-start; gap: var(--s-5); margin: 0; padding: 0 calc(50vw - var(--h) * .75); list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; cursor: grab; }
+.mg__r::-webkit-scrollbar { display: none; }
+.mg__r:focus-visible { outline: 1px solid var(--rule-strong); outline-offset: 4px; }
+.mg__r.is-drag { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; user-select: none; }
+.mg__s img { -webkit-user-drag: none; }
+.mg__s { flex: none; scroll-snap-align: center; opacity: .42; transition: opacity .7s ease; }
+.mg__s.is-on { opacity: 1; }
+.mg__s img { display: block; height: var(--h); width: calc(var(--h) * var(--a)); object-fit: cover; user-select: none; -webkit-user-drag: none; }
+.mg__s p { margin: var(--s-3) 0 0; font-size: var(--t-14); line-height: 1.4; color: var(--ink-70); }
+
+/* ---------- the room before the footer: the home's own, its picture melting out of the page's one ground ---------- */
+.mpage .finale { border-top: 0; }
+.mpage .finale__car::before { content: ""; position: absolute; inset: 0 0 auto; z-index: 1; height: 28%; pointer-events: none; background: linear-gradient(to bottom, var(--bg), transparent); }
+
+/* small desktops: the words run longer than the picture, so the picture takes their height */
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .ex__t { grid-column: 1 / span 5; }
+  .ex__b { position: relative; aspect-ratio: auto; }
+  .ex__b img { position: absolute; inset: 0; }
+  .in__t { grid-column: 8 / -1; }
+}
+
+/* ---------- two things that stay on screen, in the lineup cards' glass: the chapters of the page, and the way to the form. Each leaves when the screen is a scene of its own ---------- */
+.mn, .mc { position: fixed; z-index: 51; border-radius: 10px; background: linear-gradient(150deg, rgb(255 255 255 / .085) 0%, rgb(255 255 255 / .03) 45%, rgb(255 255 255 / .015) 100%), rgb(19 20 23 / .55); -webkit-backdrop-filter: blur(24px) saturate(1.25); backdrop-filter: blur(24px) saturate(1.25); border: 1px solid var(--rule); transition: opacity .5s ease, transform .6s cubic-bezier(.22, 1, .36, 1), visibility .6s, top .5s cubic-bezier(.22, 1, .36, 1); }
+/* from the first screen, on the left under the logo; it rises with the header when the header tightens */
+.mn { top: calc(clamp(var(--hdr-h), 7.8vw, 150px) + var(--s-3)); left: var(--gx); display: flex; gap: var(--s-1); padding: var(--s-1); }
+.hdr.is-solid ~ .mn { top: calc(var(--hdr-h) + var(--s-6)); }
+.mn a { display: block; padding: var(--s-2) var(--s-4); border-radius: 7px; font-size: var(--t-14); line-height: 1.3; color: rgb(255 255 255 / .78); text-decoration: none; white-space: nowrap; transition: color .35s, background-color .35s; }
+.mn a:hover, .mn a:focus-visible { color: var(--ink); background: rgb(255 255 255 / .1); }
+.mn a[aria-current="true"] { color: #000; background: var(--ink); }
+.mn.is-off { opacity: 0; visibility: hidden; transform: translateY(-12px); }
+.mc { right: var(--gx); bottom: max(var(--s-5), env(safe-area-inset-bottom, 0px)); display: grid; grid-template-columns: 96px auto; align-items: center; gap: var(--s-4); padding: var(--s-2) var(--s-5) var(--s-2) var(--s-2); color: var(--ink); text-decoration: none; }
+.mc img { display: block; width: 96px; height: 64px; object-fit: cover; object-position: 50% 62%; border-radius: 6px; }
+.mc b { display: block; font-weight: 400; font-size: var(--t-14); line-height: 1.3; color: rgb(255 255 255 / .78); }
+.mc span { display: flex; align-items: center; gap: var(--s-3); margin-top: var(--s-1); font-family: "Roboto", var(--font-brand); font-weight: 500; font-size: .875rem; line-height: 1.3; }
+.mc svg { width: 7px; height: 14px; flex: none; transition: transform .5s cubic-bezier(.22, 1, .36, 1); }
+.mc:hover svg, .mc:focus-visible svg { transform: translateX(5px); }
+.mc:hover, .mc:focus-visible { border-color: var(--rule-strong); }
+.mc.is-off { opacity: 0; visibility: hidden; transform: translateY(16px); }
+#exterior, #interior, #engine, #gallery { scroll-margin-top: var(--s-10); }
+@media (max-width: 767px) {
+  .mn, .hdr.is-solid ~ .mn { top: calc(var(--hdr-h) + var(--s-5)); }
+  .mn { left: var(--s-4); max-width: calc(100vw - var(--s-6)); }
+  .mn a { padding: var(--s-2) var(--s-2); }
+  .mc { left: var(--s-3); right: var(--s-3); bottom: max(var(--s-3), env(safe-area-inset-bottom, 0px)); grid-template-columns: 64px 1fr; padding-right: var(--s-4); }
+  .mc img { width: 64px; height: 44px; }
+  .mc span { justify-content: space-between; margin-top: 0; }
+  .mc b { display: none; }
+}
+@media (max-width: 359px) { .mn { left: var(--s-2); max-width: calc(100vw - var(--s-4)); } .mn a { padding-inline: var(--s-1); } }
+@media (prefers-reduced-motion: reduce) { .mn, .mc { transition: none; } }
+
+/* ---------- smaller screens: the same order, each picture composed for the width ---------- */
+@media (max-width: 1023px) {
+  .ex, .in, .en { padding-block: var(--s-9); }
+  .ex { padding-block: var(--s-8) 0; }
+  .ex__t { grid-column: 1 / -1; margin-bottom: var(--s-6); }
+  .ex__b { grid-column: 2 / -1; }
+  .mx { grid-row: auto; margin-top: var(--s-6); }
+  .mx--0 { grid-column: 1 / span 7; }
+  .mx--1 { grid-column: 6 / -1; margin-top: var(--s-5); }
+  .mx--2 { grid-column: 1 / span 8; margin-top: var(--s-5); }
+  .ex__w { margin-top: var(--s-7); }
+  .in__b { grid-column: 1 / span 10; grid-row: auto; }
+  .in { padding-block: var(--s-8); }
+  .in__t { grid-column: 1 / -1; margin-bottom: var(--s-6); }
+  .in__b { grid-column: 1 / span 11; grid-row: auto; }
+  .in .mx--0 { grid-column: 4 / -1; }
+  .in .mx--1 { grid-column: 1 / span 10; }
+  .in .mx--2 { grid-column: 3 / -1; }
+  .en__t, .en__f { grid-column: 1 / -1; grid-row: auto; }
+  .en__p { grid-column: 5 / -1; grid-row: auto; margin-top: var(--s-8); aspect-ratio: 4 / 5; }
+  .en__d { columns: 1; }
+  .mg { padding-top: var(--s-9); }
+  .mg__w { --h: min(62svh, 62vw); }
+}
+@media (max-width: 767px) {
+  .mh__n { font-size: clamp(2.5rem, 11.5vw, 4.5rem); }
+  .mh__l { max-width: 30ch; }
+  .en__d > div { grid-template-columns: 1fr; gap: var(--s-1); padding-block: var(--s-4); }
+  .mg__w { --h: min(58svh, 74vw); }
+  .mg__b { top: calc(var(--h) / 2 - 22px); width: 44px; height: 44px; }
+  .mg__b--p { left: var(--s-3); }
+  .mg__b--n { right: var(--s-3); }
+  .mg__r { gap: var(--s-3); padding-inline: calc(50vw - var(--h) * .5); }
+  .mg__s { max-width: 86vw; }
+  .mg__s img { max-width: 86vw; }
+}

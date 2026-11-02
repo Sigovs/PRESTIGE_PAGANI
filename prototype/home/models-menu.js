@@ -8,6 +8,9 @@
   const phone = matchMedia('(max-width: 767px)');
   const levels = [...mm.querySelectorAll('[data-mm-level]')];
   const back = mm.querySelector('[data-mm-back]');
+  const backLabel = document.createElement('span');
+  [...back.childNodes].forEach((n) => { if (n.nodeType === 3) n.remove(); });
+  back.append(backLabel);
   let opener = null, closing = 0, closedAt = 0, start = 'root', cur = 'root';
   const lv = (k) => mm.querySelector(`[data-mm-level="${k}"]`);
   const show = (key, dir) => {
@@ -19,6 +22,10 @@
     });
     cur = key;
     back.hidden = key === start;
+    // the button says where it leads: the level above, by name
+    const to = lv(key).dataset.mmParent === 'root' ? 'Menu' : 'Hypercars';
+    backLabel.textContent = to;
+    back.setAttribute('aria-label', `Back to ${to}`);
     const first = lv(key).querySelector('a, button');
     if (first) first.focus({ preventScroll: true });
   };

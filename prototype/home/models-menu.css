@@ -31,7 +31,7 @@
 }
 .mm__list a:hover, .mm__list a:focus-visible, .mm__list button:hover, .mm__list button:focus-visible { color: var(--ink); }
 .mm__list--fam a, .mm__list--fam button { font-size: 1.125rem; min-height: 48px; }
-.mm__n { font-size: 11px; letter-spacing: .1em; color: var(--ink-70); }
+.mm__n { font-size: var(--t-14); letter-spacing: .1em; color: var(--ink-70); }
 .mm__ext { width: 9px; height: 9px; fill: none; stroke: currentColor; stroke-width: 1.2; opacity: .6; }
 .mm__foot { padding: var(--s-5); text-align: center; font-size: 12px; letter-spacing: .06em; color: var(--ink-70); border-top: 1px solid rgb(255 255 255 / .1); }
 @media (prefers-reduced-motion: reduce) { .mm, .mm.is-open, .mm::backdrop, .mm__level { transition: none; } }
@@ -44,3 +44,28 @@
 .mm__sub { font-size: 12px; letter-spacing: .1em; text-transform: none; color: var(--ink-70); }
 .mm__list--main a, .mm__list--main button { font-size: 1.125rem; min-height: 48px; }
 .mm__go { width: 7px; height: 14px; margin-left: 4px; opacity: .7; }
+
+/* the two voices of the drawer (Alex, 2 Nov 2026): a title is large, thin and white; a name is small, grey, and turns white under the hand. Everything stands in the middle of the drawer and sizes itself by the screen's height, so the longest level fits on any screen without scrolling */
+.mm { --t: clamp(1.25rem, 3.1dvh, 1.625rem); --n: clamp(.875rem, 1.9dvh, 1rem); --row: clamp(24px, 4.1dvh, 36px); --gap: clamp(12px, 3.4dvh, 48px); }
+.mm__level { justify-content: safe center; padding-block: var(--s-3); }
+.mm .mm__h, .mm .mm__list--main a, .mm .mm__list--main button { font-family: "Roboto", var(--font-brand); font-weight: 200; font-size: var(--t); line-height: 1.2; letter-spacing: 0; text-transform: none; color: var(--ink); }
+.mm .mm__list--main a, .mm .mm__list--main button { min-height: clamp(34px, 6dvh, 48px); }
+.mm .mm__h { margin: 0 0 clamp(4px, 1dvh, var(--s-3)); text-align: center; }
+.mm__g { display: grid; justify-items: center; }
+.mm__g + .mm__g { margin-top: var(--gap); }
+.mm .mm__list:not(.mm__list--main) a, .mm .mm__list:not(.mm__list--main) button { min-height: var(--row); font-size: var(--n); letter-spacing: .01em; text-transform: none; color: rgb(255 255 255 / .62); }
+.mm .mm__list:not(.mm__list--main) a:hover, .mm .mm__list:not(.mm__list--main) a:focus-visible, .mm .mm__list:not(.mm__list--main) button:hover, .mm .mm__list:not(.mm__list--main) button:focus-visible { color: var(--ink); }
+.mm .mm__list--main a:hover, .mm .mm__list--main button:hover, .mm .mm__list--main a:focus-visible, .mm .mm__list--main button:focus-visible { opacity: .7; }
+.mm__n { color: rgb(255 255 255 / .45); }
+/* a very low screen: the groups stand side by side in a wider drawer */
+@media (max-height: 620px) { .mm__top { min-height: 48px; padding-block: 0; } }
+@media (max-height: 620px) and (max-width: 619px) { .mm { --row: 23px; --gap: 10px; } }
+@media (max-height: 620px) and (min-width: 620px) {
+  .mm { width: min(620px, 100vw); }
+  .mm__level--all { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: min-content; align-content: center; column-gap: var(--s-5); }
+  .mm__g + .mm__g { margin-top: 0; }
+  .mm__g:nth-child(2) { grid-column: 2; grid-row: 1 / span 2; }
+  .mm__g:nth-child(3) { grid-column: 1; margin-top: var(--gap); }
+}
+.mm .mm__back { font-size: 1rem; letter-spacing: .01em; text-transform: none; color: rgb(255 255 255 / .62); transition: color .3s; }
+.mm .mm__back:hover, .mm .mm__back:focus-visible { color: var(--ink); }
