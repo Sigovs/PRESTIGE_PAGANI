@@ -242,3 +242,10 @@ figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: v
   .mx figcaption { margin-top: var(--s-5); }
   .ex > .mx, .in > .mx { margin-top: var(--s-9); }
 }
+/* the held screen with a portrait of its own (Utopia, Alex's MOBILE MODELS): on a tall screen the picture fills it, and the words stand in its dark upper part, under the header and the chapters */
+.ex__m picture { display: contents; }
+@media (orientation: portrait) {
+  .ex__m--p img { top: 0; bottom: auto; height: 100%; aspect-ratio: auto; object-fit: cover; object-position: 50% 50%; -webkit-mask-image: none; mask-image: none; }
+  .ex__s:has(.ex__m--p) { place-items: start center; }
+  .ex__s:has(.ex__m--p) .ex__c { margin: calc(var(--hdr-h) + 104px) 0 0; text-shadow: 0 1px 18px rgb(0 0 0 / .55); }
+}

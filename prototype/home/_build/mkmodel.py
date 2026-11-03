@@ -82,7 +82,8 @@ UTOPIA = dict(
         a=[('light', 'The rear light floating in its air extractor', cut(W('The side mirrors'), 'The rear lights float')),
            ('wheel', 'The forged wheel and its Pirelli tire', W('The role of Pirelli tires')),
            ('mirror', 'The side mirror on its airfoil support', cut(W('The side mirrors'), 'The side mirrors', 'wind tunnel.'))],
-        wide=('script', 'The Utopia script and the rear light, in the dark', W('The new car has very few aerodynamic add-ons'))),
+        wide=('script', 'The Utopia script and the rear light, in the dark', W('The new car has very few aerodynamic add-ons')),
+        wide_p='mid-p.webp'),   # the phone's portrait of the held screen: Alex's MOBILE MODELS/model_hero_2_mid_utopia_m.jpg (3 Nov 2026)
     int=dict(
         lead=W('A car may be compared to a sculpture'),
         text=W('Neither modern nor retro'),
@@ -417,7 +418,7 @@ def build(M):
     <div class="ex__t"><h2 class="title" id="ex-h" data-rise>Exterior</h2><p class="mtext" data-rise>{e(x['lead'])}</p></div>
     <figure class="ex__b" data-open>{pic(*x['big'])}</figure>
     {cardset(x['a'])}
-    <div class="ex__w"><div class="ex__s"><figure class="ex__m{' ex__m--dim' if M.get('light') else ''}">{pic(*x['wide'][:2])}</figure><p class="ex__c">{e(x['wide'][2]).replace('open-top', '<span class="nb">open-top</span>')}</p></div></div>
+    <div class="ex__w"><div class="ex__s"><figure class="ex__m{' ex__m--dim' if M.get('light') else ''}{' ex__m--p' if x.get('wide_p') else ''}">{f'<picture><source media="(orientation: portrait)" srcset="{d}{x["wide_p"]}">' if x.get('wide_p') else ''}{pic(*x['wide'][:2])}{'</picture>' if x.get('wide_p') else ''}</figure><p class="ex__c">{e(x['wide'][2]).replace('open-top', '<span class="nb">open-top</span>')}</p></div></div>
   </section>
 
 {interior}  <section class="mf" id="film" aria-labelledby="mf-h">
