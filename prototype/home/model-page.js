@@ -36,10 +36,17 @@
 
     /* the profile: held on the screen, the picture settling slowly while the words float up through the middle, stay, and leave */
     gsap.fromTo('.ex__m img', { scale: 1.07 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.ex__w', start: 'top bottom', end: 'bottom bottom', scrub: true } });
-    gsap.timeline({ scrollTrigger: { trigger: '.ex__w', start: 'top 40%', end: 'bottom 60%', scrub: true } })
-      .fromTo('.ex__c', { yPercent: 130, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, ease: 'power2.out', duration: .35 })
-      .to('.ex__c', { yPercent: 0, duration: .3 })
-      .to('.ex__c', { yPercent: -130, autoAlpha: 0, ease: 'power2.in', duration: .35 });
+    /* on the phone the whole passage happens while the screen is held: the words rise, settle at the picture's centre and stay a long while, then leave upward (Alex, 3 Nov 2026) */
+    ScrollTrigger.matchMedia({
+      '(min-width: 768px)': () => gsap.timeline({ scrollTrigger: { trigger: '.ex__w', start: 'top 40%', end: 'bottom 60%', scrub: true } })
+        .fromTo('.ex__c', { yPercent: 130, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, ease: 'power2.out', duration: .35 })
+        .to('.ex__c', { yPercent: 0, duration: .3 })
+        .to('.ex__c', { yPercent: -130, autoAlpha: 0, ease: 'power2.in', duration: .35 }),
+      '(max-width: 767px)': () => gsap.timeline({ scrollTrigger: { trigger: '.ex__w', start: 'top top', end: 'bottom bottom', scrub: true } })
+        .fromTo('.ex__c', { yPercent: 160, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, ease: 'power2.out', duration: .22 })
+        .to('.ex__c', { yPercent: 0, duration: .56 })
+        .to('.ex__c', { yPercent: -160, autoAlpha: 0, ease: 'power2.in', duration: .22 }),
+    });
 
     /* the details pass one another at different speeds */
     ScrollTrigger.matchMedia({
