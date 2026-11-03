@@ -134,9 +134,9 @@ ROADSTER = dict(
 
 W = words('huayra-bc')
 BC = dict(
-    slug='huayra-bc', name='Huayra BC', interest='Huayra', src='huayra-bc',
+    slug='huayra-bc', name='Huayra BC', interest='Huayra', src='huayra-bc', ground=True,
     line=re.sub(r'^\W+|\W+$', '', W('I dedicate the Huayra BC')) + '.',
-    hero=('front', None, '50% 58%', 'The Pagani Huayra BC from the front, in a stone courtyard'),
+    hero=('front', 'hero-p.webp', '50% 58%', 'The Pagani Huayra BC from the front, in a stone courtyard'),   # the phone's portrait: Alex's MOBILE MODELS/model_hero_Huayra_BC_m.jpg (3 Nov 2026)
     ext=dict(
         lead=W('The Huayra BC is the most technologically advanced'),
         big=('tail', 'The Huayra BC from the rear three-quarter, in the desert at dusk'),
