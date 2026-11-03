@@ -71,7 +71,7 @@
     /* the room before the footer: the car comes up out of the dark, as on the home */
     gsap.fromTo('.finale [data-finale-car] img', { filter: 'brightness(0) saturate(0.85)', scale: 1.1, yPercent: 6 }, { filter: 'brightness(0.5) saturate(0.85)', scale: 1, yPercent: 0, ease: 'none', scrollTrigger: { trigger: '.finale', start: 'top bottom', end: 'top top', scrub: true } });
 
-    ScrollTrigger.create({ trigger: '.mh', start: 'bottom 12%', onEnter: () => $('.hdr').classList.add('is-solid'), onLeaveBack: () => $('.hdr').classList.remove('is-solid') });
+    ScrollTrigger.create({ trigger: '.mh', start: () => innerWidth < 768 ? 'bottom 26%' : 'bottom 12%', onEnter: () => $('.hdr').classList.add('is-solid'), onLeaveBack: () => $('.hdr').classList.remove('is-solid') });
     addEventListener('load', () => ScrollTrigger.refresh());
   } else {
     const hdr = $('.hdr'), hero = $('.mh');

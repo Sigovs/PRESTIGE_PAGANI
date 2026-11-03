@@ -218,3 +218,27 @@ figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: v
   .mg__s { max-width: 86vw; }
   .mg__s img { max-width: 86vw; }
 }
+
+/* ---------- the phone (3 Nov 2026): one column; the large pictures the width of the screen, the details inside the margins with their words under them; past the hero the header's ground runs deep enough to cover the chapters, so no word is read under the logo ---------- */
+@media (max-width: 767px) {
+  .mpage .hdr.is-solid::before { height: calc(var(--hdr-h) + 112px); background: linear-gradient(to bottom, rgb(11 12 14 / .97) 0%, rgb(11 12 14 / .95) 70%, rgb(11 12 14 / .55) 86%, rgb(11 12 14 / 0) 100%); }
+  .ex, .in, .en { grid-template-columns: minmax(0, 1fr); }
+  .ex > *, .in > *, .en > *, .ex > .mx, .in > .mx { grid-column: 1 / -1; grid-row: auto; }
+  .ex > .ex__b, .in > .in__b, .en > .en__p { margin-inline: calc(var(--gx) * -1); }
+  .ex > .mx, .in > .mx { margin-top: var(--s-8); }
+  .ex__w { height: 220svh; }
+  .mf { height: 200svh; }
+  .en__p { margin-top: var(--s-8); }
+  .mg { padding-top: var(--s-8); }
+}
+/* the details never touch one another or the large picture (Alex, 3 Nov 2026): a clear --s-8 between every picture on phones and tablets */
+@media (max-width: 1023px) {
+  .ex > .mx, .in > .mx { margin-top: var(--s-8); }
+}
+/* a portrait that fades to the page's ground at its foot (Utopia's, Alex's MOBILE MODELS): the screen under it is that ground, not black, so no seam where the picture ends */
+@media (orientation: portrait) { .mh--ground { background: var(--bg); } }
+/* words stand apart from the pictures (Alex, 3 Nov 2026): the caption a step clear of its picture, and a wide pause before the next picture */
+@media (max-width: 1023px) {
+  .mx figcaption { margin-top: var(--s-5); }
+  .ex > .mx, .in > .mx { margin-top: var(--s-9); }
+}

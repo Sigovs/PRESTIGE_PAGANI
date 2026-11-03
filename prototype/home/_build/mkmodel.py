@@ -73,9 +73,9 @@ EVO = dict(
 
 W = words('utopia')
 UTOPIA = dict(
-    slug='utopia', name='Utopia', interest='Utopia', src='utopia',
+    slug='utopia', name='Utopia', interest='Utopia', src='utopia', ground=True,
     line=cut(W('Every Pagani begins'), 'Every Pagani begins', 'aesthetic shock.'),
-    hero=('front', None, '50% 60%', 'The Pagani Utopia from the front three-quarter, in the studio'),
+    hero=('front', 'hero-p.webp', '50% 60%', 'The Pagani Utopia in the studio'),   # the phone's portrait: Alex's MOBILE MODELS/model_hero_utopia_m.jpg (3 Nov 2026)
     ext=dict(
         lead=cut(W('Every Pagani begins'), 'Utopia radiates simplicity.'),
         big=('rear', 'The Utopia from behind, with its four exhausts'),
@@ -102,9 +102,9 @@ UTOPIA = dict(
 
 W = words('utopia-roadster')
 ROADSTER = dict(
-    slug='utopia-roadster', name='Utopia Roadster', interest='Utopia', src='utopia-roadster',
+    slug='utopia-roadster', name='Utopia Roadster', interest='Utopia', src='utopia-roadster', ground=True,
     line=W('The Utopia Roadster represents the pinnacle'),
-    hero=('front', None, '50% 62%', 'The Pagani Utopia Roadster from the front three-quarter, in the studio'),
+    hero=('front', 'hero-p.webp', '50% 62%', 'The Pagani Utopia Roadster in the studio'),   # the phone's portrait: Alex's MOBILE MODELS/model_hero_utopia_roadster_m.jpg (3 Nov 2026)
     ext=dict(
         lead=W('The styling of the two versions'),
         big=('rear34', 'The Utopia Roadster from the rear three-quarter'),
@@ -408,7 +408,7 @@ def build(M):
 
 ''' if n else ''
     main = f'''<main id="top">
-  <section class="mh{'' if h[1] else ' mh--wide'}{' mh--light' if M.get('light') else ''}" aria-labelledby="mh-n">
+  <section class="mh{'' if h[1] else ' mh--wide'}{' mh--light' if M.get('light') else ''}{' mh--ground' if M.get('ground') else ''}" aria-labelledby="mh-n">
     <div class="mh__m"><picture>{source}<img src="{d}{h[0]}.webp" style="object-position:{h[2]}" alt="{e(h[3])}" fetchpriority="high"></picture></div>
     <div class="mh__t"><h1 class="mh__n" id="mh-n"><span>{e(M['name'])}</span></h1><p class="mh__l">{e(M['line'])}</p><p class="mact mh__a">{CTA_FILL}</p></div>
   </section>
