@@ -43,16 +43,17 @@ def cut(par, a, b=None):
 
 W = words('evo')
 EVO = dict(
-    slug='huayra-r-evo-roadster', name='Huayra R Evo Roadster', interest='Huayra', src='huayra-r-evo-roadster',
+    slug='huayra-r-evo-roadster', name='Huayra R Evo Roadster', interest='Huayra', src='huayra-r-evo-roadster', ground=True,
     line='The extreme open-top hypercar that enriches the Arte in Pista program.',
-    hero=('front', 'front-p.webp', '50% 66%', 'The Pagani Huayra R Evo Roadster from the front three-quarter, in a concrete hall'),
+    hero=('front', 'hero-p.webp', '50% 66%', 'The Pagani Huayra R Evo Roadster in a concrete hall'),   # the phone's portrait: Alex's MOBILE MODELS/model_hero_Huayra_R_Evo_Roadster_m.jpg (3 Nov 2026)
     ext=dict(
         lead=W('Many of the design peculiarities'),
         big=('rear34', 'The Huayra R Evo Roadster from the rear three-quarter'),
         a=[('lights', 'The front of the Huayra R Evo Roadster', cut(W('From the front hood'), 'From the front hood', 'extreme conditions.')),
            ('stop', 'The tail light and the long tail', cut(W('These features are complemented'), 'These features', 'concept.')),
            ('wheel', 'The rear wheel on its Pirelli slick', cut(W('The Huayra R Evo Roadster includes brand new'), 'The Huayra R Evo Roadster', 'dynamic loads.'))],
-        wide=('side', 'The Huayra R Evo Roadster in profile', W('Particularly relevant is the open roof'))),
+        wide=('side', 'The Huayra R Evo Roadster in profile', W('Particularly relevant is the open roof')),
+        wide_p='mid-p.webp'),   # Alex's MOBILE MODELS/model_hero_2_mid_Huayra_R_Evo_Roadster_m.jpg (3 Nov 2026)
     int=dict(
         lead=W('The comfort and performance of a sports car'),
         text=W('The new cockpit ensures'),
