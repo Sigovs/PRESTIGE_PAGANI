@@ -143,7 +143,8 @@ BC = dict(
         a=[('nose', 'The nose of the Huayra BC, with its blue stripe', W('The name')),
            ('rear', 'The rear of the Huayra BC', W('Conceived primarily as road going car')),
            ('lights', 'Two Huayra BC, their tail lights on', '')],
-        wide=('night', 'The Huayra BC on a road beneath a stone town', cut(W('The Huayra BC is the most technologically advanced'), 'This not just', 'every part of the vehicle.'))),
+        wide=('night', 'The Huayra BC on a road beneath a stone town', cut(W('The Huayra BC is the most technologically advanced'), 'This not just', 'every part of the vehicle.')),
+        wide_p='mid-p.webp'),   # Alex's MOBILE MODELS, the held screen on the phone (3 Nov 2026)
     int=None,   # pagani.com has no photograph and no words on this car's cabin, so the page has no Interior
     eng=dict(
         lead=[W('The Huayra BC is powered by'), W('The Huayra BC features a 7-speed')],
