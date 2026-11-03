@@ -112,7 +112,8 @@ ROADSTER = dict(
         a=[('lights', 'The front light under its glass', cut(W('Key objectives in the design'), 'Key objectives', 'protruding appendages.')),
            ('stop', 'The rear lights set into the wing', W('Lightweight, dynamic, and high-performing')),
            ('wheel', 'The forged wheel', W('Each of the 130 Utopia Roadsters'))],
-        wide=('side', 'The Utopia Roadster in profile, open', W('Featuring a seamlessly integrated hard-top'))),
+        wide=('side', 'The Utopia Roadster in profile, open', W('Featuring a seamlessly integrated hard-top')),
+        wide_p='mid-p.webp'),   # the phone's portrait of the held screen: Alex's MOBILE MODELS/model_hero_2_mid_utopia_roadster_m.jpg (3 Nov 2026)
     int=dict(
         lead=cut(W('The feeling inside the Utopia Roadster'), 'The feeling inside', 'really begins.'),
         text=W('As for the upholstery'),
