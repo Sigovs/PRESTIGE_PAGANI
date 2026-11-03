@@ -42,9 +42,9 @@
         .fromTo('.ex__c', { yPercent: 130, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, ease: 'power2.out', duration: .35 })
         .to('.ex__c', { yPercent: 0, duration: .3 })
         .to('.ex__c', { yPercent: -130, autoAlpha: 0, ease: 'power2.in', duration: .35 }),
-      '(max-width: 767px)': () => gsap.timeline({ scrollTrigger: { trigger: '.ex__w', start: 'top top', end: 'bottom bottom', scrub: true } })
-        .fromTo('.ex__c', { yPercent: 160, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, ease: 'power2.out', duration: .22 })
-        .to('.ex__c', { yPercent: 0, duration: .56 })
+      '(max-width: 767px)': () => gsap.timeline({ scrollTrigger: { trigger: '.ex__w', start: 'top top', end: 'bottom bottom', scrub: .9 } })   /* softly: a short rise, a long gentle ease into place, the scroll followed with a lag */
+        .fromTo('.ex__c', { yPercent: 55, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, ease: 'sine.out', duration: .32 })
+        .to('.ex__c', { yPercent: 0, duration: .46 })
         .to('.ex__c', { yPercent: -160, autoAlpha: 0, ease: 'power2.in', duration: .22 }),
     });
 
