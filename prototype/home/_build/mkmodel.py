@@ -215,16 +215,17 @@ CODALUNGA = dict(
 
 W = words('huayra-epitome')
 EPITOME = dict(
-    slug='huayra-epitome', name='Huayra Epitome', interest='Grandi Complicazioni', src='huayra-epitome',
+    slug='huayra-epitome', name='Huayra Epitome', interest='Grandi Complicazioni', src='huayra-epitome', ground=True,
     line=cut(W('PAGANI HUAYRA EPITOME'), 'UNIQUE, LITERALLY.').capitalize(),
-    hero=('rear34', None, '50% 58%', 'The Pagani Huayra Epitome in blue carbon, from the rear three-quarter, in a dark studio'),
+    hero=('rear34', 'hero-p.webp', '50% 58%', 'The Pagani Huayra Epitome in blue carbon, from behind, in a dark studio'),   # the phone's portrait: Alex's MOBILE MODELS/model_page_hero_Huayra Epitome_m.jpg (4 Nov 2026)
     ext=dict(
         lead=cut(W('A clean and elegant design defines'), 'A clean and elegant', 'design and engineering.'),
         big=('open34', 'The Huayra Epitome with the driver’s door raised'),
         a=[('lights', 'The light units on the front hood', W('The project synthesizes')),
            ('tail', 'The rear hood and its integrated wing', W('Pure and elegant lines')),
            ('stop', 'The rear lights and the Epitome script', '')],
-        wide=('side', 'The Huayra Epitome in profile, in a dark studio', W('The Huayra that synthesizes'))),
+        wide=('side', 'The Huayra Epitome in profile, in a dark studio; on a phone, its four tailpipes', W('The Huayra that synthesizes')),
+        wide_p='mid-p.webp'),   # Alex's MOBILE MODELS/MID SECTION model_page_Huayra Epitome_m.jpg (4 Nov 2026)
     int=dict(
         lead=cut(W('The beating heart of the new Huayra Epitome'), 'To date, the Epitome', 'driving experience.'),
         text=None,
