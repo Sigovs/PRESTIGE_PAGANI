@@ -254,3 +254,5 @@ figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: v
 @media (max-width: 767px) and (orientation: portrait) {
   .mh--wide.mh--ground .mh__m img { top: min(0px, calc(100svh - 18rem - 97.5vw)); -webkit-mask-image: none; mask-image: none; }
 }
+/* a phone portrait already graded dark (the Speedster's vents): no extra dimming */
+@media (max-width: 767px) and (orientation: portrait) { .ex__m--dim.ex__m--p img { filter: none; } }

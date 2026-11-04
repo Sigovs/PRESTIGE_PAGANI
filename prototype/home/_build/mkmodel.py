@@ -167,7 +167,8 @@ SPEEDSTER = dict(
         a=[('nose', 'The nose of the Huayra Codalunga Speedster', W('Inspired by the racing cars')),
            ('tail', 'The long tail and its four exhausts', W('Created by the Grandi Complicazioni division')),
            ('wheel', 'The wheel of the Huayra Codalunga Speedster', '')],
-        wide=('side', 'The Huayra Codalunga Speedster in profile', cut(W('The Huayra Codalunga Speedster is a tribute'), 'The Huayra Codalunga Speedster', 'with ease.'))),
+        wide=('side', 'The Huayra Codalunga Speedster in profile; on a phone, its twin cockpit vents', cut(W('The Huayra Codalunga Speedster is a tribute'), 'The Huayra Codalunga Speedster', 'with ease.')),
+        wide_p='mid-p.webp'),   # Alex's MOBILE MODELS/MID SECTION model_page_hero_Huayra_Codalunga_Speedster_m.jpg (4 Nov 2026)
     int=dict(
         lead=W('The cabin is a meeting point'),
         text=None,
