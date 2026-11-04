@@ -692,7 +692,7 @@ html.is-film, html.is-film body { overflow: hidden; }
 
 /* phone, portrait: a scene with its own upright photograph (Alex's, edges in the page ground #131418) fills the screen; the words sit on the dark floor below the car */
 .gcs__media picture { display: contents; }
-@media (max-width: 767px) and (orientation: portrait) and (hover: none) {
+@media (max-width: 767px) and (orientation: portrait) {
   .gcs--p { align-content: end; }
   .gcs--p .gcs__media { position: absolute; inset: 0; aspect-ratio: auto; }
   .gcs--p .gcs__bg { object-fit: cover; object-position: 50% 50%; }   /* edge to edge, top to bottom (Alex) */
@@ -701,7 +701,7 @@ html.is-film, html.is-film body { overflow: hidden; }
 }
 /* the Codalunga's studio is a cutout on CSS light; on a phone, portrait, Alex's upright photograph replaces both */
 .gcs__media .gcs__ponly { display: none; }   /* beats .gcs__media picture { display: contents } — never on desktop */
-@media (max-width: 767px) and (orientation: portrait) and (hover: none) {
+@media (max-width: 767px) and (orientation: portrait) {
   .gcs__media .gcs__ponly { display: contents; }
   .gcs--p .gcs__car, .gcs--p .gcs__shadow { display: none; }
   .gcs--light.gcs--p .gcs__media.gcs__studio { aspect-ratio: auto; }
