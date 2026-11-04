@@ -158,9 +158,9 @@ BC = dict(
 
 W = words('huayra-codalunga-speedster')
 SPEEDSTER = dict(
-    slug='huayra-codalunga-speedster', name='Huayra Codalunga Speedster', interest='Grandi Complicazioni', src='huayra-codalunga-speedster', light=True,
+    slug='huayra-codalunga-speedster', name='Huayra Codalunga Speedster', interest='Grandi Complicazioni', src='huayra-codalunga-speedster', light=True, ground=True,
     line=W('Elegance, Uncovered.'),
-    hero=('front', None, '50% 66%', 'The Pagani Huayra Codalunga Speedster from the front three-quarter, in the studio'),
+    hero=('front', 'hero-p.webp', '50% 66%', 'The Pagani Huayra Codalunga Speedster in the studio'),   # the phone's portrait: Alex's MOBILE MODELS/model_page_hero_Huayra_Codalunga_Speedster_m.jpg (4 Nov 2026)
     ext=dict(
         lead=W('Every surface is sculpted'),
         big=('high', 'The Huayra Codalunga Speedster from above, at the front three-quarter'),
