@@ -253,7 +253,8 @@ TRICOLORE = dict(
         a=[('wheel', 'The wheel, inspired by the propeller of a turbine', W('Packed with stylistic and aerodynamic details')),
            ('tail', 'The tail and the rear wing supports', cut(W('Careful attention to particulars'), 'Careful attention', 'patrol aircraft.')),
            ('nose', 'The nose of the Huayra Tricolore', cut(W('Careful attention to particulars'), 'In the center of the front hood'))],
-        wide=('sky', 'The Huayra Tricolore on the runway, the Frecce Tricolori in formation overhead', cut(W('Created in an ultra-limited edition'), 'Created in', 'another step forward.'))),
+        wide=('sky', 'The Huayra Tricolore on the runway, the Frecce Tricolori in formation overhead; on a phone, its Mach dial', cut(W('Created in an ultra-limited edition'), 'Created in', 'another step forward.')),
+        wide_p='mid-p.webp'),   # Alex's MOBILE MODELS/MID SECTION model_page_Huayra_Tricolore_m.jpg (4 Nov 2026)
     int=dict(
         lead=W('The painstaking research dedicated to lightening'),
         text=cut(W('Packed with celebratory details'), 'The undisputed star'),
