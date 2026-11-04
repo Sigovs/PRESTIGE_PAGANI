@@ -244,9 +244,9 @@ EPITOME = dict(
 
 W = words('huayra-tricolore')
 TRICOLORE = dict(
-    slug='huayra-tricolore', name='Huayra Tricolore', interest='Grandi Complicazioni', src='huayra-tricolore', light=True,
+    slug='huayra-tricolore', name='Huayra Tricolore', interest='Grandi Complicazioni', src='huayra-tricolore', light=True, ground=True,
     line=cut(W('On the occasion of the 60th anniversary'), 'Only three examples', 'Aerobatic Team.'),
-    hero=('smoke', None, '50% 62%', 'The Pagani Huayra Tricolore on a runway beneath the smoke of the Frecce Tricolori'),
+    hero=('smoke', 'hero-p.webp', '50% 62%', 'The Pagani Huayra Tricolore on a runway with the Frecce Tricolori'),   # the phone's portrait: Alex's MOBILE MODELS/model_pge_hero_Huayra_Tricolore_m.jpg (4 Nov 2026)
     ext=dict(
         lead=W('But the most direct and evident stylistic reference'),
         big=('hangar', 'The Huayra Tricolore in front of the aircraft hangars'),
