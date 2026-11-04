@@ -186,9 +186,9 @@ SPEEDSTER = dict(
 
 W = words('huayra-codalunga')
 CODALUNGA = dict(
-    slug='huayra-codalunga', name='Huayra Codalunga', interest='Grandi Complicazioni', src='huayra-codalunga', hero_d='front-wide.webp', light=True,
+    slug='huayra-codalunga', name='Huayra Codalunga', interest='Grandi Complicazioni', src='huayra-codalunga', hero_d='front-wide.webp', ground=True, light=True,
     line=re.sub(r'^\W+|\W+$', '', W('GRANDI COMPLICAZIONI ON WHEELS')).title().replace(' On ', ' on ') + '.',
-    hero=('front', None, '50% 35%', 'The Pagani Huayra Codalunga from the front, in the studio'),
+    hero=('front', 'hero-p.webp', '50% 35%', 'The Pagani Huayra Codalunga in the studio'),   # the phone's portrait: Alex's MOBILE MODELS/model_page_hero_Huayra Codalunga_m.jpg (4 Nov 2026)
     ext=dict(
         lead=W('We decided to use the simple linear style'),
         big=('three', 'The Huayra Codalunga from the front three-quarter'),
