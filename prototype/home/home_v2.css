@@ -699,3 +699,10 @@ html.is-film, html.is-film body { overflow: hidden; }
   #gc-huayra-codalunga-speedster .gcs__bg { object-position: 60% 50%; }   /* the nose and the tail both stay in */
   #gc-huayra-epitome .gcs__bg { object-position: 47% 50%; }
 }
+/* the Codalunga's studio is a cutout on CSS light; on a phone, portrait, Alex's upright photograph replaces both */
+.gcs__ponly { display: none; }
+@media (max-width: 767px) and (orientation: portrait) {
+  .gcs__ponly { display: contents; }
+  .gcs--p .gcs__car, .gcs--p .gcs__shadow { display: none; }
+  .gcs--light.gcs--p .gcs__media.gcs__studio { aspect-ratio: auto; }
+}
