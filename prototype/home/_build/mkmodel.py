@@ -43,7 +43,7 @@ def cut(par, a, b=None):
 
 W = words('evo')
 EVO = dict(
-    slug='huayra-r-evo-roadster', name='Huayra R Evo Roadster', interest='Huayra', src='huayra-r-evo-roadster', ground=True,
+    slug='huayra-r-evo-roadster', name='Huayra R Evo Roadster', interest='Huayra', src='huayra-r-evo-roadster', ground=True, tab_p='front-p.webp',
     line='The extreme open-top hypercar that enriches the Arte in Pista program.',
     hero=('front', 'hero-p.webp', '50% 66%', 'The Pagani Huayra R Evo Roadster in a concrete hall'),   # the phone's portrait: Alex's MOBILE MODELS/model_hero_Huayra_R_Evo_Roadster_m.jpg (3 Nov 2026)
     ext=dict(
@@ -402,7 +402,13 @@ def build(M):
     film_nav = '<a href="#film" data-go>Video</a>' if F else ''
     int_nav = '<a href="#interior" data-go>Interior</a>' if n else ''
     film_js = '\n<script src="model-film.js?v=13"></script>' if F else ''
-    source = f'<source media="(orientation: portrait)" srcset="{d}{h[1]}">' if h[1] else ''
+    PH = '(max-width: 767px) and (orientation: portrait)'   # Alex's upright _m pictures are the phone's only (4 Nov 2026)
+    if M.get('ground'):   # an _m portrait for the phone; a tablet keeps Pagani's own portrait (tab_p) or the landscape, wide
+        source = f'<source media="{PH}" srcset="{d}{h[1]}">' + (f'<source media="(orientation: portrait)" srcset="{d}{M["tab_p"]}">' if M.get('tab_p') else '')
+        wide = not M.get('tab_p')
+    else:
+        source = f'<source media="(orientation: portrait)" srcset="{d}{h[1]}">' if h[1] else ''
+        wide = not h[1]
     still = M['still']
     interior = f'''  <section class="in" id="interior" aria-labelledby="in-h">
     <div class="in__t"><h2 class="title" id="in-h" data-rise>Interior</h2>{f'<p class="mtext" data-rise>{e(n["lead"])}</p>' if n['lead'] else ''}{f'<p class="mtext" data-rise>{e(n["text"])}</p>' if n['text'] else ''}<p class="mact" data-rise>{CTA_QUIET}</p></div>
@@ -412,7 +418,7 @@ def build(M):
 
 ''' if n else ''
     main = f'''<main id="top">
-  <section class="mh{'' if h[1] else ' mh--wide'}{' mh--light' if M.get('light') else ''}{' mh--ground' if M.get('ground') else ''}" aria-labelledby="mh-n">
+  <section class="mh{' mh--wide' if wide else ''}{' mh--light' if M.get('light') else ''}{' mh--ground' if M.get('ground') else ''}" aria-labelledby="mh-n">
     <div class="mh__m"><picture>{source}<img src="{d}{h[0]}.webp" style="object-position:{h[2]}" alt="{e(h[3])}" fetchpriority="high"></picture></div>
     <div class="mh__t"><h1 class="mh__n" id="mh-n"><span>{e(M['name'])}</span></h1><p class="mh__l">{e(M['line'])}</p><p class="mact mh__a">{CTA_FILL}</p></div>
   </section>
@@ -421,7 +427,7 @@ def build(M):
     <div class="ex__t"><h2 class="title" id="ex-h" data-rise>Exterior</h2><p class="mtext" data-rise>{e(x['lead'])}</p></div>
     <figure class="ex__b" data-open>{pic(*x['big'])}</figure>
     {cardset(x['a'])}
-    <div class="ex__w"><div class="ex__s"><figure class="ex__m{' ex__m--dim' if M.get('light') else ''}{' ex__m--p' if x.get('wide_p') else ''}">{f'<picture><source media="(orientation: portrait)" srcset="{d}{x["wide_p"]}">' if x.get('wide_p') else ''}{pic(*x['wide'][:2])}{'</picture>' if x.get('wide_p') else ''}</figure><p class="ex__c">{e(x['wide'][2]).replace('open-top', '<span class="nb">open-top</span>')}</p></div></div>
+    <div class="ex__w"><div class="ex__s"><figure class="ex__m{' ex__m--dim' if M.get('light') else ''}{' ex__m--p' if x.get('wide_p') else ''}">{f'<picture><source media="{PH}" srcset="{d}{x["wide_p"]}">' if x.get('wide_p') else ''}{pic(*x['wide'][:2])}{'</picture>' if x.get('wide_p') else ''}</figure><p class="ex__c">{e(x['wide'][2]).replace('open-top', '<span class="nb">open-top</span>')}</p></div></div>
   </section>
 
 {interior}  <section class="mf" id="film" aria-labelledby="mf-h">
