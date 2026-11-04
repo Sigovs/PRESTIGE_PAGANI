@@ -695,5 +695,7 @@ html.is-film, html.is-film body { overflow: hidden; }
 @media (max-width: 767px) and (orientation: portrait) {
   .gcs--p { align-content: end; }
   .gcs--p .gcs__media { position: absolute; inset: 0; aspect-ratio: auto; }
-  .gcs--p .gcs__bg { object-fit: contain; object-position: 50% 30%; }   /* whole car, tail included, on screens taller than 9:16 — the frame dissolves into the ground */
+  .gcs--p .gcs__bg { object-fit: cover; object-position: 50% 50%; }   /* edge to edge, top to bottom (Alex) */
+  #gc-huayra-codalunga-speedster .gcs__bg { object-position: 60% 50%; }   /* the nose and the tail both stay in */
+  #gc-huayra-epitome .gcs__bg { object-position: 47% 50%; }
 }
