@@ -186,9 +186,9 @@ SPEEDSTER = dict(
 
 W = words('huayra-codalunga')
 CODALUNGA = dict(
-    slug='huayra-codalunga', name='Huayra Codalunga', interest='Grandi Complicazioni', src='huayra-codalunga', light=True,
+    slug='huayra-codalunga', name='Huayra Codalunga', interest='Grandi Complicazioni', src='huayra-codalunga', hero_d='front-wide.webp', light=True,
     line=re.sub(r'^\W+|\W+$', '', W('GRANDI COMPLICAZIONI ON WHEELS')).title().replace(' On ', ' on ') + '.',
-    hero=('front', None, '50% 60%', 'The Pagani Huayra Codalunga from the front, in the studio'),
+    hero=('front', None, '50% 35%', 'The Pagani Huayra Codalunga from the front, in the studio'),
     ext=dict(
         lead=W('We decided to use the simple linear style'),
         big=('three', 'The Huayra Codalunga from the front three-quarter'),
@@ -418,6 +418,7 @@ def build(M):
   </section>
 
 ''' if n else ''
+    if M.get('hero_d'): source = f'<source media="(min-width: 768px)" srcset="{d}{M["hero_d"]}">' + source   # a desktop framing of its own (the Codalunga: the studio extended round Pagani's tight front view, 4 Nov 2026)
     main = f'''<main id="top">
   <section class="mh{' mh--wide' if wide else ''}{' mh--light' if M.get('light') else ''}{' mh--ground' if M.get('ground') else ''}" aria-labelledby="mh-n">
     <div class="mh__m"><picture>{source}<img src="{d}{h[0]}.webp" style="object-position:{h[2]}" alt="{e(h[3])}" fetchpriority="high"></picture></div>
