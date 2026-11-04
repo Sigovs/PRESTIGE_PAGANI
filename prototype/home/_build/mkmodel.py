@@ -195,7 +195,8 @@ CODALUNGA = dict(
         a=[('lights', 'The rear lights and the rear wheel', W('The lack of rear grilles')),
            ('hood', 'The long engine cover', W('The work')),
            ('wheel', 'The wheel of the Huayra Codalunga', '')],
-        wide=('side', 'The Huayra Codalunga in profile', cut(W('The coachbuilders of the'), 'The coachbuilders', 'automotive history.'))),
+        wide=('side', 'The Huayra Codalunga in profile; on a phone, its rear lights', cut(W('The coachbuilders of the'), 'The coachbuilders', 'automotive history.')),
+        wide_p='mid-p.webp'),   # Alex's MOBILE MODELS/MID SECTION model_page_hero_Huayra Codalunga_m.jpg (4 Nov 2026)
     int=dict(
         lead=W('The colors and materials also recall'),
         text=None,
