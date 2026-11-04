@@ -236,7 +236,7 @@ figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: v
   .ex > .mx, .in > .mx { margin-top: var(--s-8); }
 }
 /* a portrait that fades to the page's ground at its foot (Utopia's, Alex's MOBILE MODELS): the screen under it is that ground, not black, so no seam where the picture ends */
-@media (max-width: 767px) and (orientation: portrait) { .mh--ground { background: var(--bg); } }
+@media (max-width: 767px) and (orientation: portrait) and (hover: none) { .mh--ground { background: var(--bg); } }
 /* words stand apart from the pictures (Alex, 3 Nov 2026): the caption a step clear of its picture, and a wide pause before the next picture */
 @media (max-width: 1023px) {
   .mx figcaption { margin-top: var(--s-5); }
@@ -244,15 +244,15 @@ figcaption { margin-top: var(--s-4); font-size: 1rem; line-height: 1.6; color: v
 }
 /* the held screen with a portrait of its own (Utopia, Alex's MOBILE MODELS): on a tall screen the picture fills it, and the words stand in its dark upper part, under the header and the chapters */
 .ex__m picture { display: contents; }
-@media (max-width: 767px) and (orientation: portrait) {
+@media (max-width: 767px) and (orientation: portrait) and (hover: none) {
   .ex__m--p img { top: 0; bottom: auto; height: 100%; aspect-ratio: auto; object-fit: cover; object-position: 50% 50%; -webkit-mask-image: none; mask-image: none; }
   .ex__s:has(.ex__m--p) .ex__c { margin: 0; text-shadow: 0 1px 3px rgb(0 0 0 / .6), 0 0 24px rgb(0 0 0 / .7); }   /* the words settle at the picture's centre, over the light (Alex, 3 Nov 2026) */
 }
 
 /* Alex's upright pictures (the _m files) are the phone's only (4 Nov 2026): a tablet or a tall desktop window keeps the landscape set.
    On the phone a hero with its own portrait sits from the top, whole, as a non-wide hero does */
-@media (max-width: 767px) and (orientation: portrait) {
+@media (max-width: 767px) and (orientation: portrait) and (hover: none) {
   .mh--wide.mh--ground .mh__m img { top: min(0px, calc(100svh - 18rem - 97.5vw)); -webkit-mask-image: none; mask-image: none; }
 }
 /* a phone portrait already graded dark (the Speedster's vents): no extra dimming */
-@media (max-width: 767px) and (orientation: portrait) { .ex__m--dim.ex__m--p img { filter: none; } }
+@media (max-width: 767px) and (orientation: portrait) and (hover: none) { .ex__m--dim.ex__m--p img { filter: none; } }

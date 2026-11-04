@@ -321,7 +321,7 @@
   // phone (and reduced motion): the scenes in the flow; each scene's words appear as it comes into view, its film plays while it is on screen
   gmm.add('(max-width: 767px), (prefers-reduced-motion: reduce)', () => {
     // phone, portrait: a film with its own upright cut gets the matching poster (the <source> already picks the upright file)
-    if (matchMedia('(max-width: 767px) and (orientation: portrait)').matches) gcx.querySelectorAll('[data-poster-p]').forEach((v) => { v.poster = v.dataset.posterP; });
+    if (matchMedia('(max-width: 767px) and (orientation: portrait) and (hover: none)').matches) gcx.querySelectorAll('[data-poster-p]').forEach((v) => { v.poster = v.dataset.posterP; });
     // the header turns light while the light Codalunga scene is under it
     const lightSc = gcx.querySelector('.gcs--light');
     const hl = lightSc && ScrollTrigger.create({ trigger: lightSc, start: () => `top ${hdrEl.offsetHeight}px`, end: () => `bottom ${hdrEl.offsetHeight}px`, onToggle: (self) => hdrLight(self.isActive) });

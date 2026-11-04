@@ -403,7 +403,7 @@ def build(M):
     film_nav = '<a href="#film" data-go>Video</a>' if F else ''
     int_nav = '<a href="#interior" data-go>Interior</a>' if n else ''
     film_js = '\n<script src="model-film.js?v=13"></script>' if F else ''
-    PH = '(max-width: 767px) and (orientation: portrait)'   # Alex's upright _m pictures are the phone's only (4 Nov 2026)
+    PH = '(max-width: 767px) and (orientation: portrait) and (hover: none)'   # Alex's upright _m pictures are the phone's only (4 Nov 2026)
     if M.get('ground'):   # an _m portrait for the phone; a tablet keeps Pagani's own portrait (tab_p) or the landscape, wide
         source = f'<source media="{PH}" srcset="{d}{h[1]}">' + (f'<source media="(orientation: portrait)" srcset="{d}{M["tab_p"]}">' if M.get('tab_p') else '')
         wide = not M.get('tab_p')
@@ -466,9 +466,9 @@ def build(M):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 {'<link rel="preconnect" href="https://player.vimeo.com">' + chr(10) if F and 'vimeo' in F else ''}<link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400&family=Roboto:wght@200;400;500;700&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="vendor/lenis.css">
-<link rel="stylesheet" href="home_v2.css?v=213">
+<link rel="stylesheet" href="home_v2.css?v=220">
 <link rel="stylesheet" href="models-menu.css?v=10">
-<link rel="stylesheet" href="model-page.css?v=31">
+<link rel="stylesheet" href="model-page.css?v=41">
 </head>
 <body class="mpage">
 <!-- PREVIEW · model page, Alex's brief of 1 Nov 2026. Words and photographs: pagani.com/{M['src']} (DATA_SOURCES.md). -->
