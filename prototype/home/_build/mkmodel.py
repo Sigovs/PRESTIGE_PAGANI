@@ -216,9 +216,9 @@ CODALUNGA = dict(
 
 W = words('huayra-epitome')
 EPITOME = dict(
-    slug='huayra-epitome', name='Huayra Epitome', interest='Grandi Complicazioni', src='huayra-epitome', ground=True,
+    slug='huayra-epitome', name='Huayra Epitome', interest='Grandi Complicazioni', src='huayra-epitome', ground=True, hero_d='rear34-wide.webp',
     line=cut(W('PAGANI HUAYRA EPITOME'), 'UNIQUE, LITERALLY.').capitalize(),
-    hero=('rear34', 'hero-p.webp', '50% 58%', 'The Pagani Huayra Epitome in blue carbon, from behind, in a dark studio'),   # the phone's portrait: Alex's MOBILE MODELS/model_page_hero_Huayra Epitome_m.jpg (4 Nov 2026)
+    hero=('rear34', 'hero-p.webp', '50% 40%', 'The Pagani Huayra Epitome in blue carbon, from behind, in a dark studio'),   # the phone's portrait: Alex's MOBILE MODELS/model_page_hero_Huayra Epitome_m.jpg (4 Nov 2026)
     ext=dict(
         lead=cut(W('A clean and elegant design defines'), 'A clean and elegant', 'design and engineering.'),
         big=('open34', 'The Huayra Epitome with the driver’s door raised'),
