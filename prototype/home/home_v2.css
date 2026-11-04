@@ -689,3 +689,11 @@ html.is-film, html.is-film body { overflow: hidden; }
 .foot__legal { display: inline-flex; align-items: center; gap: var(--s-3); }
 .foot__legal a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgb(255 255 255 / 0.32); padding-bottom: 2px; display: inline-block; padding-block: 10px; margin-block: -10px; transition: border-color 0.4s; }
 .foot__legal a:hover, .foot__legal a:focus-visible { border-color: var(--ink); }
+
+/* phone, portrait: a scene with its own upright photograph (Alex's, edges in the page ground #131418) fills the screen; the words sit on the dark floor below the car */
+.gcs__media picture { display: contents; }
+@media (max-width: 767px) and (orientation: portrait) {
+  .gcs--p { align-content: end; }
+  .gcs--p .gcs__media { position: absolute; inset: 0; aspect-ratio: auto; }
+  .gcs--p .gcs__bg { object-fit: contain; object-position: 50% 30%; }   /* whole car, tail included, on screens taller than 9:16 — the frame dissolves into the ground */
+}
