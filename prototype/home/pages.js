@@ -12,4 +12,13 @@
     const io = new IntersectionObserver((es) => es.forEach((x) => (x.isIntersecting ? v.play().catch(() => {}) : v.pause())), { rootMargin: '25% 0px' });
     io.observe(v.parentElement);
   });
+
+  /* the map wakes on a click, and sleeps again on a click anywhere else on the page or when it leaves the screen, so the page
+     always scrolls (the pointer's leaving cannot be used: entering Google's frame already counts as leaving the page) */
+  document.querySelectorAll('[data-map]').forEach((m) => {
+    const on = m.querySelector('[data-map-on]'), sleep = () => m.classList.remove('is-live');
+    on.addEventListener('click', () => m.classList.add('is-live'));
+    document.addEventListener('pointerdown', (e) => { if (!m.contains(e.target)) sleep(); });
+    new IntersectionObserver((es) => es.forEach((x) => { if (!x.isIntersecting) sleep(); })).observe(m);
+  });
 })();

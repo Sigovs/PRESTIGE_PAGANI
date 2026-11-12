@@ -60,6 +60,15 @@
 .pmap__m { position: absolute; inset: 0; display: block; overflow: hidden; }
 .pmap__m iframe { position: absolute; left: 0; top: -130px; width: 100%; height: calc(100% + 130px); border: 0; pointer-events: none;
   filter: grayscale(1) invert(.9) contrast(1.02) brightness(.78); }
+/* asleep, the map lets the page scroll over it; a click wakes it */
+.pmap__on { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; width: 100%; padding: 0; border: 0; background: transparent; cursor: pointer;
+  font: inherit; color: transparent; }
+.pmap__on::after { content: "Click to explore the map"; padding: 12px 20px; border: 1px solid rgb(255 255 255 / .3); border-radius: 999px; background: rgb(19 20 23 / .72);
+  font-size: var(--t-14); letter-spacing: .02em; color: var(--ink); opacity: 0; transform: translateY(6px); transition: opacity .35s, transform .35s; }
+.pmap__on:hover::after, .pmap__on:focus-visible::after { opacity: 1; transform: none; }
+@media (hover: none) { .pmap__on::after { opacity: 1; transform: none; content: "Tap to explore the map"; } }
+.pmap__m.is-live iframe { pointer-events: auto; }
+.pmap__m.is-live .pmap__on { display: none; }
 /* only the top melts into the page: the foot stays clear, so Google's logo and terms stay legible, as its terms ask */
 .pmap::before { content: ""; position: absolute; left: 0; right: 0; z-index: 1; height: 22%; pointer-events: none; }
 .pmap::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }

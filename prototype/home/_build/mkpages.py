@@ -101,7 +101,7 @@ def figures(sid, eyebrow, title, text, figs, tall, rows, ctas, stack=False):
 def page(slug, title, desc, nav, card, main, current):
     hd = re.sub(r'<title>[^<]*</title>', f'<title>{title} · Pagani of Miami</title>', head)
     hd = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{desc}">', hd)
-    hd = hd.replace('</head>', '<link rel="stylesheet" href="pages.css?v=13">\n</head>')
+    hd = hd.replace('</head>', '<link rel="stylesheet" href="pages.css?v=14">\n</head>')
     h = hdr.replace(f'<a href="{current}">', f'<a href="{current}" aria-current="page">')
     mn = ''.join(f'<a href="#{i}" data-go>{e(t)}</a>' for i, t in nav)
     out = f'''{hd}
@@ -119,7 +119,7 @@ def page(slug, title, desc, nav, card, main, current):
 {main}
 
 {scripts}
-<script src="pages.js?v=3"></script>
+<script src="pages.js?v=5"></script>
 </body>
 </html>
 '''
@@ -164,10 +164,10 @@ page('service', 'Service', 'Schedule service at Pagani of Miami, 14780 Biscayne 
      ('#schedule', P + 'svc-v12.webp', 'Service Department', 'Schedule Service'), service, 'service.html')
 
 
-# the map: Google's own, turned to black and white in the page's tone; it does not take the wheel from the page, a click
-# opens the directions; Google's marks stay visible
+# the map: Google's own, live, turned black and white in the page's tone. It sleeps until clicked (so the wheel keeps
+# scrolling the page), then pans and zooms as Google Maps does; it sleeps again when the pointer leaves or it scrolls away
 MAPBAND = f'''  <section class="pmap" aria-label="Map: 14780 Biscayne Blvd, North Miami Beach">
-    <a class="pmap__m" href="{MAP}" target="_blank" rel="noopener" aria-label="Open 14780 Biscayne Blvd in Google Maps"><iframe src="https://www.google.com/maps?q=14780+Biscayne+Blvd,+North+Miami+Beach,+FL+33181&amp;z=15&amp;output=embed" title="Map of 14780 Biscayne Blvd, North Miami Beach" loading="lazy" tabindex="-1" aria-hidden="true"></iframe></a>
+    <div class="pmap__m" data-map><iframe src="https://www.google.com/maps?q=14780+Biscayne+Blvd,+North+Miami+Beach,+FL+33181&amp;z=15&amp;output=embed" title="Map of 14780 Biscayne Blvd, North Miami Beach" loading="lazy"></iframe><button class="pmap__on" type="button" aria-label="Explore the map" data-map-on></button></div>
     <div class="pmap__t"><p class="pmap__a">14780 Biscayne Blvd<span>North Miami Beach, FL&nbsp;33181</span></p>{cta('Get Directions', MAP)}</div>
   </section>'''
 

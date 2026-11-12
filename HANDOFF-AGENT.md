@@ -40,8 +40,8 @@ the header reads **Inventory · Hypercars · Service · Contact** (no Finance) a
    (with it, Xtime draws a second box and an overlay inside the frame). Height 900 px desktop, 980 px phone. If Prestige gives a
    different webkey for Pagani, use theirs.
 7. **Map** (Contact, after `#visit`): Google Maps embed `https://www.google.com/maps?q=14780+Biscayne+Blvd,+North+Miami+Beach,+FL+33181&z=15&output=embed`,
-   black and white through the CSS filter in `.pmap__m iframe`, `pointer-events: none` so the wheel keeps scrolling the page, the
-   whole map a link to Google Maps directions in a new tab. **Google's logo and terms must stay visible** at its foot: no overlay
+   black and white through the CSS filter in `.pmap__m iframe`, live but asleep until clicked (`[data-map-on]`, `pages.js`) so the wheel keeps scrolling the page, with a "Get Directions" link beside it; the
+   map itself is interactive once awake. **Google's logo and terms must stay visible** at its foot: no overlay
    or fade over the bottom of the map.
 8. **Films:** the held screens play the MP4 loops muted, only while on screen, and show the poster under
    `prefers-reduced-motion: reduce` (`pages.js`). Host the MP4s on the site's CDN, not on GitHub Pages.
