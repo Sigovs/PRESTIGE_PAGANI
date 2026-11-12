@@ -54,44 +54,44 @@ def pic(src, alt, lazy=True, pos=None):
     return f'<img src="{src}" alt="{e(alt)}"{st}{" loading=" + chr(34) + "lazy" + chr(34) if lazy else ""}>'
 
 
-def hero(img, alt, name, line, ctas, portrait=None, pos='50% 50%'):
+def hero(img, alt, name, line, ctas, portrait=None, pos='50% 50%', eyebrow=None):
     source = f'<source media="(orientation: portrait)" srcset="{portrait}">' if portrait else ''
     return f'''  <section class="mh{'' if portrait else ' mh--wide'}" aria-labelledby="mh-n">
     <div class="mh__m"><picture>{source}<img src="{img}" style="object-position:{pos}" alt="{e(alt)}" fetchpriority="high"></picture></div>
-    <div class="mh__t"><h1 class="mh__n" id="mh-n"><span>{e(name)}</span></h1><p class="mh__l">{e(line)}</p><p class="mact mh__a">{ctas}</p></div>
+    <div class="mh__t">{f'<p class="eyebrow mh__e">{e(eyebrow)}</p>' if eyebrow else ''}<h1 class="mh__n" id="mh-n"><span>{e(name)}</span></h1><p class="mh__l">{e(line)}</p><p class="mact mh__a">{ctas}</p></div>
   </section>'''
 
 
-def spread(sid, title, text, act, big, cards, held=None):
+def spread(sid, title, text, act, big, cards, held=None, eyebrow=None):
     """the model's Exterior: the words, the picture off the page's edge, three details stepping down, and a held screen"""
     cs = ''.join(f'<figure class="mx mx--{i}" data-drift="{[12, 36, 20][i]}"><div class="mx__m" data-open>{pic(s, a, pos=o)}</div><figcaption class="pg__cap" data-rise>{c}</figcaption></figure>'
                  for i, (s, a, c, o) in enumerate(cards))
     w = (f'\n    <div class="ex__w"><div class="ex__s"><figure class="ex__m ex__m--dim">{pic(held[0], held[1])}</figure><p class="ex__c">{held[2]}</p></div></div>' if held else '')
     return f'''  <section class="ex{'' if held else ' pg__ex'}" id="{sid}" aria-labelledby="{sid}-h">
-    <div class="ex__t"><h2 class="title" id="{sid}-h" data-rise>{e(title)}</h2><p class="mtext" data-rise>{e(text)}</p>{f'<p class="mact" data-rise>{act}</p>' if act else ''}</div>
+    <div class="ex__t">{f'<p class="eyebrow" data-rise>{e(eyebrow)}</p>' if eyebrow else ''}<h2 class="title" id="{sid}-h" data-rise>{e(title)}</h2>{f'<p class="mtext" data-rise>{e(text)}</p>' if text else ''}{f'<p class="mact" data-rise>{act}</p>' if act else ''}</div>
     <figure class="ex__b" data-open>{pic(*big)}</figure>
     {cs}{w}
   </section>'''
 
 
-def scene(poster, d, m, label, title, line, ctas):
+def scene(poster, d, m, label, title, line, ctas, eyebrow=None):
     """the model's held film: full screen, dimmed, the words at its centre"""
     mv = f' data-m="{m}"' if m else ''
     return f'''  <section class="mf" id="film" aria-labelledby="mf-h">
     <div class="mf__s">
       <div class="mf__m" role="img" aria-label="{e(label)}">{pic(poster, '')}<video class="pv" muted loop playsinline preload="none" data-d="{d}"{mv} aria-hidden="true"></video></div>
-      <div class="mf__t"><h2 class="mf__h" id="mf-h">{e(title)}</h2><p class="mf__l">{e(line)}</p><p class="mact mf__a">{ctas}</p></div>
+      <div class="mf__t">{f'<p class="eyebrow mf__e">{e(eyebrow)}</p>' if eyebrow else ''}<h2 class="mf__h" id="mf-h">{e(title)}</h2><p class="mf__l">{e(line)}</p><p class="mact mf__a">{ctas}</p></div>
     </div>
   </section>'''
 
 
-def figures(sid, eyebrow, title, text, figs, tall, rows, ctas):
+def figures(sid, eyebrow, title, text, figs, tall, rows, ctas, stack=False):
     """the model's Engine: the words, large figures, a tall picture, the list"""
     fg = ''.join(f'<div><dd>{v}</dd><dt>{k}</dt></div>' for k, v in figs)
     dl = ''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in rows)
     return f'''  <section class="en" id="{sid}" aria-labelledby="{sid}-h">
     <div class="en__t"><p class="eyebrow" data-rise>{e(eyebrow)}</p><h2 class="title" id="{sid}-h" data-rise>{e(title)}</h2><p class="mtext" data-rise>{text}</p></div>
-    {f'<dl class="pg__f">{fg}</dl>' if figs else ''}
+    {f'<dl class="pg__f{" pg__f--rows" if stack else ""}">{fg}</dl>' if figs else ''}
     <figure class="en__p" data-open data-drift="150">{pic(*tall)}</figure>
 {f'    <div class="en__s"><dl class="en__d pg__d">{dl}</dl></div>' if rows else ''}
     <p class="mact en__c" data-rise>{ctas}</p>
@@ -101,7 +101,7 @@ def figures(sid, eyebrow, title, text, figs, tall, rows, ctas):
 def page(slug, title, desc, nav, card, main, current):
     hd = re.sub(r'<title>[^<]*</title>', f'<title>{title} · Pagani of Miami</title>', head)
     hd = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{desc}">', hd)
-    hd = hd.replace('</head>', '<link rel="stylesheet" href="pages.css?v=10">\n</head>')
+    hd = hd.replace('</head>', '<link rel="stylesheet" href="pages.css?v=13">\n</head>')
     h = hdr.replace(f'<a href="{current}">', f'<a href="{current}" aria-current="page">')
     mn = ''.join(f'<a href="#{i}" data-go>{e(t)}</a>' for i, t in nav)
     out = f'''{hd}
@@ -152,9 +152,10 @@ service = f'''<main id="top">
        'Prefer to talk it through?', 'Call the service line.', tel(SVC, 'cta cta--solid cta--fill').replace(e(SVC[0]), 'Call ' + e(SVC[0])))}
 
 {figures('find-us', 'Find Us', 'This is where you pull in.', '14780 Biscayne Blvd, North Miami Beach, FL&nbsp;33181 · Mon – Fri, 8:00 AM – 5:30 PM.',
-         [('Service hours · Mon – Fri', '8:00 AM – 5:30 PM'), ('Service line', f'<a href="{SVC[1]}">{e(SVC[0])}</a>')],
+         [('Service hours', 'Mon&nbsp;–&nbsp;Fri · 8:00&nbsp;AM&nbsp;–&nbsp;5:30&nbsp;PM'), ('Service line', f'<a href="{SVC[1]}">{e(SVC[0])}</a>'),
+          ('Address', '14780 Biscayne&nbsp;Blvd, North&nbsp;Miami&nbsp;Beach, FL&nbsp;33181')],   # breaks only after "·" and "Blvd,"
          ('assets/about-exhaust.webp', 'The exhausts and rear lights of a Pagani, red carbon'), [],
-         cta('Call ' + SVC[0], SVC[1], True) + cta('Get Directions', MAP))}
+         cta('Call ' + SVC[0], SVC[1], True) + cta('Get Directions', MAP), stack=True)}
 
   {fin}
 </main>'''
@@ -176,20 +177,24 @@ def card(name, line, t=None):
     return f'<b>{name}</b><span>{line}</span>' + (f'<a href="{t[1]}">{e(t[0])}</a>' if t else '')
 
 
+import re as _re
+fin_contact = fin.replace('<h2 id="invite-title" class="title" data-rise>Visit the showroom</h2>', '<h2 id="invite-title" class="title" data-rise>Start the conversation.</h2>')
+fin_contact = _re.sub(r'<address class="finale__addr".*?</address>', lambda m: '<p class="finale__line" data-rise>Tell us what you&#x27;re after and a specialist will be in touch — however you prefer to hear from us.</p>', fin_contact, flags=_re.S)
+assert 'Start the conversation.' in fin_contact and 'finale__line' in fin_contact
 contact = f'''<main id="top">
 {hero('assets/video/grand-opening-poster-d.webp?v=207', 'A green Pagani Huayra, doors raised, in the Pagani of Miami showroom on the night of the Grand Opening', "Let's talk.",
       "Whether you're acquiring, servicing, or simply curious — reach out, or come experience it in person.",
-      cta('Send a Message', '#invite', True) + cta('Call Sales', SALES[1]))}
+      cta('Send a Message', '#invite', True) + cta('Call Sales', SALES[1]), eyebrow='Contact Us')}
 
-{spread('reach-us', 'How can we help?', "Tell us what you're after and a specialist will be in touch — however you prefer to hear from us.", '',
+{spread('reach-us', 'How can we help?', '', '',
         ('assets/invite.webp', 'A black Pagani Utopia from behind, at dusk'),
         [('assets/miami.webp', 'A black Pagani Utopia in profile beneath brick arches', card('Sales', 'New, pre-owned &amp; white-glove acquisitions.', SALES), '52% 78%'),
          (P + 'svc-torque.webp', 'A torque wrench on a Pagani suspension', card('Service', 'Factory-trained care &amp; scheduling.', SVC), '82% 50%'),
-         ('assets/about-gearbox.webp', 'The gearbox of a Pagani, its plate reading Manuale', card('Parts', 'Genuine OEM parts &amp; accessories.'), '40% 50%')])}
+         ('assets/about-gearbox.webp', 'The gearbox of a Pagani, its plate reading Manuale', card('Parts', 'Genuine OEM parts &amp; accessories.'), '40% 50%')], eyebrow='Reach Us')}
 
 {scene('assets/video/grand-opening-poster-d.webp?v=207', 'assets/video/grand-opening-loop-d.mp4?v=207', 'assets/video/grand-opening-loop-m.mp4?v=207', 'The Pagani of Miami showroom on the night of its Grand Opening',
        'Come see us in person.', 'The South Florida luxury lifestyle is best experienced on our floor. Stop by — no appointment needed.',
-       cta('Schedule Service', 'service.html#schedule', True) + cta('Call Us', SALES[1]))}
+       cta('Schedule Service', 'service.html#schedule', True) + cta('Call Us', SALES[1]), eyebrow='Experience It')}
 
 {figures('visit', 'Visit', '14780 Biscayne Blvd.', 'North Miami Beach, FL&nbsp;33181 — complimentary on-site parking for all visitors.',
          [('Sales', f'<a href="{SALES[1]}">{e(SALES[0])}</a>'), ('Service', f'<a href="{SVC[1]}">{e(SVC[0])}</a>')],
@@ -200,7 +205,7 @@ contact = f'''<main id="top">
 
 {MAPBAND}
 
-  {fin}
+  {fin_contact}
 </main>'''
 page('contact', 'Contact', 'Contact Pagani of Miami: 14780 Biscayne Blvd, North Miami Beach, FL 33181. Sales +1 (833) 290-6287, service +1 (833) 290-5148.',
      [('reach-us', 'Reach Us'), ('film', 'Experience It'), ('visit', 'Visit'), ('invite', 'Message')],

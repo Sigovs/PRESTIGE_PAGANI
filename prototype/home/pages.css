@@ -73,4 +73,20 @@
    lower edge, the words and figures above them in the same column */
 .en:not(:has(.en__s)) .en__p { grid-row: 1 / span 3; align-self: stretch; }   /* stretched, so its foot is the block's foot whichever is taller */
 .en:not(:has(.en__s)) .en__c { grid-column: 1 / span 8; grid-row: 3; align-self: end; margin-top: var(--s-8); }
-@media (max-width: 767px) { .en:not(:has(.en__s)) .en__p, .en:not(:has(.en__s)) .en__c { grid-row: auto; } }
+@media (max-width: 767px) { .en:not(:has(.en__s)) .en__p, .en:not(:has(.en__s)) .en__c { grid-row: auto; } .en:not(:has(.en__s)) .en__c { grid-column: 1 / -1; } }
+
+/* the demo's eyebrows over the hero's name and the held screen's title */
+.mh__e { margin: 0 0 var(--s-3); color: rgb(255 255 255 / .8); }
+.mf__e { margin: 0 0 var(--s-4); font-size: var(--t-14); color: rgb(255 255 255 / .8); }
+/* the figures as rows: the demo's three facts at their own length, still the largest words in the block */
+.pg__f--rows { flex-direction: column; gap: var(--s-6); }
+.pg__f--rows dd { white-space: normal; font-size: clamp(1.75rem, 2.5vw, 2.75rem); line-height: 1.15; }
+/* Contact's finale: the line that asks, over the form, where the other pages show the address */
+.finale__line { margin: 0; max-width: 46ch; font-size: var(--t-18); line-height: 1.55; color: rgb(255 255 255 / .84); text-wrap: balance; }
+@media (max-width: 767px) { .pg__f--rows dd { font-size: 1.625rem; } }
+/* the chapters bar with four tabs: on a phone it scrolls sideways inside itself rather than running off the screen */
+@media (max-width: 767px) {
+  .pg .mn { overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .pg .mn::-webkit-scrollbar { display: none; }
+  .pg .mn a { flex: none; padding-inline: var(--s-3); }
+}
