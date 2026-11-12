@@ -1,0 +1,76 @@
+/* Service and Contact (12 Nov 2026): the model page's blocks (model-page.css) with only what these two pages add. */
+
+/* the hero's phone is a figure beside the button: no capitals and no tracking, so it reads at a glance */
+.mh__a .pg__tel { text-transform: none; letter-spacing: 0.01em; font-size: var(--t-18); font-variant-numeric: tabular-nums; }
+
+/* a spread with no held screen after it keeps its own floor */
+.pg__ex { padding-bottom: var(--s-9); }
+
+/* the details' captions: a name, a line, a number */
+.pg__cap { display: grid; justify-items: start; gap: var(--s-1); font-size: 1rem; line-height: 1.5; color: rgb(255 255 255 / .84); }
+.mx .pg__cap { margin-top: var(--s-4); }
+.pg__cap b { font-family: "Roboto", var(--font-brand); font-weight: 300; font-size: 1.75rem; line-height: 1.2; color: var(--ink); }
+.pg__cap a { margin-top: var(--s-2); color: var(--ink); font-size: var(--t-18); text-decoration: none; font-variant-numeric: tabular-nums;
+  border-bottom: 1px solid rgb(255 255 255 / .32); padding-bottom: 2px; transition: border-color .4s; }
+.pg__cap a:hover, .pg__cap a:focus-visible { border-color: var(--ink); }
+
+/* the quote held on the screen, and who says it */
+.pg__by { display: block; margin-top: var(--s-5); font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: rgb(255 255 255 / .7); }
+
+/* the held film: our own loop over its poster, which leaves once the film is playing */
+.mf__m video.pv { z-index: 0; }
+
+/* the figures, as Engine sets them, without the counting: a time and a phone number are not quantities */
+.pg__f { grid-column: 1 / span 8; grid-row: 2; display: flex; flex-wrap: wrap; gap: var(--s-7) clamp(var(--s-7), 4vw, var(--s-9)); align-self: end; margin: var(--s-9) 0 0; }
+.pg__f dd { margin: 0; font-family: "Roboto", var(--font-brand); font-weight: 200; font-size: clamp(2.25rem, 3.6vw, 4rem); line-height: 1.05; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pg__f dd a { color: inherit; text-decoration: none; }
+.pg__f dt { margin-top: var(--s-3); font-size: var(--t-14); line-height: 1.4; letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink-70); }
+
+/* the hours: day on the left, time on the right, readable at a glance */
+.pg__d dd { display: grid; grid-template-columns: max-content 1fr; gap: var(--s-2) var(--s-5); font-size: var(--t-18); color: rgb(255 255 255 / .7); }
+.pg__d dd b { font-weight: 400; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* Schedule service: the dealer's own scheduler (Xtime) in a wide, quiet frame; it needs room to be usable */
+.xt { padding: var(--s-10) var(--gx) var(--s-9); background: var(--bg); }
+.xt__h { max-width: 1120px; margin: 0 auto var(--s-6); display: grid; gap: var(--s-4); }
+.xt__h .title { margin: 0; }
+.xt__h a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgb(255 255 255 / .32); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.xt__w { max-width: 1120px; margin: 0 auto; border: 1px solid var(--rule); background: rgb(255 255 255 / .03); }
+.xt__f { display: block; width: 100%; height: 900px; border: 0; background: #fff; }
+.xt__ph { height: 640px; display: grid; place-content: center; justify-items: center; gap: var(--s-3); padding: var(--s-6); text-align: center; }
+.xt__ph p { margin: 0; font-size: var(--t-14); letter-spacing: var(--track-sm); text-transform: uppercase; color: var(--ink); }
+.xt__ph span { font-size: var(--t-18); color: rgb(255 255 255 / .6); }
+
+@media (max-width: 767px) {
+  .pg__f { grid-column: 1 / -1; gap: var(--s-6); }
+  .pg__f dd { font-size: 2.25rem; }
+  .pg__cap b { font-size: 1.375rem; }
+  .xt { padding-block: var(--s-9) var(--s-8); }
+  .xt__f { height: 980px; }
+  .xt__ph { height: 420px; }
+}
+
+/* a call in words, its number a plain link: the number reads, it is not a button label */
+.pg__call { font-size: var(--t-18); line-height: 1.5; color: rgb(255 255 255 / .84); }
+.pg__call a { color: var(--ink); text-decoration: none; white-space: nowrap; font-variant-numeric: tabular-nums; border-bottom: 1px solid rgb(255 255 255 / .32); padding-bottom: 2px; transition: border-color .4s; }
+.pg__call a:hover, .pg__call a:focus-visible { border-color: var(--ink); }
+
+/* the map: Google's, in black and white and the page's tone, melting into the ground above and below; a click opens the directions */
+.pmap { position: relative; height: min(76svh, 720px); background: var(--bg); overflow: hidden; }
+.pmap__m { position: absolute; inset: 0; display: block; overflow: hidden; }
+.pmap__m iframe { position: absolute; left: 0; top: -130px; width: 100%; height: calc(100% + 130px); border: 0; pointer-events: none;
+  filter: grayscale(1) invert(.9) contrast(1.02) brightness(.78); }
+/* only the top melts into the page: the foot stays clear, so Google's logo and terms stay legible, as its terms ask */
+.pmap::before { content: ""; position: absolute; left: 0; right: 0; z-index: 1; height: 22%; pointer-events: none; }
+.pmap::before { top: 0; background: linear-gradient(to bottom, var(--bg), transparent); }
+.pmap__t { position: absolute; z-index: 2; left: var(--gx); right: var(--gx); bottom: var(--s-9); padding: var(--s-5) var(--s-6); margin-inline: calc(var(--s-6) * -1); background: linear-gradient(to right, rgb(19 20 23 / .82), rgb(19 20 23 / .55) 60%, transparent); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--s-4) var(--s-6); pointer-events: none; }
+.pmap__t a { pointer-events: auto; }
+.pmap__a { margin: 0; display: grid; gap: var(--s-1); font-family: "Roboto", var(--font-brand); font-weight: 300; font-size: 1.75rem; line-height: 1.2; color: var(--ink); }
+.pmap__a span { font-family: inherit; font-weight: 400; font-size: var(--t-18); color: rgb(255 255 255 / .7); }
+@media (max-width: 767px) { .pmap { height: 64svh; } .pmap__a { font-size: 1.375rem; } .pmap__t { bottom: var(--s-8); } }
+
+/* a figures block with no list under it (Service · Find Us): the picture stands the block's full height and the buttons sit on its
+   lower edge, the words and figures above them in the same column */
+.en:not(:has(.en__s)) .en__p { grid-row: 1 / span 3; align-self: stretch; }   /* stretched, so its foot is the block's foot whichever is taller */
+.en:not(:has(.en__s)) .en__c { grid-column: 1 / span 8; grid-row: 3; align-self: end; margin-top: var(--s-8); }
+@media (max-width: 767px) { .en:not(:has(.en__s)) .en__p, .en:not(:has(.en__s)) .en__c { grid-row: auto; } }

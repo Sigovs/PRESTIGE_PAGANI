@@ -52,21 +52,24 @@ Use a web server, not `file://`. For example: `cd prototype/home && python3 -m h
   - `home_v2.css`: seven `#miami` rules.
   - `home_v2.js`: two blocks.
 
-## Model pages (temporary "coming soon" pages)
-- **8 pages** in `prototype/home/`:
-  - `utopia.html`
-  - `utopia-roadster.html`
-  - `huayra-r-evo-roadster.html`
-  - `huayra-bc.html`
-  - `huayra-codalunga-speedster.html`
-  - `huayra-codalunga.html`
-  - `huayra-epitome.html`
-  - `huayra-tricolore.html`
-- **Styles and script:** `model.css` and `model.js`, on top of the shared `home_v2.css`.
-- Each page fits a single screen with no scroll. It shows the logo, the car, the specs or one line of copy, and a short note.
-- **Buttons:**
-  - "Enquire about the …" slides a dark-glass enquiry up from the foot. It is a native `<dialog>` with the model pre-selected.
-  - "See it in the collection" goes back to that car on the home page. It uses `#model-<slug>` for the lineup and `#gc-<slug>` for Grandi Complicazioni. `home_v2.js` lands the page there once it has measured itself.
+## Model pages
+- **11 pages** in `prototype/home/`: `utopia`, `utopia-roadster`, `huayra-r-evo-roadster`, `huayra-bc`, `huayra-tricolore`, `huayra-codalunga`, `huayra-codalunga-speedster`, `huayra-epitome`, `zonda-hp-barchetta`, `imola`, `imola-roadster` (`.html`).
+- **Blocks, top to bottom:** hero (photo, name, one line, "Register your interest") · Exterior (words, a picture off the page's edge, three details stepping down, a held full-screen profile) · Interior (the same, mirrored) · the held film screen · Engine (large figures, a tall picture, the specifications) · gallery carousel · the showroom finale with the form.
+- **Files:** `model-page.css`, `model-page.js`, `model-film.js` on top of `home_v2.css`; photographs in `assets/models/<slug>/`.
+- **Generator:** `_build/mkmodel.py` wrote them, but the committed pages were edited after its last run. **Edit the HTML, do not re-run it**, or those edits are lost.
+
+## Service and Contact pages (12 Nov 2026)
+Live: https://sigovs.github.io/PRESTIGE_PAGANI/prototype/home/service.html · https://sigovs.github.io/PRESTIGE_PAGANI/prototype/home/contact.html
+
+- **Built from the model page's own blocks** (same CSS classes, same `model-page.js`), plus `pages.css` and `pages.js` for what these two pages add. The demo site's words are used word for word (`/service-appointment/`, `/contact-us/`).
+- **Service** (`service.html`), sections and anchors: hero · `#department` (words, picture, three details with the demo's captions) · `#schedule` (the Xtime scheduler) · `#film` (held film "Prefer to talk it through?") · `#find-us` (hours and service line as large figures; the buttons sit on the picture's lower edge) · `#invite` (the showroom finale with the contact form).
+- **Contact** (`contact.html`): hero ("Let's talk.") · `#reach-us` (Sales, Service, Parts) · `#film` (the Grand Opening loop, "Come see us in person.") · `#visit` (both phones as large figures, sales and service hours) · the black-and-white map · `#invite` (finale with the form).
+- **Floating chapters bar** (`.mn`): the sections plus **Message** (to the form). The corner card (`.mc`) goes to the scheduler on Service and to the form on Contact.
+- **Xtime scheduler:** an iframe, `https://consumer.xtime.com/scheduling/?webkey=xtm202511261024xx1&variant=SERVICETAB`. The key is the one on prestigeimports.com/schedule-service. `vmode=modal` is left off on purpose: inside our frame it drew a second box with an overlay and a ✕. **Confirm with Prestige that this is the key for Pagani of Miami.**
+- **Map:** Google Maps' free embed (`maps?q=…&output=embed`, no API key) turned black and white with a CSS filter. It does not take the mouse wheel (`pointer-events: none`), so the page keeps scrolling; a click opens Google Maps directions in a new tab. Google's logo and terms stay visible at its foot.
+- **Films:** the held screens play our own MP4 loops (`assets/service-film.mp4`; `assets/video/grand-opening-loop-d.mp4`, `-m.mp4` on a phone), muted, only while on screen; with reduced motion the poster stays.
+- **Pictures:** `assets/pages/svc-*.webp` are frames of the Pagani service film (1920×800). They are soft on the large middle card; swap them for Pagani press photographs if any are supplied.
+- **Generator:** `_build/mkpages.py` (run it from `_build/`) writes both pages, lifting the head, header, both menus and scripts from `utopia.html` and the finale from `index_v2.html`. Words, pictures, the Xtime address and the map are at the top of that file.
 
 ## Side menu: "Hypercars" (every Pagani model, by family, as on pagani.com)
 - **Files:** `models-menu.css` and `models-menu.js`. The `<dialog class="mm">` markup is repeated in `index_v2.html` and in each model page.
@@ -92,9 +95,12 @@ Use a web server, not `file://`. For example: `cd prototype/home && python3 -m h
 | `?snap=1` | Turns the old lineup snap back on (off by default) |
 
 ## Open items before going live
-- [ ] **Forms:** the home page `[data-enq]` and the model pages' `.psheet` form validate on the client only and show a "not connected" note. Wire them to the CRM or lead endpoint. The fields are `name`, `email`, `phone`, `interest` and `message`.
+- [ ] **Forms:** every page's showroom form (`[data-enq]`, in the finale) validates on the client only and shows a "not connected" note. Wire it to the CRM or lead endpoint. The fields are `name`, `email`, `phone`, `interest` and `message`.
+- [ ] **Xtime:** confirm the scheduler key for Pagani of Miami (see Service and Contact).
+- [ ] **Parts:** no parts phone number has been supplied; the Parts card shows none (as on the demo).
 - [ ] **Video hosting:** download the full Grand Opening film from Dropbox and move it to your CDN, along with the two background loops (see above).
 - [ ] **Indexing:** remove `<meta name="robots" content="noindex">` and the "PROTOTYPE … not for publication" comment at launch.
 - [ ] **Phone and address:** confirm with Prestige: sales (833) 290-6287, service (833) 290-5148, and the address 14780 Biscayne Blvd.
 - [ ] **Image rights:** Pagani press imagery and films are used for the prototype. Confirm usage rights with Pagani.
-- [ ] **Header nav:** "Inventory" and "Finance" are placeholders (`href="#"`, marked `is-todo`).
+- [ ] **Header nav:** Inventory · Hypercars · Service (`service.html`) · Contact (`contact.html`). "Inventory" is still a placeholder (`href="#"`, `is-todo`): point it at the inventory (SRP) page. "Finance" was removed on 12 Nov 2026, as on the demo.
+- [ ] **Spelling:** the copy is British ("Enquire", "enquiry"); the client asked for one spelling across all sites, and Marine and Gunther are US. Decide before launch.
